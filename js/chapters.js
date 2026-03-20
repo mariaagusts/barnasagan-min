@@ -5,7 +5,7 @@ import { S } from './state.js';
 
 export const CHAPTERS = [
   {
-    id: 0, emoji: "🍼", title: "Koman til heimsins",
+    id: 0, emoji: "🍼", title: "Nýja lífið",
     desc: "Fæðingin, nafnið og fyrstu klukkustundirnar",
     seeds: [
       "Hvað heitir barnið þitt og hvenær og hvar fæddist það?",
@@ -23,7 +23,7 @@ export const CHAPTERS = [
     ]
   },
   {
-    id: 2, emoji: "🌟", title: "Persónan og eðlið",
+    id: 2, emoji: "🌟", title: "Karakterinn og einkennin",
     desc: "Hvað gerir þetta barn að einstakling",
     seeds: [
       "Hvernig myndir þú lýsa persónu barnsins með þremur orðum?",
@@ -31,7 +31,7 @@ export const CHAPTERS = [
     ]
   },
   {
-    id: 3, emoji: "🎮", title: "Leikur og fantasía",
+    id: 3, emoji: "🎮", title: "Leikur og hugmyndaflug",
     desc: "Hvernig barnið leikur sér og hvað hrifsar það",
     seeds: [
       "Hvað er uppáhalds leikurinn eða leikfangið hjá barninu?",
@@ -94,7 +94,7 @@ export const CHAPTERS = [
     ]
   },
   {
-    id: 10, emoji: "✨", title: "Sérstækar minningar",
+    id: 10, emoji: "✨", title: "Sérstakar minningar",
     desc: "Augnablik sem sitja eftir",
     seeds: [
       "Hvert er uppáhaldsminnið þitt með barninu hingað til?",
@@ -103,7 +103,7 @@ export const CHAPTERS = [
     ]
   },
   {
-    id: 11, emoji: "🌈", title: "Draumar og framtíðin",
+    id: 11, emoji: "🌈", title: "Vonir og framtíðin",
     desc: "Von og óskir fyrir barnið",
     seeds: [
       "Hvað dreymir barnið um — hvað vill það verða þegar það verður stórt?",
@@ -115,7 +115,7 @@ export const CHAPTERS = [
 
 export const CHAPTERS_EN = [
   {
-    id: 0, emoji: "🍼", title: "Arriving in the World",
+    id: 0, emoji: "🍼", title: "The Arrival",
     desc: "Birth, the name and the first hours",
     seeds: [
       "What is your child's name, and when and where were they born?",
@@ -213,7 +213,7 @@ export const CHAPTERS_EN = [
     ]
   },
   {
-    id: 11, emoji: "🌈", title: "Dreams & The Future",
+    id: 11, emoji: "🌈", title: "Hopes & The Future",
     desc: "Hopes and wishes for your child",
     seeds: [
       "What does your child dream about — what do they want to be when they grow up?",
