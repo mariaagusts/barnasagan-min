@@ -7,26 +7,27 @@
 
 /* ── Design tokens ── */
 :root {
-  --cream:    #FFFBF2;
-  --warm:     #FFF3E0;
-  --peach:    #FFE8CC;
-  --mint:     #E8F5E9;
-  --sky:      #E3F2FD;
-  --lavender: #EDE7F6;
-  --gold:     #FF9800;
-  --orange:   #F57C00;
-  --text:     #3E2723;
-  --mid:      #795548;
-  --light:    #BCAAA4;
-  --border:   #FFCC80;
+  --cream:    #EAE4D0;  /* Taupe   — main background      */
+  --warm:     #F0DDC8;  /* warm tint between taupe/apricot */
+  --peach:    #F5C8A0;  /* Apricot — card tint             */
+  --mint:     #C8DBC8;  /* Sage light — secondary tint     */
+  --sky:      #D5E5D5;  /* Sage lighter                    */
+  --lavender: #E8E0D8;  /* warm lavender-taupe             */
+  --gold:     #C4876B;  /* Rose Gold — primary accent      */
+  --orange:   #A8674E;  /* Rose Gold dark — hover/active   */
+  --text:     #3C2A1E;  /* deep warm brown                 */
+  --mid:      #7A5A48;  /* mid brown                       */
+  --light:    #B89888;  /* light warm brown                */
+  --border:   #D8C4A8;  /* taupe border                    */
   --radius:   16px;
   --shadow:   0 4px 20px rgba(0,0,0,0.08);
 
   /* Aliases for compatibility with app JS */
-  --dark:     #3E2723;
-  --brown:    #F57C00;
+  --dark:     #3C2A1E;
+  --brown:    #A8674E;
   --card:     #FFFFFF;
-  --gold-lt:  #FFE0B2;
+  --gold-lt:  #F0D0B8;  /* Apricot light                   */
+  --sage:     #8DAF8D;  /* Sage — full saturation accent   */
 }
 
 /* ── Reset ── */

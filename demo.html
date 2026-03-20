@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="is">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Barnasagan mín — Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* ── Tokens ── */
+    :root {
+      --taupe:      #EAE4D0;
+      --warm:       #F0DDC8;
+      --apricot:    #F5C8A0;
+      --apricot-lt: #F0D0B8;
+      --sage:       #8DAF8D;
+      --sage-lt:    #C8DBC8;
+      --sage-xlt:   #D5E5D5;
+      --rose:       #C4876B;
+      --rose-dark:  #A8674E;
+      --text:       #3C2A1E;
+      --mid:        #7A5A48;
+      --light:      #B89888;
+      --border:     #D8C4A8;
+      --white:      #FFFFFF;
+      --r:          16px;
+      --shadow:     0 4px 24px rgba(60,42,30,0.10);
+      --shadow-lg:  0 12px 48px rgba(60,42,30,0.14);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--taupe);
+      color: var(--text);
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4 { font-family: 'Fredoka One', cursive; font-weight: 400; line-height: 1.2; }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ════════════════════════════════
+       NAV
+    ════════════════════════════════ */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(234,228,208,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 32px;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.45rem;
+      color: var(--rose);
+      letter-spacing: 0.01em;
+    }
+    .nav-logo span { color: var(--sage); }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--mid);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--rose); }
+    .btn-nav {
+      background: var(--rose);
+      color: var(--white);
+      font-family: 'Fredoka One', cursive;
+      font-size: 0.95rem;
+      padding: 10px 24px;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-nav:hover { background: var(--rose-dark); transform: translateY(-1px); }
+
+    /* ════════════════════════════════
+       HERO
+    ════════════════════════════════ */
+    .hero {
+      background: linear-gradient(160deg, var(--warm) 0%, var(--taupe) 55%, var(--sage-xlt) 100%);
+      padding: 96px 32px 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 340px; height: 340px;
+      background: var(--apricot);
+      border-radius: 50%;
+      opacity: 0.35;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -100px; left: -60px;
+      width: 280px; height: 280px;
+      background: var(--sage-lt);
+      border-radius: 50%;
+      opacity: 0.4;
+    }
+    .hero-inner { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; }
+    .hero-tag {
+      display: inline-block;
+      background: var(--apricot-lt);
+      color: var(--rose-dark);
+      font-size: 0.82rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 6px 18px;
+      border-radius: 50px;
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-size: clamp(2.4rem, 6vw, 3.8rem);
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--rose);
+    }
+    .hero-sub {
+      font-size: 1.1rem;
+      color: var(--mid);
+      max-width: 480px;
+      margin: 0 auto 40px;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.1rem;
+      background: var(--rose);
+      color: var(--white);
+      border: none;
+      border-radius: 50px;
+      padding: 16px 36px;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(196,135,107,0.35);
+      transition: background 0.2s, transform 0.15s, box-shadow 0.15s;
+    }
+    .btn-primary:hover {
+      background: var(--rose-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(196,135,107,0.40);
+    }
+    .btn-ghost {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.1rem;
+      background: transparent;
+      color: var(--rose);
+      border: 2px solid var(--border);
+      border-radius: 50px;
+      padding: 14px 32px;
+      cursor: pointer;
+      transition: border-color 0.2s, transform 0.15s;
+    }
+    .btn-ghost:hover { border-color: var(--rose); transform: translateY(-2px); }
+
+    .hero-book {
+      margin-top: 56px;
+      background: var(--white);
+      border-radius: 24px;
+      box-shadow: var(--shadow-lg);
+      padding: 28px 36px;
+      display: inline-flex;
+      align-items: center;
+      gap: 20px;
+      text-align: left;
+    }
+    .hero-book-cover {
+      width: 72px;
+      height: 88px;
+      background: linear-gradient(135deg, var(--rose) 0%, var(--apricot) 100%);
+      border-radius: 6px 12px 12px 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      flex-shrink: 0;
+      box-shadow: 4px 4px 12px rgba(196,135,107,0.3);
+    }
+    .hero-book-text strong {
+      display: block;
+      font-family: 'Fredoka One', cursive;
+      font-size: 1rem;
+      color: var(--text);
+      margin-bottom: 2px;
+    }
+    .hero-book-text span { font-size: 0.82rem; color: var(--mid); }
+
+    /* ════════════════════════════════
+       TRUST BAR
+    ════════════════════════════════ */
+    .trust-bar {
+      background: var(--white);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 20px 32px;
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      flex-wrap: wrap;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--mid);
+    }
+    .trust-item .ti { font-size: 1.2rem; }
+
+    /* ════════════════════════════════
+       SECTION WRAPPER
+    ════════════════════════════════ */
+    .section { padding: 80px 32px; }
+    .section-inner { max-width: 900px; margin: 0 auto; }
+    .section-tag {
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--rose);
+      margin-bottom: 10px;
+    }
+    .section-title {
+      font-size: clamp(1.7rem, 4vw, 2.4rem);
+      color: var(--text);
+      margin-bottom: 14px;
+    }
+    .section-sub {
+      font-size: 1rem;
+      color: var(--mid);
+      max-width: 520px;
+      margin-bottom: 48px;
+    }
+
+    /* ════════════════════════════════
+       HOW IT WORKS
+    ════════════════════════════════ */
+    .how-bg { background: var(--warm); }
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+    }
+    .step {
+      background: var(--white);
+      border-radius: var(--r);
+      padding: 32px 24px;
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+    .step-num {
+      font-family: 'Fredoka One', cursive;
+      font-size: 3rem;
+      color: var(--apricot);
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+    .step h3 {
+      font-size: 1.15rem;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .step p { font-size: 0.9rem; color: var(--mid); }
+    .step-icon {
+      position: absolute;
+      top: 28px; right: 28px;
+      font-size: 1.6rem;
+    }
+
+    /* ════════════════════════════════
+       FEATURES / CHAPTERS
+    ════════════════════════════════ */
+    .chapters-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+    }
+    .chapter-card {
+      border-radius: var(--r);
+      padding: 22px 20px;
+      transition: transform 0.18s, box-shadow 0.18s;
+      cursor: default;
+    }
+    .chapter-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+    .chapter-card .ch-icon { font-size: 1.8rem; margin-bottom: 10px; }
+    .chapter-card h4 { font-size: 1rem; color: var(--text); margin-bottom: 4px; }
+    .chapter-card p { font-size: 0.82rem; color: var(--mid); }
+    .ch-1 { background: var(--apricot-lt); }
+    .ch-2 { background: var(--sage-lt); }
+    .ch-3 { background: var(--sage-xlt); }
+    .ch-4 { background: var(--apricot); }
+    .ch-5 { background: var(--warm); }
+    .ch-6 { background: var(--sage-lt); }
+    .ch-7 { background: var(--apricot-lt); }
+    .ch-8 { background: var(--sage-xlt); }
+    .ch-9 { background: var(--warm); }
+
+    /* ════════════════════════════════
+       QUOTE / TESTIMONIAL
+    ════════════════════════════════ */
+    .quote-section {
+      background: linear-gradient(135deg, var(--sage-lt) 0%, var(--taupe) 100%);
+      text-align: center;
+    }
+    .quote-card {
+      background: var(--white);
+      border-radius: 24px;
+      padding: 48px 40px;
+      max-width: 620px;
+      margin: 0 auto;
+      box-shadow: var(--shadow-lg);
+    }
+    .quote-mark {
+      font-family: 'Fredoka One', cursive;
+      font-size: 5rem;
+      color: var(--apricot);
+      line-height: 0.6;
+      margin-bottom: 16px;
+    }
+    .quote-text {
+      font-size: 1.15rem;
+      color: var(--text);
+      line-height: 1.7;
+      margin-bottom: 24px;
+      font-style: italic;
+    }
+    .quote-author {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+    .quote-avatar {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--rose), var(--apricot));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+    }
+    .quote-name { font-weight: 800; color: var(--text); font-size: 0.9rem; }
+    .quote-role { font-size: 0.78rem; color: var(--light); }
+
+    /* ════════════════════════════════
+       PRICING
+    ════════════════════════════════ */
+    .pricing-bg { background: var(--taupe); }
+    .pricing-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .pricing-card {
+      background: var(--white);
+      border-radius: 24px;
+      padding: 36px 28px;
+      box-shadow: var(--shadow);
+      text-align: center;
+      position: relative;
+    }
+    .pricing-card.featured {
+      background: linear-gradient(160deg, var(--rose) 0%, var(--rose-dark) 100%);
+      color: var(--white);
+      box-shadow: var(--shadow-lg);
+      transform: scale(1.03);
+    }
+    .pricing-badge {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--sage);
+      color: var(--white);
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 5px 16px;
+      border-radius: 50px;
+    }
+    .pricing-name {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.3rem;
+      margin-bottom: 8px;
+    }
+    .pricing-price {
+      font-family: 'Fredoka One', cursive;
+      font-size: 2.8rem;
+      line-height: 1;
+      margin: 12px 0 4px;
+    }
+    .pricing-price sup { font-size: 1.2rem; vertical-align: top; margin-top: 8px; }
+    .pricing-period { font-size: 0.82rem; opacity: 0.7; margin-bottom: 24px; }
+    .pricing-features { list-style: none; text-align: left; margin-bottom: 28px; }
+    .pricing-features li {
+      font-size: 0.9rem;
+      padding: 6px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      display: flex;
+      gap: 8px;
+    }
+    .pricing-card.featured .pricing-features li { border-color: rgba(255,255,255,0.15); }
+    .pricing-features li::before { content: '✓'; color: var(--sage); font-weight: 800; }
+    .pricing-card.featured .pricing-features li::before { color: rgba(255,255,255,0.9); }
+    .btn-pricing {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1rem;
+      width: 100%;
+      padding: 14px;
+      border-radius: 50px;
+      border: 2px solid var(--border);
+      background: transparent;
+      color: var(--rose);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-pricing:hover { background: var(--apricot-lt); border-color: var(--rose); }
+    .pricing-card.featured .btn-pricing {
+      background: var(--white);
+      color: var(--rose-dark);
+      border-color: transparent;
+    }
+    .pricing-card.featured .btn-pricing:hover { background: var(--apricot-lt); }
+
+    /* ════════════════════════════════
+       CTA BANNER
+    ════════════════════════════════ */
+    .cta-section {
+      background: linear-gradient(135deg, var(--warm) 0%, var(--apricot-lt) 100%);
+      text-align: center;
+      padding: 80px 32px;
+    }
+    .cta-section h2 {
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+    .cta-section p { font-size: 1rem; color: var(--mid); margin-bottom: 36px; }
+
+    /* ════════════════════════════════
+       FOOTER
+    ════════════════════════════════ */
+    footer {
+      background: var(--text);
+      color: var(--light);
+      padding: 48px 32px 32px;
+      text-align: center;
+    }
+    .footer-logo {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.5rem;
+      color: var(--apricot);
+      margin-bottom: 12px;
+    }
+    .footer-tagline { font-size: 0.88rem; margin-bottom: 28px; opacity: 0.7; }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+      list-style: none;
+    }
+    .footer-links a {
+      font-size: 0.82rem;
+      color: var(--light);
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+    .footer-links a:hover { opacity: 1; }
+    .footer-copy { font-size: 0.75rem; opacity: 0.45; }
+
+    /* ════════════════════════════════
+       RESPONSIVE
+    ════════════════════════════════ */
+    @media (max-width: 600px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .hero { padding: 64px 20px 56px; }
+      .hero-book { flex-direction: column; text-align: center; }
+      .section { padding: 56px 20px; }
+      .trust-bar { gap: 20px; padding: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav-logo">Barnasagan <span>mín</span></div>
+  <ul class="nav-links">
+    <li><a href="#hvernig">Hvernig</a></li>
+    <li><a href="#kaflar">Kaflar</a></li>
+    <li><a href="#verd">Verð</a></li>
+    <li><a href="#innskraning"><button class="btn-nav">Byrja núna</button></a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">Gjöf til ævinnar</div>
+    <h1>Segðu <em>sögu</em> barns þíns</h1>
+    <p class="hero-sub">Leiðsögn í viðtali, gervigreind hjálpar þér að skrifa, og útkoman er falleg bók sem barnið þitt mun geyma alla ævi.</p>
+    <div class="hero-actions">
+      <button class="btn-primary">Byrja ókeypis →</button>
+      <button class="btn-ghost">Sjá dæmi</button>
+    </div>
+
+    <div class="hero-book">
+      <div class="hero-book-cover">📖</div>
+      <div class="hero-book-text">
+        <strong>Saga Önnu Maríu</strong>
+        <span>9 kaflar · 47 svör · 12 myndir</span><br>
+        <span style="color:var(--sage);font-weight:700;font-size:0.82rem">✓ Tilbúin til prentunar</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TRUST ── -->
+<div class="trust-bar">
+  <div class="trust-item"><span class="ti">📚</span> Sett saman í 9 köflum</div>
+  <div class="trust-item"><span class="ti">🤖</span> Gervigreind hjálpar þér</div>
+  <div class="trust-item"><span class="ti">🖨️</span> Prenthæft PDF</div>
+  <div class="trust-item"><span class="ti">🔒</span> Geymt á öruggan hátt</div>
+  <div class="trust-item"><span class="ti">🇮🇸</span> Íslenska í fyrirrúmi</div>
+</div>
+
+<!-- ── HOW IT WORKS ── -->
+<section class="section how-bg" id="hvernig">
+  <div class="section-inner">
+    <div class="section-tag">Einfalt ferli</div>
+    <h2 class="section-title">Þrjár einfaldur skref</h2>
+    <p class="section-sub">Við leiðum þig í gegnum allt — þú þarft bara að segja söguna.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-icon">💬</div>
+        <div class="step-num">01</div>
+        <h3>Svaraðu spurningum</h3>
+        <p>Við spyrjum þig um barnið þitt, þú svarar með texta eða röddinni þinni.</p>
+      </div>
+      <div class="step">
+        <div class="step-icon">✨</div>
+        <div class="step-num">02</div>
+        <h3>Gervigreind skrifar</h3>
+        <p>Svörin þín verða að fallegri frásögn — þú lagar það sem þér líkar ekki.</p>
+      </div>
+      <div class="step">
+        <div class="step-icon">🎁</div>
+        <div class="step-num">03</div>
+        <h3>Sótt sem bók</h3>
+        <p>Sæktu PDF og prentaðu, eða gefðu sem gjöf. Þetta er erfðagripur.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CHAPTERS ── -->
+<section class="section" id="kaflar">
+  <div class="section-inner">
+    <div class="section-tag">Innihaldið</div>
+    <h2 class="section-title">9 kaflar um lífið þitt saman</h2>
+    <p class="section-sub">Hverjum kafla fylgja leiðandi spurningar — ekkert er gleymt.</p>
+    <div class="chapters-grid">
+      <div class="chapter-card ch-1">
+        <div class="ch-icon">🌸</div>
+        <h4>Upphafið</h4>
+        <p>Þegar þið urðuð að foreldrum</p>
+      </div>
+      <div class="chapter-card ch-2">
+        <div class="ch-icon">👶</div>
+        <h4>Fæðingin</h4>
+        <p>Sá stundi sem allt breyttist</p>
+      </div>
+      <div class="chapter-card ch-3">
+        <div class="ch-icon">🏠</div>
+        <h4>Heim í fyrsta sinn</h4>
+        <p>Fyrstu vikurnar saman</p>
+      </div>
+      <div class="chapter-card ch-4">
+        <div class="ch-icon">😄</div>
+        <h4>Persónan</h4>
+        <p>Hvernig er barnið þitt</p>
+      </div>
+      <div class="chapter-card ch-5">
+        <div class="ch-icon">🎂</div>
+        <h4>Afmælin</h4>
+        <p>Hátíðleg augnablik</p>
+      </div>
+      <div class="chapter-card ch-6">
+        <div class="ch-icon">🌍</div>
+        <h4>Ferðalög</h4>
+        <p>Minningar frá fjarlægum löndum</p>
+      </div>
+      <div class="chapter-card ch-7">
+        <div class="ch-icon">📚</div>
+        <h4>Skólinn</h4>
+        <p>Fyrstu skrefin í nám</p>
+      </div>
+      <div class="chapter-card ch-8">
+        <div class="ch-icon">🌙</div>
+        <h4>Daglegt líf</h4>
+        <p>Venjur og litlar gleðir</p>
+      </div>
+      <div class="chapter-card ch-9">
+        <div class="ch-icon">💌</div>
+        <h4>Kært barnið mitt</h4>
+        <p>Bréf til barnsins þíns</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── QUOTE ── -->
+<section class="section quote-section">
+  <div class="quote-card">
+    <div class="quote-mark">"</div>
+    <p class="quote-text">Ég grét þegar ég las söguna í fyrsta sinn. Ég vissi ekki að ég hefði svona margt að segja um hana. Þetta er fallegasta gjöfin sem ég hef gefið — og fengið.</p>
+    <div class="quote-author">
+      <div class="quote-avatar">👩</div>
+      <div>
+        <div class="quote-name">Sigríður Björnsdóttir</div>
+        <div class="quote-role">Mamma þriggja barna · Reykjavík</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PRICING ── -->
+<section class="section pricing-bg" id="verd">
+  <div class="section-inner" style="text-align:center">
+    <div class="section-tag">Verðlag</div>
+    <h2 class="section-title">Eitt verð. Ein saga. Til ævinnar.</h2>
+    <p class="section-sub" style="margin:0 auto 48px">Engin áskrift. Þú greiðir einu sinni og átt söguna að eilífu.</p>
+    <div class="pricing-cards">
+      <div class="pricing-card">
+        <div class="pricing-name">Prufuútgáfa</div>
+        <div class="pricing-price">Frítt</div>
+        <div class="pricing-period">Alltaf frítt</div>
+        <ul class="pricing-features">
+          <li>3 kaflar opnir</li>
+          <li>Allt að 15 svör</li>
+          <li>Forskoðun sögunnar</li>
+          <li>Geymt í skýinu</li>
+        </ul>
+        <button class="btn-pricing">Byrja frítt</button>
+      </div>
+      <div class="pricing-card featured">
+        <div class="pricing-badge">Vinsælast</div>
+        <div class="pricing-name">Full saga</div>
+        <div class="pricing-price"><sup>kr</sup>4.990</div>
+        <div class="pricing-period">Eitt greiðsla · á ævi</div>
+        <ul class="pricing-features">
+          <li>Allir 9 kaflar</li>
+          <li>Ótakmarkaðar myndir</li>
+          <li>PDF til prentunar</li>
+          <li>Gervigreind endurbætir</li>
+          <li>Útgáfusaga · 20 útgáfur</li>
+        </ul>
+        <button class="btn-pricing">Kaupa sögu</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="cta-section" id="innskraning">
+  <h2>Hvenær byrjar þú?</h2>
+  <p>Þetta tekur 20 mínútur. Minningarnar vara alla ævi.</p>
+  <button class="btn-primary" style="font-size:1.15rem; padding:18px 44px;">Byrja sögu barns míns →</button>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-logo">Barnasagan mín</div>
+  <p class="footer-tagline">Söguleg minning um barnið þitt — varðveitt að eilífu</p>
+  <ul class="footer-links">
+    <li><a href="#">Forsíða</a></li>
+    <li><a href="#">Um okkur</a></li>
+    <li><a href="#">Verð</a></li>
+    <li><a href="#">Persónuvernd</a></li>
+    <li><a href="#">Hafa samband</a></li>
+  </ul>
+  <p class="footer-copy">© 2026 Multa Bene Agere ehf. · barnasagan.is</p>
+</footer>
+
+</body>
+</html>
