@@ -41,7 +41,7 @@ export const CHAPTERS = [
   },
   {
     id: 4, emoji: "📚", title: "Skólinn og nám",
-    desc: "Fyrsti skóladagurinn og lærðomurinn",
+    desc: "Fyrsti skóladagurinn og lærdómurinn",
     seeds: [
       "Hvernig var fyrsti skóladagurinn — hvernig leið barninu og hvernig leið þér?",
       "Hvaða námsgreinar líka barninu best og hvaða líka því minna?",
@@ -289,26 +289,29 @@ export const STORY_STYLES = {
     EXAMPLE OF THE CORRECT TONE:
     "I liked school except when we had maths. Maths was boring. I liked break time much better, and PE, and when our teacher Guðrún read aloud to us."`
   },
-  ljodraenum: {
-    label: "✨ Ljóðrænn",
-    desc: "Myndræn og stemningarrík frásögn með hlýlegum litbrigðum.",
-    labelEn: "✨ Poetic",
-    descEn: "Evocative and atmospheric narrative with warm imagery.",
-    prompt: `Þú ert sögumaður sem skrifar barnasögu á myndrænu og ljóðrænu íslensku máli.
+  hrein_frasogn: {
+    label: "📄 Hrein frásögn",
+    desc: "Einföld og bein skráning. Það sem gerðist, eins og það gerðist.",
+    labelEn: "📄 Plain Narrative",
+    descEn: "Simple and straightforward. What happened, as it happened.",
+    prompt: `Þú ert nákvæmur ritstjóri sem umbreytir svörum foreldris í hreina og beina barnasögu á íslensku.
     Skrifaðu í þriðju persónu um barnið.
-    Áherslan er á skynjun: lykt, hljóð, liti og andrúmsloft.
-    MIKILVÆGT: Notaðu hnitmiðaðar setningar til að forðast beygingarvillur.
-    Bannað er að nota niðurstöðu- eða lærdómssetningar í lok kafla.
+    Tónn: Hlutlægur, skýr og einfaldur — engar tilfinningalegar yfirdrifnar lýsingar, engar skreytingar.
+    Haltu þér við það sem foreldri sagði. Bættu ekki við túlkunum eða þínum eigin efni.
+    MIKILVÆGT: Engar niðurstöður, lærdómssetningar eða AI-klisju-setningar.
+    Láttu frásögnina enda á náttúrulegan hátt þegar efnið klárast.
 
     DÆMI UM RÉTTAN TÓN:
-    „Hún sofnaði alltaf fljótt. Hlustað var á andardráttinn þar til herbergið varð hlýtt af kyrrð. Í glugganum sást tunglið — og hún þar undir, lítil og alveg heilleg."`,
-    promptEn: `You are a storyteller writing a children's story in evocative and atmospheric English.
+    „Hún fæddist 14. mars 2019 á Landspítalanum í Reykjavík. Nafnið Sigríður kom frá ömmu hennar á föðurlegg. Við vissum ekki kynið fyrirfram og þegar við heyrðum að það væri stúlka hlógjumst við bæði."`,
+    promptEn: `You are a precise editor transforming a parent's answers into a clean and straightforward children's story in English.
     Write in the third person about the child.
-    Focus on senses: smell, sound, colour and atmosphere.
-    IMPORTANT: Do not use concluding moral sentences. Let the scene breathe and end naturally.
+    Tone: Objective, clear and simple — no emotional flourishes, no embellishments.
+    Stay close to what the parent said. Do not add interpretations or your own material.
+    IMPORTANT: No conclusions, moral summaries, or AI filler sentences.
+    Let the narrative end naturally when the content is done.
 
     EXAMPLE OF THE CORRECT TONE:
-    "She always fell asleep quickly. You would listen to her breathing until the room grew warm with stillness. The moon was visible through the window — and there she was beneath it, small and entirely whole."`
+    "She was born on 14 March 2019 at the National Hospital in Reykjavík. The name Sigríður came from her paternal grandmother. We did not know the gender in advance, and when we heard it was a girl we both laughed."`
   }
 };
 
