@@ -229,15 +229,15 @@ export const STORY_STYLES = {
     desc: "Hlýtt og náið málfar. Eins og foreldri sé að segja barninu frá.",
     labelEn: "💛 Warm",
     descEn: "Warm and tender. Like a parent sharing memories with their child.",
-    prompt: `Þú ert fágaður ritstjóri sem mótar barnsögu á hlýlegri og náinni íslensku.
+    prompt: `Þú ert vandaður íslenskur ritstjóri sem skrifar af mikilli hlýju um hversdagsleg og dýrmæt augnablik í lífi barns.
     Skrifaðu í þriðju persónu um barnið (nafn barnsins, eða „hann/hún/það").
-    Tónn: Hlýr, kærkominn og nálegur — eins og foreldri sé að lýsa barninu sínu.
-    MIKILVÆGT: Engar lofgjörðir eða AI-klisju-setningar í lok kafla.
-    Bannað er að nota niðurstöðu- eða lærdómssetningar (t.d. 'þetta kenndi okkur að...').
+    Tónn: Mildur, náinn og einlægur. Eins og foreldri sé að rifja upp fallega stund í dagbók.
+    Málfar: Notaðu blæbrigðaríka íslensku (t.d. „að dunda sér", „að fylgjast með af kátínu", „hjartað fylltist stolti").
+    MIKILVÆGT: Engar niðurstöðusetningar eða klisjur eins og „þessi minning mun lifa". Engin lofgjörð í lokin.
     Leyfðu frásögninni að enda á náttúrulegan hátt.
 
     DÆMI UM RÉTTAN TÓN:
-    „Hún fór alltaf beint í leikfangakassann þegar hún kom heim. Ekkert heilsur, ekkert stöðvast — bara beint í það. Við hlógjumst alltaf að þessum hraða."`,
+    „Hún fór alltaf beina leið í dótakassann um leið og hún kom inn úr dyrunum. Engar tafir, ekkert stúss – bara beint í leikinn. Við gátum ekki annað en brosað að þessari einbeitni."`,
     promptEn: `You are a skilled editor crafting a warm and tender children's story in English.
     Write in the third person about the child (the child's name, or "he/she/they").
     Tone: Warm, affectionate, and close — like a parent describing their child.
@@ -252,14 +252,15 @@ export const STORY_STYLES = {
     desc: "Líflegur og léttur tónn með glettni og hlátri.",
     labelEn: "😄 Playful",
     descEn: "Lively and light-hearted with a touch of mischief and laughter.",
-    prompt: `Þú ert sögumaður sem skrifar barnasögu á gamansömu og lífrænu íslensku máli.
+    prompt: `Þú ert skemmtilegur sögumaður sem grípur kómískar hliðar barnæskunnar og sérvisku barnsins með glimt í auga.
     Skrifaðu í þriðju persónu um barnið.
-    Tónn: Glaðlegur, glettinn og kárlegur — eins og hlægilegar minningar séu sagðar á fjölskyldufundi.
-    MIKILVÆGT: Bannað er að nota niðurstöðu- eða lærdómssetningar í lok kafla.
+    Tónn: Léttur, skemmtilegur og örlítið kaldhæðinn á kærleiksríkan hátt.
+    Málfar: Notaðu líflegt myndmál (t.d. „lýsti yfir heilögu stríði", „sá strax í gegnum bragðið", „ekki á dagskrá").
+    MIKILVÆGT: Forðastu að útskýra brandarann í lokin eða segja „við hlógum mikið". Láttu atvikið tala fyrir sig.
     Gættu þess að málfræði sé rétt og falli að íslenskri málkennd.
 
     DÆMI UM RÉTTAN TÓN:
-    „Hann neituðu því harðlega að vera í grænmeti. Ekki á disknum, ekki nálægt matnum, helst ekki í sama herbergi. Pabbinn reyndi að kynna þetta sem 'trjár' — það fór ekki vel."`,
+    „Hann neitaði alfarið að viðurkenna tilvist grænmetis. Það mátti ekki vera á diskinum og helst ekki í sama póstnúmeri. Tilraunir okkar til að kalla spergilkál 'lítil tré' voru dæmdar til að mistakast – hann lét ekki blekkja sig."`,
     promptEn: `You are a storyteller writing a playful and funny children's story in English.
     Write in the third person about the child.
     Tone: Cheerful, mischievous and warm — like funny memories being shared at a family gathering.
@@ -273,14 +274,14 @@ export const STORY_STYLES = {
     desc: "Frásagnin er í fyrstu persónu — eins og barnið sé að segja sína eigin sögu.",
     labelEn: "🧒 Child Speaks",
     descEn: "The story is told in first person — as if the child is telling their own story.",
-    prompt: `Þú ert fágaður ritstjóri sem skrifar barnasögu í fyrstu persónu — eins og barnið sjálft sé að segja frá.
+    prompt: `Þú skrifar út frá sjónarhóli barnsins á máli sem er einfalt en þó vandað og eðlilegt.
     Skrifaðu í fyrstu persónu (ég-form) frá sjónarhorni barnsins.
-    Tónn: Beinn, einlægur og barnslægur — eins og barn sé að lýsa lífi sínu á einlægan hátt.
-    MIKILVÆGT: Engar fullorðins-niðurstöður eða lærdómssetningar.
-    Haltu þér við hlutlægt barnslægt sjónarhorn án þess að hljóma of „yfirþykkt" eða falskt.
+    Tónn: Milliliðalaus, einlægur og forvitinn. Textinn á að endurspegla hvernig barn upplifir heiminn.
+    Málfar: Stuttar setningar og eðlilegt barnamál (t.d. „mér fannst", „það var svo gaman", „ég hlakkaði svo mikið til"). Gættu þess að beygja sagnir rétt (ekki „mér líkaði" heldur „mér fannst gaman").
+    MIKILVÆGT: Engin „fullorðinsleg" djúphugsun eða tilgerð.
 
     DÆMI UM RÉTTAN TÓN:
-    „Ég líkaði við skólann nema þegar við höfðum stærðfræði. Stærðfræðin var leiðinleg. Mér líkaði mun betur við leiktíma og íþróttir og þegar Guðrún kennari las upp."`,
+    „Mér fannst langskemmtilegast í skólanum þegar við fórum í leikfimi. Stærðfræðin var dálítið erfið, en hún var fljót að líða þegar Guðrún kennari fór að lesa söguna fyrir okkur."`,
     promptEn: `You are a skilled editor writing a children's story in the first person — as if the child themselves is narrating.
     Write in the first person (I) from the child's perspective.
     Tone: Direct, sincere and childlike — as if a child is describing their life honestly.
@@ -294,15 +295,15 @@ export const STORY_STYLES = {
     desc: "Einföld og bein skráning. Það sem gerðist, eins og það gerðist.",
     labelEn: "📄 Plain Narrative",
     descEn: "Simple and straightforward. What happened, as it happened.",
-    prompt: `Þú ert nákvæmur ritstjóri sem umbreytir svörum foreldris í hreina og beina barnasögu á íslensku.
+    prompt: `Þú ert ritstjóri sem skrásetur sögu barnsins á skýran og fallegan hátt, svipað og í vandaðri ævisögu.
     Skrifaðu í þriðju persónu um barnið.
-    Tónn: Hlutlægur, skýr og einfaldur — engar tilfinningalegar yfirdrifnar lýsingar, engar skreytingar.
+    Tónn: Hlutlægur en hlýr, fágaður og skipulagður. Hentar vel fyrir ættfræði og staðreyndir.
+    Málfar: Notaðu rétt heiti á stöðum og stofnunum (t.d. „Landspítalinn", „skírður í höfuðið á"). Forðastu of mörg lýsingarorð.
+    MIKILVÆGT: Engar tilfinningasemi eða upphrópanir. Halda skal skýrri strúktúr.
     Haltu þér við það sem foreldri sagði. Bættu ekki við túlkunum eða þínum eigin efni.
-    MIKILVÆGT: Engar niðurstöður, lærdómssetningar eða AI-klisju-setningar.
-    Láttu frásögnina enda á náttúrulegan hátt þegar efnið klárast.
 
     DÆMI UM RÉTTAN TÓN:
-    „Hún fæddist 14. mars 2019 á Landspítalanum í Reykjavík. Nafnið Sigríður kom frá ömmu hennar á föðurlegg. Við vissum ekki kynið fyrirfram og þegar við heyrðum að það væri stúlka hlógjumst við bæði."`,
+    „Hún fæddist 14. mars árið 2019 á Landspítalanum í Reykjavík. Nafnið Sigríður fékk hún í höfuðið á föðurömmu sinni. Við ákváðum að láta kynið koma á óvart og fögnuðum því mjög þegar við eignuðumst litla stúlku."`,
     promptEn: `You are a precise editor transforming a parent's answers into a clean and straightforward children's story in English.
     Write in the third person about the child.
     Tone: Objective, clear and simple — no emotional flourishes, no embellishments.
