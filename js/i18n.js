@@ -6,7 +6,7 @@ import { S } from './state.js';
 export const UI = {
   is: {
     navLogin: "Innskrá", navCta: "Byrja að skrifa",
-    heroTitle: "Barnasagan: Vegna þess að \u201Eég skrifa þetta niður á morgun\u201C er stærsta lygi sem við segjum okkur.",
+    heroTitle: "Barnasagan: \u201Eég skrifa þetta niður á morgun\u201C er loforðið sem við gefum okkur öll.",
     heroSub: "Við vitum að heilaþokan er raunveruleg. Barnasagan hjálpar þér að fanga dýrmætustu augnablikin þegar þau gerast — án samviskubits eða auka álags.",
     heroCta1: "Byrja að skrifa →", heroCta2: "Innskrá",
     heroStats: ["Kaflar","Spurningar","Barnasaga"],
@@ -153,7 +153,7 @@ export const UI = {
   },
   en: {
     navLogin: "Sign in", navCta: "Start your journey",
-    heroTitle: "Barnasagan: Because \"I'll write it down tomorrow\" is the biggest lie parents tell themselves.",
+    heroTitle: "Barnasagan: \"I'll write it down tomorrow\" — the promise we all make ourselves.",
     heroSub: "We know brain fog is real. Barnasagan helps you capture the most precious moments as they happen — without guilt or extra pressure.",
     heroCta1: "Start writing →", heroCta2: "Sign in",
     heroStats: ["Chapters","Questions","Story"],
