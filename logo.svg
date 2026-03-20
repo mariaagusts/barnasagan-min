@@ -1,0 +1,142 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width="160" height="160">
+  <defs>
+    <clipPath id="circle-clip">
+      <circle cx="80" cy="80" r="74"/>
+    </clipPath>
+    <radialGradient id="bg-grad" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#F0DDC8"/>
+      <stop offset="100%" stop-color="#EAE4D0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background circle -->
+  <circle cx="80" cy="80" r="76" fill="#D8C4A8"/>
+  <circle cx="80" cy="80" r="74" fill="url(#bg-grad)"/>
+
+  <!-- ── BOOK ── -->
+  <!-- Book cover / spine shadow -->
+  <rect x="30" y="100" width="100" height="14" rx="4" fill="#A8674E" opacity="0.25"/>
+
+  <!-- Left page -->
+  <path d="M32 98 Q55 88 80 92 L80 115 Q55 115 32 113 Z" fill="#FFFBF2"/>
+  <!-- Left page lines -->
+  <line x1="42" y1="97" x2="74" y2="95" stroke="#D8C4A8" stroke-width="1.2" opacity="0.8"/>
+  <line x1="42" y1="101" x2="74" y2="100" stroke="#D8C4A8" stroke-width="1.2" opacity="0.8"/>
+  <line x1="42" y1="105" x2="74" y2="105" stroke="#D8C4A8" stroke-width="1.2" opacity="0.8"/>
+  <line x1="42" y1="109" x2="74" y2="110" stroke="#D8C4A8" stroke-width="1.2" opacity="0.8"/>
+
+  <!-- Right page -->
+  <path d="M128 98 Q105 88 80 92 L80 115 Q105 115 128 113 Z" fill="#FFF8F0"/>
+  <!-- Right page lines -->
+  <line x1="118" y1="97" x2="86" y2="95" stroke="#D8C4A8" stroke-width="1.2" opacity="0.8"/>
+  <line x1="118" y1="101" x2="86" y2="100" stroke="#D8C4A8" stroke-width="1.2" opacity="0.8"/>
+  <line x1="118" y1="105" x2="86" y2="105" stroke="#D8C4A8" stroke-width="1.2" opacity="0.8"/>
+  <line x1="118" y1="109" x2="86" y2="110" stroke="#D8C4A8" stroke-width="1.2" opacity="0.8"/>
+
+  <!-- Book spine -->
+  <path d="M80 92 L80 115" stroke="#C4876B" stroke-width="2.5"/>
+  <!-- Book bottom edge -->
+  <path d="M32 113 Q80 117 128 113" stroke="#C4876B" stroke-width="2" fill="none"/>
+
+  <!-- ── DRAGON ── -->
+  <!-- Tail curling out behind book -->
+  <path d="M95 108 Q108 105 114 95 Q118 85 112 80"
+        stroke="#8DAF8D" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <!-- Tail tip -->
+  <polygon points="111,77 115,72 118,79" fill="#8DAF8D"/>
+
+  <!-- Body -->
+  <ellipse cx="80" cy="78" rx="18" ry="20" fill="#8DAF8D"/>
+
+  <!-- Belly -->
+  <ellipse cx="80" cy="80" rx="11" ry="14" fill="#C8DBC8"/>
+
+  <!-- Left wing -->
+  <path d="M62 72 Q44 55 50 40 Q58 60 62 72Z" fill="#A8C5A8"/>
+  <path d="M62 72 Q44 55 50 40 Q58 60 62 72Z" fill="none" stroke="#8DAF8D" stroke-width="1" opacity="0.5"/>
+  <!-- Wing detail lines -->
+  <path d="M61 68 Q50 52 53 43" stroke="#8DAF8D" stroke-width="1" opacity="0.5" fill="none"/>
+  <path d="M60 64 Q52 52 56 45" stroke="#8DAF8D" stroke-width="1" opacity="0.5" fill="none"/>
+
+  <!-- Right wing -->
+  <path d="M98 72 Q116 55 110 40 Q102 60 98 72Z" fill="#A8C5A8"/>
+  <!-- Wing detail lines -->
+  <path d="M99 68 Q110 52 107 43" stroke="#8DAF8D" stroke-width="1" opacity="0.5" fill="none"/>
+  <path d="M100 64 Q108 52 104 45" stroke="#8DAF8D" stroke-width="1" opacity="0.5" fill="none"/>
+
+  <!-- Neck -->
+  <ellipse cx="80" cy="58" rx="13" ry="10" fill="#8DAF8D"/>
+
+  <!-- Head -->
+  <ellipse cx="80" cy="44" rx="17" ry="15" fill="#8DAF8D"/>
+
+  <!-- Snout -->
+  <ellipse cx="80" cy="52" rx="9" ry="6" fill="#A8C5A8"/>
+  <!-- Nostrils -->
+  <ellipse cx="76.5" cy="53" rx="1.5" ry="1" fill="#7A9A7A"/>
+  <ellipse cx="83.5" cy="53" rx="1.5" ry="1" fill="#7A9A7A"/>
+
+  <!-- Eyes -->
+  <!-- Left eye white -->
+  <ellipse cx="71" cy="41" rx="5" ry="5.5" fill="white"/>
+  <!-- Left eye pupil -->
+  <ellipse cx="72" cy="42" rx="3" ry="3.5" fill="#3C2A1E"/>
+  <!-- Left eye shine -->
+  <circle cx="73" cy="40" r="1.2" fill="white"/>
+
+  <!-- Right eye white -->
+  <ellipse cx="89" cy="41" rx="5" ry="5.5" fill="white"/>
+  <!-- Right eye pupil -->
+  <ellipse cx="88" cy="42" rx="3" ry="3.5" fill="#3C2A1E"/>
+  <!-- Right eye shine -->
+  <circle cx="90" cy="40" r="1.2" fill="white"/>
+
+  <!-- Eyebrows (friendly/curious) -->
+  <path d="M67 36 Q71 34 75 36" stroke="#7A9A7A" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+  <path d="M85 36 Q89 34 93 36" stroke="#7A9A7A" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+
+  <!-- Horns -->
+  <path d="M73 31 Q70 22 74 18 Q76 26 73 31Z" fill="#C4876B"/>
+  <path d="M87 31 Q90 22 86 18 Q84 26 87 31Z" fill="#C4876B"/>
+  <!-- Horn shine -->
+  <path d="M72 27 Q71 23 73 20" stroke="#F0D0B8" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.7"/>
+  <path d="M88 27 Q89 23 87 20" stroke="#F0D0B8" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.7"/>
+
+  <!-- Little ear/frill -->
+  <ellipse cx="63" cy="39" rx="4" ry="5" fill="#A8C5A8" transform="rotate(-20 63 39)"/>
+  <ellipse cx="97" cy="39" rx="4" ry="5" fill="#A8C5A8" transform="rotate(20 97 39)"/>
+
+  <!-- Smile -->
+  <path d="M73 56 Q80 60 87 56" stroke="#7A9A7A" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+
+  <!-- Tiny flame puff from mouth -->
+  <ellipse cx="80" cy="62" rx="4" ry="2.5" fill="#F5C8A0" opacity="0.8"/>
+  <ellipse cx="77" cy="63" rx="2" ry="1.5" fill="#C4876B" opacity="0.6"/>
+  <ellipse cx="83" cy="63" rx="2" ry="1.5" fill="#C4876B" opacity="0.6"/>
+
+  <!-- Sparkles — spread evenly around the circle -->
+  <!-- Top left sparkle — Rose Gold, large -->
+  <g transform="translate(30, 36)">
+    <line x1="0" y1="-8" x2="0" y2="8" stroke="#C4876B" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="-8" y1="0" x2="8" y2="0" stroke="#C4876B" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="-5.5" y1="-5.5" x2="5.5" y2="5.5" stroke="#C4876B" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
+    <line x1="5.5" y1="-5.5" x2="-5.5" y2="5.5" stroke="#C4876B" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
+  </g>
+  <!-- Top right sparkle — Sage, medium -->
+  <g transform="translate(128, 30)">
+    <line x1="0" y1="-6" x2="0" y2="6" stroke="#8DAF8D" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="-6" y1="0" x2="6" y2="0" stroke="#8DAF8D" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="-4" y1="-4" x2="4" y2="4" stroke="#8DAF8D" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
+    <line x1="4" y1="-4" x2="-4" y2="4" stroke="#8DAF8D" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
+  </g>
+  <!-- Bottom left sparkle — Apricot, small -->
+  <g transform="translate(32, 118)">
+    <line x1="0" y1="-5" x2="0" y2="5" stroke="#F5C8A0" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="-5" y1="0" x2="5" y2="0" stroke="#F5C8A0" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="-3.5" y1="-3.5" x2="3.5" y2="3.5" stroke="#F5C8A0" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
+    <line x1="3.5" y1="-3.5" x2="-3.5" y2="3.5" stroke="#F5C8A0" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
+  </g>
+
+  <!-- Outer ring -->
+  <circle cx="80" cy="80" r="74" fill="none" stroke="#C4876B" stroke-width="2.5" opacity="0.4"/>
+</svg>
