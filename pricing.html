@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="is">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verðlag · Barnasagan mín</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+<style>
+:root {
+  --cream:    #FFFBF2;
+  --warm:     #FFF3E0;
+  --peach:    #FFE8CC;
+  --gold:     #FF9800;
+  --orange:   #F57C00;
+  --text:     #3E2723;
+  --mid:      #795548;
+  --light:    #BCAAA4;
+  --border:   #FFCC80;
+  --radius:   16px;
+  --shadow:   0 4px 20px rgba(0,0,0,0.08);
+  --dark:     #3E2723;
+  --brown:    #F57C00;
+  --card:     #FFFFFF;
+  --gold-lt:  #FFE0B2;
+}
+
+/* ── Hero ── */
+.hero {
+  text-align: center;
+  padding: 80px 24px 60px;
+  background: linear-gradient(155deg, var(--cream) 0%, var(--warm) 60%, var(--peach) 100%);
+}
+.ornament {
+  color: var(--gold);
+  letter-spacing: 10px;
+  font-size: 14px;
+  margin-bottom: 24px;
+  display: block;
+}
+.hero-title {
+  font-family: 'Fredoka One', cursive;
+  font-size: clamp(32px, 5vw, 52px);
+  color: var(--text);
+  margin-bottom: 16px;
+  line-height: 1.15;
+}
+.hero-sub {
+  font-size: 17px;
+  color: var(--mid);
+  font-weight: 600;
+  max-width: 500px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* ── Cards ── */
+.cards-wrap {
+  display: flex;
+  gap: 24px;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 24px 60px;
+  align-items: start;
+  flex-wrap: wrap;
+}
+.card {
+  flex: 1;
+  min-width: 260px;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 40px 32px;
+  position: relative;
+  box-shadow: var(--shadow);
+  animation: fadeUp 0.5s ease both;
+}
+.card.featured {
+  background: var(--text);
+  border-color: var(--text);
+  color: white;
+}
+.card.combo {
+  background: linear-gradient(135deg, var(--warm) 0%, var(--peach) 100%);
+  border-color: var(--gold);
+  flex-basis: 100%;
+  max-width: 860px;
+}
+.card-badge {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--gold);
+  color: white;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 4px 16px;
+  border-radius: 50px;
+  white-space: nowrap;
+  font-family: 'Nunito', sans-serif;
+}
+.card-name {
+  font-family: 'Fredoka One', cursive;
+  font-size: 24px;
+  margin-bottom: 8px;
+  color: var(--text);
+}
+.card.featured .card-name { color: white; }
+.card.combo .card-name { color: var(--text); }
+.card-desc {
+  font-size: 14px;
+  color: var(--mid);
+  margin-bottom: 28px;
+  min-height: 40px;
+}
+.card.featured .card-desc { color: #c9b8a8; }
+.card.combo .card-desc { color: var(--mid); }
+.price-wrap {
+  margin-bottom: 32px;
+}
+.price-free {
+  font-family: 'Fredoka One', cursive;
+  font-size: 36px;
+  color: var(--text);
+}
+.card.featured .price-free { color: white; }
+.price-amount {
+  font-family: 'Fredoka One', cursive;
+  font-size: 48px;
+  color: white;
+  line-height: 1;
+}
+.card.combo .price-amount { color: var(--text); }
+.price-currency {
+  font-size: 20px;
+  color: var(--gold);
+  vertical-align: top;
+  padding-top: 8px;
+  display: inline-block;
+}
+.card.combo .price-currency { color: var(--orange); }
+.price-note {
+  font-size: 13px;
+  color: #c9b8a8;
+  margin-top: 6px;
+}
+.card.combo .price-note { color: var(--mid); }
+.price-saving {
+  display: inline-block;
+  background: var(--gold);
+  color: white;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 3px 12px;
+  border-radius: 50px;
+  margin-top: 8px;
+  font-family: 'Nunito', sans-serif;
+}
+.features {
+  list-style: none;
+  margin-bottom: 36px;
+}
+.features li {
+  padding: 9px 0;
+  font-size: 14px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text);
+}
+.card.featured .features li {
+  border-bottom-color: #3d2a1a;
+  color: #e8d8c8;
+}
+.card.combo .features li {
+  border-bottom-color: var(--border);
+  color: var(--text);
+}
+.features li:last-child { border-bottom: none; }
+.check { color: var(--gold); font-size: 18px; flex-shrink: 0; }
+.x-mark { color: #bbb; font-size: 16px; flex-shrink: 0; }
+.feat-text.dim { color: #bbb; }
+.card.featured .feat-text.dim { color: #5a4030; }
+
+.btn-free {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  border: 2px solid var(--border);
+  border-radius: 50px;
+  background: none;
+  color: var(--mid);
+  font-size: 15px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-free:hover { border-color: var(--gold); color: var(--orange); background: var(--warm); }
+.btn-paid {
+  display: block;
+  width: 100%;
+  padding: 16px;
+  border: none;
+  border-radius: 50px;
+  background: var(--gold);
+  color: white;
+  font-size: 15px;
+  font-weight: 800;
+  font-family: 'Nunito', sans-serif;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  letter-spacing: 0.3px;
+  transition: all 0.2s;
+}
+.btn-paid:hover { background: var(--orange); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255,152,0,0.3); }
+
+/* ── Combo section info ── */
+.combo-cols {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+.combo-col {
+  flex: 1;
+  min-width: 200px;
+}
+.combo-col h4 {
+  font-family: 'Fredoka One', cursive;
+  font-size: 16px;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.combo-col p {
+  font-size: 13px;
+  color: var(--mid);
+  line-height: 1.7;
+}
+
+/* ── FAQ strip ── */
+.faq-strip {
+  background: var(--warm);
+  border-top: 1px solid var(--border);
+  padding: 60px 24px;
+  text-align: center;
+}
+.faq-strip h3 {
+  font-family: 'Fredoka One', cursive;
+  font-size: 28px;
+  margin-bottom: 32px;
+  color: var(--text);
+}
+.faq-items {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: left;
+}
+.faq-item {
+  border-bottom: 1px solid var(--border);
+  padding: 16px 0;
+}
+.faq-item summary {
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Nunito', sans-serif;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after { content: '＋'; color: var(--gold); font-size: 18px; }
+.faq-item[open] summary::after { content: '－'; }
+.faq-answer {
+  font-size: 14px;
+  color: var(--mid);
+  padding: 12px 0 4px;
+  line-height: 1.7;
+}
+
+@media (max-width: 600px) {
+  .cards-wrap { flex-direction: column; }
+  .card { min-width: unset; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.card:nth-child(2) { animation-delay: 0.1s; }
+.card:nth-child(3) { animation-delay: 0.2s; }
+</style>
+</head>
+<body>
+
+<div class="header-bar">
+  <a class="logo" href="https://barnasagan.is">Barnasagan mín</a>
+  <div style="display:flex;align-items:center;gap:12px;">
+    <div class="lang-toggle">
+      <button class="lang-btn active" id="btn-is" onclick="setLang('is')">IS</button>
+      <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+    </div>
+    <a class="back-btn" href="https://barnasagan.is">
+      <span class="lang-is">← Til baka</span>
+      <span class="lang-en" style="display:none;">← Back</span>
+    </a>
+  </div>
+</div>
+
+<!-- Hero -->
+<div class="hero">
+  <span class="ornament">✦ ✦ ✦</span>
+  <h1 class="hero-title">
+    <span class="lang-is">Gefðu barninu þínu söguna um bernsku sína</span>
+    <span class="lang-en" style="display:none;">Give your child the story of their childhood</span>
+  </h1>
+  <p class="hero-sub">
+    <span class="lang-is">Byrjaðu ókeypis. Greiddu einu sinni. Barnasagan er þín — alltaf.</span>
+    <span class="lang-en" style="display:none;">Start for free. Pay once. Your child's story is yours — always.</span>
+  </p>
+</div>
+
+<!-- Cards -->
+<div class="cards-wrap">
+
+  <!-- Free -->
+  <div class="card">
+    <div class="card-name lang-is">Prufuaðgangur</div>
+    <div class="card-name lang-en" style="display:none;">Trial access</div>
+    <div class="card-desc lang-is">Prófaðu þjónustuna áður en þú greiðir</div>
+    <div class="card-desc lang-en" style="display:none;">Try the service before you pay</div>
+    <div class="price-wrap">
+      <div class="price-free lang-is">Ókeypis</div>
+      <div class="price-free lang-en" style="display:none;">Free</div>
+    </div>
+    <ul class="features">
+      <li><span class="check">✓</span><span class="feat-text lang-is">2 kaflar opnir</span><span class="feat-text lang-en" style="display:none;">2 chapters unlocked</span></li>
+      <li><span class="check">✓</span><span class="feat-text lang-is">Allt að 20 spurningar — þú velur hversu mörgum þú svarar</span><span class="feat-text lang-en" style="display:none;">Up to 20 questions — you choose how many you answer</span></li>
+      <li><span class="check">✓</span><span class="feat-text lang-is">Forskoðun á bókinni</span><span class="feat-text lang-en" style="display:none;">Book preview</span></li>
+      <li><span class="check">✓</span><span class="feat-text lang-is">Íslenska og enska</span><span class="feat-text lang-en" style="display:none;">Icelandic and English</span></li>
+      <li><span class="x-mark">✕</span><span class="feat-text dim lang-is">Hlaða niður PDF</span><span class="feat-text dim lang-en" style="display:none;">Download PDF</span></li>
+      <li><span class="x-mark">✕</span><span class="feat-text dim lang-is">Allir 12 kaflar</span><span class="feat-text dim lang-en" style="display:none;">All 12 chapters</span></li>
+    </ul>
+    <a class="btn-free" href="https://barnasagan.is">
+      <span class="lang-is">Byrja ókeypis →</span>
+      <span class="lang-en" style="display:none;">Start for free →</span>
+    </a>
+  </div>
+
+  <!-- Paid -->
+  <div class="card featured">
+    <div class="card-badge lang-is">Ein greiðsla · Fullur aðgangur</div>
+    <div class="card-badge lang-en" style="display:none;">One-time · Full Access</div>
+    <div class="card-name">
+      <span class="lang-is">Fullur aðgangur</span>
+      <span class="lang-en" style="display:none;">Full access</span>
+    </div>
+    <div class="card-desc">
+      <span class="lang-is">Allt sem þú þarft til að skrifa söguna um barnið þitt</span>
+      <span class="lang-en" style="display:none;">Everything you need to write your child's story</span>
+    </div>
+    <div class="price-wrap">
+      <div class="price-amount"><span class="price-currency">kr</span>4.900</div>
+      <div class="price-note lang-is">Ein greiðsla — enginn áskrift, aldrei</div>
+      <div class="price-note lang-en" style="display:none;">One payment — no subscription, ever</div>
+    </div>
+    <ul class="features">
+      <li><span class="check">✓</span><span class="feat-text lang-is">Allir 12 kaflar opnir</span><span class="feat-text lang-en" style="display:none;">All 12 chapters unlocked</span></li>
+      <li><span class="check">✓</span><span class="feat-text lang-is">Allt að 120 spurningar — þú velur hversu mörgum þú svarar</span><span class="feat-text lang-en" style="display:none;">Up to 120 questions — you choose how many you answer</span></li>
+      <li><span class="check">✓</span><span class="feat-text lang-is">Val um ólíka ritstíla</span><span class="feat-text lang-en" style="display:none;">Choice of different writing styles</span></li>
+      <li><span class="check">✓</span><span class="feat-text lang-is">Hlaða niður sem PDF bók</span><span class="feat-text lang-en" style="display:none;">Download as PDF book</span></li>
+      <li><span class="check">✓</span><span class="feat-text lang-is">Myndir í bókina</span><span class="feat-text lang-en" style="display:none;">Photos in the book</span></li>
+      <li><span class="check">✓</span><span class="feat-text lang-is">Íslenska og enska</span><span class="feat-text lang-en" style="display:none;">Icelandic and English</span></li>
+    </ul>
+    <a class="btn-paid" href="#" id="paddle-btn" style="cursor:default;opacity:0.7;">
+      <span class="lang-is">Í þróun — fljótlega!</span>
+      <span class="lang-en" style="display:none;">Coming soon!</span>
+    </a>
+  </div>
+
+  <!-- Combo -->
+  <div class="card combo">
+    <div class="card-badge lang-is">Pakkatilboð · Sparaðu 1.900 kr.</div>
+    <div class="card-badge lang-en" style="display:none;">Bundle · Save 1,900 kr.</div>
+    <div class="card-name">
+      <span class="lang-is">Sagan mín + Barnasagan mín</span>
+      <span class="lang-en" style="display:none;">My Story + My Child's Story</span>
+    </div>
+    <div class="card-desc">
+      <span class="lang-is">Bæði foreldrar og barnabarn geta skráð söguna sína — saman</span>
+      <span class="lang-en" style="display:none;">Both parents and grandparents can record their story — together</span>
+    </div>
+    <div class="price-wrap">
+      <div class="price-amount" style="font-size:40px;"><span class="price-currency">kr</span>10.900</div>
+      <div class="price-note">
+        <span class="lang-is">Ein greiðsla fyrir báðar þjónusturnar · Enginn áskrift</span>
+        <span class="lang-en" style="display:none;">One payment for both services · No subscription</span>
+      </div>
+      <div class="price-saving">
+        <span class="lang-is">Sparaðu 1.900 kr. samanborið við að kaupa hvora þjónustu fyrir sig</span>
+        <span class="lang-en" style="display:none;">Save 1,900 kr. compared to buying each service separately</span>
+      </div>
+    </div>
+    <div class="combo-cols">
+      <div class="combo-col">
+        <h4>
+          <span class="lang-is">✦ Sagan mín (saganmin.is)</span>
+          <span class="lang-en" style="display:none;">✦ My Story (saganmin.is)</span>
+        </h4>
+        <p>
+          <span class="lang-is">Fullorðnir — foreldrar, afi og amma — skrá lífsreynslu sína í 12 köflum og 240 spurningum.</span>
+          <span class="lang-en" style="display:none;">Adults — parents, grandparents — record their life experiences in 12 chapters and 240 questions.</span>
+        </p>
+      </div>
+      <div class="combo-col">
+        <h4>
+          <span class="lang-is">✦ Barnasagan mín (barnasagan.is)</span>
+          <span class="lang-en" style="display:none;">✦ My Child's Story (barnasagan.is)</span>
+        </h4>
+        <p>
+          <span class="lang-is">Foreldrar skrá söguna um bernsku barnsins í 12 köflum og 120 spurningum.</span>
+          <span class="lang-en" style="display:none;">Parents record their child's childhood story in 12 chapters and 120 questions.</span>
+        </p>
+      </div>
+    </div>
+    <a class="btn-paid" href="#" style="cursor:default;opacity:0.7;background:var(--orange);">
+      <span class="lang-is">Í þróun — fljótlega!</span>
+      <span class="lang-en" style="display:none;">Coming soon!</span>
+    </a>
+  </div>
+
+</div>
+
+<!-- FAQ -->
+<div class="faq-strip">
+  <h3>
+    <span class="lang-is">Algengar spurningar</span>
+    <span class="lang-en" style="display:none;">Common questions</span>
+  </h3>
+  <div class="faq-items">
+
+    <details class="faq-item">
+      <summary>
+        <span class="lang-is">Er þetta virkilega ein greiðsla?</span>
+        <span class="lang-en" style="display:none;">Is this really a one-time payment?</span>
+      </summary>
+      <p class="faq-answer lang-is">Já. Þú greiðir einu sinni og hefur fullan aðgang á meðan þjónustan er í rekstri — engar áskriftir, engar endurnýjanir. Þú getur hlaðið niður barnasögunni sem PDF hvenær sem er og geymt hana hjá þér að eilífu.</p>
+      <p class="faq-answer lang-en" style="display:none;">Yes. You pay once and have full access for as long as the service operates — no subscriptions, no renewals. You can download your child's story as a PDF at any time and keep it forever.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>
+        <span class="lang-is">Get ég prófað áður en ég greiði?</span>
+        <span class="lang-en" style="display:none;">Can I try before I pay?</span>
+      </summary>
+      <p class="faq-answer lang-is">Já, þú getur svarað tveimur köflum að fullu ókeypis. Þegar þú ert tilbúin/n að greiða opnast allir 12 kaflar strax.</p>
+      <p class="faq-answer lang-en" style="display:none;">Yes, you can complete two full chapters for free. When you're ready to pay, all 12 chapters unlock immediately.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>
+        <span class="lang-is">Hvað ef ég vil segja meira en spurningarnar leyfa?</span>
+        <span class="lang-en" style="display:none;">What if I want to share more than the questions allow?</span>
+      </summary>
+      <p class="faq-answer lang-is">Hver kafli hefur spurningar sem leiðarljós, en þegar kafla lýkur getur þú valið að bæta við fleiri spurningum ef þig langar að dýpka eða víkka söguþráðinn. Þetta er algerlega valkvætt.</p>
+      <p class="faq-answer lang-en" style="display:none;">Each chapter has questions to guide you through your child's story, but once a chapter is complete you can choose to add more if you want to go deeper. This is entirely optional.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>
+        <span class="lang-is">Hvernig er greitt?</span>
+        <span class="lang-en" style="display:none;">How do I pay?</span>
+      </summary>
+      <p class="faq-answer lang-is">Við notum Paddle sem greiðslumiðlara. Þeir taka við kredit- og debetkortum og sjá um VSK í samræmi við lög þíns lands.</p>
+      <p class="faq-answer lang-en" style="display:none;">We use Paddle as our payment processor. They accept credit and debit cards and handle VAT in accordance with your local laws.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>
+        <span class="lang-is">Get ég fengið endurgreiðslu?</span>
+        <span class="lang-en" style="display:none;">Can I get a refund?</span>
+      </summary>
+      <p class="faq-answer lang-is">Já, við bjóðum upp á 14 daga endurgreiðslurétt. Hafðu samband á <a href="mailto:hallo@barnasagan.is" style="color:var(--orange);">hallo@barnasagan.is</a>.</p>
+      <p class="faq-answer lang-en" style="display:none;">Yes, we offer a 14-day refund policy. Contact us at <a href="mailto:hallo@barnasagan.is" style="color:var(--orange);">hallo@barnasagan.is</a>.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>
+        <span class="lang-is">Get ég prentað bókina?</span>
+        <span class="lang-en" style="display:none;">Can I print the book?</span>
+      </summary>
+      <p class="faq-answer lang-is">Já! PDF-ið er hannað fyrir prentun hjá Lulu.com. Þar getur þú fengið fallega prentaða barnasögu afhenta heim til þín.</p>
+      <p class="faq-answer lang-en" style="display:none;">Yes! The PDF is designed for printing at Lulu.com, where you can get a beautifully printed children's memoir delivered to your door.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>
+        <span class="lang-is">Get ég gefið þetta að gjöf?</span>
+        <span class="lang-en" style="display:none;">Can I give this as a gift?</span>
+      </summary>
+      <p class="faq-answer lang-is">Gjafakóðar eru í undirbúningi og koma fljótlega! Þá getur þú keypt gjafakóða sem viðtakandinn innleysir sjálfur við skráningu, án þess að þurfa að setja upp reikning fyrirfram.</p>
+      <p class="faq-answer lang-en" style="display:none;">Gift codes are coming soon! You will be able to purchase a gift code that the recipient redeems themselves at sign-up, no need to set up an account in advance.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>
+        <span class="lang-is">Hvað er munurinn á Sögu minni og Barnasögu minni?</span>
+        <span class="lang-en" style="display:none;">What is the difference between My Story and My Child's Story?</span>
+      </summary>
+      <p class="faq-answer lang-is">Sagan mín (saganmin.is) er ætluð fullorðnum sem vilja skrá eigin lífsreynslu — foreldrar, afi og amma svara spurningum um sitt eigið líf. Barnasagan mín (barnasagan.is) er ætluð foreldrum sem vilja skrá söguna um bernsku barnsins síns — þú svarar spurningum um barnið þitt.</p>
+      <p class="faq-answer lang-en" style="display:none;">My Story (saganmin.is) is for adults who want to record their own life experiences — parents and grandparents answer questions about their own life. My Child's Story (barnasagan.is) is for parents who want to record their child's childhood story — you answer questions about your child.</p>
+    </details>
+
+  </div>
+</div>
+
+<footer>
+  <div style="margin-bottom:8px;">
+    <span class="lang-is">© 2026 Multa Bene Agere ehf. · <a href="https://barnasagan.is/terms.html">Þjónustuskilmálar</a> · <a href="https://barnasagan.is/privacy.html">Persónuvernd</a> · <a href="mailto:hallo@barnasagan.is">hallo@barnasagan.is</a></span>
+    <span class="lang-en" style="display:none;">© 2026 Multa Bene Agere · <a href="https://barnasagan.is/terms.html">Terms</a> · <a href="https://barnasagan.is/privacy.html">Privacy</a> · <a href="mailto:hallo@barnasagan.is">hallo@barnasagan.is</a></span>
+  </div>
+  <div style="font-size:12px;opacity:0.7;margin-top:4px;">
+    <a href="https://saganmin.is" style="color:var(--gold);">
+      <span class="lang-is">Sagan mín (saganmin.is) — lífsreynsla fullorðinna</span>
+      <span class="lang-en" style="display:none;">My Story (saganmin.is) — life stories for adults</span>
+    </a>
+  </div>
+</footer>
+
+<script>
+  function setLang(lang) {
+    document.querySelectorAll('.lang-is').forEach(el => el.style.display = lang === 'is' ? '' : 'none');
+    document.querySelectorAll('.lang-en').forEach(el => el.style.display = lang === 'en' ? '' : 'none');
+    document.getElementById('btn-is').classList.toggle('active', lang === 'is');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.documentElement.lang = lang;
+    localStorage.setItem('barnasagan_lang', lang);
+  }
+  // Init lang
+  (function() {
+    var lang = localStorage.getItem('barnasagan_lang') || 'is';
+    if (lang === 'en') setLang('en');
+  })();
+</script>
+
+</body>
+</html>

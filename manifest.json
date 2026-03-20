@@ -1,0 +1,17 @@
+{
+  "name": "Sagan mín",
+  "short_name": "Sagan mín",
+  "description": "Skráðu lífssöguna þína",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#C9B49A",
+  "theme_color": "#C9B49A",
+  "icons": [
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
