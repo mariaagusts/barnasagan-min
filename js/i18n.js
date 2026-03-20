@@ -12,6 +12,7 @@ export const UI = {
     heroStats: ["Kaflar","Spurningar","Barnasaga"],
     featTitle: "Við höfum verið í þínum sporum",
     featSub: "Sagan skrifar sig best á meðan hún er enn að gerast.",
+    featSub2: "(Þessi saga týnist ekki inni í skáp eða í flutningum, og hún neitar ekki að skrifa ef það vantar að ydda blýantinn.)",
     feat1t: "🍼 Minningar beint úr ofninum", feat1d: "Ekki bíða þar til barnið er fermt og við reynum að muna hvenær fyrsta tönnin mætti á svæðið.",
     feat2t: "🧠 Heilaþokan er raunveruleg", feat2d: "Milli svefnleysis og endalausra spurninga um af hverju himinninn sé blár er kraftaverk að muna hvað maður borðaði í morgunmat. Við geymum söguna á meðan þú leitar að lyklunum.",
     feat3t: "⚽ Engin heimaverkefni", feat3d: "Þú stýrir ferðinni. Skráðu minningar þegar þú hefur tíma — uppi í rúmi, á WC, í umferðinni. Barnasagan grípur þær.",
@@ -161,6 +162,7 @@ export const UI = {
     heroStats: ["Chapters","Questions","Story"],
     featTitle: "We know how it feels",
     featSub: "The story writes itself best while it's still happening.",
+    featSub2: "(This story won't get lost in a cupboard or a house move, and it won't refuse to write if you can't find a sharpened pencil.)",
     feat1t: "🍼 Memories fresh from the oven", feat1d: "Don't wait until your child's confirmation and try to remember when the first tooth arrived.",
     feat2t: "🧠 Brain fog is real", feat2d: "Between the sleep deprivation and endless questions about why the sky is blue, it's a miracle to remember what you had for breakfast. We keep the story while you look for your keys.",
     feat3t: "⚽ No homework", feat3d: "You're in charge. Capture memories whenever you have a moment — in bed, on the loo, in traffic. Barnasagan catches them.",
@@ -340,6 +342,7 @@ export function applyLang() {
   safeText("hero-stat-2", L.heroStats[2]);
   safeText("feat-title", L.featTitle);
   safeText("feat-sub", L.featSub);
+  safeText("feat-sub2", L.featSub2);
   safeText("feat1-title", L.feat1t); safeText("feat1-desc", L.feat1d);
   safeText("feat2-title", L.feat2t); safeText("feat2-desc", L.feat2d);
   safeText("feat3-title", L.feat3t); safeText("feat3-desc", L.feat3d);
