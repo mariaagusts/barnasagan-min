@@ -13,7 +13,7 @@ export const UI = {
     featTitle: "Hvernig virkar þetta?",
     featSub: "Tækifæri til að íhuga, minnast og skrá það sem máli skiptir.",
     feat1t: "Við spyrjum þig", feat1d: "Hlýlegar spurningar um lífið sem barnið er að lifa, kafla fyrir kafla.",
-    feat2t: "Tala eða skrifa", feat2d: "Svaraðu með rödd eða lyklaborði, hvenær og hvar sem þér hentar.",
+    feat2t: "Skrifaðu eða talaðu", feat2d: "Skrifaðu eða notaðu raddina þína, á þínum eigin hraða.",
     feat3t: "Sagan um barnið", feat3d: "Við vefum saman svörin þín í fallega barnasögu sem þú getur gefið barninu.",
     feat4t: "Engin pressa", feat4d: "Framvindan þín vistast sjálfkrafa.",
     ctaTitle: "Byrjaðu í dag", ctaSub: "Gerðu söguna um barnið þitt að arfleifð sem það mun ávallt muna.",
@@ -94,7 +94,7 @@ export const UI = {
       <p>Þú getur eytt framvindu þinni hvenær sem er með "Eyða framvindu" takkanum í kaflayfirlit. Til að eyða reikningnum þínum að fullu og öllum gögnum skaltu hafa samband við okkur.</p>
 
       <h3 style="font-family:'Fredoka One',cursive;font-size:20px;margin:32px 0 12px;">10. Persónuvernd barna</h3>
-      <p>Barnasagan mín er þjónusta fyrir foreldra og aðra umsjónaraðila sem vilja varðveita minningar um barn sitt. Við söfnum ekki persónuupplýsingum um börn beint — allar upplýsingar koma frá foreldri/umsjónaraðila sem er skráður notandi þjónustunnar.</p>
+      <p>Barnasagan mín er þjónusta fyrir foreldra og aðra umsjónaraðila sem vilja varðveita minningar um barn sitt. Við söfnum ekki persónuupplýsingum um börn beint, allar upplýsingar koma frá foreldri/umsjónaraðila sem er skráður notandi þjónustunnar.</p>
 
       <h3 style="font-family:'Fredoka One',cursive;font-size:20px;margin:32px 0 12px;">11. Breytingar á stefnunni</h3>
       <p>Ef við gerum verulegar breytingar á þessari persónuverndarstefnu munum við láta notendur vita með tölvupósti. Dagsetning efst á síðunni sýnir hvenær stefnan var síðast uppfærð.</p>
@@ -106,7 +106,7 @@ export const UI = {
     `,
     aboutSub: "Tækifæri til að íhuga, minnast og skrá það sem máli skiptir.",
     aboutFeat1t: "Við spyrjum þig", aboutFeat1d: "Hlýlegar spurningar um lífið sem barnið er að lifa, kafla fyrir kafla.",
-    aboutFeat2t: "Tala eða skrifa", aboutFeat2d: "Svaraðu með rödd eða lyklaborði, hvenær og hvar sem þér hentar.",
+    aboutFeat2t: "Skrifaðu eða talaðu", aboutFeat2d: "Skrifaðu eða notaðu raddina þína, á þínum eigin hraða.",
     aboutFeat3t: "Sagan um barnið", aboutFeat3d: "Við vefum saman svörin þín í fallega barnasögu sem þú getur gefið barninu.",
     aboutFeat4t: "Engin pressa", aboutFeat4d: "Framvindan þín vistast sjálfkrafa.",
     faqItems: [
@@ -122,7 +122,7 @@ export const UI = {
       { q: "Þarf ég að svara öllum spurningum í einu?", a: "Alls ekki. Þú getur tekið þér hlé hvenær sem hentar. Framvinda þín vistast sjálfkrafa og þú getur haldið áfram þar sem frá var horfið, hvort sem það er að nokkrum dögum eða vikum liðnum." },
       { q: "Hversu langan tíma tekur þetta?", a: "Það er algjörlega í þínum höndum. Margir svara einni eða tveimur spurningum á dag og klára bókina á nokkrum vikum. Aðrir taka sér lengri tíma. Engin pressa, framvindan vistast sjálfkrafa og bíður þín." },
       { q: "Get ég skrifað á ensku?", a: "Já. Þú getur skipt um tungumál hvenær sem er. Athugaðu þó að bókin þín verður mótuð á því tungumáli sem er valið þegar þú smellir á 'Forskoða bókina þína'. Kerfið sér þá um að samræma frásögnina á því máli." },
-      { q: "Get ég talað í stað þess að skrifa?", a: "Já, þú getur smellt á hljóðnemahnappinn '🎙 Segja frá' og svarað með rödd í stað þess að skrifa. Á tölvu þarftu að veita vafranum leyfi til að nota hljóðnemann. Á iPhone eða iPad: smelltu á textareitinn og notaðu 🎤 hljóðnematáknið á lyklaborðinu — vafrinn sjálfur styður ekki talgreiningu á iOS. Til að talgreiningin virki á íslensku þarf íslenska að vera stillt sem tungumál símans (Stillingar → Almennt → Tungumál og svæði). Talgreining getur stundum gert villur, en kerfið yfirfærir textann og lagar hann þegar bókin er búin til." },
+      { q: "Get ég talað í stað þess að skrifa?", a: "Já, þú getur smellt á hljóðnemahnappinn '🎙 Segja frá' og svarað með rödd í stað þess að skrifa. Á tölvu þarftu að veita vafranum leyfi til að nota hljóðnemann. Á iPhone eða iPad: smelltu á textareitinn og notaðu 🎤 hljóðnematáknið á lyklaborðinu. Vafrinn sjálfur styður ekki talgreiningu á iOS. Til að talgreiningin virki á íslensku þarf íslenska að vera stillt sem tungumál símans (Stillingar → Almennt → Tungumál og svæði). Talgreining getur stundum gert villur, en kerfið yfirfærir textann og lagar hann þegar bókin er búin til." },
       { q: "Get ég bætt við mínum eigin spurningum?", a: "Já! Við hliðina á hverri spurningu er '+' takki. Þar getur þú slegið inn þína eigin spurningu sem birtist strax sem næsta spurning í kaflanum." },
       { q: "Get ég breytt svörunum mínum?", a: "Já, þú hefur fulla stjórn á þínu efni. Undir hverju svari er 'Breyta' takki sem gerir þér kleift að leiðrétta textann eða bæta við minningum hvenær sem er í ferlinu." },
       { q: "Get ég notað þjónustuna á fleiri en einu tæki?", a: "Já. Framvindan þín er vistuð á öruggan hátt á netþjóni og samstillist sjálfkrafa. Þú getur byrjað á tölvunni heima og haldið áfram á síma eða spjaldtölvu, svo lengi sem þú ert innskráð/ur á sama reikningi." },
@@ -133,7 +133,7 @@ export const UI = {
       { q: "Hvernig fæ ég fullbúna bók?", a: "Þú getur hlaðið barnasögunni niður sem PDF skjali sem er faglega umbrotið með forsíðu og kaflaskiptingu. Einnig er hægt að flytja textann yfir í textaskrá." },
       { q: "Get ég breytt textanum eftir að hann er búinn til?", a: "Já, þegar þú velur 'Forskoða bókina þína' býr kerfið til drög. Þú getur síðan farið í 'Breyta texta' og lagfært allt sem þér finnst mega fara betur, bætt við upplýsingum eða breytt orðalagi áður en þú hleður niður lokagerðinni." },
       { q: "Getur textinn innihaldið villur?", a: "Já, kerfið setur saman frásögnina sjálfkrafa og geta þess vegna birst málfræði- eða stafsetningarvillur í textanum. Við mælum eindregið með að fara yfir textann með 'Breyta texta' takkanum áður en þú hleður niður bókinni." },
-      { q: "Get ég bætt við myndum í bókina?", a: "Já! Í hverju kaflaviðtali er hægt að hlaða upp myndum sem tengjast þeim kafla — þær birtast þá í bókinni í lok viðkomandi kafla. Þú getur einnig bætt við almennum myndum á söguglugga, sem birtast aftast í bókinni." },
+      { q: "Get ég bætt við myndum í bókina?", a: "Já! Í hverju kaflaviðtali er hægt að hlaða upp myndum sem tengjast þeim kafla, þær birtast þá í bókinni í lok viðkomandi kafla. Þú getur einnig bætt við almennum myndum á söguglugga, sem birtast aftast í bókinni." },
 
       { heading: "Tækni og ráð" },
       { q: "Get ég bætt Barnasögu minni á heimaskjá símans eins og app?", a: `Já! Þú getur vistað vefsíðuna á heimaskjáinn þinn og notað hana eins og app — án þess að þurfa að hlaða niður neinu.<br><br>
@@ -242,7 +242,7 @@ export const UI = {
       <p>You can delete your progress at any time using the "Delete progress" button in the chapter overview. To fully delete your account and all associated data, please contact us.</p>
 
       <h3 style="font-family:'Fredoka One',cursive;font-size:20px;margin:32px 0 12px;">10. Children's privacy</h3>
-      <p>My Child's Story is a service for parents and guardians who wish to preserve memories about their child. We do not collect personal information directly from children — all information comes from the parent or guardian who is the registered user of the service.</p>
+      <p>My Child's Story is a service for parents and guardians who wish to preserve memories about their child. We do not collect personal information directly from children, all information comes from the parent or guardian who is the registered user of the service.</p>
 
       <h3 style="font-family:'Fredoka One',cursive;font-size:20px;margin:32px 0 12px;">11. Changes to this policy</h3>
       <p>If we make material changes to this privacy policy we will notify users by email. The date at the top of this page shows when the policy was last updated.</p>
@@ -270,7 +270,7 @@ export const UI = {
       { q: "Do I need to answer all questions at once?", a: "Not at all. You can take a break whenever you like. Your progress is saved automatically, allowing you to pick up exactly where you left off, whether it's days or weeks later." },
       { q: "How long does it take?", a: "That is entirely up to you. Many people answer one or two questions a day and finish their book within a few weeks. Others take longer. There is no pressure, your progress is saved automatically and waits for you." },
       { q: "Can I write in Icelandic?", a: "Yes. You can switch languages at any time. Please note that your book will be generated in the language currently selected when you click 'Preview your book'. The system will then harmonize the narrative into that language." },
-      { q: "Can I speak instead of typing?", a: "Yes, you can click the '🎙 Speak' button and answer with your voice instead of typing. On a computer, your browser will ask for microphone permission. On iPhone or iPad: tap the text field and use the 🎤 microphone button on the keyboard — the browser itself does not support speech recognition on iOS. For the speech recognition to work in Icelandic, Icelandic must be set as the device language (Settings → General → Language & Region). Voice recognition may occasionally make mistakes, but the system reviews and corrects the text when your book is generated." },
+      { q: "Can I speak instead of typing?", a: "Yes, you can click the '🎙 Speak' button and answer with your voice instead of typing. On a computer, your browser will ask for microphone permission. On iPhone or iPad: tap the text field and use the 🎤 microphone button on the keyboard. The browser itself does not support speech recognition on iOS. For the speech recognition to work in Icelandic, Icelandic must be set as the device language (Settings → General → Language & Region). Voice recognition may occasionally make mistakes, but the system reviews and corrects the text when your book is generated." },
       { q: "Can I add my own questions?", a: "Yes! Next to each question you'll find a '+' button. You can type your own question and it will appear immediately as the next question in the chapter." },
       { q: "Can I edit my answers?", a: "Yes, you have full control over your content. Under each answer, there is an 'Edit' button that allows you to correct or expand upon your memories at any point in the process." },
       { q: "Can I use the service on more than one device?", a: "Yes. Your progress is securely saved to our server and syncs automatically. You can start on your computer at home and continue on your phone or tablet, as long as you are signed in to the same account." },
@@ -281,7 +281,7 @@ export const UI = {
       { q: "How do I receive my book?", a: "You can download your child's story as a professionally formatted PDF, complete with a cover page and chapters. You can also export the text as a plain text file." },
       { q: "Can I edit the text after it's been generated?", a: "Yes, when you select 'Preview your book' the system creates a draft. You can then go to 'Edit text' and improve anything you'd like, add information or change the wording before downloading the final version." },
       { q: "Can the text contain errors?", a: "Yes, the system compiles the narrative automatically and grammatical or spelling errors may occasionally appear. We strongly recommend reviewing the text using the 'Edit text' button before downloading your book." },
-      { q: "Can I add photos to my book?", a: "Yes! In each chapter interview you can upload photos related to that chapter — they will appear in the book at the end of the relevant chapter. You can also add general photos on the story screen, which appear at the end of the book." },
+      { q: "Can I add photos to my book?", a: "Yes! In each chapter interview you can upload photos related to that chapter, they will appear in the book at the end of the relevant chapter. You can also add general photos on the story screen, which appear at the end of the book." },
 
       { heading: "Tips & Tricks" },
       { q: "Can I add My Child's Story to my phone's home screen like an app?", a: `Yes! You can save the website to your home screen and use it like an app — no download required.<br><br>
