@@ -7,7 +7,7 @@ export const UI = {
   is: {
     navLogin: "Innskrá", navCta: "Byrja að skrifa",
     heroTitle: "Skrifaðu söguna um barnið þitt",
-    heroSub: "Við spyrjum þig hlýlegra spurninga um lífið sem barnið þitt er að lifa.",
+    heroSub: "Við spyrjum þig hlýlegra spurninga um lífið sem barnið þitt upplifir — í dag og í gær.",
     heroCta1: "Byrja að skrifa →", heroCta2: "Innskrá",
     heroStats: ["Kaflar","Spurningar","Barnasaga"],
     featTitle: "Hvernig virkar þetta?",
