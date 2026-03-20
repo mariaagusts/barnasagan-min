@@ -6,7 +6,7 @@ import { S } from './state.js';
 export const UI = {
   is: {
     navLogin: "Innskrá", navCta: "Byrja að skrifa",
-    heroTitle: "Barnasagan: Vegna þess að „ég skrifa þetta niður á morgun" er stærsta lygi sem við segjum okkur.",
+    heroTitle: "Barnasagan: Vegna þess að \u201Eég skrifa þetta niður á morgun\u201C er stærsta lygi sem við segjum okkur.",
     heroSub: "Við vitum að heilaþokan er raunveruleg. Barnasagan hjálpar þér að fanga dýrmætustu augnablikin þegar þau gerast — án samviskubits eða auka álags.",
     heroCta1: "Byrja að skrifa →", heroCta2: "Innskrá",
     heroStats: ["Kaflar","Spurningar","Barnasaga"],
