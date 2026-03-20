@@ -90,19 +90,24 @@ export async function generateNextQuestion(cs) {
     .map((q, i) => `Spurning ${i + 1}: ${q}\nSvar ${i + 1}: ${cs.answers[i]}`).join("\n\n");
 
   const systemInstruction = isEn
-  ? `You are a warm and curious interviewer for parents sharing their child's story. Your goal is to keep the child's story moving with ONE focused question.
-     - Ask ONE specific question about a sensory detail (smell, sound, a funny moment, or a feeling), or a concrete memory about the child.
-     - If the answer is brief, pivot to a new specific detail instead of asking to "expand."
-     - MAXIMUM 15 WORDS total — hard rule. No acknowledgement, no preamble. Just one direct question.`
-  : `Þú ert hlý og forvitin viðmælandi. Foreldri er að svara spurningum um barnið sitt. Markmið þitt er að halda sögunni um barnið gangandi með EINNI hlýlegri spurningu um barnið.
-     - MÁLFAR: Notaðu vandað en eðlilegt íslenskt mál sem fellur að málkennd.
-     - Spyrðu EINNAR spurningar um skynrænar upplýsingar (lykt, hljóð, birtu), tilfinningar eða ákveðna minningu um barnið.
-     - HÁMARK 15 ORÐ — HARÐ regla. Engin staðfesting, engin inngangur. Bara ein bein spurning.`;
+  ? `You are a warm and curious interviewer helping parents tell their child's story.
+     Your goal: ask ONE short, personal follow-up question that draws out more detail.
+     - The question should feel natural — about a sensory detail (smell, sound, light), an everyday moment, or the parent's own reaction ("What did you feel watching that?").
+     - Use the context from other chapters ONLY to avoid repetition — do not ask about it unless it directly connects to the latest answer.
+     - If the answer is very short or negative ("Yes", "No", "Don't know"), switch to a completely different angle within the chapter.
+     - Keep the question tight and personal. No acknowledgement, no preamble. Just one direct question.`
+  : `Þú ert hlý og forvitin viðmælandi. Foreldri er að segja sögu barnsins síns.
+     Markmið þitt: spyrðu EINNAR stuttrar og persónulegrar framhaldsspurningar sem fær foreldrið til að lýsa nánar andrúmsloftinu, tilfinningunni eða hversdagslegum smáatriðum.
+     - MÁLFAR: Vandað en eðlilegt íslenskt mál sem fellur að málkennd.
+     - Spurningin má snúast um skynjun (lykt, hljóð, birtu), hversdagsleg smáatriði, eða viðbrögð foreldrisins („Hvað fannst þér skemmtilegast að fylgjast með þegar hann gerði þetta?").
+     - Notaðu samhengi úr öðrum köflum AÐEINS til að forðast endurtekningar — spyrðu ekki út í það nema það tengist beint nýjasta svarinu.
+     - Ef svarið er mjög stutt eða neitandi („Já", „Nei", „Veit ekki"), skiptu þá alveg um efni innan kaflans.
+     - Engin staðfesting, enginn inngangur. Bara ein bein spurning.`;
 
   const lastAnswer = cs.answers[cs.answers.length - 1];
   const userPrompt = isEn
-    ? `Context from other chapters about the child:\n${overallContext}\n\nCurrent Chapter: ${ch.title}\nConversation history so far:\n${history}\n\nMOST RECENT ANSWER ABOUT THE CHILD: "${lastAnswer}"\n\nWrite ONE follow-up question about the child in 15 words or fewer. No name, no preamble:`
-    : `Heildarsamhengi úr öðrum köflum um barnið:\n${overallContext}\n\nNúverandi kafli: ${ch.title}\nSaga samtalsins í þessum kafla:\n${history}\n\nSÍÐASTA SVAR UM BARNIÐ: "${lastAnswer}"\n\nSkrifaðu EIna uppfyllingarspurningu um barnið í 15 orðum eða færri. Ekkert nafn, enginn inngangur:`;
+    ? `Context from other chapters (use only to avoid repetition):\n${overallContext}\n\nCurrent Chapter: ${ch.title}\nConversation history so far:\n${history}\n\nMOST RECENT ANSWER: "${lastAnswer}"\n\nWrite ONE tight, personal follow-up question. No name, no preamble:`
+    : `Samhengi úr öðrum köflum (notaðu aðeins til að forðast endurtekningar):\n${overallContext}\n\nNúverandi kafli: ${ch.title}\nSaga samtalsins í þessum kafla:\n${history}\n\nSÍÐASTA SVAR: "${lastAnswer}"\n\nSkrifaðu EIna þétta og persónulega framhaldsspurningu. Ekkert nafn, enginn inngangur:`;
 
   return await callGemini(systemInstruction, userPrompt);
 }
