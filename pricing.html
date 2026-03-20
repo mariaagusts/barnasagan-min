@@ -300,6 +300,10 @@
 }
 .card:nth-child(2) { animation-delay: 0.1s; }
 .card:nth-child(3) { animation-delay: 0.2s; }
+
+/* Language override — defeats styles.css .lang-en { display:none } */
+html[lang="en"] .lang-en { display: revert !important; }
+html[lang="en"] .lang-is { display: none !important; }
 </style>
 </head>
 <body>
@@ -311,7 +315,7 @@
       <button class="lang-btn active" id="btn-is" onclick="setLang('is')">IS</button>
       <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
     </div>
-    <a class="back-btn" href="https://barnasagan.is">
+    <a class="back-btn" href="/">
       <span class="lang-is">← Til baka</span>
       <span class="lang-en" style="display:none;">← Back</span>
     </a>
