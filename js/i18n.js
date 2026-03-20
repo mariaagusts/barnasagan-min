@@ -10,7 +10,7 @@ export const UI = {
     heroSub: "Við vitum að heilaþokan er raunveruleg. Barnasagan hjálpar þér að fanga dýrmætustu augnablikin þegar þau gerast — án samviskubits eða auka álags.",
     heroCta1: "Byrja að skrifa →", heroCta2: "Innskrá",
     heroStats: ["Kaflar","Spurningar","Barnasaga"],
-    featTitle: "Við vitum hvernig þetta líður",
+    featTitle: "Við höfum verið í þínum sporum",
     featSub: "Sagan skrifar sig best á meðan hún er enn að gerast.",
     feat1t: "🍼 Minningar beint úr ofninum", feat1d: "Ekki bíða þar til barnið er fermt og þú reynir örvæntingarfull að muna hvenær fyrsta tönnin mætti á svæðið.",
     feat2t: "🧠 Heilaþokan er raunveruleg", feat2d: "Milli svefnleysis og endalausra spurninga um af hverju himinninn sé blár er kraftaverk að muna hvað maður borðaði í morgunmat. Við geymum söguna á meðan þú leitar að lyklunum.",
