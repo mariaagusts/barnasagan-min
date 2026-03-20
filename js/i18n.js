@@ -12,10 +12,12 @@ export const UI = {
     heroStats: ["Kaflar","Spurningar","Barnasaga"],
     featTitle: "Við höfum verið í þínum sporum",
     featSub: "Sagan skrifar sig best á meðan hún er enn að gerast.",
-    feat1t: "🍼 Minningar beint úr ofninum", feat1d: "Ekki bíða þar til barnið er fermt og þú reynir örvæntingarfull að muna hvenær fyrsta tönnin mætti á svæðið.",
+    feat1t: "🍼 Minningar beint úr ofninum", feat1d: "Ekki bíða þar til barnið er fermt og við reynum að muna hvenær fyrsta tönnin mætti á svæðið.",
     feat2t: "🧠 Heilaþokan er raunveruleg", feat2d: "Milli svefnleysis og endalausra spurninga um af hverju himinninn sé blár er kraftaverk að muna hvað maður borðaði í morgunmat. Við geymum söguna á meðan þú leitar að lyklunum.",
-    feat3t: "⚽ Engin heimaverkefni", feat3d: "Við erum nú þegar að halda 500 boltum á lofti. Barnasagan er léttasti boltinn í settinu — engin skömm, bara sögur.",
-    feat4t: "✨ Sagan verður til", feat4d: "Svörin þín verða að fallegu barnasögu sem barnið þitt getur lesið eftir 20 ár.",
+    feat3t: "⚽ Engin heimaverkefni", feat3d: "Þú stýrir ferðinni. Skráðu minningar þegar þú hefur tíma — uppi í rúmi, á WC, í umferðinni. Barnasagan grípur þær.",
+    feat4t: "✨ Sagan verður til", feat4d: "Svörin þín verða að fallegri barnasögu sem barnið þitt getur lesið eftir 20 ár.",
+    feat5t: "📸 Myndir í sögunni", feat5d: "Bættu við myndum þegar eitthvað skemmtilegt gerist. Ein mynd geymir þúsund minningar.",
+    feat6t: "📖 Bókin sem barnið fær", feat6d: "Þegar þú ert tilbúin/n er barnasagan þín tilbúin sem PDF — til að prenta, gefa og geyma að eilífu.",
     ctaTitle: "Byrjaðu í dag", ctaSub: "Markmið okkar er að gera skrásetningu bernskunnar að ánægjulegri samfylgd frekar en krefjandi verkefni.",
     ctaBtn: "Hefja ferðalagið →",
     authTitle: "Barnasagan mín", authSub: "Skráðu þig inn eða stofnaðu nýjan aðgang",
@@ -159,10 +161,12 @@ export const UI = {
     heroStats: ["Chapters","Questions","Story"],
     featTitle: "We know how it feels",
     featSub: "The story writes itself best while it's still happening.",
-    feat1t: "🍼 Memories fresh from the oven", feat1d: "Don't wait until your child's confirmation and desperately try to remember when the first tooth arrived.",
+    feat1t: "🍼 Memories fresh from the oven", feat1d: "Don't wait until your child's confirmation and try to remember when the first tooth arrived.",
     feat2t: "🧠 Brain fog is real", feat2d: "Between the sleep deprivation and endless questions about why the sky is blue, it's a miracle to remember what you had for breakfast. We keep the story while you look for your keys.",
-    feat3t: "⚽ No homework", feat3d: "We're already juggling 500 balls. Barnasagan is the lightest one — no guilt, just stories.",
-    feat4t: "✨ The story takes shape", feat4d: "Your answers become a beautiful children's memoir your child can read in 20 years.",
+    feat3t: "⚽ No homework", feat3d: "You're in charge. Capture memories whenever you have a moment — in bed, on the loo, in traffic. Barnasagan catches them.",
+    feat4t: "✨ The story takes shape", feat4d: "Your answers become a more beautiful children's memoir your child can read in 20 years.",
+    feat5t: "📸 Photos in the story", feat5d: "Add a photo when something funny happens. One picture holds a thousand memories.",
+    feat6t: "📖 The book your child receives", feat6d: "When you're ready, your child's story is waiting as a PDF — to print, gift and keep forever.",
     ctaTitle: "Start today", ctaSub: "Our goal is to make recording childhood a joyful companion rather than a demanding task.",
     ctaBtn: "Start writing →",
     authTitle: "My Child's Story", authSub: "Sign in or create a new account",
@@ -340,6 +344,8 @@ export function applyLang() {
   safeText("feat2-title", L.feat2t); safeText("feat2-desc", L.feat2d);
   safeText("feat3-title", L.feat3t); safeText("feat3-desc", L.feat3d);
   safeText("feat4-title", L.feat4t); safeText("feat4-desc", L.feat4d);
+  safeText("feat5-title", L.feat5t); safeText("feat5-desc", L.feat5d);
+  safeText("feat6-title", L.feat6t); safeText("feat6-desc", L.feat6d);
   safeText("cta-title", L.ctaTitle); safeText("cta-sub", L.ctaSub); safeText("cta-btn", L.ctaBtn);
   safeText("privacy-back-btn", L.backBtn);
   safeText("footer-privacy-link", L.privacyTitle);
