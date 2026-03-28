@@ -17,8 +17,8 @@ export const CHAPTERS = [
     id: 1, emoji: "👶", title: "Fyrstu skrefin",
     desc: "Fyrstu orð, fyrstu skref og þroskinn",
     seeds: [
-      "Hvenær fór barnið að ganga og muna þú eftir þeim augnablikum?",
-      "Hvað voru fyrstu orðin sem barnið sagði og hvernig brást fjölskyldan við?",
+      "Hvenær fór barnið að ganga og manst þú eftir því augnabliki?",
+      "Hver voru fyrstu orðin sem barnið sagði og hvernig brást fjölskyldan við?",
       "Hvernig var barnið sem ungabarn, rólegt eða kröftugt, fyndið eða þverstæðukennt?"
     ]
   },
