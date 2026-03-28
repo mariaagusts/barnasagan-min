@@ -9,7 +9,7 @@ export const CHAPTERS = [
     desc: "Fæðingin, nafnið og fyrstu klukkustundirnar",
     seeds: [
       "Hvað heitir barnið þitt og hvenær og hvar fæddist það?",
-      "Hvernig var dagurinn sem barnið kom til heimsins — hvernig leið ykkur, foreldrunum?",
+      "Hvernig var dagurinn sem barnið kom til heimsins, hvernig leið ykkur, foreldrunum?",
       "Hvernig fékkst þú nafnið sem þú fékkst? Er saga á bak við það?"
     ]
   },
@@ -19,7 +19,7 @@ export const CHAPTERS = [
     seeds: [
       "Hvenær fór barnið að ganga og muna þú eftir þeim augnablikum?",
       "Hvað voru fyrstu orðin sem barnið sagði og hvernig brást fjölskyldan við?",
-      "Hvernig var barnið sem ungabarn — rólegt eða kröftugt, fyndið eða þverstæðukennt?"
+      "Hvernig var barnið sem ungabarn, rólegt eða kröftugt, fyndið eða þverstæðukennt?"
     ]
   },
   {
@@ -27,7 +27,7 @@ export const CHAPTERS = [
     desc: "Hvað gerir þetta barn að einstakling",
     seeds: [
       "Hvernig myndir þú lýsa persónu barnsins með þremur orðum?",
-      "Hvað er það sem gerir barnið þitt að einstakling — eitthvað sem er alveg þetta barn?"
+      "Hvað er það sem gerir barnið þitt að einstakling, eitthvað sem er alveg þetta barn?"
     ]
   },
   {
@@ -35,15 +35,15 @@ export const CHAPTERS = [
     desc: "Hvernig barnið leikur sér og hvað hrífur það mest",
     seeds: [
       "Hvað er uppáhalds leikurinn eða leikfangið hjá barninu?",
-      "Hefur barnið uppáhaldsheim í hugsunum sínum — einhvern sérheim eða fantasíuheim?",
-      "Hvernig leikur barnið sér — eitt, með systkinum eða vinum?"
+      "Hefur barnið uppáhaldsheim í hugsunum sínum, einhvern sérheim eða fantasíuheim?",
+      "Hvernig leikur barnið sér, eitt, með systkinum eða vinum?"
     ]
   },
   {
     id: 4, emoji: "📚", title: "Skólinn og nám",
     desc: "Fyrsti skóladagurinn og lærdómurinn",
     seeds: [
-      "Hvernig var fyrsti skóladagurinn — hvernig leið barninu og hvernig leið þér?",
+      "Hvernig var fyrsti skóladagurinn, hvernig leið barninu og hvernig leið þér?",
       "Hvaða námsgreinar líka barninu best og hvaða líka því minna?",
       "Er einhver kennari sem hefur haft sérstök áhrif á barnið?"
     ]
@@ -53,7 +53,7 @@ export const CHAPTERS = [
     desc: "Bestu vinir og leikfélagar",
     seeds: [
       "Hefur barnið besta vin? Segðu frá honum/henni.",
-      "Hvernig er félagslíf barnsins — líkar því við að vera í hópi eða frekar eitt?",
+      "Hvernig er félagslíf barnsins, líkar því við að vera í hópi eða frekar eitt?",
       "Er einhver uppáhaldsminnig frá leikjum eða tómstundum með vinum?"
     ]
   },
@@ -61,7 +61,7 @@ export const CHAPTERS = [
     id: 6, emoji: "🎨", title: "Áhugamál og tómstundir",
     desc: "Það sem barnið elskar að gera",
     seeds: [
-      "Hvað er barnið að gera þegar það er ánægt — uppáhaldstómstundin?",
+      "Hvað er barnið að gera þegar það er ánægt, uppáhaldstómstundin?",
       "Er einhver íþrótt, listgrein eða sérhugsunarsvið sem barnið er sér um?",
       "Er eitthvað sem barnið getur eytt tíma í án þess að bera á sér?"
     ]
@@ -81,16 +81,16 @@ export const CHAPTERS = [
     seeds: [
       "Er einhver fyndin saga frá bernsku barnsins sem þú munt aldrei gleyma?",
       "Hefur barnið sagt eitthvað óvænt eða skemmtilegt sem þú mundir gjarnan skrá niður?",
-      "Hvenær hlógu þið mest saman — barnið og þú?"
+      "Hvenær hlógu þið mest saman, barnið og þú?"
     ]
   },
   {
     id: 9, emoji: "💪", title: "Áskoranir og vöxtur",
     desc: "Erfiðleikar sem barnið hefur sigrað",
     seeds: [
-      "Hefur barnið þurft að fást við eitthvað erfitt — og hvernig tókst það?",
+      "Hefur barnið þurft að fást við eitthvað erfitt, og hvernig tókst það?",
       "Hvernig bregst barnið við þegar eitthvað gengur ekki upp?",
-      "Í hverju hefur barnið vaxið mest — eitthvað sem gerðist þar sem þú sást það þroskast?"
+      "Í hverju hefur barnið vaxið mest, eitthvað sem gerðist þar sem þú sást það þroskast?"
     ]
   },
   {
@@ -106,9 +106,9 @@ export const CHAPTERS = [
     id: 11, emoji: "🌈", title: "Vonir og framtíðin",
     desc: "Von og óskir fyrir barnið",
     seeds: [
-      "Hvað dreymir barnið um — hvað vill það verða þegar það verður stórt?",
+      "Hvað dreymir barnið um, hvað vill það verða þegar það verður stórt?",
       "Hvaða ósk eða von hefur þú sem foreldri fyrir barnið þitt?",
-      "Ef barnið gæti lesið þessa bók eftir 20 ár — hvað viltu að það vissi?"
+      "Ef barnið gæti lesið þessa bók eftir 20 ár, hvað viltu að það vissi?"
     ]
   }
 ];
