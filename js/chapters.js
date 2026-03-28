@@ -19,7 +19,7 @@ export const CHAPTERS = [
     seeds: [
       "Hvenær fór barnið að ganga og manst þú eftir því augnabliki?",
       "Hver voru fyrstu orðin sem barnið sagði og hvernig brást fjölskyldan við?",
-      "Hvernig var barnið sem ungabarn, rólegt eða kröftugt, fyndið eða þverstæðukennt?"
+      "Hvernig var barnið sem ungabarn, rólegt eða kröftugt, fyndið eða þrjóskt?"
     ]
   },
   {
