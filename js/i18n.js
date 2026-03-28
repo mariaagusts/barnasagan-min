@@ -7,7 +7,7 @@ export const UI = {
   is: {
     navLogin: "Innskrá", navCta: "Byrja að skrifa",
     heroTitle: "Barnasagan: \u201Eég skrifa þetta niður á morgun\u201C er loforðið sem við gefum okkur öll.",
-    heroSub: "Við vitum að heilaþokan er raunveruleg. Barnasagan hjálpar þér að fanga dýrmætustu augnablikin þegar þau gerast — án samviskubits eða auka álags.",
+    heroSub: "Við vitum að heilaþokan er raunveruleg. Barnasagan hjálpar þér að fanga dýrmætustu augnablikin þegar þau gerast, án samviskubits eða auka álags.",
     heroCta1: "Byrja að skrifa →", heroCta2: "Innskrá",
     heroStats: ["Kaflar","Spurningar","Barnasaga"],
     featTitle: "Við höfum verið í þínum sporum",
