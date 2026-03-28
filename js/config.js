@@ -4,11 +4,6 @@
 export const SUPABASE_URL = "https://gyehrvryxdgvfhfhwyyy.supabase.co";
 export const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd5ZWhydnJ5eGRndmZoZmh3eXl5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM5Njc4MDcsImV4cCI6MjA4OTU0MzgwN30.4paq-dwUIpUpdM6frnvnYYnih8kXU0cZv67Owdej8H8";
 
-export const GEMINI_KEYS = [
-  "AIzaSyDGH5nntLawfVaAp5By0sG5zynbwBMTkL4",
-  "AIzaSyBSqV0fIVP3AzT_hD-6g2_50fgn9t6mDvg",
-  "AIzaSyC1jhBKPG8AOg2J9dH4VF6NV6ldgRaZaiA",
-];
 export const MODEL_FLASH = "gemini-2.5-flash";
 export const MODEL_PRO = "gemini-2.5-pro";
 

@@ -55,7 +55,7 @@ export const UI = {
       <p style="color:var(--mid);font-size:14px;margin-bottom:40px;">Gildir frá 1. mars 2026 · barnasagan.is</p>
 
       <h3 style="font-family:'Fredoka One',cursive;font-size:20px;margin:32px 0 12px;">1. Hver við erum</h3>
-      <p>Barnasagan mín (barnasagan.is) er þjónusta sem hjálpar foreldrum að skrá sögu barnsins síns. Þjónustan er rekin af Multa Bene Agere ehf. (kt. 471025-0380). Spurningar og athugasemdir varðandi persónuvernd má senda á <a href="mailto:hallo@barnasagan.is" style="color:var(--mid);">hallo@barnasagan.is</a>.</p>
+      <p>Barnasagan mín (barnasagan.is) er þjónusta sem hjálpar foreldrum að skrá sögu barnsins síns. Þjónustan er rekin af Multa Bene Agere ehf. (kt. 471025-0380). Spurningar og athugasemdir varðandi persónuvernd má senda á <a href="mailto:saganmin@saganmin.is" style="color:var(--mid);">saganmin@saganmin.is</a>.</p>
 
       <h3 style="font-family:'Fredoka One',cursive;font-size:20px;margin:32px 0 12px;">2. Hvaða gögnum söfnum við</h3>
       <p>Við geymum einungis þau gögn sem nauðsynleg eru til að sinna þessari þjónustu:</p>
@@ -91,7 +91,7 @@ export const UI = {
         <li>Krefjast eyðingar á öllum gögnum þínum ("réttur til að gleymast")</li>
         <li>Flytja gögn þín út (PDF eða textaskrá)</li>
       </ul>
-      <p>Til að nýta þessi réttindi skaltu hafa samband á <a href="mailto:hallo@barnasagan.is" style="color:var(--mid);">hallo@barnasagan.is</a>. Við munum bregðast við innan 30 daga.</p>
+      <p>Til að nýta þessi réttindi skaltu hafa samband á <a href="mailto:saganmin@saganmin.is" style="color:var(--mid);">saganmin@saganmin.is</a>. Við munum bregðast við innan 30 daga.</p>
 
       <h3 style="font-family:'Fredoka One',cursive;font-size:20px;margin:32px 0 12px;">9. Eyðing reiknings</h3>
       <p>Þú getur eytt framvindu þinni hvenær sem er með "Eyða framvindu" takkanum í kaflayfirlit. Til að eyða reikningnum þínum að fullu og öllum gögnum skaltu hafa samband við okkur.</p>
@@ -103,7 +103,7 @@ export const UI = {
       <p>Ef við gerum verulegar breytingar á þessari persónuverndarstefnu munum við láta notendur vita með tölvupósti. Dagsetning efst á síðunni sýnir hvenær stefnan var síðast uppfærð.</p>
 
       <div style="margin-top:48px;padding:24px;background:var(--warm);border-radius:8px;border-left:3px solid var(--gold);">
-        <p style="margin:0;font-size:14px;color:var(--mid);">Spurningar? Hafðu samband á <a href="mailto:hallo@barnasagan.is" style="color:var(--mid);">hallo@barnasagan.is</a></p>
+        <p style="margin:0;font-size:14px;color:var(--mid);">Spurningar? Hafðu samband á <a href="mailto:saganmin@saganmin.is" style="color:var(--mid);">saganmin@saganmin.is</a></p>
       </div>
       <div style="height:60px;"></div>
     `,
@@ -114,12 +114,12 @@ export const UI = {
     aboutFeat4t: "Engin pressa", aboutFeat4d: "Framvindan þín vistast sjálfkrafa.",
     faqItems: [
       { heading: "Um þjónustuna" },
-      { q: "Hvað er Barnasagan mín?", a: "Barnasagan mín er vettvangur sem aðstoðar foreldra við að skrá sögu barnsins síns með hlýlegum og hvetjandi spurningum. Snjalltækni leiðir þig í gegnum mismunandi þætti bernskunnar og mótar samfellda og vandaða barnasögu úr minningum þínum." },
+      { q: "Hvað er Barnasagan mín?", a: "Barnasagan mín er vettvangur sem aðstoðar foreldra við að skrá sögu barnsins síns með hlýlegum og hvetjandi spurningum. Hlýlegar spurningar leiða þig í gegnum mismunandi þætti bernskunnar og saman verður úr svörunum samfella og vandaða barnasaga." },
       { q: "Hverjum er þjónustan ætluð?", a: "Barnasagan mín hentar öllum foreldrum sem vilja varðveita söguna um bernsku barnsins síns. Þú getur byrjað hvenær sem er, hvort sem barnið er nýfætt eða þegar farið í skóla." },
       { q: "Kostar þjónustan eitthvað?", a: "Vefsíðan er sem stendur í prófunarfasa (beta) og er notendum að kostnaðarlausu að svo stöddu. Við munum upplýsa notendur með góðum fyrirvara ef breytingar verða á gjaldtöku." },
       { q: "Get ég gefið þetta að gjöf?", a: "Gjafakóðar eru í undirbúningi og koma fljótlega! Þá getur þú keypt gjafakóða sem viðtakandinn innleysir sjálfur við skráningu, án þess að þurfa að setja upp reikning fyrirfram eða þekkja netfang viðtakanda." },
       { q: "Eru gögnin mín örugg?", a: "Já, fyllsta öryggis er gætt. Svör þín eru geymd á dulkóðuðum gagnagrunni og enginn annar notandi hefur aðgang að þeim. Barnasagan mín er rekin af íslensku félagi (kt. 471025-0380) og við seljum aldrei persónuupplýsingar." },
-      { q: "Hvernig eyði ég reikningnum mínum?", a: "Þú getur eytt framvindu þinni hvenær sem er með 'Eyða framvindu' takkanum í kaflayfirlitinu. Til að eyða reikningnum þínum að fullu og öllum gögnum sem við geymum skaltu hafa samband við okkur á hallo@barnasagan.is. Við munum bregðast við innan 30 daga." },
+      { q: "Hvernig eyði ég reikningnum mínum?", a: "Þú getur eytt framvindu þinni hvenær sem er með 'Eyða framvindu' takkanum í kaflayfirlitinu. Til að eyða reikningnum þínum að fullu og öllum gögnum sem við geymum skaltu hafa samband við okkur á saganmin@saganmin.is. Við munum bregðast við innan 30 daga." },
 
       { heading: "Að skrifa söguna" },
       { q: "Þarf ég að svara öllum spurningum í einu?", a: "Alls ekki. Þú getur tekið þér hlé hvenær sem hentar. Framvinda þín vistast sjálfkrafa og þú getur haldið áfram þar sem frá var horfið, hvort sem það er að nokkrum dögum eða vikum liðnum." },
@@ -206,7 +206,7 @@ export const UI = {
       <p style="color:var(--mid);font-size:14px;margin-bottom:40px;">Effective 1 March 2026 · barnasagan.is</p>
 
       <h3 style="font-family:'Fredoka One',cursive;font-size:20px;margin:32px 0 12px;">1. Who we are</h3>
-      <p>My Child's Story (barnasagan.is) is a service that helps parents record their child's story. The service is operated by Multa Bene Agere (ID no. 471025-0380). Questions and comments about privacy may be sent to <a href="mailto:hallo@barnasagan.is" style="color:var(--mid);">hallo@barnasagan.is</a>.</p>
+      <p>My Child's Story (barnasagan.is) is a service that helps parents record their child's story. The service is operated by Multa Bene Agere (ID no. 471025-0380). Questions and comments about privacy may be sent to <a href="mailto:saganmin@saganmin.is" style="color:var(--mid);">saganmin@saganmin.is</a>.</p>
 
       <h3 style="font-family:'Fredoka One',cursive;font-size:20px;margin:32px 0 12px;">2. What data we store</h3>
       <p>We store only the data necessary to provide this service:</p>
@@ -242,7 +242,7 @@ export const UI = {
         <li>Request deletion of all your data ("right to be forgotten")</li>
         <li>Export your data (PDF or plain text)</li>
       </ul>
-      <p>To exercise these rights please contact us at <a href="mailto:hallo@barnasagan.is" style="color:var(--mid);">hallo@barnasagan.is</a>. We will respond within 30 days.</p>
+      <p>To exercise these rights please contact us at <a href="mailto:saganmin@saganmin.is" style="color:var(--mid);">saganmin@saganmin.is</a>. We will respond within 30 days.</p>
 
       <h3 style="font-family:'Fredoka One',cursive;font-size:20px;margin:32px 0 12px;">9. Account deletion</h3>
       <p>You can delete your progress at any time using the "Delete progress" button in the chapter overview. To fully delete your account and all associated data, please contact us.</p>
@@ -254,7 +254,7 @@ export const UI = {
       <p>If we make material changes to this privacy policy we will notify users by email. The date at the top of this page shows when the policy was last updated.</p>
 
       <div style="margin-top:48px;padding:24px;background:var(--warm);border-radius:8px;border-left:3px solid var(--gold);">
-        <p style="margin:0;font-size:14px;color:var(--mid);">Questions? Contact us at <a href="mailto:hallo@barnasagan.is" style="color:var(--mid);">hallo@barnasagan.is</a></p>
+        <p style="margin:0;font-size:14px;color:var(--mid);">Questions? Contact us at <a href="mailto:saganmin@saganmin.is" style="color:var(--mid);">saganmin@saganmin.is</a></p>
       </div>
       <div style="height:60px;"></div>
     `,
@@ -265,12 +265,12 @@ export const UI = {
     aboutFeat4t: "Always saved", aboutFeat4d: "Continue anytime, anywhere, your progress follows you.",
     faqItems: [
       { heading: "About the service" },
-      { q: "What is My Child's Story?", a: "My Child's Story is a platform that helps parents record their child's story through warm and encouraging questions. Intelligent technology guides you through different chapters of your child's early life, shaping a polished, cohesive narrative from your memories." },
+      { q: "What is My Child's Story?", a: "My Child's Story is a platform that helps parents record their child's story through warm and encouraging questions. Warm questions guide you through different chapters of your child's early life, shaping a polished, cohesive narrative from your memories." },
       { q: "Who is this service for?", a: "My Child's Story is for any parent or guardian who wants to preserve the story of their child's early years. You can start at any time, whether your child is a newborn or already in school." },
       { q: "Is there a fee for the service?", a: "The website is currently in its beta phase and is free of charge for users at this time. We will notify users well in advance should there be any changes to our pricing model." },
       { q: "Can I give this as a gift?", a: "Gift codes are coming soon! You will be able to purchase a gift code that the recipient redeems themselves at sign-up, no need to set up an account in advance or know the recipient's email address." },
       { q: "Is my data secure?", a: "Yes, we prioritize your privacy. Your answers are stored in an encrypted database and no other user can access them. My Child's Story is operated by an Icelandic entity (ID no. 471025-0380), and we never sell personal data." },
-      { q: "How do I delete my account?", a: "You can delete your progress at any time using the 'Delete progress' button in the chapter overview. To fully delete your account and all data we hold, please contact us at hallo@barnasagan.is. We will respond within 30 days." },
+      { q: "How do I delete my account?", a: "You can delete your progress at any time using the 'Delete progress' button in the chapter overview. To fully delete your account and all data we hold, please contact us at saganmin@saganmin.is. We will respond within 30 days." },
 
       { heading: "Writing your story" },
       { q: "Do I need to answer all questions at once?", a: "Not at all. You can take a break whenever you like. Your progress is saved automatically, allowing you to pick up exactly where you left off, whether it's days or weeks later." },

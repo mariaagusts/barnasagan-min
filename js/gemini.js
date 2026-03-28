@@ -2,66 +2,43 @@
 //  GEMINI AI
 // ══════════════════════════════════════════════
 import { S } from './state.js';
-import { GEMINI_KEYS, MODEL_FLASH, MODEL_PRO } from './config.js';
+import { SUPABASE_URL, SUPABASE_KEY, MODEL_FLASH, MODEL_PRO } from './config.js';
 import { getChapters } from './chapters.js';
 import { getChapterState } from './supabase-client.js';
 
-export function getNextGeminiKey() {
-  const key = GEMINI_KEYS[S.geminiKeyIdx % GEMINI_KEYS.length];
-  S.geminiKeyIdx++;
-  return key;
-}
-
-export function getGeminiUrl(model) {
-  return `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${getNextGeminiKey()}`;
-}
+const GEMINI_PROXY = `${SUPABASE_URL}/functions/v1/gemini-proxy`;
 
 export async function callGemini(systemPrompt, userMsg, usePro = false) {
-  const body = JSON.stringify({
-    contents: [{ role: "user", parts: [{ text: systemPrompt + "\n\n" + userMsg }] }],
-    generationConfig: { temperature: 0.8, maxOutputTokens: 16384 }
-  });
-
   const models = usePro ? [MODEL_PRO, MODEL_FLASH] : [MODEL_FLASH];
-  const urls = models.map(m => getGeminiUrl(m));
-
   let lastError = "";
 
-  for (const url of urls) {
-    let success = false;
-    for (let attempt = 1; attempt <= 3; attempt++) {
-      try {
-        const res = await fetch(url, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body
-        });
-        const data = await res.json();
+  for (const model of models) {
+    try {
+      const res = await fetch(GEMINI_PROXY, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${SUPABASE_KEY}`,
+          "apikey": SUPABASE_KEY,
+        },
+        body: JSON.stringify({ systemPrompt, userMsg, model }),
+      });
+      const data = await res.json();
 
-        if (data.error?.code === 503 || data.error?.status === "UNAVAILABLE") {
-          lastError = data.error.message;
-          console.log(`Of upptekið (${url}), bíð 5s... tilraun ${attempt}/3`);
-          await new Promise(r => setTimeout(r, 5000));
-          continue;
-        }
-
-        if (data.error) {
-          lastError = data.error.message;
-          break; // Önnur villa — reynum Flash
-        }
-
-        if (!data.candidates?.[0]?.content?.parts?.[0]?.text) {
-          lastError = "Tómt svar";
-          break;
-        }
-
-        return data.candidates[0].content.parts[0].text.trim();
-
-      } catch (err) {
-        lastError = err.message;
-        console.log(`Villa (${url}): ${err.message}, bíð 3s...`);
-        await new Promise(r => setTimeout(r, 3000));
+      if (data.error) {
+        lastError = data.error.message;
+        continue;
       }
+
+      if (!data.candidates?.[0]?.content?.parts?.[0]?.text) {
+        lastError = "Tómt svar";
+        continue;
+      }
+
+      return data.candidates[0].content.parts[0].text.trim();
+
+    } catch (err) {
+      lastError = err.message;
     }
   }
 
