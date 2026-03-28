@@ -88,9 +88,9 @@ export const CHAPTERS = [
     id: 9, emoji: "💪", title: "Áskoranir og vöxtur",
     desc: "Erfiðleikar sem barnið hefur sigrað",
     seeds: [
-      "Hefur barnið þurft að fást við eitthvað erfitt, og hvernig tókst það?",
+      "Er eitthvað sem hefur verið erfitt fyrir barnið, og hvernig tókst því að komast í gegnum það?",
       "Hvernig bregst barnið við þegar eitthvað gengur ekki upp?",
-      "Í hverju hefur barnið vaxið mest, eitthvað sem gerðist þar sem þú sást það þroskast?"
+      "Í hvaða aðstæðum hefur barnið vaxið mest, eitthvað sem gerðist þar sem þú sást það þroskast?"
     ]
   },
   {
