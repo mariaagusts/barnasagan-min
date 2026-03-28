@@ -52,8 +52,8 @@ export const CHAPTERS = [
     id: 5, emoji: "👫", title: "Vinir og félagslíf",
     desc: "Bestu vinir og leikfélagar",
     seeds: [
-      "Hefur barnið besta vin? Segðu frá honum/henni.",
-      "Hvernig er félagslíf barnsins, líkar því við að vera í hópi eða frekar eitt?",
+      "Á barnið besta vin? Segðu frá honum/henni.",
+      "Hvernig er félagslíf barnsins, finnst því betra að vera í hópi eða einsamalt?",
       "Er einhver uppáhaldsminnig frá leikjum eða tómstundum með vinum?"
     ]
   },
