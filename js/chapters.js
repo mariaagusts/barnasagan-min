@@ -71,7 +71,7 @@ export const CHAPTERS = [
     desc: "Heimilið, foreldrar og systkini",
     seeds: [
       "Hvernig er barnið í samskiptum við systkini eða nána fjölskyldu?",
-      "Er einhver hluti af daglífi heimilisins sem barnið elskar sérstaklega?",
+      "Er einhver hluti af daglegu lífi heimilisins sem barnið elskar sérstaklega?",
       "Hvernig myndi barnið lýsa heimilinu sínu ef þú spyrðir það?"
     ]
   },
@@ -80,8 +80,8 @@ export const CHAPTERS = [
     desc: "Þau augnablik sem við hlæjum enn að",
     seeds: [
       "Er einhver fyndin saga frá bernsku barnsins sem þú munt aldrei gleyma?",
-      "Hefur barnið sagt eitthvað óvænt eða skemmtilegt sem þú mundir gjarnan skrá niður?",
-      "Hvenær hlógu þið mest saman, barnið og þú?"
+      "Hefur barnið sagt eitthvað óvænt eða skemmtilegt sem þú myndir gjarnan vilja skrá niður?",
+      "Manst þú eftir einhverjum augnablikum þar sem þið hlóguð saman af öllu hjarta?"
     ]
   },
   {
