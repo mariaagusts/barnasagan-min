@@ -34,8 +34,8 @@ export const CHAPTERS = [
     id: 3, emoji: "🎮", title: "Leikur og hugmyndaflug",
     desc: "Hvernig barnið leikur sér og hvað hrífur það mest",
     seeds: [
-      "Hvað er uppáhalds leikurinn eða leikfangið hjá barninu?",
-      "Hefur barnið uppáhaldsheim í hugsunum sínum, einhvern sérheim eða fantasíuheim?",
+      "Hver er uppáhalds leikurinn eða leikfangið hjá barninu?",
+      "Á barnið einhvern ímyndaðan heim eða persónur sem það leikur sér alltaf í?",
       "Hvernig leikur barnið sér, eitt, með systkinum eða vinum?"
     ]
   },
