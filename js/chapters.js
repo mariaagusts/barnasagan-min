@@ -97,9 +97,9 @@ export const CHAPTERS = [
     id: 10, emoji: "✨", title: "Sérstakar minningar",
     desc: "Augnablik sem sitja eftir",
     seeds: [
-      "Hvert er uppáhaldsminnið þitt með barninu hingað til?",
-      "Er einhver dagur sem þú myndir vilja lifa aftur með barninu?",
-      "Hvaða augnablik með barninu hefur látið þig hugsa: þetta gleymi ég aldrei?"
+      "Hver er uppáhalds minning þín með barninu þínu hingað til?",
+      "Er einhver dagur sem þú myndir vilja upplifa aftur með barninu?",
+      "Áttu eitthvað augnablik með barninu þínu þar sem þú hugsar, \"þessu mun ég aldrei gleyma\"?"
     ]
   },
   {
