@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="is">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Þjónustuskilmálar · Barnasagan mín</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+<style>
+:root {
+  --cream:    #FFFBF2;
+  --warm:     #FFF3E0;
+  --peach:    #FFE8CC;
+  --gold:     #FF9800;
+  --orange:   #F57C00;
+  --text:     #3E2723;
+  --mid:      #795548;
+  --light:    #BCAAA4;
+  --border:   #FFCC80;
+  --radius:   16px;
+  --shadow:   0 4px 20px rgba(0,0,0,0.08);
+}
+
+.hero {
+  text-align: center;
+  padding: 80px 24px 60px;
+  background: linear-gradient(155deg, var(--cream) 0%, var(--warm) 60%, var(--peach) 100%);
+}
+.ornament {
+  color: var(--gold);
+  letter-spacing: 10px;
+  font-size: 14px;
+  margin-bottom: 24px;
+  display: block;
+}
+.hero-title {
+  font-family: 'Fredoka One', cursive;
+  font-size: clamp(28px, 4vw, 44px);
+  color: var(--text);
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+.hero-sub {
+  font-size: 15px;
+  color: var(--mid);
+  font-weight: 600;
+  max-width: 500px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+.content-wrap {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 48px 24px 80px;
+}
+.content-wrap h2 {
+  font-family: 'Fredoka One', cursive;
+  font-size: 22px;
+  color: var(--text);
+  margin: 40px 0 12px;
+}
+.content-wrap h2:first-child { margin-top: 0; }
+.content-wrap p {
+  font-size: 15px;
+  color: var(--mid);
+  line-height: 1.8;
+  margin-bottom: 14px;
+}
+.content-wrap ul {
+  margin: 0 0 14px 20px;
+  padding: 0;
+}
+.content-wrap ul li {
+  font-size: 15px;
+  color: var(--mid);
+  line-height: 1.8;
+  margin-bottom: 6px;
+}
+.updated {
+  font-size: 13px;
+  color: var(--light);
+  margin-bottom: 32px;
+  display: block;
+}
+
+html[lang="en"] .lang-en { display: revert !important; }
+html[lang="en"] .lang-is { display: none !important; }
+</style>
+</head>
+<body>
+
+<div class="header-bar">
+  <a class="logo" href="/">Barnasagan mín</a>
+  <div style="display:flex;align-items:center;gap:12px;">
+    <div class="lang-toggle">
+      <button class="lang-btn active" id="btn-is" onclick="setLang('is')">IS</button>
+      <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+    </div>
+    <a class="back-btn" href="/">
+      <span class="lang-is">← Til baka</span>
+      <span class="lang-en" style="display:none;">← Back</span>
+    </a>
+    <button class="ext-hamburger" onclick="document.getElementById('ext-mobile-menu').classList.toggle('open')" aria-label="Valmynd">☰</button>
+  </div>
+</div>
+
+<div class="ext-mobile-menu" id="ext-mobile-menu">
+  <div class="ext-menu-header">
+    <a class="ext-menu-logo" href="https://barnasagan.is">Barnasagan mín</a>
+    <button class="ext-menu-close" onclick="document.getElementById('ext-mobile-menu').classList.remove('open')">✕</button>
+  </div>
+  <nav>
+    <a href="https://barnasagan.is"><span class="lang-is">Forsíða</span><span class="lang-en" style="display:none;">Home</span></a>
+    <a href="/pricing.html"><span class="lang-is">Verðlag</span><span class="lang-en" style="display:none;">Pricing</span></a>
+    <a href="/privacy.html"><span class="lang-is">Persónuvernd</span><span class="lang-en" style="display:none;">Privacy</span></a>
+    <a href="/terms.html"><span class="lang-is">Þjónustuskilmálar</span><span class="lang-en" style="display:none;">Terms</span></a>
+  </nav>
+</div>
+
+<!-- Hero -->
+<div class="hero">
+  <span class="ornament">✦ ✦ ✦</span>
+  <h1 class="hero-title">
+    <span class="lang-is">Þjónustuskilmálar</span>
+    <span class="lang-en" style="display:none;">Terms of Service</span>
+  </h1>
+  <p class="hero-sub">
+    <span class="lang-is">Barnasagan mín · barnasagan.is</span>
+    <span class="lang-en" style="display:none;">Barnasagan mín · barnasagan.is</span>
+  </p>
+</div>
+
+<!-- Content -->
+<div class="content-wrap">
+
+  <!-- IS -->
+  <div class="lang-is">
+    <span class="updated">Síðast uppfært: mars 2026</span>
+
+    <h2>1. Þjónustan</h2>
+    <p>Barnasagan mín er vefþjónusta sem gerir foreldrum kleift að skrá og varðveita minningar um bernsku barns síns með hjálp gervigreindar. Þjónustan er rekin af Multa Bene Agere ehf., kennitala 560322-0990, Reykjavík, Ísland.</p>
+
+    <h2>2. Notkun þjónustunnar</h2>
+    <p>Þjónustan er ætluð einstaklингum sem skrá persónulegar minningar til eigin nota. Með því að nota þjónustuna samþykkir notandinn að:</p>
+    <ul>
+      <li>Nota þjónustuna einungis í löglegum tilgangi</li>
+      <li>Gefa réttar og nákvæmar upplýsingar við skráningu</li>
+      <li>Vernda aðgangsgögn sín og vera ábyrgur fyrir allri notkun á reikningi sínum</li>
+      <li>Ekki deila efni sem brýtur í bága við réttindi þriðja aðila</li>
+    </ul>
+
+    <h2>3. Greiðslur og endurgreiðslur</h2>
+    <p>Barnasagan mín er seld sem eingreiðsla (eitt verð, enginn áskrift). Eftir greiðslu er aðgangur veittur að öllum 12 köflum og PDF-niðurhali til frambúðar.</p>
+    <p>Endurgreiðslubeiðnir eru teknar til skoðunar í 14 daga frá kaupum hafi notandinn ekki notað PDF-niðurhal. Hafðu samband við saganmin@saganmin.is.</p>
+
+    <h2>4. Hugverkaréttur</h2>
+    <p>Allt efni sem notandinn skráir í þjónustuna tilheyrir notandanum. Multa Bene Agere ehf. gerir sér ekki kröfu til eignarréttinda yfir persónulegu efni notenda.</p>
+    <p>Kóði, hönnun og uppbygging þjónustunnar eru eign Multa Bene Agere ehf. og má ekki afrita eða dreifa án leyfis.</p>
+
+    <h2>5. Gervigreind</h2>
+    <p>Þjónustan notar Google Gemini til að búa til eftirfylgnispurningar. Svör notenda eru send til Google í þessum tilgangi. Google fer með þessi gögn samkvæmt eigin persónuverndarskilmálum. Barnasagan mín notar þessi gögn ekki til þjálfunar á líkönum.</p>
+
+    <h2>6. Takmarkanir á ábyrgð</h2>
+    <p>Þjónustan er veitt "eins og hún er". Multa Bene Agere ehf. ber ekki ábyrgð á gögntapi sem stafar af tæknilegum vandamálum utan stjórnunar fyrirtækisins. Notendur eru hvattir til að hlaða niður PDF-útgáfu af sögu sinni sem öryggisafrit.</p>
+
+    <h2>7. Breytingar á skilmálum</h2>
+    <p>Multa Bene Agere ehf. áskilur sér rétt til að breyta þessum skilmálum. Tilkynning verður send á netfang notanda við verulegar breytingar. Áframhaldandi notkun þjónustunnar eftir breytingar þýðir samþykki þeirra.</p>
+
+    <h2>8. Lög og lögsaga</h2>
+    <p>Þessir skilmálar heyra undir íslenskan rétt. Ágreiningsmál skulu reyst fyrir Héraðsdómi Reykjavíkur.</p>
+
+    <h2>Samband</h2>
+    <p>Spurningar um þjónustuskilmála: <a href="mailto:saganmin@saganmin.is" style="color:var(--gold);">saganmin@saganmin.is</a></p>
+  </div>
+
+  <!-- EN -->
+  <div class="lang-en" style="display:none;">
+    <span class="updated">Last updated: March 2026</span>
+
+    <h2>1. The Service</h2>
+    <p>Barnasagan mín is a web service that helps parents record and preserve memories of their child's childhood with the help of AI. The service is operated by Multa Bene Agere ehf., ID 560322-0990, Reykjavík, Iceland.</p>
+
+    <h2>2. Use of the Service</h2>
+    <p>The service is intended for individuals recording personal memories for their own use. By using the service, you agree to:</p>
+    <ul>
+      <li>Use the service only for lawful purposes</li>
+      <li>Provide accurate information upon registration</li>
+      <li>Protect your login credentials and be responsible for all activity on your account</li>
+      <li>Not share content that infringes third-party rights</li>
+    </ul>
+
+    <h2>3. Payments and Refunds</h2>
+    <p>Barnasagan mín is sold as a one-time payment (no subscription). After payment, access to all 12 chapters and PDF download is granted permanently.</p>
+    <p>Refund requests are considered within 14 days of purchase provided the PDF download has not been used. Contact saganmin@saganmin.is.</p>
+
+    <h2>4. Intellectual Property</h2>
+    <p>All content you record in the service belongs to you. Multa Bene Agere ehf. makes no claim to ownership of users' personal content.</p>
+    <p>The code, design, and structure of the service are the property of Multa Bene Agere ehf. and may not be copied or distributed without permission.</p>
+
+    <h2>5. Artificial Intelligence</h2>
+    <p>The service uses Google Gemini to generate follow-up questions. User responses are sent to Google for this purpose. Google processes this data under its own privacy policy. Barnasagan mín does not use this data for model training.</p>
+
+    <h2>6. Limitation of Liability</h2>
+    <p>The service is provided "as is". Multa Bene Agere ehf. is not liable for data loss resulting from technical issues beyond the company's control. Users are encouraged to download a PDF copy of their story as a backup.</p>
+
+    <h2>7. Changes to Terms</h2>
+    <p>Multa Bene Agere ehf. reserves the right to modify these terms. Notification will be sent to your email address for material changes. Continued use of the service after changes constitutes acceptance.</p>
+
+    <h2>8. Governing Law</h2>
+    <p>These terms are governed by Icelandic law. Disputes shall be resolved before the District Court of Reykjavík.</p>
+
+    <h2>Contact</h2>
+    <p>Questions about terms of service: <a href="mailto:saganmin@saganmin.is" style="color:var(--gold);">saganmin@saganmin.is</a></p>
+  </div>
+
+</div>
+
+<footer>
+  <div style="margin-bottom:8px;">
+    <span class="lang-is">© 2026 Barnasagan mín · <a href="/terms.html">Þjónustuskilmálar</a> · <a href="/privacy.html">Persónuvernd</a> · <a href="mailto:saganmin@saganmin.is">saganmin@saganmin.is</a></span>
+    <span class="lang-en" style="display:none;">© 2026 Barnasagan mín · <a href="/terms.html">Terms</a> · <a href="/privacy.html">Privacy</a> · <a href="mailto:saganmin@saganmin.is">saganmin@saganmin.is</a></span>
+  </div>
+  <div style="font-size:12px;opacity:0.7;margin-top:4px;">
+    <a href="https://saganmin.is" style="color:var(--gold);">
+      <span class="lang-is">Sagan mín (saganmin.is) — lífsreynsla fullorðinna</span>
+      <span class="lang-en" style="display:none;">My Story (saganmin.is) — life stories for adults</span>
+    </a>
+  </div>
+</footer>
+
+<script>
+  function setLang(lang) {
+    document.querySelectorAll('.lang-is').forEach(el => el.style.display = lang === 'is' ? '' : 'none');
+    document.querySelectorAll('.lang-en').forEach(el => el.style.display = lang === 'en' ? '' : 'none');
+    document.getElementById('btn-is').classList.toggle('active', lang === 'is');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.documentElement.lang = lang;
+    localStorage.setItem('barnasagan_lang', lang);
+  }
+  (function() {
+    var lang = localStorage.getItem('barnasagan_lang') || 'is';
+    if (lang === 'en') setLang('en');
+  })();
+</script>
+
+</body>
+</html>

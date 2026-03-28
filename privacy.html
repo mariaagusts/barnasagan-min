@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="is">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Persónuvernd · Barnasagan mín</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+<style>
+:root {
+  --cream:    #FFFBF2;
+  --warm:     #FFF3E0;
+  --peach:    #FFE8CC;
+  --gold:     #FF9800;
+  --orange:   #F57C00;
+  --text:     #3E2723;
+  --mid:      #795548;
+  --light:    #BCAAA4;
+  --border:   #FFCC80;
+  --radius:   16px;
+  --shadow:   0 4px 20px rgba(0,0,0,0.08);
+}
+
+.hero {
+  text-align: center;
+  padding: 80px 24px 60px;
+  background: linear-gradient(155deg, var(--cream) 0%, var(--warm) 60%, var(--peach) 100%);
+}
+.ornament {
+  color: var(--gold);
+  letter-spacing: 10px;
+  font-size: 14px;
+  margin-bottom: 24px;
+  display: block;
+}
+.hero-title {
+  font-family: 'Fredoka One', cursive;
+  font-size: clamp(28px, 4vw, 44px);
+  color: var(--text);
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+.hero-sub {
+  font-size: 15px;
+  color: var(--mid);
+  font-weight: 600;
+  max-width: 500px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+.content-wrap {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 48px 24px 80px;
+}
+.content-wrap h2 {
+  font-family: 'Fredoka One', cursive;
+  font-size: 22px;
+  color: var(--text);
+  margin: 40px 0 12px;
+}
+.content-wrap h2:first-child { margin-top: 0; }
+.content-wrap p {
+  font-size: 15px;
+  color: var(--mid);
+  line-height: 1.8;
+  margin-bottom: 14px;
+}
+.content-wrap ul {
+  margin: 0 0 14px 20px;
+  padding: 0;
+}
+.content-wrap ul li {
+  font-size: 15px;
+  color: var(--mid);
+  line-height: 1.8;
+  margin-bottom: 6px;
+}
+.updated {
+  font-size: 13px;
+  color: var(--light);
+  margin-bottom: 32px;
+  display: block;
+}
+
+html[lang="en"] .lang-en { display: revert !important; }
+html[lang="en"] .lang-is { display: none !important; }
+</style>
+</head>
+<body>
+
+<div class="header-bar">
+  <a class="logo" href="/">Barnasagan mín</a>
+  <div style="display:flex;align-items:center;gap:12px;">
+    <div class="lang-toggle">
+      <button class="lang-btn active" id="btn-is" onclick="setLang('is')">IS</button>
+      <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+    </div>
+    <a class="back-btn" href="/">
+      <span class="lang-is">← Til baka</span>
+      <span class="lang-en" style="display:none;">← Back</span>
+    </a>
+    <button class="ext-hamburger" onclick="document.getElementById('ext-mobile-menu').classList.toggle('open')" aria-label="Valmynd">☰</button>
+  </div>
+</div>
+
+<div class="ext-mobile-menu" id="ext-mobile-menu">
+  <div class="ext-menu-header">
+    <a class="ext-menu-logo" href="https://barnasagan.is">Barnasagan mín</a>
+    <button class="ext-menu-close" onclick="document.getElementById('ext-mobile-menu').classList.remove('open')">✕</button>
+  </div>
+  <nav>
+    <a href="https://barnasagan.is"><span class="lang-is">Forsíða</span><span class="lang-en" style="display:none;">Home</span></a>
+    <a href="/pricing.html"><span class="lang-is">Verðlag</span><span class="lang-en" style="display:none;">Pricing</span></a>
+    <a href="/privacy.html"><span class="lang-is">Persónuvernd</span><span class="lang-en" style="display:none;">Privacy</span></a>
+    <a href="/terms.html"><span class="lang-is">Þjónustuskilmálar</span><span class="lang-en" style="display:none;">Terms</span></a>
+  </nav>
+</div>
+
+<!-- Hero -->
+<div class="hero">
+  <span class="ornament">✦ ✦ ✦</span>
+  <h1 class="hero-title">
+    <span class="lang-is">Persónuverndarstefna</span>
+    <span class="lang-en" style="display:none;">Privacy Policy</span>
+  </h1>
+  <p class="hero-sub">
+    <span class="lang-is">Barnasagan mín · barnasagan.is</span>
+    <span class="lang-en" style="display:none;">Barnasagan mín · barnasagan.is</span>
+  </p>
+</div>
+
+<!-- Content -->
+<div class="content-wrap">
+
+  <!-- IS -->
+  <div class="lang-is">
+    <span class="updated">Síðast uppfært: mars 2026</span>
+
+    <h2>1. Ábyrgðaraðili</h2>
+    <p>Ábyrgðaraðili persónuupplýsinga er Multa Bene Agere ehf., kennitala 560322-0990, Reykjavík, Ísland. Netfang: saganmin@saganmin.is.</p>
+    <p>Þessi persónuverndarstefna gildir um þjónustuna Barnasagan mín á barnasagan.is og lýsir því hvaða gögn eru safnað, hvernig þau eru notuð og hvaða réttindi notendur hafa yfir eigin gögnum samkvæmt GDPR og íslenskum persónuverndarlögum.</p>
+
+    <h2>2. Gögn sem safnað er</h2>
+    <p>Við söfnum eftirfarandi gögnum:</p>
+    <ul>
+      <li><strong>Netfang</strong> — notað við skráningu og innskráningu (Supabase Auth)</li>
+      <li><strong>Minningartextar</strong> — svör notenda við spurningum um barnið, vistaðar í Supabase gagnagrunni</li>
+      <li><strong>Tungumálastilling</strong> — geymd í vafrakökum (localStorage) á tækinu</li>
+      <li><strong>Greiðsluupplýsingar</strong> — unnar af Stripe; Barnasagan mín geymir ekki kortaupplýsingar</li>
+    </ul>
+
+    <h2>3. Tilgangur vinnslu</h2>
+    <p>Gögn eru notuð til að:</p>
+    <ul>
+      <li>Auðkenna notendur og veita aðgang að þjónustunni</li>
+      <li>Geyma og birta minningartexta notandans</li>
+      <li>Búa til PDF-útgáfu af sögunni</li>
+      <li>Senda tengdar upplýsingar varðandi þjónustuna (t.d. greiðslustaðfestingu)</li>
+    </ul>
+    <p>Við segjum ekki frá gögnum þínum þriðja aðila í markaðsskyni og notum þau ekki til auglýsinga.</p>
+
+    <h2>4. Gervigreind (Google Gemini)</h2>
+    <p>Þjónustan notar Google Gemini API til að búa til eftirfylgnispurningar. Þegar gervigreind er notuð eru hluta af svörum notanda send til Google í þessum tilgangi. Google fer með þessi gögn samkvæmt <a href="https://policies.google.com/privacy" style="color:var(--gold);">persónuverndarstefnu Google</a>.</p>
+    <p>Barnasagan mín deilir ekki öðrum persónugreinanlegum upplýsingum með Google og notar svörin ekki til þjálfunar á líkönum.</p>
+
+    <h2>5. Geymsla og öryggi</h2>
+    <p>Gögn eru geymd í Supabase, sem er staðsett á gagnaverum í Evrópu. Samskipti eru dulkóðuð með TLS. Supabase er Row Level Security (RLS) virkjað þannig að notendur hafa aðeins aðgang að eigin gögnum.</p>
+
+    <h2>6. Réttindi notenda (GDPR)</h2>
+    <p>Notendur eiga eftirfarandi réttindi:</p>
+    <ul>
+      <li><strong>Aðgangsréttur</strong> — fá afrit af gögnum sínum</li>
+      <li><strong>Réttur til leiðréttingar</strong> — leiðrétta rangar upplýsingar</li>
+      <li><strong>Réttur til eyðingar</strong> — krefjast þess að gögn séu eyðd ("réttur til gleymsku")</li>
+      <li><strong>Réttur til flutnings</strong> — fá gögn á læsilegu formi (JSON eða PDF)</li>
+      <li><strong>Réttur til þess að andmæla</strong> — andmæla vinnslu í ákveðnum tilvikum</li>
+    </ul>
+    <p>Til að nýta þessi réttindi: <a href="mailto:saganmin@saganmin.is" style="color:var(--gold);">saganmin@saganmin.is</a>. Við svörum innan 30 daga.</p>
+
+    <h2>7. Eyðing reiknings</h2>
+    <p>Notendur geta óskað eftir eyðingu reiknings og allra gagna hvenær sem er með því að hafa samband við saganmin@saganmin.is. Gögn verða eyðð innan 30 daga.</p>
+
+    <h2>8. Vafrakökur</h2>
+    <p>Barnasagan mín notar aðeins nauðsynlegar vafrakökur (localStorage) til að geyma tungumálastillingu og innskráningarstöðu. Engar rekjarvafrakökur eða þriðja aðilagreiningar eru notaðar.</p>
+
+    <h2>9. Breytingar á stefnunni</h2>
+    <p>Ef verulegar breytingar eru gerðar á þessari persónuverndarstefnu verður tilkynnt á netfang notanda. Áframhaldandi notkun þjónustunnar þýðir samþykki breyttrar stefnu.</p>
+
+    <h2>10. Kvartanir</h2>
+    <p>Telji notandi að vinnsla persónuupplýsinga brjóti í bága við lög getur hann lagt fram kvörtun hjá Persónuvernd (personuvernd.is).</p>
+
+    <h2>Samband</h2>
+    <p>Spurningar um persónuvernd: <a href="mailto:saganmin@saganmin.is" style="color:var(--gold);">saganmin@saganmin.is</a></p>
+  </div>
+
+  <!-- EN -->
+  <div class="lang-en" style="display:none;">
+    <span class="updated">Last updated: March 2026</span>
+
+    <h2>1. Data Controller</h2>
+    <p>The data controller is Multa Bene Agere ehf., ID 560322-0990, Reykjavík, Iceland. Email: saganmin@saganmin.is.</p>
+    <p>This privacy policy applies to the Barnasagan mín service at barnasagan.is and describes what data is collected, how it is used, and what rights users have over their own data under GDPR and Icelandic privacy law.</p>
+
+    <h2>2. Data We Collect</h2>
+    <p>We collect the following data:</p>
+    <ul>
+      <li><strong>Email address</strong> — used for registration and login (Supabase Auth)</li>
+      <li><strong>Memory texts</strong> — users' answers to questions about their child, stored in the Supabase database</li>
+      <li><strong>Language setting</strong> — stored in browser cookies (localStorage) on your device</li>
+      <li><strong>Payment information</strong> — processed by Stripe; Barnasagan mín does not store card details</li>
+    </ul>
+
+    <h2>3. Purpose of Processing</h2>
+    <p>Data is used to:</p>
+    <ul>
+      <li>Identify users and provide access to the service</li>
+      <li>Store and display the user's memory texts</li>
+      <li>Generate a PDF version of the story</li>
+      <li>Send service-related communications (e.g. payment confirmation)</li>
+    </ul>
+    <p>We do not share your data with third parties for marketing purposes and do not use it for advertising.</p>
+
+    <h2>4. Artificial Intelligence (Google Gemini)</h2>
+    <p>The service uses the Google Gemini API to generate follow-up questions. When AI is used, portions of user responses are sent to Google for this purpose. Google processes this data under <a href="https://policies.google.com/privacy" style="color:var(--gold);">Google's privacy policy</a>.</p>
+    <p>Barnasagan mín does not share other personally identifiable information with Google and does not use responses for model training.</p>
+
+    <h2>5. Storage and Security</h2>
+    <p>Data is stored in Supabase, located on servers in Europe. All communication is TLS-encrypted. Supabase Row Level Security (RLS) is enabled so users can only access their own data.</p>
+
+    <h2>6. Your Rights (GDPR)</h2>
+    <p>You have the following rights:</p>
+    <ul>
+      <li><strong>Right of access</strong> — receive a copy of your data</li>
+      <li><strong>Right to rectification</strong> — correct inaccurate information</li>
+      <li><strong>Right to erasure</strong> — request deletion of your data ("right to be forgotten")</li>
+      <li><strong>Right to portability</strong> — receive your data in a readable format (JSON or PDF)</li>
+      <li><strong>Right to object</strong> — object to processing in certain circumstances</li>
+    </ul>
+    <p>To exercise these rights: <a href="mailto:saganmin@saganmin.is" style="color:var(--gold);">saganmin@saganmin.is</a>. We will respond within 30 days.</p>
+
+    <h2>7. Account Deletion</h2>
+    <p>Users can request deletion of their account and all data at any time by contacting saganmin@saganmin.is. Data will be deleted within 30 days.</p>
+
+    <h2>8. Cookies</h2>
+    <p>Barnasagan mín uses only necessary cookies (localStorage) to store language settings and login state. No tracking cookies or third-party analytics are used.</p>
+
+    <h2>9. Changes to This Policy</h2>
+    <p>If material changes are made to this privacy policy, notification will be sent to your email address. Continued use of the service constitutes acceptance of the updated policy.</p>
+
+    <h2>10. Complaints</h2>
+    <p>If you believe that the processing of your personal data violates the law, you may lodge a complaint with the Icelandic Data Protection Authority (personuvernd.is).</p>
+
+    <h2>Contact</h2>
+    <p>Privacy questions: <a href="mailto:saganmin@saganmin.is" style="color:var(--gold);">saganmin@saganmin.is</a></p>
+  </div>
+
+</div>
+
+<footer>
+  <div style="margin-bottom:8px;">
+    <span class="lang-is">© 2026 Barnasagan mín · <a href="/terms.html">Þjónustuskilmálar</a> · <a href="/privacy.html">Persónuvernd</a> · <a href="mailto:saganmin@saganmin.is">saganmin@saganmin.is</a></span>
+    <span class="lang-en" style="display:none;">© 2026 Barnasagan mín · <a href="/terms.html">Terms</a> · <a href="/privacy.html">Privacy</a> · <a href="mailto:saganmin@saganmin.is">saganmin@saganmin.is</a></span>
+  </div>
+  <div style="font-size:12px;opacity:0.7;margin-top:4px;">
+    <a href="https://saganmin.is" style="color:var(--gold);">
+      <span class="lang-is">Sagan mín (saganmin.is) — lífsreynsla fullorðinna</span>
+      <span class="lang-en" style="display:none;">My Story (saganmin.is) — life stories for adults</span>
+    </a>
+  </div>
+</footer>
+
+<script>
+  function setLang(lang) {
+    document.querySelectorAll('.lang-is').forEach(el => el.style.display = lang === 'is' ? '' : 'none');
+    document.querySelectorAll('.lang-en').forEach(el => el.style.display = lang === 'en' ? '' : 'none');
+    document.getElementById('btn-is').classList.toggle('active', lang === 'is');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.documentElement.lang = lang;
+    localStorage.setItem('barnasagan_lang', lang);
+  }
+  (function() {
+    var lang = localStorage.getItem('barnasagan_lang') || 'is';
+    if (lang === 'en') setLang('en');
+  })();
+</script>
+
+</body>
+</html>

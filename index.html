@@ -61,6 +61,31 @@
   --dark:     #f5ece0;
   --brown:    #FF9800;
 }
+
+/* ── Demo section ── */
+.demo-section { padding:100px 48px; background:var(--cream); border-top:1px solid var(--border); text-align:center; }
+.demo-tabs { display:flex; gap:6px; justify-content:center; margin-bottom:40px; flex-wrap:wrap; }
+.demo-tab { background:none; border:1px solid var(--border); color:var(--mid); padding:9px 22px; font-family:'Nunito',sans-serif; font-size:12px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; cursor:pointer; border-radius:20px; transition:all 0.2s; }
+.demo-tab.active { background:var(--dark); color:var(--cream); border-color:var(--dark); }
+.demo-tab:hover:not(.active) { border-color:var(--gold); color:var(--orange); }
+.demo-panel { max-width:760px; margin:0 auto; text-align:left; animation:fadein 0.35s ease; }
+.demo-qa-card { background:var(--card); border:1px solid var(--border); border-radius:8px; padding:28px 32px; margin-bottom:16px; }
+.demo-qa-q { font-family:'Fredoka One',cursive; font-size:13px; color:var(--gold); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:8px; }
+.demo-qa-a { font-family:'Nunito',sans-serif; font-size:15px; color:var(--text); line-height:1.75; margin:0; }
+.demo-excerpt { background:var(--card); border:1px solid var(--border); border-radius:8px; max-height:500px; overflow-y:auto; }
+.demo-excerpt-item { padding:28px 32px; border-bottom:1px solid var(--border); }
+.demo-excerpt-item:last-child { border-bottom:none; }
+.demo-excerpt-q { font-family:'Fredoka One',cursive; font-size:14px; color:var(--orange); margin-bottom:8px; }
+.demo-excerpt-a { font-family:'Nunito',sans-serif; font-size:15px; color:var(--text); line-height:1.75; margin:0; }
+.demo-pdf-page { background:white; border:1px solid #ddd; border-radius:4px; padding:60px 72px; box-shadow:0 4px 32px rgba(62,39,35,0.1); max-width:620px; margin:0 auto; }
+.demo-pdf-chap { font-family:'Fredoka One',cursive; font-size:12px; color:var(--gold); letter-spacing:0.18em; text-transform:uppercase; margin-bottom:16px; }
+.demo-pdf-title { font-family:'Fredoka One',cursive; font-size:28px; color:#3E2723; margin:0 0 8px; }
+.demo-pdf-orn { color:var(--gold); letter-spacing:10px; font-size:14px; margin:20px 0; }
+.demo-pdf-body { font-family:'Nunito',sans-serif; font-size:15px; color:#5D4037; line-height:1.85; }
+.demo-pdf-body p { margin-bottom:18px; }
+.demo-pdf-body p:first-child::first-letter { font-family:'Fredoka One',cursive; font-size:52px; font-weight:400; float:left; line-height:0.85; margin-right:8px; margin-top:6px; color:var(--orange); }
+.demo-pdf-foot { margin-top:48px; text-align:center; font-family:'Nunito',sans-serif; font-size:11px; color:#BCAAA4; letter-spacing:0.12em; text-transform:uppercase; border-top:1px solid #FFCC80; padding-top:16px; }
+@media(max-width:640px){ .demo-section { padding:64px 24px; } .demo-pdf-page { padding:36px 24px; } .demo-qa-card { padding:20px; } }
 </style>
 </head>
 <body>
@@ -273,6 +298,138 @@
     </div>
   </div>
 
+  <!-- Demo section: Embla Bergsdóttir -->
+  <div class="demo-section">
+    <span class="ornament-sm" style="display:block;text-align:center;margin-bottom:24px;">✦ ✦ ✦</span>
+    <h2 class="section-title">
+      <span class="lang-is">Barnasagan um Emblu</span>
+      <span class="lang-en" style="display:none;">Embla's childhood story</span>
+    </h2>
+    <p class="section-sub">
+      <span class="lang-is">Foreldri Emblu Bergsdóttur, fæddrar 15. mars 2020, skráði barnasöguna. Sjáðu hvernig niðurstaðan lítur út.</span>
+      <span class="lang-en" style="display:none;">Embla Bergsdóttir's parent, born 15 March 2020, recorded her childhood story. See what the result looks like.</span>
+    </p>
+
+    <div class="demo-tabs">
+      <button class="demo-tab active" onclick="showDemoTab('cards',this)">
+        <span class="lang-is">Spurt og svarað</span>
+        <span class="lang-en" style="display:none;">Q&amp;A</span>
+      </button>
+      <button class="demo-tab" onclick="showDemoTab('excerpt',this)">
+        <span class="lang-is">Bókaútdráttur</span>
+        <span class="lang-en" style="display:none;">Story excerpt</span>
+      </button>
+      <button class="demo-tab" onclick="showDemoTab('pdf',this)">
+        <span class="lang-is">PDF forskoðun</span>
+        <span class="lang-en" style="display:none;">PDF preview</span>
+      </button>
+    </div>
+
+    <!-- Tab 1: Q&A cards -->
+    <div class="demo-panel" id="demo-panel-cards">
+      <div class="demo-qa-card">
+        <div class="demo-qa-q">
+          <span class="lang-is">Kafli 1 · Nýja lífið</span>
+          <span class="lang-en" style="display:none;">Chapter 1 · The new life</span>
+        </div>
+        <p class="demo-qa-a">
+          <em style="color:var(--mid);display:block;margin-bottom:12px;">Hvað heitir barnið þitt og hvenær og hvar fæddist það?</em>
+          Barnið mitt heitir Embla Bergsdóttir. Hún fæddist 15. mars 2020 á Landspítalanum í Reykjavík.
+        </p>
+      </div>
+      <div class="demo-qa-card">
+        <div class="demo-qa-q">
+          <span class="lang-is">Kafli 1 · Nýja lífið</span>
+          <span class="lang-en" style="display:none;">Chapter 1 · The new life</span>
+        </div>
+        <p class="demo-qa-a">
+          <em style="color:var(--mid);display:block;margin-bottom:12px;">Hvernig var dagurinn sem barnið kom til heimsins — hvernig leið ykkur, foreldrunum?</em>
+          Dagurinn var sérstakur á fleiri en einn hátt. Þetta var einmitt þegar COVID-faraldrinum var lýst yfir á Íslandi og heimurinn var farinn að lokast. Við fórum á spítalann í þögn og óvissu. En þegar Embla kom til sögunnar gleymdum við öllu öðru.
+        </p>
+      </div>
+      <div class="demo-qa-card">
+        <div class="demo-qa-q">
+          <span class="lang-is">Kafli 2 · Fyrstu skrefin</span>
+          <span class="lang-en" style="display:none;">Chapter 2 · First steps</span>
+        </div>
+        <p class="demo-qa-a">
+          <em style="color:var(--mid);display:block;margin-bottom:12px;">Hvenær fór barnið að ganga og manstu eftir þeim augnablikum?</em>
+          Embla fór að ganga þegar hún var 11 mánaða. Við vorum í stofunni og hún stóð upp við borðið, sleppti og tók þrjú skref. Ég grét. Hún leit á mig eins og hún skildi ekki af hverju ég væri svona.
+        </p>
+      </div>
+      <div class="demo-qa-card">
+        <div class="demo-qa-q">
+          <span class="lang-is">Kafli 2 · Fyrstu skrefin</span>
+          <span class="lang-en" style="display:none;">Chapter 2 · First steps</span>
+        </div>
+        <p class="demo-qa-a">
+          <em style="color:var(--mid);display:block;margin-bottom:12px;">Hvað voru fyrstu orðin sem barnið sagði og hvernig brást fjölskyldan við?</em>
+          Fyrsta alvöru orðið var "mjaú" þegar við sáum kött í göngutúr. Hún sagði þetta svo skýrt og broslegið. Við höfðum aldrei hlægt svona mikið af einu orði.
+        </p>
+      </div>
+    </div>
+
+    <!-- Tab 2: Scrollable excerpt -->
+    <div class="demo-panel" id="demo-panel-excerpt" style="display:none">
+      <div class="demo-excerpt">
+        <div class="demo-excerpt-item">
+          <div class="demo-excerpt-q"><span class="lang-is">Hvað var þyngd og hæð Emblu við fæðinguna?</span><span class="lang-en" style="display:none;">What was Embla's weight and height at birth?</span></div>
+          <p class="demo-excerpt-a">Embla var 3,4 kg og 50 cm. Fullkomin.</p>
+        </div>
+        <div class="demo-excerpt-item">
+          <div class="demo-excerpt-q"><span class="lang-is">Hvernig var fyrsta nótt heima?</span><span class="lang-en" style="display:none;">How was the first night at home?</span></div>
+          <p class="demo-excerpt-a">Fyrsta nótt heima var langt frá svefni! Við þurftum að vinda hana um leið og við komum heim, og svo fór hún að gráta um þrjú á morgnana. Við tókum hana í handleggina á okkur báðum og þá sofnaði hún loksins.</p>
+        </div>
+        <div class="demo-excerpt-item">
+          <div class="demo-excerpt-q"><span class="lang-is">Hvernig var Embla sem nýburi — grétagísli eða rólegt?</span><span class="lang-en" style="display:none;">Was Embla fussy or calm as a newborn?</span></div>
+          <p class="demo-excerpt-a">Embla var ekki grétagísli! Hún var rólegt barn sem vildi vera haldin. Þegar maður hélt henni var hún ánægð. Þegar maður lagði hana niður — þá var annað mál.</p>
+        </div>
+        <div class="demo-excerpt-item">
+          <div class="demo-excerpt-q"><span class="lang-is">Var eitthvað sem Embla elskaði sérstaklega sem ungabarn?</span><span class="lang-en" style="display:none;">Was there something Embla loved as a baby?</span></div>
+          <p class="demo-excerpt-a">Embla elskaði tónlist. Þegar við leikum tónlist — hvaða tónlist sem var — byrjaði hún að dansa. Við þurftum náttúrlega að kalla þetta dans; það var meira titrings- og brotthvarf-dans en neitt annað.</p>
+        </div>
+        <div class="demo-excerpt-item">
+          <div class="demo-excerpt-q"><span class="lang-is">Hvað fannst þér erfiðast á fyrstu vikurnar?</span><span class="lang-en" style="display:none;">What was hardest in the first weeks?</span></div>
+          <p class="demo-excerpt-a">Erfiðast var óvissan. Er við að gera allt rétt? Er hún að fá nóg mat? Af hverju grátur hún? Við höfðum aldrei gert þetta áður og það eru engar leiðbeiningar sem kenna þér að þekkja þitt eigið barn.</p>
+        </div>
+        <div class="demo-excerpt-item">
+          <div class="demo-excerpt-q"><span class="lang-is">Hvað viltu að Embla viti um fæðingardag sinn þegar hún verður stór?</span><span class="lang-en" style="display:none;">What do you want Embla to know about her birthday when she grows up?</span></div>
+          <p class="demo-excerpt-a">Ég vil að Embla viti að hún kom til heimsins á sögulegum degi — þegar heimurinn var að breytast. Og hún var ljósið í þeim dögum.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab 3: PDF preview -->
+    <div class="demo-panel" id="demo-panel-pdf" style="display:none">
+      <div class="demo-pdf-page">
+        <div class="demo-pdf-chap">
+          <span class="lang-is">Kafli I · Nýja lífið</span>
+          <span class="lang-en" style="display:none;">Chapter I · The New Life</span>
+        </div>
+        <h3 class="demo-pdf-title">Embla Bergsdóttir</h3>
+        <div class="demo-pdf-orn">✦ ✦ ✦</div>
+        <div class="demo-pdf-body">
+          <p>
+            <span class="lang-is">Embla Bergsdóttir fæddist 15. mars 2020 á Landspítalanum í Reykjavík — 3,4 kíló og 50 sentímetrar af fullkominni nýrri mannveru. Nafnið Embla kemur úr norrænum goðsögum þar sem hún er fyrsta konan í heiminum. Þegar foreldrar hennar sáu hana í fyrsta sinn vissu þau strax: þetta var hún.</span>
+            <span class="lang-en" style="display:none;">Embla Bergsdóttir was born on 15 March 2020 at Landspítali University Hospital in Reykjavík — 3.4 kilos and 50 centimetres of perfect new life. The name Embla comes from Norse mythology, where she is the first woman in the world. When her parents saw her for the first time they knew at once: this was her.</span>
+          </p>
+          <p>
+            <span class="lang-is">Hún fæddist í miðjum COVID-faraldri. Íslandi var að lokast, heimurinn að breytast. Fjölskylda og vinir gátu ekki heimsótt — amma og afi sáu Emblu í gegnum skjáinn í fyrsta sinn. En á þeim degi þegar hún kom til sögunnar gleymdu foreldrar hennar öllu. „Heimurinn var í ólgu, en við vorum með lítið barn með fullkomnar hendur."</span>
+            <span class="lang-en" style="display:none;">She was born in the middle of the COVID pandemic. Iceland was closing down, the world changing. Family and friends could not visit — grandparents first saw Embla through a screen. But on the day she arrived, her parents forgot everything else. "The world was in turmoil, but we had a tiny baby with perfect hands."</span>
+          </p>
+          <p>
+            <span class="lang-is">Embla var rólegt barn sem vildi vera haldin. Tónlist gerði hana glaða frá fyrstu dögum — þegar hljómurinn fyllti herbergið byrjaði hún að hreyfa sig á þann hátt sem foreldrar hennar völdu að kalla dans. Elf mánaða gömul tók hún þrjú skref í stofunni og foreldri hennar grét. Embla leit upp eins og hún skildi ekki afhverju.</span>
+            <span class="lang-en" style="display:none;">Embla was a calm baby who wanted to be held. Music made her happy from her earliest days — when sound filled the room she began to move in the way her parents chose to call dancing. At eleven months she took three steps across the living room and her parent cried. Embla looked up as though she couldn't understand why.</span>
+          </p>
+        </div>
+        <div class="demo-pdf-foot">
+          <span class="lang-is">Barnasagan mín · Embla Bergsdóttir · 2025</span>
+          <span class="lang-en" style="display:none;">My Child's Story · Embla Bergsdóttir · 2025</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- CTA -->
   <div class="cta-section">
     <h2 id="cta-title">
@@ -309,18 +466,6 @@
       <div class="feature-card">
         <div class="feature-title" id="feat3-title">Sagan um barnið</div>
         <p class="feature-desc" id="feat3-desc">Við vefum saman svörin þín í fallega barnasögu sem þú getur gefið barninu.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-title" id="feat4-title">Engin pressa</div>
-        <p class="feature-desc" id="feat4-desc">Framvindan þín vistast sjálfkrafa.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-title" id="feat5-title">Myndir í sögunni</div>
-        <p class="feature-desc" id="feat5-desc">Bættu við myndum þegar eitthvað skemmtilegt gerist.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-title" id="feat6-title">Bókin sem barnið fær</div>
-        <p class="feature-desc" id="feat6-desc">Þegar þú ert tilbúin/n er barnasagan þín tilbúin sem PDF.</p>
       </div>
     </div>
   </div>
@@ -588,6 +733,7 @@
           <button class="lang-btn" id="about-lang-en" onclick="setLang('en')">EN</button>
         </div>
         <button class="btn-back" id="about-back-btn" onclick="showScreen(_aboutReturnScreen)">← Til baka</button>
+        <button class="inner-hamburger" onclick="toggleInnerMenu()">☰</button>
       </div>
     </div>
 
@@ -598,7 +744,7 @@
 
     <div style="max-width:700px;margin:32px 0;">
       <div class="lang-is">
-        <h2 class="map-title" style="margin-bottom:24px;">Barnasagan: Vegna þess að enginn man neitt eftir klukkan níu á kvöldin</h2>
+        <h2 class="map-title" style="margin-bottom:24px;font-size:22px;">Vegna þess að enginn man neitt eftir klukkan níu á kvöldin</h2>
 
         <p id="about-story-text" style="font-family:'Fredoka One',cursive;font-size:20px;color:var(--text);line-height:1.8;margin-bottom:24px;">
           Barnasagan varð til á þeim tímapunkti þegar við áttuðum okkur á því að „ég skrifa þetta niður á morgun" er stærsta lygi sem foreldrar segja sjálfum sér.
@@ -608,7 +754,7 @@
 
         <h3 style="font-family:'Fredoka One',cursive;font-size:17px;color:var(--gold);margin-bottom:16px;">Af hverju Barnasagan?</h3>
 
-        <p style="margin-bottom:16px;"><strong>Fangaðu augnablikið (áður en það gleymist):</strong> Við vitum að minningarnar eru bestar „beint úr ofninum". Ekki bíða þar til þú hefur loksins fundið tímann til að setjast niður — við vitum öll að sá tími fer yfirleitt í að horfa á tómt veggfóður í þreytu.</p>
+        <p style="margin-bottom:16px;"><strong>Fangaðu augnablikið (áður en það gleymist):</strong> Við vitum að minningarnar eru bestar „beint úr ofninum". Ekki bíða þar til þú hefur loksins fundið tímann til að setjast niður, við vitum öll að sá tími fer yfirleitt í að horfa á tómt veggfóður í þreytu.</p>
 
         <p style="margin-bottom:16px;"><strong>Minna samviskubit, fleiri minningar:</strong> Við erum nú þegar að halda 500 boltum á lofti, og einn þeirra er örugglega myglað nestisbox neðst í tösku. Barnasagan er hönnuð til að vera léttasti boltinn í settinu.</p>
 
@@ -653,11 +799,6 @@
           <div class="feature-title" id="about-feat3-title">Sagan um barnið</div>
           <p class="feature-desc" id="about-feat3-desc">Við vefum saman svörin þín í fallega barnasögu sem þú getur gefið barninu.</p>
         </div>
-        <div class="feature-card">
-          <span class="feature-icon">✨</span>
-          <div class="feature-title" id="about-feat4-title">Engin pressa</div>
-          <p class="feature-desc" id="about-feat4-desc">Framvindan þín vistast sjálfkrafa.</p>
-        </div>
       </div>
 
       <div style="text-align:center;margin-top:40px;">
@@ -678,6 +819,7 @@
           <button class="lang-btn" id="faq-lang-en" onclick="setLang('en')">EN</button>
         </div>
         <button class="btn-back" id="faq-back-btn" onclick="showScreen(_faqReturnScreen)">← <span class="lang-is">Til baka</span><span class="lang-en" style="display:none;">Back</span></button>
+        <button class="inner-hamburger" onclick="toggleInnerMenu()">☰</button>
       </div>
     </div>
 
@@ -710,6 +852,7 @@
           <button class="lang-btn" id="privacy-lang-en" onclick="setLang('en')">EN</button>
         </div>
         <button class="btn-back" id="privacy-back-btn" onclick="showScreen(_privacyReturnScreen)">← <span class="lang-is">Til baka</span><span class="lang-en" style="display:none;">Back</span></button>
+        <button class="inner-hamburger" onclick="toggleInnerMenu()">☰</button>
       </div>
     </div>
 

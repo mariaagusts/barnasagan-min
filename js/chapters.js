@@ -267,7 +267,7 @@ export const STORY_STYLES = {
     IMPORTANT: Do not add moral summaries or wrap-up sentences at the end.
 
     EXAMPLE OF THE CORRECT TONE:
-    "He had a strict no-vegetables policy. Not on the plate, not near the food, preferably not in the same room. Dad tried to rebrand broccoli as 'trees.' It did not go well."`
+    "She had a strict no-vegetables policy. Not on the plate, not near the food, preferably not in the same room. We tried to rebrand broccoli as 'trees.' It did not go well."`
   },
   barnid_segir: {
     label: "🧒 Barnið segir",

@@ -319,7 +319,21 @@ html[lang="en"] .lang-is { display: none !important; }
       <span class="lang-is">← Til baka</span>
       <span class="lang-en" style="display:none;">← Back</span>
     </a>
+    <button class="ext-hamburger" onclick="document.getElementById('ext-mobile-menu').classList.toggle('open')" aria-label="Valmynd">☰</button>
   </div>
+</div>
+
+<div class="ext-mobile-menu" id="ext-mobile-menu">
+  <div class="ext-menu-header">
+    <a class="ext-menu-logo" href="https://barnasagan.is">Barnasagan mín</a>
+    <button class="ext-menu-close" onclick="document.getElementById('ext-mobile-menu').classList.remove('open')">✕</button>
+  </div>
+  <nav>
+    <a href="https://barnasagan.is"><span class="lang-is">Forsíða</span><span class="lang-en" style="display:none;">Home</span></a>
+    <a href="/pricing.html"><span class="lang-is">Verðlag</span><span class="lang-en" style="display:none;">Pricing</span></a>
+    <a href="/privacy.html"><span class="lang-is">Persónuvernd</span><span class="lang-en" style="display:none;">Privacy</span></a>
+    <a href="/terms.html"><span class="lang-is">Þjónustuskilmálar</span><span class="lang-en" style="display:none;">Terms</span></a>
+  </nav>
 </div>
 
 <!-- Hero -->

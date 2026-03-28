@@ -93,3 +93,9 @@ window.toggleInnerMenu = function() {
 window.closeInnerMenu = function() {
   document.getElementById("nav-inner-menu").classList.remove("open");
 };
+window.showDemoTab = function(tab, btn) {
+  document.querySelectorAll('.demo-panel').forEach(p => p.style.display = 'none');
+  document.querySelectorAll('.demo-tab').forEach(b => b.classList.remove('active'));
+  document.getElementById('demo-panel-' + tab).style.display = 'block';
+  btn.classList.add('active');
+};
