@@ -106,9 +106,9 @@ export const CHAPTERS = [
     id: 11, emoji: "🌈", title: "Vonir og framtíðin",
     desc: "Von og óskir fyrir barnið",
     seeds: [
-      "Hvað dreymir barnið um, hvað vill það verða þegar það verður stórt?",
+      "Veistu hvað barnið þitt dreymir um að verða þegar það er orðið stórt? (að svo stöddu!)",
       "Hvaða ósk eða von hefur þú sem foreldri fyrir barnið þitt?",
-      "Ef barnið gæti lesið þessa bók eftir 20 ár, hvað viltu að það vissi?"
+      "Ef barnið þitt gæti lesið þessa bók eftir 20 ár, hvað myndirðu vilja að það vissi?"
     ]
   }
 ];
