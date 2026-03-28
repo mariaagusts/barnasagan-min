@@ -27,7 +27,7 @@ export const CHAPTERS = [
     desc: "Hvað gerir þetta barn að einstakling",
     seeds: [
       "Hvernig myndir þú lýsa persónu barnsins með þremur orðum?",
-      "Hvað er það sem gerir barnið þitt að einstakling, eitthvað sem er alveg þetta barn?"
+      "Hvað er það sem gerir barnið þitt að einstakling, eitthvað sem lýsir þessu barni vel?"
     ]
   },
   {
