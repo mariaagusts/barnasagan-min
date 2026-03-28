@@ -61,9 +61,9 @@ export const CHAPTERS = [
     id: 6, emoji: "🎨", title: "Áhugamál og tómstundir",
     desc: "Það sem barnið elskar að gera",
     seeds: [
-      "Hvað er barnið að gera þegar það er ánægt, uppáhaldstómstundin?",
-      "Er einhver íþrótt, listgrein eða sérhugsunarsvið sem barnið er sér um?",
-      "Er eitthvað sem barnið getur eytt tíma í án þess að bera á sér?"
+      "Hvað er barnið að gera þegar það er ánægt, þ.e. uppáhalds tómstundin?",
+      "Er eitthvað sem barnið er sérstaklega hrifið af, íþrótt, tónlist, list eða eitthvað annað?",
+      "Hvað getur barnið gert í langan tíma án þess að leiðast?"
     ]
   },
   {
