@@ -44,7 +44,7 @@ export const CHAPTERS = [
     desc: "Fyrsti skóladagurinn og lærdómurinn",
     seeds: [
       "Hvernig var fyrsti skóladagurinn, hvernig leið barninu og hvernig leið þér?",
-      "Hvaða námsgreinar líka barninu best og hvaða líka því minna?",
+      "Í hvaða námsgreinum blómstrar barnið og hverjar reynast barninu erfiðari?",
       "Er einhver kennari sem hefur haft sérstök áhrif á barnið?"
     ]
   },
