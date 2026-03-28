@@ -77,7 +77,7 @@
 
   const ch1Answers = [
     "Embla fór að ganga þegar hún var 11 mánaða. Við vorum í stofunni og hún stóð upp við borðið, sleppti og tók þrjú skref. Ég grét. Hún leit á mig eins og hún skildi ekki af hverju ég væri svona.",
-    "Fyrsta orðið var 'ba' sem þýddi bæði bíll og ball og bátur — í raun allt sem hana hlakkaði til. En fyrsta alvöru orðið var 'mjaú' þegar við sáum kött í göngutúr. Hún sagði þetta svo skýrt og broslegið.",
+    "Fyrsta orðið var 'ba' sem þýddi bæði bíll og ball og bátur — í raun allt sem hana hlakkaði til. En fyrsta alvöru orðið var 'mjaú' þegar við sáum kött í göngutúr. Hún sagði þetta svo skýrt og brosmilt.",
     "Embla var kröftug! Hún vildi alltaf vera á ferðinni. Hvíla var ekki á dagskrá. Hún var einnig mjög fyndin — hún gerði snör sem gerðu okkur alltaf hlæja, eins og hún skildi strax hvað væri skemmtilegt.",
     "Hún fór á fjórum þegar hún var um sjö mánuða. Og þá varð allt að læsa! Hún fór í allt. Hillurnar í eldhúsinu urðu hennar fljótlega.",
     "Um þriggja vikna aldur byrjaði hún að brosa þegar við talaðum við hana. Þetta smygl — þetta lítið bros — var allt. Ég held myndina í huga mínum enn.",
