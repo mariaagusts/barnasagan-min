@@ -110,7 +110,7 @@ export const UI = {
     aboutSub: "Tækifæri til að íhuga, minnast og skrá það sem máli skiptir.",
     aboutFeat1t: "Við spyrjum þig", aboutFeat1d: "Persónulegar spurningar um lífið sem barnið er að lifa, kafla fyrir kafla.",
     aboutFeat2t: "Þegar þér hentar", aboutFeat2d: "Á morgnana, á meðan barnið sefur, eða seint um kvöld.",
-    aboutFeat3t: "Sagan um barnið", aboutFeat3d: "Við vefum saman svörin þín í fallega barnasögu sem þú getur gefið barninu.",
+    aboutFeat3t: "Sagan um barnið", aboutFeat3d: "Úr svörunum þínum verður falleg barnasaga sem þú getur gefið barninu.",
     aboutFeat4t: "Engin pressa", aboutFeat4d: "Framvindan þín vistast sjálfkrafa.",
     faqItems: [
       { heading: "Um þjónustuna" },
