@@ -9,8 +9,8 @@ export const CHAPTERS = [
     desc: "Fæðingin, nafnið og fyrstu klukkustundirnar",
     seeds: [
       "Hvað heitir barnið þitt og hvenær og hvar fæddist það?",
-      "Hvernig var dagurinn sem barnið kom til heimsins, hvernig leið ykkur, foreldrunum?",
-      "Hvernig fékkst þú nafnið sem þú fékkst? Er saga á bak við það?"
+      "Hvernig var dagurinn sem barnið kom í heiminn, hvernig leið ykkur, foreldrunum?",
+      "Hvernig fékk það nafnið sem það fékk? Er saga á bak við það?"
     ]
   },
   {
