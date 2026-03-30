@@ -54,7 +54,7 @@
 
   const ch1Questions = [
     "Hvenær fór barnið að ganga og manstu eftir þeim augnablikum?",
-    "Hvað voru fyrstu orðin sem barnið sagði og hvernig brást fjölskyldan við?",
+    "Hver voru fyrstu orðin sem barnið sagði og hvernig brást fjölskyldan við?",
     "Hvernig var barnið sem ungabarn — rólegt eða kröftugt, fyndið eða þverstæðukennt?",
     "Hvenær byrjaði Embla að fara um á fjórum?",
     "Hvenær fór Embla að þekkja þig og bregðast við í fyrsta sinn?",
