@@ -33,6 +33,24 @@ export function hideAuthMessages() {
   document.getElementById("auth-success").classList.remove("visible");
 }
 
+function authErrorMsg(msg) {
+  if (!msg) return "Eitthvað fór úrskeiðis. Prófaðu aftur.";
+  const m = msg.toLowerCase();
+  if (m.includes("invalid login credentials") || m.includes("invalid credentials"))
+    return "Rangt netfang eða lykilorð. Prófaðu aftur.";
+  if (m.includes("email not confirmed"))
+    return "Netfangið þitt hefur ekki verið staðfest. Athugaðu pósthólfið þitt.";
+  if (m.includes("user already registered") || m.includes("already been registered"))
+    return "Þetta netfang er þegar skráð. Reyndu að skrá þig inn í staðinn.";
+  if (m.includes("password should be at least") || m.includes("password is too short"))
+    return "Lykilorðið þarf að vera að minnsta kosti 6 stafir.";
+  if (m.includes("unable to validate email") || m.includes("invalid email"))
+    return "Netfangið lítur ekki rétt út. Athugaðu að það sé rétt skrifað.";
+  if (m.includes("rate limit") || m.includes("too many requests"))
+    return "Of margar tilraunir. Bíddu aðeins og prófaðu aftur.";
+  return "Eitthvað fór úrskeiðis. Prófaðu aftur.";
+}
+
 export async function handleAuth() {
   const email = document.getElementById("auth-email").value.trim();
   const password = document.getElementById("auth-password").value;
@@ -40,17 +58,17 @@ export async function handleAuth() {
   const sb = getSupabase();
   if (!sb) return;
 
-  if (!email || !password) { showAuthError("Vinsamlegast fylltu út alla reiti."); return; }
+  if (!email || !password) { showAuthError("Netfang og lykilorð verða að vera fyllt út."); return; }
   btn.disabled = true;
   btn.textContent = "Bíð...";
 
   if (S.authMode === "login") {
     const { data, error } = await sb.auth.signInWithPassword({ email, password });
-    if (error) { showAuthError("Innskráning mistókst: " + error.message); }
+    if (error) { showAuthError(authErrorMsg(error.message)); }
     else { S.user = data.user; onSignedIn(); }
   } else {
     const { data, error } = await sb.auth.signUp({ email, password });
-    if (error) { showAuthError("Nýskráning mistókst: " + error.message); }
+    if (error) { showAuthError(authErrorMsg(error.message)); }
     else { showAuthSuccess("✓ Staðfestingarpóstur sendur! Athugaðu pósthólfið þitt."); }
   }
 
@@ -74,9 +92,9 @@ export async function forgotPassword() {
   const sb = getSupabase();
   if (!sb) return;
   const { error } = await sb.auth.resetPasswordForEmail(email, {
-    redirectTo: "https://saganmin.is"
+    redirectTo: "https://barnasagan.is"
   });
-  if (error) { showAuthError(error.message); }
+  if (error) { showAuthError(authErrorMsg(error.message)); }
   else { showAuthSuccess("✓ Hlekk til að endurstilla lykilorð hefur verið sendur á " + email); }
 }
 
