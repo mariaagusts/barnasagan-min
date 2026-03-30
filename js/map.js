@@ -31,7 +31,7 @@ export function renderMap() {
     const answered = cs.answers.length;
     const p = Math.min((answered / 20) * 100, 100);
     const isComplete = cs.complete;
-    const locked = !S.isPaid && ch.id > 2;
+    const locked = !S.isPaid && ch.id > 1;
     if (locked) {
       return `
       <div class="chapter-card chapter-locked" onclick="window.location.href='pricing.html'">

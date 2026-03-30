@@ -225,7 +225,7 @@ export const CHAPTERS_EN = [
 
 export const STORY_STYLES = {
   hlylegt: {
-    label: "💛 Hlýlegt",
+    label: "💛 Persónulegt",
     desc: "Hlýtt og náið málfar. Eins og foreldri sé að segja barninu frá.",
     labelEn: "💛 Warm",
     descEn: "Warm and tender. Like a parent sharing memories with their child.",

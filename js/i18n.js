@@ -18,7 +18,7 @@ export const UI = {
     feat3t: "⚽ Engin heimaverkefni", feat3d: "Þú stýrir ferðinni. Skráðu minningar þegar þú hefur tíma; uppi í rúmi, á WC, í umferðinni. Barnasagan grípur þær, því þú hefur sama möguleika á að skrá niður svörin í tölvu eða á síma.",
     feat4t: "✨ Sagan verður til", feat4d: "Svörin þín verða að fallegri barnasögu sem barnið þitt getur lesið eftir 20 ár.",
     feat5t: "📸 Myndir í sögunni", feat5d: "Bættu við myndum þegar eitthvað skemmtilegt gerist. Ein mynd geymir þúsund minningar.",
-    feat6t: "📖 Bókin sem barnið fær", feat6d: "Þegar þú ert tilbúin/n er barnasagan þín tilbúin sem PDF — til að prenta, gefa og geyma að eilífu.",
+    feat6t: "📖 Bókin sem barnið fær", feat6d: "Þegar þú ert tilbúin/n er barnasagan þín tilbúin sem PDF til að prenta, gefa og geyma að eilífu.",
     ctaTitle: "Byrjaðu í dag", ctaSub: "Markmið okkar er að gera skrásetningu bernskunnar að ánægjulegri samfylgd frekar en krefjandi verkefni.",
     ctaBtn: "Hefja ferðalagið →",
     authTitle: "Barnasagan mín", authSub: "Skráðu þig inn eða stofnaðu nýjan aðgang",
@@ -71,7 +71,7 @@ export const UI = {
       <p>Gögn þín eru geymd í gagnagrunni hjá Supabase (Amazon Web Services, Evrópa). Við notum <strong>Row Level Security (RLS)</strong>, þetta þýðir að tæknilegar öryggisreglur tryggja að aðeins þú getur lesið og skrifað þín eigin gögn. Enginn annar notandi, og ekkert forrit utan þíns eigin reiknings, hefur aðgang að svörum þínum. Öll samskipti milli vafrans þíns og þjóna eru dulkóðuð með TLS/SSL (HTTPS).</p>
 
       <h3 style="font-family:'Fredoka One',cursive;font-size:20px;margin:32px 0 12px;">4. Aðgangur rekstraraðila</h3>
-      <p><strong>Rekstraraðili Barnasögu minnar les ekki svör þín.</strong> Sagan sem þú skrifar um barnið þitt er þín ein — hún er persónuleg og við höfum engan áhuga á að skoða hana.</p>
+      <p><strong>Rekstraraðili Barnasögu minnar les ekki svör þín.</strong> Sagan sem þú skrifar um barnið þitt er þín ein. Hún er persónuleg og við höfum engan áhuga á að skoða hana.</p>
       <p>Við segjum aldrei frá né seljum gögn þín til þriðja aðila. Öll gögn eru vernduð samkvæmt íslenskum lögum og GDPR-reglugerð Evrópusambandsins. Þú átt fullt yfirráð yfir eigin gögnum og getur krafist eyðingar þeirra hvenær sem er.</p>
 
       <h3 style="font-family:'Fredoka One',cursive;font-size:20px;margin:32px 0 12px;">5. Höfundarréttur</h3>
@@ -117,6 +117,11 @@ export const UI = {
       { q: "Hvað er Barnasagan mín?", a: "Barnasagan mín er vettvangur sem aðstoðar foreldra eða aðra nákomna við að skrá sögu barnsins síns með persónulegum og hvetjandi spurningum. Persónulegar spurningar leiða þig í gegnum mismunandi þætti bernskunnar og saman verður úr svörunum til samfella og vönduð barnasaga." },
       { q: "Hverjum er þjónustan ætluð?", a: "Barnasagan mín hentar öllum foreldrum eða aðstandendum sem vilja varðveita söguna um bernsku barnsins síns. Þú getur byrjað hvenær sem er, hvort sem barnið er nýfætt eða þegar farið í skóla." },
       { q: "Kostar þjónustan eitthvað?", a: "Já, Barnasagan mín er keypt með eingreiðslu, eitt verð, engin áskrift. Sjá <a href='/pricing.html' style='color:var(--gold);'>verðlag</a>." },
+      { q: "Er þetta virkilega ein greiðsla?", a: "Já. Þú greiðir einu sinni og hefur fullan aðgang að öllum 12 köflum á meðan þjónustan er í rekstri. Engar áskriftir, engar endurnýjanir. Þú getur hlaðið niður barnasöguna þína sem PDF hvenær sem er og geymt hana hjá þér að eilífu." },
+      { q: "Get ég prófað áður en ég greiði?", a: "Já, tveir kaflar eru opnir án greiðslu. Þegar þú ert tilbúin/n að greiða opnast allir 12 kaflar strax." },
+      { q: "Hvernig er greitt?", a: "Við notum Paddle sem greiðslumiðlara. Þeir taka við kredit- og debetkortum og sjá um VSK í samræmi við lög þíns lands." },
+      { q: "Get ég fengið endurgreiðslu?", a: "Já, við bjóðum upp á 14 daga endurgreiðslurétt ef PDF-niðurhal hefur ekki verið notað. Hafðu samband á <a href='mailto:saganmin@saganmin.is' style='color:var(--gold);'>saganmin@saganmin.is</a>." },
+      { q: "Af hverju er verðið í evrum en ekki íslenskum krónum?", a: "Barnasagan mín er íslenskt verkefni með íslenska kennitölu, en greiðsluþjónustan sem við notum (Paddle) styður því miður ekki íslenskar krónur. Við höfum því valið evru (€) sem gjaldmiðil. Bankinn þinn reiknar sjálfkrafa út krónuverðið á greiðsludegi." },
       { q: "Get ég gefið þetta að gjöf?", a: "Gjafakóðar eru í undirbúningi og koma fljótlega! Þá getur þú keypt gjafakóða sem viðtakandinn innleysir sjálfur við skráningu, án þess að þurfa að setja upp reikning fyrirfram eða þekkja netfang viðtakanda." },
       { q: "Eru gögnin mín örugg?", a: "Já, fyllsta öryggis er gætt. Svör þín eru geymd á dulkóðuðum gagnagrunni og enginn annar notandi hefur aðgang að þeim. Barnasagan mín er rekin af íslensku félagi (kt. 471025-0380) og við seljum aldrei persónuupplýsingar." },
       { q: "Hvernig eyði ég reikningnum mínum?", a: "Þú getur eytt framvindu þinni hvenær sem er með 'Eyða framvindu' takkanum í kaflayfirlitinu. Til að eyða reikningnum þínum að fullu og öllum gögnum sem við geymum skaltu hafa samband við okkur á saganmin@saganmin.is. Við munum bregðast við innan 30 daga." },
@@ -126,9 +131,12 @@ export const UI = {
       { q: "Hversu langan tíma tekur þetta?", a: "Það er algjörlega í þínum höndum. Margir svara einni eða tveimur spurningum á dag og klára bókina á nokkrum vikum. Sumir (þeir sem eru mögulega búnir að týna minningarbókinni sem var keypt 🤭) geta keyrt í gegnum svörin á mun styttri tíma en aðrir taka sér lengri tíma. Engin pressa, framvindan vistast sjálfkrafa og bíður þín." },
       { q: "Get ég skrifað á ensku?", a: "Já. Þú getur skipt um tungumál hvenær sem er. Athugaðu þó að bókin þín verður mótuð á því tungumáli sem er valið þegar þú smellir á 'Forskoða bókina þína'. Kerfið sér þá um að samræma frásögnina á því máli." },
       { q: "Get ég talað í stað þess að skrifa?", a: "Já, þú getur smellt á hljóðnemahnappinn '🎙 Segja frá' og svarað með rödd í stað þess að skrifa. Á tölvu þarftu að veita vafranum leyfi til að nota hljóðnemann. Á iPhone eða iPad: smelltu á textareitinn og notaðu 🎤 hljóðnematáknið á lyklaborðinu. Vafrinn sjálfur styður ekki talgreiningu á iOS. Til að talgreiningin virki á íslensku þarf íslenska að vera stillt sem tungumál símans (Stillingar → Almennt → Tungumál og svæði). Talgreining getur stundum gert villur, en kerfið yfirfærir textann og lagar hann þegar bókin er búin til. Ekki hafa áhyggjur af litlum villum sem talgreiningin gerir og ritar niður í svörum, í lokin les kerfið öll svörin í heild sinni og setur fram eina heildstæða frásögn." },
+      { q: "Hvað ef ég man ekki dagsetningar eða nöfn nákvæmlega?", a: "Það gerir ekkert til. Barnasagan snýst um upplifun þína og tilfinningar. Þú getur alltaf skrifað 'um það bil' eða sleppt smáatriðum sem þú ert ekki viss um. Kerfið hjálpar þér að móta frásögnina þannig að hún flæði vel þrátt fyrir það." },
+      { q: "Hversu mikið má ég skrifa við hverja spurningu?", a: "Það eru engin efri mörk. Þú getur skrifað eina setningu eða heila síðu. Kerfið dregur saman það mikilvægasta og tryggir að frásögnin sé jafnvæg og falleg." },
       { q: "Get ég bætt við mínum eigin spurningum?", a: "Já! Við hliðina á hverri spurningu er '+' takki. Þar getur þú slegið inn þína eigin spurningu sem birtist strax sem næsta spurning í kaflanum." },
       { q: "Get ég breytt svörunum mínum?", a: "Já, þú hefur fulla stjórn á þínu efni. Undir hverju svari er 'Breyta' takki sem gerir þér kleift að leiðrétta textann eða bæta við minningum hvenær sem er í ferlinu. En athugaðu að ef þú hefur nú þegar forskoðað eða sótt bókina þína þá munu uppfærð svör ekki breytast sjálfkrafa. Þú þarft þá að forskoða og vista bókina ef ný minning á að skila sér inn í bókina þína. Einnig er rétt að huga að því að hver 'bók' er einstök, svo hver forskoðun og/eða niðurhald á sína sjálfstæða sögu. En til hægri á innskráningarsíðunni getur þú séð eldri útgáfur af bókinni þinni." },
       { q: "Get ég notað þjónustuna á fleiri en einu tæki?", a: "Já. Framvindan þín er vistuð á öruggan hátt á netþjóni og samstillist sjálfkrafa. Þú getur byrjað á tölvunni heima og haldið áfram á síma eða spjaldtölvu, svo lengi sem þú ert innskráð/ur á sama reikningi. En við mælum alltaf með að sækja svörin við spurningum sem textaskrá (.txt) reglulega." },
+      { q: "Hvað gerist ef tengingin brotnar meðan ég er að skrifa?", a: "Ekkert glatast. Svörin þín eru vistuð staðbundið á tækinu þínu um leið og þú skrifar, og send á netþjóninn þegar tenging er til staðar. Ef tenging brotnar getur þú haldið áfram að skrifa og gögnin samstillast þegar þú ert aftur á netinu." },
       { q: "Get ég bætt við fleiri spurningum eftir að kafla er lokið?", a: "Já! Fyrir þá allra duglegustu er hægt að bæta við spurningum innan hvers kafla jafnvel þótt kaflinn hafi náð sínum 10 spurningum. Þessar 10 spurningar eru einungis viðmið, en við vitum að sumir kaflar hafa stærra pláss hjá okkur en aðrir." },
 
       { heading: "Bókin þín" },
@@ -139,7 +147,7 @@ export const UI = {
       { q: "Get ég bætt við myndum í bókina?", a: "Já! Í hverju kaflaviðtali er hægt að hlaða upp myndum sem tengjast þeim kafla, þær birtast þá í bókinni í lok viðkomandi kafla. Þú getur einnig bætt við almennum myndum á söguglugga, sem birtast aftast í bókinni." },
 
       { heading: "Tækni og ráð" },
-      { q: "Get ég bætt Barnasögu minni á heimaskjá símans eins og app?", a: `Já! Þú getur vistað vefsíðuna á heimaskjáinn þinn og notað hana eins og app — án þess að þurfa að hlaða niður neinu.<br><br>
+      { q: "Get ég bætt Barnasögu minni á heimaskjá símans eins og app?", a: `Já! Þú getur vistað vefsíðuna á heimaskjáinn þinn og notað hana eins og app, án þess að þurfa að hlaða niður neinu.<br><br>
     <strong>Á iPhone/iPad (Safari):</strong><br>
     1. Ýttu fyrst á þrjá punkta neðst til hægri.<br>
     2. Veldu „Share" (Deila) í valmyndinni sem birtist.<br>
@@ -156,8 +164,8 @@ export const UI = {
   },
   en: {
     navLogin: "Sign in", navCta: "Start your journey",
-    heroTitle: "Barnasagan: \"I'll write it down tomorrow\" — the promise we all make ourselves.",
-    heroSub: "We know brain fog is real. Barnasagan helps you capture the most precious moments as they happen — without guilt or extra pressure.",
+    heroTitle: "Barnasagan: \"I'll write it down tomorrow.\" The promise we all make ourselves.",
+    heroSub: "We know brain fog is real. Barnasagan helps you capture the most precious moments as they happen, without guilt or extra pressure.",
     heroCta1: "Start writing →", heroCta2: "Sign in",
     heroStats: ["Chapters","Questions","Story"],
     featTitle: "We know how it feels",
@@ -168,7 +176,7 @@ export const UI = {
     feat3t: "⚽ No homework", feat3d: "You're in charge. Capture memories whenever you have a moment; in bed, on the loo, in traffic. Barnasagan catches them, because you have the same option to record on a computer or a phone.",
     feat4t: "✨ The story takes shape", feat4d: "Your answers become a more beautiful children's memoir your child can read in 20 years.",
     feat5t: "📸 Photos in the story", feat5d: "Add a photo when something funny happens. One picture holds a thousand memories.",
-    feat6t: "📖 The book your child receives", feat6d: "When you're ready, your child's story is waiting as a PDF — to print, gift and keep forever.",
+    feat6t: "📖 The book your child receives", feat6d: "When you're ready, your child's story is waiting as a PDF to print, gift and keep forever.",
     ctaTitle: "Start today", ctaSub: "Our goal is to make recording childhood a joyful companion rather than a demanding task.",
     ctaBtn: "Start writing →",
     authTitle: "My Child's Story", authSub: "Sign in or create a new account",
@@ -222,7 +230,7 @@ export const UI = {
       <p>Your data is stored in a database hosted by Supabase (Amazon Web Services, Europe). We use <strong>Row Level Security (RLS)</strong>, which means that technical security rules ensure that only you can read and write your own data. No other user, and no application outside your own account, has access to your answers. All communication between your browser and the server is encrypted using TLS/SSL (HTTPS).</p>
 
       <h3 style="font-family:'Fredoka One',cursive;font-size:20px;margin:32px 0 12px;">4. Operator access</h3>
-      <p><strong>The operator of My Child's Story does not read your answers.</strong> The story you write about your child is yours alone — it is personal and we have no interest in viewing it.</p>
+      <p><strong>The operator of My Child's Story does not read your answers.</strong> The story you write about your child is yours alone. It is personal and we have no interest in viewing it.</p>
       <p>We will never share or sell your data to third parties. All data is protected in accordance with Icelandic law and the EU General Data Protection Regulation (GDPR). You retain full control over your own data and may request its deletion at any time.</p>
 
       <h3 style="font-family:'Fredoka One',cursive;font-size:20px;margin:32px 0 12px;">5. Copyright</h3>
@@ -268,6 +276,11 @@ export const UI = {
       { q: "What is My Child's Story?", a: "My Child's Story is a platform that helps parents and other close family members record their child's story through personal and encouraging questions. Personal questions guide you through different chapters of childhood, shaping a polished, cohesive narrative from your answers." },
       { q: "Who is this service for?", a: "My Child's Story is for any parent or family member who wants to preserve the story of their child's early years. You can start at any time, whether your child is a newborn or already in school." },
       { q: "Is there a fee for the service?", a: "Yes, My Child's Story is purchased as a one-time payment, one price, no subscription. See <a href='/pricing.html' style='color:var(--gold);'>pricing</a>." },
+      { q: "Is this really a one-time payment?", a: "Yes. You pay once and have full access to all 12 chapters for as long as the service operates. No subscriptions, no renewals. You can download your child's story as a PDF at any time and keep it forever." },
+      { q: "Can I try before I pay?", a: "Yes, two chapters are unlocked for free. When you're ready to pay, all 12 chapters unlock immediately." },
+      { q: "How do I pay?", a: "We use Paddle as our payment processor. They accept credit and debit cards and handle VAT in accordance with your local laws." },
+      { q: "Can I get a refund?", a: "Yes, we offer a 14-day refund policy provided the PDF download has not been used. Contact us at <a href='mailto:saganmin@saganmin.is' style='color:var(--gold);'>saganmin@saganmin.is</a>." },
+      { q: "Why is the price in euros and not Icelandic króna?", a: "My Child's Story is an Icelandic company with an Icelandic registration, but our payment processor (Paddle) unfortunately does not support Icelandic króna. We have therefore chosen euros (€) as our currency. Your bank will automatically convert to króna at the exchange rate on the day of payment." },
       { q: "Can I give this as a gift?", a: "Gift codes are coming soon! You will be able to purchase a gift code that the recipient redeems themselves at sign-up, no need to set up an account in advance or know the recipient's email address." },
       { q: "Is my data secure?", a: "Yes, we prioritize your privacy. Your answers are stored in an encrypted database and no other user can access them. My Child's Story is operated by an Icelandic entity (ID no. 471025-0380), and we never sell personal data." },
       { q: "How do I delete my account?", a: "You can delete your progress at any time using the 'Delete progress' button in the chapter overview. To fully delete your account and all data we hold, please contact us at saganmin@saganmin.is. We will respond within 30 days." },
@@ -277,10 +290,13 @@ export const UI = {
       { q: "How long does it take?", a: "That is entirely up to you. Many people answer one or two questions a day and finish their book within a few weeks. Others take longer. There is no pressure, your progress is saved automatically and waits for you." },
       { q: "Can I write in Icelandic?", a: "Yes. You can switch languages at any time. Please note that your book will be generated in the language currently selected when you click 'Preview your book'. The system will then harmonize the narrative into that language." },
       { q: "Can I speak instead of typing?", a: "Yes, you can click the '🎙 Speak' button and answer with your voice instead of typing. On a computer, your browser will ask for microphone permission. On iPhone or iPad: tap the text field and use the 🎤 microphone button on the keyboard. The browser itself does not support speech recognition on iOS. For the speech recognition to work in Icelandic, Icelandic must be set as the device language (Settings → General → Language & Region). Voice recognition may occasionally make mistakes, but the system reviews and corrects the text when your book is generated." },
+      { q: "What if I can't remember exact dates or names?", a: "That's perfectly fine. My Child's Story is about your experiences and feelings. You can always write 'around that time' or leave out details you're unsure of. The system will help shape your narrative so it flows naturally regardless." },
+      { q: "How much can I write for each question?", a: "There are no upper limits. You can write a single sentence or a full page. The system draws together the most important elements and ensures the narrative is balanced and beautiful." },
       { q: "Can I add my own questions?", a: "Yes! Next to each question you'll find a '+' button. You can type your own question and it will appear immediately as the next question in the chapter." },
       { q: "Can I edit my answers?", a: "Yes, you have full control over your content. Under each answer, there is an 'Edit' button that allows you to correct or expand upon your memories at any point in the process." },
       { q: "Can I use the service on more than one device?", a: "Yes. Your progress is securely saved to our server and syncs automatically. You can start on your computer at home and continue on your phone or tablet, as long as you are signed in to the same account." },
-      { q: "Can I add more questions after a chapter is complete?", a: "Yes! For the most dedicated, you can add questions within a chapter even after it has reached its 10 questions. These 10 questions are only a guideline — we know that some chapters hold more space in our hearts than others." },
+      { q: "What happens if my connection drops while I'm writing?", a: "Nothing is lost. Your answers are saved locally on your device as you write, and sent to the server when a connection is available. If your connection drops you can keep writing and your data will sync when you are back online." },
+      { q: "Can I add more questions after a chapter is complete?", a: "Yes! For the most dedicated, you can add questions within a chapter even after it has reached its 10 questions. These 10 questions are only a guideline. We know that some chapters hold more space in our hearts than others." },
 
       { heading: "Your book" },
       { q: "How is the story generated?", a: "Once you have provided several answers, you can select 'Preview your book'. The system organizes your responses into a logical, flowing narrative which you can then review and edit. Note that every time you preview your book, a new independent story is created. But you can always access previous versions in the panel on the right." },
@@ -290,7 +306,7 @@ export const UI = {
       { q: "Can I add photos to my book?", a: "Yes! In each chapter interview you can upload photos related to that chapter, they will appear in the book at the end of the relevant chapter. You can also add general photos on the story screen, which appear at the end of the book." },
 
       { heading: "Tips & Tricks" },
-      { q: "Can I add My Child's Story to my phone's home screen like an app?", a: `Yes! You can save the website to your home screen and use it like an app — no download required.<br><br>
+      { q: "Can I add My Child's Story to my phone's home screen like an app?", a: `Yes! You can save the website to your home screen and use it like an app, no download required.<br><br>
     <strong>On iPhone/iPad (Safari):</strong><br>
     1. First, tap the three dots at the bottom right.<br>
     2. Select "Share" from the menu.<br>
@@ -360,7 +376,7 @@ export function applyLang() {
   const storyEl = document.getElementById("about-story-text");
   if (storyEl) storyEl.textContent = S.lang === "en"
     ? "My Child's Story was born from a genuine desire to preserve the memories of our children's early years. Parents answer warm questions about their child, and the result is a precious gift the child can look back on."
-    : "Barnasagan mín varð til af einlægri löngun til að geyma minningarnar frá fyrstu árum barnanna okkar. Foreldrar svara hlýlegum spurningum um barnið sitt, og til verður ómetanleg gjöf sem barnið getur litið til baka í.";
+    : "Barnasagan mín varð til af einlægri löngun til að geyma minningarnar frá fyrstu árum barnanna okkar. Foreldrar svara persónulegum spurningum um barnið sitt, og til verður ómetanleg gjöf sem barnið getur litið til baka í.";
   safeText("about-page-sub", L.aboutSub);
   safeText("about-back-btn", L.backBtn);
   safeText("about-feat1-title", L.aboutFeat1t); safeText("about-feat1-desc", L.aboutFeat1d);

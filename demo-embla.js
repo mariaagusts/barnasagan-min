@@ -82,7 +82,7 @@
     "Hún fór á fjórum þegar hún var um sjö mánuða. Og þá varð allt að læsa! Hún fór í allt. Hillurnar í eldhúsinu urðu hennar fljótlega.",
     "Um þriggja vikna aldur byrjaði hún að brosa þegar við talaðum við hana. Þetta smygl — þetta lítið bros — var allt. Ég held myndina í huga mínum enn.",
     "Embla var varkár á matinn! Hún prófaði hvað sem er með tortryggni. Gulræturnar voru bannfærðar. Bananar voru leyfðar. Allt þurfti að vera brotið niður í örsmáar bitar.",
-    "Embla elskaði tónlist. Þegar við leikum tónlist — hvaða tónlist sem var — byrjaði hún að dansa. Við þurftum náttúrlega að kalla þetta dans; það var meira titrings- og brotthvarf-dans en neitt annað.",
+    "Embla elskaði bækur. Við lesum fyrir hana á hverjum kvöldi og hún sat kyrr og hlustaði lengur en við bjuggumst við. Uppáhaldsbókin var um dýr og hún benti á myndirnar og sagði nöfnin.",
     "Svefninn varð betri eftir sex mánuði. Við prófuðum ýmsar aðferðir. Loksins komst hún í 8–9 tíma svefn á nóttunni. Þetta var byltingin.",
     "Fyrsta setningin var 'nei þetta' þegar hún var um 18 mánaða. Við höfðum þegar séð merkin.",
     "Á fyrsta árinu þróaðist leikurinn frá því að horfa á hluti yfir í að taka í hluti og að henda hlutum. Síðasta þrep var uppáhaldsþrepið okkar.",
