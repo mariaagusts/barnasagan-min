@@ -150,7 +150,7 @@ html[lang="en"] .lang-is { display: none !important; }
       <li><strong>Netfang</strong> — notað við skráningu og innskráningu (Supabase Auth)</li>
       <li><strong>Minningartextar</strong> — svör notenda við spurningum um barnið, vistaðar í Supabase gagnagrunni</li>
       <li><strong>Tungumálastilling</strong> — geymd í vafrakökum (localStorage) á tækinu</li>
-      <li><strong>Greiðsluupplýsingar</strong> — unnar af Stripe; Barnasagan mín geymir ekki kortaupplýsingar</li>
+      <li><strong>Greiðsluupplýsingar</strong> — unnar af Paddle; Barnasagan mín geymir ekki kortaupplýsingar</li>
     </ul>
 
     <h2>3. Tilgangur vinnslu</h2>
@@ -163,9 +163,8 @@ html[lang="en"] .lang-is { display: none !important; }
     </ul>
     <p>Við segjum ekki frá gögnum þínum þriðja aðila í markaðsskyni og notum þau ekki til auglýsinga.</p>
 
-    <h2>4. Gervigreind (Google Gemini)</h2>
-    <p>Þjónustan notar Google Gemini API til að búa til eftirfylgnispurningar. Þegar gervigreind er notuð eru hluta af svörum notanda send til Google í þessum tilgangi. Google fer með þessi gögn samkvæmt <a href="https://policies.google.com/privacy" style="color:var(--gold);">persónuverndarstefnu Google</a>.</p>
-    <p>Barnasagan mín deilir ekki öðrum persónugreinanlegum upplýsingum með Google og notar svörin ekki til þjálfunar á líkönum.</p>
+    <h2>4. Tæknileg úrvinnsla</h2>
+    <p>Þjónustan notar sjálfvirka textaúrvinnslu til að búa til eftirfylgnispurningar. Hluti af svörum notanda kann að vera sent til utanaðkomandi tæknikerfa í þessum tilgangi. Barnasagan mín notar þessi gögn ekki til þjálfunar á líkönum.</p>
 
     <h2>5. Geymsla og öryggi</h2>
     <p>Gögn eru geymd í Supabase, sem er staðsett á gagnaverum í Evrópu. Samskipti eru dulkóðuð með TLS. Supabase er Row Level Security (RLS) virkjað þannig að notendur hafa aðeins aðgang að eigin gögnum.</p>
@@ -212,7 +211,7 @@ html[lang="en"] .lang-is { display: none !important; }
       <li><strong>Email address</strong> — used for registration and login (Supabase Auth)</li>
       <li><strong>Memory texts</strong> — users' answers to questions about their child, stored in the Supabase database</li>
       <li><strong>Language setting</strong> — stored in browser cookies (localStorage) on your device</li>
-      <li><strong>Payment information</strong> — processed by Stripe; Barnasagan mín does not store card details</li>
+      <li><strong>Payment information</strong> — processed by Paddle; Barnasagan mín does not store card details</li>
     </ul>
 
     <h2>3. Purpose of Processing</h2>
@@ -225,9 +224,8 @@ html[lang="en"] .lang-is { display: none !important; }
     </ul>
     <p>We do not share your data with third parties for marketing purposes and do not use it for advertising.</p>
 
-    <h2>4. Artificial Intelligence (Google Gemini)</h2>
-    <p>The service uses the Google Gemini API to generate follow-up questions. When AI is used, portions of user responses are sent to Google for this purpose. Google processes this data under <a href="https://policies.google.com/privacy" style="color:var(--gold);">Google's privacy policy</a>.</p>
-    <p>Barnasagan mín does not share other personally identifiable information with Google and does not use responses for model training.</p>
+    <h2>4. Automated text processing</h2>
+    <p>The service uses automated text processing to generate follow-up questions. Portions of user responses may be sent to external technical systems for this purpose. Barnasagan mín does not use this data for model training.</p>
 
     <h2>5. Storage and Security</h2>
     <p>Data is stored in Supabase, located on servers in Europe. All communication is TLS-encrypted. Supabase Row Level Security (RLS) is enabled so users can only access their own data.</p>
