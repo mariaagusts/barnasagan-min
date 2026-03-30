@@ -11,6 +11,7 @@ export const S = {
   isListening: false,
   recognition: null,
   styleKey: "natural",
+  isPaid: false,
   sbClient: null,
   authMode: "login",
   adminMode: false,

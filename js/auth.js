@@ -4,7 +4,7 @@
 import { S } from './state.js';
 import { t } from './i18n.js';
 import { getSupabase } from './supabase-client.js';
-import { loadStateFromSupabase } from './supabase-client.js';
+import { loadStateFromSupabase, loadPaidStatus } from './supabase-client.js';
 
 export function switchTab(mode) {
   S.authMode = mode;
@@ -60,7 +60,7 @@ export async function handleAuth() {
 
 export async function onSignedIn() {
   document.getElementById("map-user-email").textContent = S.user.email;
-  await loadStateFromSupabase();
+  await Promise.all([loadStateFromSupabase(), loadPaidStatus()]);
   // Import showMap lazily to avoid circular dependency
   const { showMap } = await import('./modals.js');
   showMap();

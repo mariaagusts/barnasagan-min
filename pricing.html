@@ -7,6 +7,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
 <style>
 :root {
   --cream:    #FFFBF2;
@@ -401,10 +403,10 @@ html[lang="en"] .lang-is { display: none !important; }
       <li><span class="check">✓</span><span class="feat-text lang-is">Myndir í bókina</span><span class="feat-text lang-en" style="display:none;">Photos in the book</span></li>
       <li><span class="check">✓</span><span class="feat-text lang-is">Íslenska og enska</span><span class="feat-text lang-en" style="display:none;">Icelandic and English</span></li>
     </ul>
-    <a class="btn-paid" href="#" id="paddle-btn" style="cursor:default;opacity:0.7;">
-      <span class="lang-is">Í þróun — fljótlega!</span>
-      <span class="lang-en" style="display:none;">Coming soon!</span>
-    </a>
+    <button class="btn-paid" onclick="openCheckout()">
+      <span class="lang-is">Kaupa fullan aðgang →</span>
+      <span class="lang-en" style="display:none;">Get full access →</span>
+    </button>
   </div>
 
   <!-- Combo -->
@@ -488,6 +490,26 @@ html[lang="en"] .lang-is { display: none !important; }
     var lang = localStorage.getItem('barnasagan_lang') || 'is';
     if (lang === 'en') setLang('en');
   })();
+
+  const SUPABASE_URL = 'https://gyehrvryxdgvfhfhwyyy.supabase.co';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd5ZWhydnJ5eGRndmZoZmh3eXl5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM5Njc4MDcsImV4cCI6MjA4OTU0MzgwN30.4paq-dwUIpUpdM6frnvnYYnih8kXU0cZv67Owdej8H8';
+
+  Paddle.Initialize({
+    token: 'live_ff319f8e763b6e55dabb332b1e4'
+  });
+
+  async function openCheckout() {
+    const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    const { data: { user } } = await sb.auth.getUser();
+    if (!user) {
+      window.location.href = 'index.html';
+      return;
+    }
+    Paddle.Checkout.open({
+      items: [{ priceId: 'pri_01kmy15wqc1dewnyj9wn9rattc', quantity: 1 }],
+      customData: { email: user.email }
+    });
+  }
 </script>
 
 </body>

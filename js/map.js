@@ -31,6 +31,16 @@ export function renderMap() {
     const answered = cs.answers.length;
     const p = Math.min((answered / 20) * 100, 100);
     const isComplete = cs.complete;
+    const locked = !S.isPaid && ch.id > 2;
+    if (locked) {
+      return `
+      <div class="chapter-card chapter-locked" onclick="window.location.href='pricing.html'">
+        <span class="chapter-emoji">${ch.emoji}</span>
+        <div class="chapter-num">${t("chapterOf")} ${i + 1}</div>
+        <div class="chapter-name">${ch.title}</div>
+        <div class="chapter-lock-msg">🔒 ${S.lang === 'en' ? 'Get full access' : 'Kaupa fullan aðgang'} →</div>
+      </div>`;
+    }
     return `
       <div class="chapter-card ${isComplete ? 'complete' : ''}" onclick="enterChapter(${ch.id})">
         ${isComplete ? `<span class="chapter-badge">${t("completed")}</span>` : ''}

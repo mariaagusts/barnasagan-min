@@ -83,6 +83,21 @@ export async function loadStateFromSupabase() {
   }
 }
 
+export async function loadPaidStatus() {
+  if (!S.user) return;
+  try {
+    const sb = getSupabase();
+    if (!sb) return;
+    const { data } = await sb.from("paid_users")
+      .select("email")
+      .eq("email", S.user.email.toLowerCase())
+      .maybeSingle();
+    S.isPaid = !!data;
+  } catch (e) {
+    console.warn("loadPaidStatus villa:", e);
+  }
+}
+
 export function getChapterState(id) { return S.chapters.chapters.find(c => c.id === id); }
 export function totalAnswers() { return S.chapters.chapters.reduce((s, c) => s + c.answers.length, 0); }
 export function completedChapters() { return S.chapters.chapters.filter(c => c.complete).length; }
