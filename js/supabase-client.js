@@ -92,7 +92,8 @@ export async function loadPaidStatus() {
       .select("email")
       .eq("email", S.user.email.toLowerCase())
       .maybeSingle();
-    S.isPaid = !!data;
+    const grandfathered = new Date(S.user.created_at) < new Date("2026-03-30");
+    S.isPaid = !!data || grandfathered;
   } catch (e) {
     console.warn("loadPaidStatus villa:", e);
   }
