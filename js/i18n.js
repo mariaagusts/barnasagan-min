@@ -52,7 +52,7 @@ export const UI = {
     downloadAnswersBtn: "📥 Sækja svör (.txt)",
     privacyTitle: "Persónuverndarstefna",
     privacyContent: `
-      <p style="color:var(--mid);font-size:14px;margin-bottom:40px;">Gildir frá 1. mars 2026 · barnasagan.is</p>
+      <p style="color:var(--mid);font-size:14px;margin-bottom:40px;">Gildir frá 30. mars 2026 · barnasagan.is</p>
 
       <h3 style="font-family:'Fredoka One',cursive;font-size:20px;margin:32px 0 12px;">1. Hver við erum</h3>
       <p>Barnasagan mín (barnasagan.is) er þjónusta sem hjálpar foreldrum að skrá sögu barnsins síns. Þjónustan er rekin af Multa Bene Agere ehf. (kt. 471025-0380). Spurningar og athugasemdir varðandi persónuvernd má senda á <a href="mailto:saganmin@saganmin.is" style="color:var(--mid);">saganmin@saganmin.is</a>.</p>
@@ -209,7 +209,7 @@ export const UI = {
     downloadAnswersBtn: "📥 Download answers (.txt)",
     privacyTitle: "Privacy Policy",
     privacyContent: `
-      <p style="color:var(--mid);font-size:14px;margin-bottom:40px;">Effective 1 March 2026 · barnasagan.is</p>
+      <p style="color:var(--mid);font-size:14px;margin-bottom:40px;">Effective 30 March 2026 · barnasagan.is</p>
 
       <h3 style="font-family:'Fredoka One',cursive;font-size:20px;margin:32px 0 12px;">1. Who we are</h3>
       <p>My Child's Story (barnasagan.is) is a service that helps parents record their child's story. The service is operated by Multa Bene Agere (ID no. 471025-0380). Questions and comments about privacy may be sent to <a href="mailto:saganmin@saganmin.is" style="color:var(--mid);">saganmin@saganmin.is</a>.</p>
@@ -275,7 +275,7 @@ export const UI = {
       { q: "Who is this service for?", a: "My Child's Story is for any parent or family member who wants to preserve the story of their child's early years. You can start at any time, whether your child is a newborn or already in school." },
       { q: "Is there a fee for the service?", a: "Yes, My Child's Story is purchased as a one-time payment, one price, no subscription. See <a href='/pricing.html' style='color:var(--gold);'>pricing</a>." },
       { q: "Is this really a one-time payment?", a: "Yes. You pay once and have full access to all 12 chapters for as long as the service operates. No subscriptions, no renewals. You can download your child's story as a PDF at any time and keep it forever." },
-      { q: "Can I try before I pay?", a: "Yes, two chapters are unlocked for free. When you're ready to pay, all 12 chapters unlock immediately." },
+      { q: "Can I try before I pay?", a: "Yes, two chapters are unlocked for free. When you decide to unlock full access, all 12 chapters open immediately." },
       { q: "How do I pay?", a: "We use Paddle as our payment processor. They accept credit and debit cards and handle VAT in accordance with your local laws." },
       { q: "Can I get a refund?", a: "Yes, we offer a 14-day refund policy provided the PDF download has not been used. Contact us at <a href='mailto:saganmin@saganmin.is' style='color:var(--gold);'>saganmin@saganmin.is</a>." },
       { q: "Why is the price in euros and not Icelandic króna?", a: "My Child's Story is an Icelandic company with an Icelandic registration, but our payment processor (Paddle) unfortunately does not support Icelandic króna. We have therefore chosen euros (€) as our currency. Your bank will automatically convert to króna at the exchange rate on the day of payment." },
@@ -287,7 +287,7 @@ export const UI = {
       { q: "Do I need to answer all questions at once?", a: "Not at all. You can take a break whenever you like. Your progress is saved automatically, allowing you to pick up exactly where you left off, whether it's days or weeks later." },
       { q: "How long does it take?", a: "That is entirely up to you. Many people answer one or two questions a day and finish their book within a few weeks. Others take longer. There is no pressure, your progress is saved automatically and waits for you." },
       { q: "Can I write in Icelandic?", a: "Yes. You can switch languages at any time. Please note that your book will be generated in the language currently selected when you click 'Preview your book'. The system will then harmonize the narrative into that language." },
-      { q: "Can I speak instead of typing?", a: "Yes, you can click the '🎙 Speak' button and answer with your voice instead of typing. On a computer, your browser will ask for microphone permission. On iPhone or iPad: tap the text field and use the 🎤 microphone button on the keyboard. The browser itself does not support speech recognition on iOS. For the speech recognition to work in Icelandic, Icelandic must be set as the device language (Settings → General → Language & Region). Voice recognition may occasionally make mistakes, but the system reviews and corrects the text when your book is generated." },
+      { q: "Can I speak instead of typing?", a: "Yes, you can click the '🎙 Speak' button and answer with your voice instead of typing. On a computer, your browser will ask for microphone permission. On iPhone or iPad: tap the text field and use the 🎤 microphone button on the keyboard. The browser itself does not support speech recognition on iOS. For the speech recognition to work in Icelandic, Icelandic must be set as the device language (Settings → General → Language & Region). Voice recognition may occasionally make minor mistakes, but don't worry — when your book is generated the system reviews all your answers, smooths out any rough edges, and produces a cohesive narrative." },
       { q: "What if I can't remember exact dates or names?", a: "That's perfectly fine. My Child's Story is about your experiences and feelings. You can always write 'around that time' or leave out details you're unsure of. The system will help shape your narrative so it flows naturally regardless." },
       { q: "How much can I write for each question?", a: "There are no upper limits. You can write a single sentence or a full page. The system draws together the most important elements and ensures the narrative is balanced and beautiful." },
       { q: "Can I add my own questions?", a: "Yes! Next to each question you'll find a '+' button. You can type your own question and it will appear immediately as the next question in the chapter." },
@@ -298,7 +298,7 @@ export const UI = {
 
       { heading: "Your book" },
       { q: "How is the story generated?", a: "Once you have provided several answers, you can select 'Preview your book'. The system organizes your responses into a logical, flowing narrative which you can then review and edit. Note that every time you preview your book, a new independent story is created. But you can always access previous versions in the panel on the right." },
-      { q: "How do I receive my book?", a: "You can download your child's story as a professionally formatted PDF, complete with a cover page and chapters. You can also export the text as a plain text file. With no affiliation whatsoever, we can recommend lulu.com for getting a printed book based on the PDF you download." },
+      { q: "How do I receive my book?", a: "You can download your child's story as a professionally formatted PDF, complete with a cover page and chapters. You can also export the text as a plain text file. With no affiliation whatsoever, we can recommend lulu.com for a printed copy made directly from your PDF." },
       { q: "Can I edit the text after it's been generated?", a: "Yes, when you select 'Preview your book' the system creates a draft. You can then go to 'Edit text' and improve anything you'd like, add information or change the wording before downloading the final version." },
       { q: "Can the text contain errors?", a: "Yes, the system compiles the narrative automatically and grammatical or spelling errors may occasionally appear. We strongly recommend reviewing the text using the 'Edit text' button before downloading your book." },
       { q: "Can I add photos to my book?", a: "Yes! In each chapter interview you can upload photos related to that chapter, they will appear in the book at the end of the relevant chapter. You can also add general photos on the story screen, which appear at the end of the book." },
@@ -306,10 +306,8 @@ export const UI = {
       { heading: "Tips & Tricks" },
       { q: "Can I add My Child's Story to my phone's home screen like an app?", a: `Yes! You can save the website to your home screen and use it like an app, no download required.<br><br>
     <strong>On iPhone/iPad (Safari):</strong><br>
-    1. First, tap the three dots at the bottom right.<br>
-    2. Select "Share" from the menu.<br>
-    3. Scroll down and tap "View More".<br>
-    4. Choose "Add to Home Screen".<br><br>
+    1. Tap the box with an arrow pointing up — the Share button — in the centre at the bottom.<br>
+    2. Scroll down in the list and choose "Add to Home Screen".<br><br>
     <strong>On Android (Chrome):</strong><br>
     Open the site in Chrome, tap the three-dot menu (⋮) at the top and select "Add to Home Screen" or "Install app".<br><br>
     The site will then open directly without the browser bar and look and feel just like a real app.` }
