@@ -412,6 +412,46 @@ html[lang="en"] .lang-is { display: none !important; }
     </button>
   </div>
 
+  <!-- Gift purchase -->
+  <div class="card" style="margin-top:16px;text-align:center;">
+    <div class="card-badge lang-is">🎁 Gjöf</div>
+    <div class="card-badge lang-en" style="display:none;">🎁 Gift</div>
+    <div class="card-name">
+      <span class="lang-is">Kaupa sem gjöf</span>
+      <span class="lang-en" style="display:none;">Buy as a gift</span>
+    </div>
+    <div class="card-desc" style="margin-bottom:16px;">
+      <span class="lang-is">Þú færð gjafakóða sent á netfangið þitt. Gefðu hann áfram og viðtakandinn innleysir hann hér.</span>
+      <span class="lang-en" style="display:none;">You receive a gift code by email. Pass it on and the recipient redeems it here.</span>
+    </div>
+    <button class="btn-paid" onclick="openGiftCheckout()">
+      <span class="lang-is">Kaupa gjafakóða →</span>
+      <span class="lang-en" style="display:none;">Buy gift code →</span>
+    </button>
+  </div>
+
+</div>
+
+<!-- Redeem gift code -->
+<div style="max-width:480px;margin:48px auto 80px;padding:0 24px;text-align:center;">
+  <h3 style="font-family:'Fredoka One',cursive;font-size:22px;color:var(--text);margin-bottom:8px;">
+    <span class="lang-is">Innleysa gjafakóða</span>
+    <span class="lang-en" style="display:none;">Redeem gift code</span>
+  </h3>
+  <p style="color:var(--mid);font-size:14px;margin-bottom:20px;">
+    <span class="lang-is">Hefur þú fengið gjafakóða? Skráðu þig inn og sláðu hann inn hér.</span>
+    <span class="lang-en" style="display:none;">Have a gift code? Log in and enter it here.</span>
+  </p>
+  <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;">
+    <input id="gift-code-input" type="text" placeholder="BARN-XXXXXXXX"
+      style="border:2px solid var(--border);border-radius:12px;padding:12px 16px;font-size:16px;letter-spacing:2px;width:200px;outline:none;font-family:inherit;color:var(--text);background:var(--cream);">
+    <button onclick="redeemGiftCode()"
+      style="background:var(--gold);color:#fff;border:none;border-radius:12px;padding:12px 24px;font-size:15px;font-weight:700;cursor:pointer;font-family:'Fredoka One',cursive;">
+      <span class="lang-is">Innleysa</span>
+      <span class="lang-en" style="display:none;">Redeem</span>
+    </button>
+  </div>
+  <p id="redeem-msg" style="margin-top:14px;font-size:14px;min-height:20px;color:var(--mid);"></p>
 </div>
 
 
@@ -466,6 +506,59 @@ html[lang="en"] .lang-is { display: none !important; }
       items: [{ priceId: 'pri_01kmy15wqc1dewnyj9wn9rattc', quantity: 1 }],
       customData: { email: user.email }
     });
+  }
+
+  async function openGiftCheckout() {
+    const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    const { data: { user } } = await sb.auth.getUser();
+    let buyerEmail = user?.email;
+    if (!buyerEmail) {
+      const lang = localStorage.getItem('barnasagan_lang') || 'is';
+      buyerEmail = prompt(lang === 'en'
+        ? 'Enter your email address to receive the gift code:'
+        : 'Sláðu inn netfangið þitt til að fá gjafakóðann:');
+      if (!buyerEmail) return;
+    }
+    Paddle.Checkout.open({
+      items: [{ priceId: 'GIFT_PRICE_ID' }],
+      customData: { type: 'gift', buyer_email: buyerEmail }
+    });
+  }
+
+  async function redeemGiftCode() {
+    const code = document.getElementById('gift-code-input').value.trim().toUpperCase();
+    const msg = document.getElementById('redeem-msg');
+    const lang = localStorage.getItem('barnasagan_lang') || 'is';
+    if (!code) return;
+
+    const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    const { data: { user } } = await sb.auth.getUser();
+    if (!user) {
+      window.location.href = 'index.html';
+      return;
+    }
+
+    msg.style.color = 'var(--mid)';
+    msg.textContent = lang === 'en' ? 'Checking...' : 'Athuga...';
+
+    try {
+      const { data, error } = await sb.functions.invoke('redeem-gift-code', { body: { code } });
+      if (error || !data?.success) {
+        msg.style.color = '#c62828';
+        msg.textContent = lang === 'en'
+          ? 'Invalid or already used code.'
+          : 'Kóðinn er ekki gildur eða hefur þegar verið notaður.';
+      } else {
+        msg.style.color = '#2e7d32';
+        msg.textContent = lang === 'en'
+          ? 'Code redeemed! You now have full access.'
+          : 'Gjafakóðinn er innleystur! Þú hefur nú fullan aðgang.';
+        setTimeout(() => window.location.href = 'index.html', 2000);
+      }
+    } catch (e) {
+      msg.style.color = '#c62828';
+      msg.textContent = lang === 'en' ? 'Something went wrong.' : 'Eitthvað fór úrskeiðis.';
+    }
   }
 </script>
 
