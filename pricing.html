@@ -504,7 +504,8 @@ html[lang="en"] .lang-is { display: none !important; }
     }
     Paddle.Checkout.open({
       items: [{ priceId: 'pri_01kmy15wqc1dewnyj9wn9rattc', quantity: 1 }],
-      customData: { email: user.email }
+      customData: { email: user.email },
+      settings: { successUrl: 'https://barnasagan.is/pricing.html?success=1' }
     });
   }
 
@@ -521,7 +522,8 @@ html[lang="en"] .lang-is { display: none !important; }
     }
     Paddle.Checkout.open({
       items: [{ priceId: 'pri_01kmyfmm00s0ycnkfhpk3v1wb1', quantity: 1 }],
-      customData: { type: 'gift', buyer_email: buyerEmail }
+      customData: { email: buyerEmail },
+      settings: { successUrl: 'https://barnasagan.is/pricing.html?gift=success' }
     });
   }
 

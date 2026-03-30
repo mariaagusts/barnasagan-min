@@ -65,7 +65,8 @@ Deno.serve(async (req: Request) => {
     }
 
     const data = body?.data;
-    const isGift = data?.custom_data?.type === "gift";
+    const GIFT_PRICE_ID = "pri_01kmyfmm00s0ycnkfhpk3v1wb1";
+    const isGift = data?.items?.some((item: { price?: { id?: string } }) => item?.price?.id === GIFT_PRICE_ID);
     const transactionId = data?.id as string | undefined;
 
     const sb = createClient(
@@ -74,7 +75,7 @@ Deno.serve(async (req: Request) => {
     );
 
     if (isGift) {
-      const buyerEmail = (data?.custom_data?.buyer_email || data?.customer?.email) as string | undefined;
+      const buyerEmail = (data?.custom_data?.email || data?.customer?.email) as string | undefined;
       if (!buyerEmail) {
         console.error("Gift purchase: no buyer email", JSON.stringify(body));
         return new Response("No buyer email", { status: 400 });
