@@ -94,15 +94,17 @@ html[lang="en"] .lang-is { display: none !important; }
 
 <div class="header-bar">
   <a class="logo" href="/">Barnasagan mín</a>
+  <nav class="ext-nav">
+    <a href="https://barnasagan.is"><span class="lang-is">Forsíða</span><span class="lang-en" style="display:none;">Home</span></a>
+    <a href="/pricing.html"><span class="lang-is">Verðlag</span><span class="lang-en" style="display:none;">Pricing</span></a>
+    <a href="/privacy.html"><span class="lang-is">Persónuvernd</span><span class="lang-en" style="display:none;">Privacy</span></a>
+    <a href="/terms.html"><span class="lang-is">Þjónustuskilmálar</span><span class="lang-en" style="display:none;">Terms</span></a>
+  </nav>
   <div style="display:flex;align-items:center;gap:12px;">
     <div class="lang-toggle">
       <button class="lang-btn active" id="btn-is" onclick="setLang('is')">IS</button>
       <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
     </div>
-    <a class="back-btn" href="/">
-      <span class="lang-is">← Til baka</span>
-      <span class="lang-en" style="display:none;">← Back</span>
-    </a>
     <button class="ext-hamburger" onclick="document.getElementById('ext-mobile-menu').classList.toggle('open')" aria-label="Valmynd">☰</button>
   </div>
 </div>

@@ -542,6 +542,26 @@ footer a { color: var(--gold); text-decoration: none; }
 /* ── Language switching ── */
 .lang-en { display: none; }
 
+/* ── External page desktop nav ── */
+.ext-nav {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.ext-nav a {
+  color: var(--mid);
+  font-family: 'Nunito', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.ext-nav a:hover { color: var(--text); }
+
 /* ── External page hamburger menu ── */
 .ext-hamburger {
   display: none;
@@ -615,6 +635,7 @@ footer a { color: var(--gold); text-decoration: none; }
 
 @media (max-width: 640px) {
   .ext-hamburger { display: block; }
+  .ext-nav { display: none; }
   .header-bar .back-btn { display: none; }
   .card, .story-card { padding: 28px 20px; }
   .chapter-grid { grid-template-columns: 1fr; }
