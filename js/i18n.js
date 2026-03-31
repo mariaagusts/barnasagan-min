@@ -116,7 +116,7 @@ export const UI = {
       { heading: "Um þjónustuna" },
       { q: "Hvað er Barnasagan mín?", a: "Barnasagan mín er vettvangur sem aðstoðar foreldra eða aðra nákomna við að skrá sögu barnsins síns með persónulegum og hvetjandi spurningum. Persónulegar spurningar leiða þig í gegnum mismunandi þætti bernskunnar og svörin þín mynda að lokum samfellda og vandaða barnasögu." },
       { q: "Hverjum er þjónustan ætluð?", a: "Barnasagan mín hentar öllum foreldrum eða aðstandendum sem vilja varðveita söguna um bernsku barnsins síns. Þú getur byrjað hvenær sem er, hvort sem barnið er nýfætt eða þegar farið í skóla." },
-      { q: "Kostar þjónustan eitthvað?", a: "Já, Barnasagan mín er keypt með eingreiðslu, eitt verð, engin áskrift. Sjá <a href='/pricing.html' style='color:var(--gold);'>verðlag</a>." },
+      { q: "Kostar þjónustan eitthvað?", a: "Fyrstu tveir kaflarnir eru ókeypis. Fullur aðgangur er keypt með eingreiðslu, eitt verð, engin áskrift. Sjá <a href='/pricing.html' style='color:var(--gold);'>verðskrá</a>." },
       { q: "Er þetta virkilega ein greiðsla?", a: "Já. Þú greiðir einu sinni og hefur fullan aðgang að öllum 12 köflum á meðan þjónustan er í rekstri. Engar áskriftir, engar endurnýjanir. Þú getur hlaðið niður barnasögunni þinni sem PDF hvenær sem er og geymt hana hjá þér að eilífu." },
       { q: "Get ég prófað áður en ég greiði?", a: "Já, tveir kaflar eru opnir án greiðslu. Þegar þú ákveður að kaupa aðgang opnast allir 12 kaflar strax." },
       { q: "Hvernig er greitt?", a: "Við notum Paddle sem greiðslumiðlara. Þeir taka við kredit- og debetkortum og sjá um VSK í samræmi við lög þíns lands." },
