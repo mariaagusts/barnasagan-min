@@ -266,7 +266,7 @@ export const UI = {
       <div style="height:60px;"></div>
     `,
     aboutSub: "More than a questionnaire, a chance to reflect, remember and share.",
-    aboutFeat1t: "We ask you", aboutFeat1d: "Warm questions about your child's life, chapter by chapter.",
+    aboutFeat1t: "We ask you", aboutFeat1d: "Personalized questions about your child's life, chapter by chapter.",
     aboutFeat2t: "Speak or type", aboutFeat2d: "Answer at your own pace, with your voice or keyboard.",
     aboutFeat3t: "Your child's story", aboutFeat3d: "We weave your answers into a beautiful story you can give to your child.",
     aboutFeat4t: "Always saved", aboutFeat4d: "Continue anytime, anywhere, your progress follows you.",
