@@ -373,7 +373,7 @@ export function applyLang() {
   safeText("about-page-title", L.aboutTitle);
   const storyEl = document.getElementById("about-story-text");
   if (storyEl) storyEl.textContent = S.lang === "en"
-    ? "My Child's Story was born from a genuine desire to preserve the memories of our children's early years. Parents answer warm questions about their child, and the result is a precious gift the child can look back on."
+    ? "My Child's Story was born from a genuine desire to preserve the memories of our children's early years. Parents answer personalized questions about their child, and the result is a precious gift the child can look back on."
     : "Barnasagan mín varð til af einlægri löngun til að geyma minningarnar frá fyrstu árum barnanna okkar. Foreldrar svara persónulegum spurningum um barnið sitt, og til verður ómetanleg gjöf sem barnið getur litið til baka í.";
   safeText("about-page-sub", L.aboutSub);
   safeText("about-back-btn", L.backBtn);
