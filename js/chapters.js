@@ -9,6 +9,8 @@ export const CHAPTERS = [
     desc: "Fæðingin, nafnið og fyrstu klukkustundirnar",
     seeds: [
       "Hvað heitir barnið þitt og hvenær og hvar fæddist það?",
+      "Hver var fæðingarþyngd og fæðingarlengd barnsins þíns við fæðingu?",
+      "Gekk barninu vel að halda þyngd eftir fæðinguna? Var það duglegt að drekka mjólk?",
       "Hvernig var dagurinn sem barnið kom í heiminn, hvernig leið ykkur, foreldrunum?",
       "Hvernig fékk það nafnið sem það fékk? Er saga á bak við það?"
     ]
@@ -234,6 +236,7 @@ export const STORY_STYLES = {
     Tónn: Mildur, náinn og einlægur. Eins og foreldri sé að rifja upp fallega stund í dagbók.
     Málfar: Notaðu blæbrigðaríka íslensku (t.d. „að dunda sér", „að fylgjast með af kátínu", „hjartað fylltist stolti").
     MIKILVÆGT: Engar niðurstöðusetningar eða klisjur eins og „þessi minning mun lifa". Engin lofgjörð í lokin.
+    Þú mátt lýsa andrúmslofti og samhengi sem má ráða af svörunum, en bættu ALDREI við sérstökum nöfnum, dýrum, stöðum eða atburðum sem ekki eru nefnd beint í svörunum.
     Leyfðu frásögninni að enda á náttúrulegan hátt.
 
     DÆMI UM RÉTTAN TÓN:
@@ -243,6 +246,7 @@ export const STORY_STYLES = {
     Tone: Warm, affectionate, and close — like a parent describing their child.
     IMPORTANT: No AI praise or commentary at the end of chapters.
     Do not use concluding moral sentences. Let the story end naturally.
+    You may describe atmosphere and context implied by the answers, but NEVER introduce specific names, animals, places, or events not directly mentioned in the answers.
 
     EXAMPLE OF THE CORRECT TONE:
     "She always went straight to the toy box when she came home. No hello, no stopping — just straight to it. We always laughed at that speed."`
@@ -257,6 +261,7 @@ export const STORY_STYLES = {
     Tónn: Léttur, skemmtilegur og örlítið kaldhæðinn á kærleiksríkan hátt.
     Málfar: Notaðu líflegt myndmál (t.d. „lýsti yfir heilögu stríði", „sá strax í gegnum bragðið", „ekki á dagskrá").
     MIKILVÆGT: Forðastu að útskýra brandarann í lokin eða segja „við hlógum mikið". Láttu atvikið tala fyrir sig.
+    Þú mátt lýsa andrúmslofti og samhengi sem má ráða af svörunum, en bættu ALDREI við sérstökum nöfnum, dýrum, stöðum eða atburðum sem ekki eru nefnd beint í svörunum.
     Gættu þess að málfræði sé rétt og falli að íslenskri málkennd.
 
     DÆMI UM RÉTTAN TÓN:
@@ -265,6 +270,7 @@ export const STORY_STYLES = {
     Write in the third person about the child.
     Tone: Cheerful, mischievous and warm — like funny memories being shared at a family gathering.
     IMPORTANT: Do not add moral summaries or wrap-up sentences at the end.
+    You may describe atmosphere and context implied by the answers, but NEVER introduce specific names, animals, places, or events not directly mentioned in the answers.
 
     EXAMPLE OF THE CORRECT TONE:
     "She had a strict no-vegetables policy. Not on the plate, not near the food, preferably not in the same room. We tried to rebrand broccoli as 'trees.' It did not go well."`
@@ -279,6 +285,7 @@ export const STORY_STYLES = {
     Tónn: Milliliðalaus, einlægur og forvitinn. Textinn á að endurspegla hvernig barn upplifir heiminn.
     Málfar: Stuttar setningar og eðlilegt barnamál (t.d. „mér fannst", „það var svo gaman", „ég hlakkaði svo mikið til"). Gættu þess að beygja sagnir rétt (ekki „mér líkaði" heldur „mér fannst gaman").
     MIKILVÆGT: Engin „fullorðinsleg" djúphugsun eða tilgerð.
+    Þú mátt lýsa andrúmslofti og samhengi sem má ráða af svörunum, en bættu ALDREI við sérstökum nöfnum, dýrum, stöðum eða atburðum sem ekki eru nefnd beint í svörunum.
 
     DÆMI UM RÉTTAN TÓN:
     „Mér fannst langskemmtilegast í skólanum þegar við fórum í leikfimi. Stærðfræðin var dálítið erfið, en hún var fljót að líða þegar Guðrún kennari fór að lesa söguna fyrir okkur."`,
@@ -286,6 +293,7 @@ export const STORY_STYLES = {
     Write in the first person (I) from the child's perspective.
     Tone: Direct, sincere and childlike — as if a child is describing their life honestly.
     IMPORTANT: No adult conclusions or moral summaries. Keep the childlike viewpoint without sounding forced or saccharine.
+    You may describe atmosphere and context implied by the answers, but NEVER introduce specific names, animals, places, or events not directly mentioned in the answers.
 
     EXAMPLE OF THE CORRECT TONE:
     "I liked school except when we had maths. Maths was boring. I liked break time much better, and PE, and when our teacher Guðrún read aloud to us."`
