@@ -121,6 +121,8 @@ export const CHAPTERS_EN = [
     desc: "Birth, the name and the first hours",
     seeds: [
       "What is your child's name, and when and where were they born?",
+      "What was your child's birth weight and length?",
+      "Did your child have any difficulty maintaining weight after birth? Were they good at feeding?",
       "What was the day your child arrived like — how did you feel as a parent?",
       "How did your child get their name? Is there a story behind it?"
     ]
