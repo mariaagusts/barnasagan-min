@@ -237,7 +237,7 @@ Lestu yfir eftirfarandi texta og skilaðu hreinsuðri útgáfu þar sem:
 - Efni og röð er ALDREI breytt — eingöngu málfar
 Skilaðu EINGÖNGU leiðréttum texta, engar útskýringar.`;
     updateLoadingStep(3);
-    S.storyText = await callGemini(proofPrompt, S.storyText);
+    S.storyText = await callGemini(proofPrompt, S.storyText, true);
 
     document.getElementById("story-body").innerHTML = renderMarkdown(S.storyText);
     injectStoryPhotos();
