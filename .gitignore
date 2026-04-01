@@ -1,0 +1,12 @@
+# Supabase CLI
+supabase.exe
+supabase.tar.gz
+supabase/.temp/
+
+# API test responses
+gemini_response.json
+gemini_responses.json
+
+# Claude Code
+.claude/settings.local.json
+.claude/worktrees/
