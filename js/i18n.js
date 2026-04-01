@@ -156,7 +156,7 @@ export const UI = {
     Opnaðu síðuna í Chrome, smelltu á þrípunkta valmyndina (⋮) efst og veldu „Bæta við heimaskjá" eða „Setja upp app".<br><br>
     Vefsíðan opnast þá beint án vafrastikunnar og lítur út eins og alvöru app.` }
     ],
-    aboutTitle: "Um Barnasagan mín",
+    aboutTitle: "Um",
     faqTitle: "Spurningar",
     backBtn: "← Til baka",
     completed: "✓ Lokið",
