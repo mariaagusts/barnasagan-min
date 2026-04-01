@@ -45,7 +45,7 @@ export function updateNav() {
   } else {
     loginBtn.textContent = S.lang === 'en' ? 'Sign in' : 'Innskrá';
     loginBtn.onclick = () => showScreen('auth');
-    ctaBtn.style.display = 'inline-block';
+    ctaBtn.style.display = '';
   }
 }
 
