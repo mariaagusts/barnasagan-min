@@ -164,7 +164,7 @@ h1, h2, h3,
   align-items: center;
   justify-content: space-between;
 }
-.nav-logo { font-family: 'Fredoka One', cursive; font-size: 22px; color: var(--orange); flex-shrink: 0; cursor: pointer; }
+.nav-logo { font-family: 'Fredoka One', cursive; font-size: 22px; color: var(--orange); flex-shrink: 0; cursor: pointer; white-space: nowrap; }
 .nav-actions { display: flex; gap: 4px; align-items: center; }
 .btn-nav-login { background: transparent; border: none; color: var(--mid); font-family: 'Nunito', sans-serif; font-size: 13px; font-weight: 700; cursor: pointer; padding: 7px 12px; transition: color 0.2s; white-space: nowrap; border-radius: 50px; }
 .btn-nav-login:hover { color: var(--orange); background: var(--warm); }
