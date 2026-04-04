@@ -112,7 +112,7 @@ export async function previewChapter(id) {
 
   const { STORY_STYLES } = await import('./chapters.js');
   const prompt = STORY_STYLES.hlylegt.prompt;
-  const msg = `Búðu til stutta fallega frásögn fyrir þennan kafla eingöngu:\n\n=== ${ch.title} ===\n${pairs}`;
+  const msg = `Búðu til ítarlega og fallega frásögn fyrir þennan kafla. Notaðu ALLAR sérstakar upplýsingar úr svörunum: nöfn, dagsetningar, tíma, staði, þyngd, lengd, nöfn aðstandenda og önnur sérstök smáatriði. Þetta eru dýrmætar minningar og hvert smáatriði skiptir máli.\n\n=== ${ch.title} ===\n${pairs}`;
 
   try {
     const text = await callGemini(prompt, msg, true);

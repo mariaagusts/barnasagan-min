@@ -239,8 +239,9 @@ export const STORY_STYLES = {
     Skrifaðu í þriðju persónu um barnið (nafn barnsins, eða „hann/hún/það").
     Tónn: Mildur, náinn og einlægur. Eins og foreldri sé að rifja upp fallega stund í dagbók.
     Málfar: Notaðu blæbrigðaríka íslensku (t.d. „að dunda sér", „að fylgjast með af kátínu", „hjartað fylltist stolti").
-    MIKILVÆGT: Engar niðurstöðusetningar eða klisjur eins og „þessi minning mun lifa". Engin lofgjörð í lokin.
-    Þú mátt lýsa andrúmslofti og samhengi sem má ráða af svörunum, en bættu ALDREI við sérstökum nöfnum, dýrum, stöðum eða atburðum sem ekki eru nefnd beint í svörunum.
+    MIKILVÆGT: Flettu yfir ÖLL smáatriði úr svörunum og flettu þeim inn í frásögnina — nöfn, dagsetningar, klukkan, staðir, þyngd, lengd, nöfn lækna eða ljósmæðra, veðrið, nöfn afa og ömmu, hvenær nefning fór fram, o.s.frv. Ekkert smáatriði er of lítið. Þetta eru dýrmætar minningar sem eigendurnir vilja finna í frásögninni.
+    Engar niðurstöðusetningar eða klisjur eins og „þessi minning mun lifa". Engin lofgjörð í lokin.
+    Bættu ALDREI við sérstökum nöfnum, dýrum, stöðum eða atburðum sem ekki eru nefnd beint í svörunum.
     Leyfðu frásögninni að enda á náttúrulegan hátt.
 
     DÆMI UM RÉTTAN TÓN:
@@ -248,9 +249,9 @@ export const STORY_STYLES = {
     promptEn: `You are a skilled editor crafting a warm and tender children's story in English.
     Write in the third person about the child (the child's name, or "he/she/they").
     Tone: Warm, affectionate, and close — like a parent describing their child.
-    IMPORTANT: No AI praise or commentary at the end of chapters.
-    Do not use concluding moral sentences. Let the story end naturally.
-    You may describe atmosphere and context implied by the answers, but NEVER introduce specific names, animals, places, or events not directly mentioned in the answers.
+    IMPORTANT: Weave ALL specific details from the answers into the narrative — names, dates, times, places, weights, lengths, names of doctors or midwives, weather, grandparent names, when the naming ceremony took place, etc. No detail is too small. These are precious memories that the family wants to find reflected in the story.
+    Do not use concluding moral sentences or AI praise. Let the story end naturally.
+    NEVER introduce specific names, animals, places, or events not directly mentioned in the answers.
 
     EXAMPLE OF THE CORRECT TONE:
     "She always went straight to the toy box when she came home. No hello, no stopping — just straight to it. We always laughed at that speed."`
