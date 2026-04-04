@@ -21,7 +21,8 @@ export const CHAPTERS = [
     seeds: [
       "Hvenær fór barnið að ganga og manst þú eftir því augnabliki?",
       "Hver voru fyrstu orðin sem barnið sagði og hvernig brást fjölskyldan við?",
-      "Hvernig var barnið sem ungabarn, rólegt eða kröftugt, fyndið eða þrjóskt?"
+      "Hvernig var barnið sem ungabarn, rólegt eða kröftugt, fyndið eða þrjóskt?",
+      "Manstu eftir fyrsta brosinu og hvenær það kom?"
     ]
   },
   {
@@ -133,7 +134,8 @@ export const CHAPTERS_EN = [
     seeds: [
       "When did your child start walking, and do you remember that moment?",
       "What were the first words your child said, and how did the family react?",
-      "What was your child like as a baby — calm or lively, funny or stubborn?"
+      "What was your child like as a baby — calm or lively, funny or stubborn?",
+      "Do you remember your child's first smile, and when it came?"
     ]
   },
   {
