@@ -72,33 +72,46 @@ export async function previewChapter(id) {
 
   const setLoading = (msg) => {
     document.getElementById("chapter-preview-body").innerHTML = `
-      <div style="text-align:center;padding:40px 0;">
-        <div class="loading-dots" style="justify-content:center;margin-bottom:20px;">
-          <span class="dot1">•</span><span class="dot2">•</span><span class="dot3">•</span>
-        </div>
-        <p style="color:var(--mid);font-size:13px;letter-spacing:0.04em;">${msg}</p>
-        <div style="background:var(--border);border-radius:99px;height:4px;overflow:hidden;width:200px;margin:16px auto 0;">
-          <div id="chapter-preview-bar" style="height:100%;background:var(--gold);border-radius:99px;width:0%;transition:width 0.8s ease;"></div>
+      <div style="text-align:center;padding:60px 20px;">
+        <div class="spinner" style="font-size:40px;margin-bottom:20px;">✦</div>
+        <p class="preview-loading-text" style="font-family:'Fredoka One',cursive;font-size:20px;color:var(--orange);margin-bottom:8px;">${msg}</p>
+        <p style="font-size:13px;color:var(--mid);margin-bottom:32px;opacity:0.8;">Augnablik...</p>
+        <div style="width:280px;margin:0 auto;">
+          <div style="display:flex;justify-content:space-between;margin-bottom:8px;font-size:12px;color:var(--mid);">
+            <span id="cp-step-1" style="opacity:0.4;">✍️ ${S.lang==='en'?'Read':'Lesa'}</span>
+            <span id="cp-step-2" style="opacity:0.4;">🖋 ${S.lang==='en'?'Shape':'Móta'}</span>
+            <span id="cp-step-3" style="opacity:0.4;">✨ ${S.lang==='en'?'Polish':'Fínpússa'}</span>
+          </div>
+          <div style="background:var(--border);border-radius:99px;height:6px;overflow:hidden;">
+            <div id="chapter-preview-bar" style="height:100%;background:var(--gold);border-radius:99px;width:0%;transition:width 0.8s ease;"></div>
+          </div>
         </div>
       </div>`;
     setTimeout(() => {
       const bar = document.getElementById("chapter-preview-bar");
-      if (bar) bar.style.width = "80%";
+      if (bar) bar.style.width = "33%";
+      const s1 = document.getElementById("cp-step-1");
+      if (s1) s1.style.opacity = "1";
     }, 50);
   };
 
   setLoading(phrases[0]);
   const interval = setInterval(() => {
     phraseIdx = (phraseIdx + 1) % phrases.length;
-    const p = document.querySelector("#chapter-preview-body p");
+    const p = document.querySelector("#chapter-preview-body .preview-loading-text");
     if (p) p.textContent = phrases[phraseIdx];
+    const bar = document.getElementById("chapter-preview-bar");
+    const steps = [document.getElementById("cp-step-1"), document.getElementById("cp-step-2"), document.getElementById("cp-step-3")];
+    const pcts = ["33%", "66%", "90%"];
+    if (bar) bar.style.width = pcts[phraseIdx];
+    steps.forEach((s, i) => { if (s) s.style.opacity = i <= phraseIdx ? "1" : "0.4"; });
   }, 2500);
 
   const pairs = cs.questions.slice(0, cs.answers.length)
     .map((q, i) => `Q: ${q}\nA: ${cs.answers[i]}`).join("\n\n");
 
   const { STORY_STYLES } = await import('./chapters.js');
-  const prompt = STORY_STYLES.natural.prompt;
+  const prompt = STORY_STYLES.hlylegt.prompt;
   const msg = `Búðu til stutta fallega frásögn fyrir þennan kafla eingöngu:\n\n=== ${ch.title} ===\n${pairs}`;
 
   try {
