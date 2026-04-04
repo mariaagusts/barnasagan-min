@@ -7,6 +7,7 @@ import './chapters.js';
 import { getSupabase, initState } from './supabase-client.js';
 import { onSignedIn } from './auth.js';
 import './map.js';
+import './family.js';
 import './speech.js';
 import './gemini.js';
 import './interview.js';

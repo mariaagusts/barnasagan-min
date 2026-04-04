@@ -8,6 +8,7 @@ import { getChapterState, totalAnswers } from './supabase-client.js';
 import { callGemini } from './gemini.js';
 import { renderMarkdown } from './story.js';
 import { showScreen } from './modals.js';
+import { getFamilyContext } from './family.js';
 import { enterChapter } from './interview.js';
 
 export function renderMap() {
@@ -112,7 +113,8 @@ export async function previewChapter(id) {
 
   const { STORY_STYLES } = await import('./chapters.js');
   const prompt = STORY_STYLES.hlylegt.prompt;
-  const msg = `Búðu til ítarlega og fallega frásögn fyrir þennan kafla. Notaðu ALLAR sérstakar upplýsingar úr svörunum: nöfn, dagsetningar, tíma, staði, þyngd, lengd, nöfn aðstandenda og önnur sérstök smáatriði. Þetta eru dýrmætar minningar og hvert smáatriði skiptir máli.\n\n=== ${ch.title} ===\n${pairs}`;
+  const familyCtx = getFamilyContext(S.lang);
+  const msg = `Búðu til ítarlega og fallega frásögn fyrir þennan kafla. Notaðu ALLAR sérstakar upplýsingar úr svörunum: nöfn, dagsetningar, tíma, staði, þyngd, lengd, nöfn aðstandenda og önnur sérstök smáatriði. Þetta eru dýrmætar minningar og hvert smáatriði skiptir máli.${familyCtx}\n\n=== ${ch.title} ===\n${pairs}`;
 
   try {
     const text = await callGemini(prompt, msg, true);

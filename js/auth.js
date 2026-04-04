@@ -79,11 +79,15 @@ export async function handleAuth() {
 export async function onSignedIn() {
   document.getElementById("map-user-email").textContent = S.user.email;
   await Promise.all([loadStateFromSupabase(), loadPaidStatus()]);
-  // Import showMap lazily to avoid circular dependency
-  const { showMap } = await import('./modals.js');
-  showMap();
   const { updateNav } = await import('./app.js');
   updateNav();
+  if (!S.chapters.familyType) {
+    const { showFamilySetup } = await import('./family.js');
+    showFamilySetup();
+  } else {
+    const { showMap } = await import('./modals.js');
+    showMap();
+  }
 }
 
 export async function forgotPassword() {

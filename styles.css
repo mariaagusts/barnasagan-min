@@ -647,3 +647,46 @@ footer a { color: var(--gold); text-decoration: none; }
   .hero-stats { gap: 28px; }
   .header-bar { padding: 16px 20px; }
 }
+
+/* ══ Family Setup Modal ══ */
+#family-setup-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 3000;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.family-setup-box {
+  background: var(--card);
+  border-radius: 24px;
+  padding: 48px 36px;
+  max-width: 520px;
+  width: 100%;
+  position: relative;
+}
+.family-type-btn {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  background: var(--cream);
+  border: 2px solid var(--border);
+  border-radius: 14px;
+  padding: 16px 20px;
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.05rem;
+  color: var(--text);
+  cursor: pointer;
+  transition: all 0.18s;
+  text-align: left;
+  margin-bottom: 10px;
+}
+.family-type-btn:hover {
+  border-color: var(--gold);
+  background: var(--warm);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}

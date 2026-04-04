@@ -7,6 +7,7 @@ import { getChapters, STORY_STYLES } from './chapters.js';
 import { getChapterState, saveState } from './supabase-client.js';
 import { callGemini } from './gemini.js';
 import { showScreen } from './modals.js';
+import { getFamilyContext } from './family.js';
 
 function esc(s) {
   return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
@@ -154,9 +155,10 @@ export async function startStoryWithStyle(styleKey, lang) {
   }, 2500);
 
   const prompt = lang === "en" ? STORY_STYLES[styleKey].promptEn : STORY_STYLES[styleKey].prompt;
+  const familyCtx = getFamilyContext(lang);
   const userMsg = lang === "en"
-    ? `Write a beautiful life story based on this data:\n\n`
-    : `Búðu til fallega lífssögu út frá þessum gögnum:\n\n`;
+    ? `Write a beautiful life story based on this data:${familyCtx}\n\n`
+    : `Búðu til fallega lífssögu út frá þessum gögnum:${familyCtx}\n\n`;
   await generateStory(prompt, userMsg);
 }
 

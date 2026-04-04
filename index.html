@@ -528,6 +528,7 @@
         <button class="btn-nav-login" id="map-about-link" onclick="showAbout()" style="font-size:12px;">Um</button>
         <button class="btn-nav-login" id="map-faq-link" onclick="showFaq()" style="font-size:12px;">Spurningar</button>
         <span class="user-email" id="map-user-email"></span>
+        <button class="btn-signout" onclick="showFamilySetup()" title="Breyta fjölskyldustillingu" style="font-size:11px;padding:4px 10px;" id="map-family-btn">👨‍👩‍👧</button>
         <button class="btn-signout" id="map-signout-btn" onclick="signOut()">Útskrá</button>
         <button class="inner-hamburger" onclick="toggleInnerMenu()">☰</button>
       </div>
@@ -875,6 +876,45 @@
   <div style="max-width:700px;margin:0 auto;background:white;border-radius:20px;padding:48px;position:relative;">
     <button onclick="closeChapterPreview()" style="position:absolute;top:16px;right:16px;background:var(--gold);color:white;border:none;border-radius:50%;width:28px;height:28px;font-size:16px;cursor:pointer;">✕</button>
     <div id="chapter-preview-body" class="story-body"></div>
+  </div>
+</div>
+
+<!-- ══ FAMILY SETUP MODAL ══ -->
+<div id="family-setup-overlay">
+  <div class="family-setup-box">
+    <div style="text-align:center;margin-bottom:28px;">
+      <div style="font-size:2.2rem;margin-bottom:12px;">👨‍👩‍👧</div>
+      <h2 style="font-family:'Fredoka One',cursive;font-size:1.7rem;color:var(--orange);margin-bottom:8px;">
+        <span class="lang-is">Hvernig lítur fjölskyldan út?</span>
+        <span class="lang-en" style="display:none;">What does your family look like?</span>
+      </h2>
+      <p style="color:var(--mid);font-size:0.93rem;line-height:1.6;">
+        <span class="lang-is">Við notum þetta til að skrifa frásögnina á réttan hátt. Hægt er að breyta þessu seinna.</span>
+        <span class="lang-en" style="display:none;">We use this to write the story with the right family terms. You can change this later.</span>
+      </p>
+    </div>
+    <div>
+      <button class="family-type-btn" onclick="setFamilyType('mamma-pabbi')">
+        <span style="font-size:1.5rem;">👨‍👩‍👧</span>
+        <span class="lang-is">Mamma og pabbi</span><span class="lang-en" style="display:none;">Mum and dad</span>
+      </button>
+      <button class="family-type-btn" onclick="setFamilyType('tvaer-maedur')">
+        <span style="font-size:1.5rem;">👩‍👩‍👧</span>
+        <span class="lang-is">Tvær mæður</span><span class="lang-en" style="display:none;">Two mothers</span>
+      </button>
+      <button class="family-type-btn" onclick="setFamilyType('tveir-fedur')">
+        <span style="font-size:1.5rem;">👨‍👨‍👧</span>
+        <span class="lang-is">Tveir feður</span><span class="lang-en" style="display:none;">Two fathers</span>
+      </button>
+      <button class="family-type-btn" onclick="setFamilyType('einstaed-mamma')">
+        <span style="font-size:1.5rem;">👩‍👧</span>
+        <span class="lang-is">Einstæð mamma</span><span class="lang-en" style="display:none;">Single mother</span>
+      </button>
+      <button class="family-type-btn" onclick="setFamilyType('einstaedur-pabbi')">
+        <span style="font-size:1.5rem;">👨‍👧</span>
+        <span class="lang-is">Einstæður pabbi</span><span class="lang-en" style="display:none;">Single father</span>
+      </button>
+    </div>
   </div>
 </div>
 
