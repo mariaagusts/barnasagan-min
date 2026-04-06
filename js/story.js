@@ -218,6 +218,7 @@ MIKILVÆGT:
 - Skrifaðu í fyrstu persónu (ég-form)
 - Bannað er að nota niðurstöðu- eða lærdómssetningar í lok kafla
 - Engin hrós, ekkert væmið mál
+- Gættu þess að ná náttúrulegri íslenskri málkennd. Forðastu 'translationese' og beinar enskar setningabyggingar. Textinn á að hljóma eins og hann hafi verið skrifaður upprunalega á íslensku.
 
 Enska textinn:
 ${englishStory}`;
@@ -237,6 +238,7 @@ Lestu yfir eftirfarandi texta og skilaðu hreinsuðri útgáfu þar sem:
 - Setningabygging sem hljómar gervileg eða vélræn er greidd upp
 - # og ## fyrirsagnir eru óbreyttar
 - Efni og röð er ALDREI breytt — eingöngu málfar
+- Gættu þess að ná náttúrulegri íslenskri málkennd. Forðastu 'translationese' og beinar enskar setningabyggingar. Textinn á að hljóma eins og hann hafi verið skrifaður upprunalega á íslensku.
 Skilaðu EINGÖNGU leiðréttum texta, engar útskýringar.`;
     updateLoadingStep(3);
     S.storyText = await callGemini(proofPrompt, S.storyText, true);

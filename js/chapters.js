@@ -252,6 +252,7 @@ export const STORY_STYLES = {
     IMPORTANT: Weave ALL specific details from the answers into the narrative — names, dates, times, places, weights, lengths, names of doctors or midwives, weather, grandparent names, when the naming ceremony took place, etc. No detail is too small. These are precious memories that the family wants to find reflected in the story.
     Do not use concluding moral sentences or AI praise. Let the story end naturally.
     NEVER introduce specific names, animals, places, or events not directly mentioned in the answers.
+    Show, don't tell. Focus on sensory details and internal monologue instead of summarizing events.
 
     EXAMPLE OF THE CORRECT TONE:
     "She always went straight to the toy box when she came home. No hello, no stopping — just straight to it. We always laughed at that speed."`
@@ -276,6 +277,7 @@ export const STORY_STYLES = {
     Tone: Cheerful, mischievous and warm — like funny memories being shared at a family gathering.
     IMPORTANT: Do not add moral summaries or wrap-up sentences at the end.
     You may describe atmosphere and context implied by the answers, but NEVER introduce specific names, animals, places, or events not directly mentioned in the answers.
+    Show, don't tell. Focus on sensory details and internal monologue instead of summarizing events.
 
     EXAMPLE OF THE CORRECT TONE:
     "She had a strict no-vegetables policy. Not on the plate, not near the food, preferably not in the same room. We tried to rebrand broccoli as 'trees.' It did not go well."`
@@ -299,6 +301,7 @@ export const STORY_STYLES = {
     Tone: Direct, sincere and childlike — as if a child is describing their life honestly.
     IMPORTANT: No adult conclusions or moral summaries. Keep the childlike viewpoint without sounding forced or saccharine.
     You may describe atmosphere and context implied by the answers, but NEVER introduce specific names, animals, places, or events not directly mentioned in the answers.
+    Show, don't tell. Focus on sensory details and internal monologue instead of summarizing events.
 
     EXAMPLE OF THE CORRECT TONE:
     "I liked school except when we had maths. Maths was boring. I liked break time much better, and PE, and when our teacher Guðrún read aloud to us."`
@@ -323,6 +326,7 @@ export const STORY_STYLES = {
     Stay close to what the parent said. Do not add interpretations or your own material.
     IMPORTANT: No conclusions, moral summaries, or AI filler sentences.
     Let the narrative end naturally when the content is done.
+    Show, don't tell. Focus on sensory details and internal monologue instead of summarizing events.
 
     EXAMPLE OF THE CORRECT TONE:
     "She was born on 14 March 2019 at the National Hospital in Reykjavík. The name Sigríður came from her paternal grandmother. We did not know the gender in advance, and when we heard it was a girl we both laughed."`

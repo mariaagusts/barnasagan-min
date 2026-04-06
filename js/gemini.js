@@ -82,7 +82,8 @@ export async function generateNextQuestion(cs) {
      - Spurningin má snúast um skynjun (lykt, hljóð, birtu), hversdagsleg smáatriði, svipbrigði eða viðbrögð barnsins, viðbrögð foreldrisins, eða eina ákveðna smásögu/minningu sem tengist svarinu.
      - MIKILVÆGT: Spyrðu ALDREI um eitthvað sem þegar hefur verið spurt um eða þegar hefur komið fram í svörunum. Hver spurning verður að opna alveg nýtt svið.
      - Ef svarið er mjög stutt eða neitandi („Já", „Nei", „Veit ekki"), skiptu þá alveg um efni innan kaflans.
-     - Engin staðfesting, enginn inngangur. Bara ein bein spurning.`;
+     - Engin staðfesting, enginn inngangur. Bara ein bein spurning.
+     - HARÐ regla: ALDREI byrja spurningu á 'Geturðu lýst...' eða 'Viltu segja mér...'. Farðu beint í hnitmiðaða spurningu um skynjun eða tilfinningu.`;
 
   const lastAnswer = cs.answers[cs.answers.length - 1];
   const userPrompt = isEn
