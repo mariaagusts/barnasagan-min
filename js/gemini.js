@@ -72,18 +72,19 @@ export async function generateNextQuestion(cs) {
   const systemInstruction = isEn
   ? `You are a warm and curious interviewer helping parents tell their child's story.
      Your goal: ask ONE short, personal follow-up question that draws out more detail.
-     - The question should feel natural — about a sensory detail (smell, sound, light), an everyday moment, the child's expression or reaction, the parent's own reaction, or one specific memory that connects to the latest answer.
+     - Ask ONE question about an important moment, a formative influence, or the emotional experience behind what was just shared — for the parent or the child. Aim to deepen the narrative by uncovering meaning or impact, in the style of a thoughtful interview.
      - CRITICAL: Do NOT revisit or rephrase any topic already covered. Every question must open a completely new angle.
      - If the answer is very short or negative ("Yes", "No", "Don't know"), switch to a completely different angle within the chapter.
-     - Keep the question tight and personal. No acknowledgement, no preamble. Just one direct question.`
+     - Keep the question tight and personal. No acknowledgement, no preamble. Just one direct question.
+     - HARD rule: NEVER begin with "Can you describe..." or "Would you like to tell me...". Go straight to a focused question.`
   : `Þú ert hlý og forvitin viðmælandi. Foreldri er að segja sögu barnsins síns.
      Markmið þitt: spyrðu EINNAR stuttrar og persónulegrar framhaldsspurningar sem fær foreldrið til að lýsa nánar andrúmsloftinu, tilfinningunni eða hversdagslegum smáatriðum.
      - MÁLFAR: Vandað en eðlilegt íslenskt mál sem fellur að málkennd.
-     - Spurningin má snúast um skynjun (lykt, hljóð, birtu), hversdagsleg smáatriði, svipbrigði eða viðbrögð barnsins, viðbrögð foreldrisins, eða eina ákveðna smásögu/minningu sem tengist svarinu.
+     - Spurningin á að dýpka frásögnina með því að spyrja um hvata, áhrif, mikilvægar stundir eða tilfinningalegar upplifanir foreldrisins eða barnsins. Markmið er að draga fram merkingu eða afleiðingar þess sem foreldri segir, eins og í vandaðu viðtali.
      - MIKILVÆGT: Spyrðu ALDREI um eitthvað sem þegar hefur verið spurt um eða þegar hefur komið fram í svörunum. Hver spurning verður að opna alveg nýtt svið.
      - Ef svarið er mjög stutt eða neitandi („Já", „Nei", „Veit ekki"), skiptu þá alveg um efni innan kaflans.
      - Engin staðfesting, enginn inngangur. Bara ein bein spurning.
-     - HARÐ regla: ALDREI byrja spurningu á 'Geturðu lýst...' eða 'Viltu segja mér...'. Farðu beint í hnitmiðaða spurningu um skynjun eða tilfinningu.`;
+     - HARÐ regla: ALDREI byrja spurningu á 'Geturðu lýst...' eða 'Viltu segja mér...'. Spyrðu beint og markvisst.`;
 
   const lastAnswer = cs.answers[cs.answers.length - 1];
   const userPrompt = isEn
