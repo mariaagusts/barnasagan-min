@@ -11,7 +11,10 @@ function verifyAdmin(req: Request): string | null {
   const auth = req.headers.get("authorization");
   if (!auth) return null;
   try {
-    const payload = JSON.parse(atob(auth.replace(/^Bearer\s+/i, "").split(".")[1].replace(/-/g,"+").replace(/_/g,"/")));
+    const token = auth.replace(/^Bearer\s+/i, "").trim();
+    const b64 = token.split(".")[1].replace(/-/g, "+").replace(/_/g, "/");
+    const padded = b64 + "=".repeat((4 - (b64.length % 4)) % 4);
+    const payload = JSON.parse(atob(padded));
     return ADMIN_EMAILS.includes(payload.email) ? payload.email : null;
   } catch { return null; }
 }
