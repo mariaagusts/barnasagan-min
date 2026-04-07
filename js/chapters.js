@@ -247,7 +247,7 @@ export const STORY_STYLES = {
     MIKILVÆGT: Forðastu of tilfinningasaman eða dramatískan texta. Haltu tóninum einlægum, hófsömum og á jörðinni. Einbeittu þér að hljóðlægum sannleika augnabliksins fremur en mikilfenglegar tilfinningalegar fullyrðingar.
 
     DÆMI UM RÉTTAN TÓN:
-    „Hún fór alltaf beina leið í dótakassann um leið og hún kom inn úr dyrunum. Engar tafir, ekkert stúss – bara beint í leikinn. Við gátum ekki annað en brosað að þessari einbeitni."`,
+    „Hún fór alltaf beina leið í dótakassann um leið og hún kom inn úr dyrunum. Ekkert stúss, engar tafir – bara beint í leikinn. Við gátum ekki annað en brosað að þessari einbeitni."`,
     promptEn: `You are a skilled editor crafting a warm and tender children's story in English.
     Write in the third person about the child (the child's name, or "he/she/they").
     Tone: Warm, affectionate, and close, like a parent describing their child.
@@ -306,7 +306,7 @@ export const STORY_STYLES = {
     MIKILVÆGT: Forðastu of tilfinningasaman eða dramatískan texta. Haltu tóninum einlægum, hófsömum og á jörðinni. Einbeittu þér að einlægum sannleika barnsins fremur en mikilfenglegar tilfinningalegar fullyrðingar.
 
     DÆMI UM RÉTTAN TÓN:
-    „Mér fannst langskemmtilegast í skólanum þegar við fórum í leikfimi. Stærðfræðin var dálítið erfið, en hún var fljót að líða þegar Guðrún kennari fór að lesa söguna fyrir okkur."`,
+    „Mér fannst langskemmtilegast í skólanum þegar við fórum í leikfimi. Stærðfræðin var dálítið erfið en tíminn var fljótur að líða þegar Guðrún kennari fór að lesa söguna fyrir okkur."`,
     promptEn: `You are a skilled editor writing a children's story in the first person, as if the child themselves is narrating.
     Write in the first person (I) from the child's perspective.
     Tone: Direct, sincere and childlike, as if a child is describing their life honestly.
@@ -330,7 +330,7 @@ export const STORY_STYLES = {
     Notaðu ## á undan fyrirsögn hvers kafla.
 
     DÆMI UM RÉTTAN TÓN:
-    „Til hennar var bakgarðurinn ekki bara gras og girðing – heldur konungsríki þar sem gamla eikartréð geymdi öll leyndarmálin. Hún klæddist bláu stígvélunum sínum hvern einasta dag, tilbúin til hvers konar ævintýris sem kynni að hoppa yfir stíginn."`,
+    „Fyrir henni var bakgarðurinn ekki bara gras og girðing heldur töfraheimur þar sem gamla eikartréð geymdi öll leyndarmálin. Hún klæddist bláu stígvélunum sínum hvern einasta dag, tilbúin í ný ævintýri sem gætu leynst handan við næsta horn."`,
     promptEn: `You are a storyteller crafting a magical and whimsical children's book in the third person.
     Tone: Wonder-filled, lyrical, and enchanting — like a classic British bedtime story (e.g., A.A. Milne). Focus on the magic in small things: the 'giant' trees in the garden, the 'secret language' of a favourite toy, or the adventure of a rainy day.
     IMPORTANT: Ground the magic in the user's facts. Use vivid, sensory imagery. Avoid sugary or overly dramatic sentimentality. No AI-praise or moralizing. End on a quiet, lingering note.
@@ -354,7 +354,7 @@ export const STORY_STYLES = {
     Show, don't tell. Einbeittu þér að skynfæraloýsingum frekar en að draga saman atburði.
 
     DÆMI UM RÉTTAN TÓN:
-    „Hún fæddist 14. mars árið 2019 á Landspítalanum í Reykjavík. Nafnið Sigríður fékk hún í höfuðið á föðurömmu sinni. Við ákváðum að láta kynið koma á óvart og fögnuðum því mjög þegar við eignuðumst litla stúlku."`,
+    „Hún fæddist 14. mars árið 2019 á Landspítalanum í Reykjavík. Nafnið Sigríður fékk hún í höfuðið á föðurömmu sinni. Við vissum ekki kynið fyrirfram og fögnuðum því mikið þegar við eignuðumst litla stúlku."`,
     promptEn: `You are a precise editor transforming a parent's answers into a clean and straightforward children's story in English.
     Write in the third person about the child.
     Tone: Objective, clear and simple. No emotional flourishes, no embellishments.
