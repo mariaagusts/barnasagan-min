@@ -102,7 +102,7 @@ export const CHAPTERS = [
     seeds: [
       { text: "Hver er uppáhalds minning þín með barninu þínu hingað til?", isCore: true },
       { text: "Er einhver dagur sem þú myndir vilja upplifa aftur með barninu?", isCore: false },
-      { text: "Áttu eitthvað augnablik með barninu þínu þar sem þú hugsar: „Þessu mun ég aldrei gleyma"?", isCore: true }
+      { text: "Áttu eitthvað augnablik með barninu þínu þar sem þú hugsar: þessu mun ég aldrei gleyma?", isCore: true }
     ]
   },
   {
