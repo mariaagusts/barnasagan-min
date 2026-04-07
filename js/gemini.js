@@ -88,7 +88,8 @@ export async function generateNextQuestion(cs) {
      - Ef svarið lýsir einhverju þungu eða sáru, sýndu stuttu hluttekningu (hámark 5 orð) áður en spurningin kemur.
      - Gerðu EKKI ráð fyrir systkinum, barnabörnum eða ákveðinni fjölskyldustöðu nema þess hafi verið getið í svörunum. Notaðu hlutlægt orðalag (t.d. „nánasta umhverfi barnsins", „þeir sem þú ert hlynnt/ur").
      - HÁMARK 25 ORÐ samanlagt (hluttekning + spurning). Engin staðfesting, enginn inngangur.
-     - HARÐ regla: ALDREI byrja á „Geturðu lýst...", „Viltu segja mér..." eða „Hvernig leið þér...". Spyrðu beint og markvisst.`;
+     - HARÐ regla: ALDREI byrja á „Geturðu lýst...", „Viltu segja mér..." eða „Hvernig leið þér...". Spyrðu beint og markvisst.
+     - CONSTRAINT — NO REPETITION: Greindu svarið vel. Ef notandinn hefur þegar svarað báðum hlutum í tvíþættri kjarnaspurningu, skaltu ekki spyrja um það aftur. Finndu þess í stað nýjan vinkil eða slepptu fylgispurningunni ef allt er komið fram.`;
 
   const lastAnswer = cs.answers[cs.answers.length - 1];
   const userPrompt = isEn

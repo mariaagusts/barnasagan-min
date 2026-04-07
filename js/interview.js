@@ -30,30 +30,32 @@ async function advanceQuestion(cs) {
   const wasFollowUp = cs.awaitingFollowUp;
   cs.awaitingFollowUp = false;
 
+  const askAI = () => Promise.race([
+    generateNextQuestion(cs),
+    new Promise((_, reject) => setTimeout(() => reject(new Error("Timeout")), 5000))
+  ]);
+
   if (wasFollowUp) {
     // After a follow-up: always go to next isCore (or free-form if all cores done)
     const nextCoreQ = cs.coreTexts[cs.coreAnswered];
     if (nextCoreQ) {
       cs.questions.push(nextCoreQ);
     } else {
-      const freeQ = await generateNextQuestion(cs);
-      cs.questions.push(freeQ);
+      cs.questions.push(await askAI());
     }
   } else {
     // After an isCore: increment counter, decide whether to ask follow-up
     cs.coreAnswered++;
     const lastAns = cs.answers[cs.answers.length - 1];
     if (shouldAskFollowUp(lastAns)) {
-      const followUpQ = await generateNextQuestion(cs);
-      cs.questions.push(followUpQ);
+      cs.questions.push(await askAI());
       cs.awaitingFollowUp = true;
     } else {
       const nextCoreQ = cs.coreTexts[cs.coreAnswered];
       if (nextCoreQ) {
         cs.questions.push(nextCoreQ);
       } else {
-        const freeQ = await generateNextQuestion(cs);
-        cs.questions.push(freeQ);
+        cs.questions.push(await askAI());
       }
     }
   }
