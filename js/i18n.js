@@ -6,7 +6,7 @@ import { S } from './state.js';
 export const UI = {
   is: {
     navLogin: "Innskrá", navCta: "Byrja að skrifa",
-    heroTitle: "Barnasagan: \u201Eég skrifa þetta niður á morgun\u201C er loforðið sem við gefum okkur öll.",
+    heroTitle: `Barnasagan: „ég skrifa þetta niður á morgun" er loforðið sem við gefum okkur öll.`,
     heroSub: "Við vitum að heilaþokan er raunveruleg. Barnasagan hjálpar þér að fanga dýrmætustu augnablikin þegar þau gerast, án samviskubits eða auka álags.",
     heroCta1: "Byrja að skrifa →", heroCta2: "Innskrá",
     heroStats: ["Kaflar","Spurningar","Barnasaga"],
@@ -122,7 +122,7 @@ export const UI = {
       { q: "Hvernig er greitt?", a: "Við notum Paddle sem greiðslumiðlara. Tekur við kredit- og debetkortum." },
       { q: "Get ég fengið endurgreiðslu?", a: "Já, við bjóðum upp á 14 daga endurgreiðslurétt. Hafðu samband á <a href='mailto:hallo@saganmin.is' style='color:var(--gold);'>hallo@saganmin.is</a>." },
       { q: "Af hverju er verðið í evrum?", a: "Greiðslumiðlarinn okkar, Paddle, styður ekki íslenskar krónur að svo stöddu. Við gjaldfærum því í evrum og bankinn þinn reiknar krónutöluna á greiðsludegi." },
-      { q: "Get ég gefið þetta að gjöf?", a: "Já! Smelltu á \u201EKaupa gjafakóða\u201C. Þú færð kóðann sendan á netfangið þitt." },
+      { q: "Get ég gefið þetta að gjöf?", a: `Já! Smelltu á „Kaupa gjafakóða". Þú færð kóðann sendan á netfangið þitt.` },
       { q: "Eru gögnin mín örugg?", a: "Já. Svör geymd á dulkóðuðum gagnagrunni. Rekin af íslensku félagi (kt. 471025-0380), við seljum aldrei persónuupplýsingar." },
       { q: "Hvernig eyði ég reikningnum mínum?", a: "Eyðaðu framvindu með 'Eyða framvindu' eða hafðu samband á hallo@saganmin.is til að eyða reikningi að fullu." },
 
