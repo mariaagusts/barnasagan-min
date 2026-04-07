@@ -124,7 +124,7 @@ export const UI = {
       { q: "Af hverju er verðið í evrum?", a: "Greiðslumiðlarinn okkar, Paddle, styður ekki íslenskar krónur að svo stöddu. Við gjaldfærum því í evrum og bankinn þinn reiknar krónutöluna á greiðsludegi." },
       { q: "Get ég gefið þetta að gjöf?", a: `Já! Smelltu á „Kaupa gjafakóða". Þú færð kóðann sendan á netfangið þitt.` },
       { q: "Eru gögnin mín örugg?", a: "Já. Svör geymd á dulkóðuðum gagnagrunni. Rekin af íslensku félagi (kt. 471025-0380), við seljum aldrei persónuupplýsingar." },
-      { q: "Hvernig eyði ég reikningnum mínum?", a: "Eyðaðu framvindu með 'Eyða framvindu' eða hafðu samband á hallo@saganmin.is til að eyða reikningi að fullu." },
+      { q: "Hvernig eyði ég reikningnum mínum?", a: "Eyddu framvindu með 'Eyða framvindu' eða hafðu samband á hallo@saganmin.is til að eyða reikningi að fullu." },
 
       { heading: "Að skrifa söguna" },
       { q: "Hvernig stillir kerfið sig á fjölskylduna okkar?", a: "Þegar þú skráir þig inn í fyrsta skipti spyr kerfið hvort barnið eigi mömmu og pabba, tvær mæður, tvo feður eða einstæðan foreldri. Þessar upplýsingar eru geymdar og notaðar af kerfinu til að nota réttum foreldraheitum í bókinni. Ef þú vilt breyta stillingunum eftir á, smelltu á 👨‍👩‍👧 takkann efst til hægri á Mitt svæði skjánum." },
