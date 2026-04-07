@@ -16,16 +16,49 @@ export function getSupabase() {
 
 export function buildFreshState() {
   return {
-    chapters: CHAPTERS.map(ch => ({
-      id: ch.id, questions: [...ch.seeds], answers: [], complete: false, photos: []
-    }))
+    chapters: CHAPTERS.map(ch => {
+      const coreSeeds = ch.seeds.filter(s => s.isCore);
+      const firstQ = coreSeeds[0]?.text ?? ch.seeds[0]?.text ?? "";
+      return {
+        id: ch.id,
+        questions: firstQ ? [firstQ] : [],
+        answers: [],
+        coreTexts: coreSeeds.map(s => s.text),
+        coreAnswered: 0,
+        awaitingFollowUp: false,
+        complete: false,
+        photos: []
+      };
+    })
   };
+}
+
+function migrateChapterState(cs, chDef) {
+  if (cs.coreTexts !== undefined) return;
+  const coreSeeds = chDef.seeds.filter(s => s.isCore);
+  cs.coreTexts = coreSeeds.map(s => s.text);
+  cs.awaitingFollowUp = cs.awaitingFollowUp ?? false;
+  cs.coreAnswered = 0;
+  for (let i = 0; i < Math.min(cs.questions.length, cs.answers.length); i++) {
+    if (cs.coreTexts.includes(cs.questions[i])) cs.coreAnswered++;
+  }
+}
+
+function applyMigrations(state) {
+  if (!state?.chapters) return;
+  state.chapters.forEach(cs => {
+    const chDef = CHAPTERS.find(c => c.id === cs.id);
+    if (chDef) migrateChapterState(cs, chDef);
+  });
 }
 
 export function initState() {
   const saved = localStorage.getItem("barnasaga_state");
   if (saved) {
-    try { S.chapters = JSON.parse(saved); } catch { S.chapters = buildFreshState(); }
+    try {
+      S.chapters = JSON.parse(saved);
+      applyMigrations(S.chapters);
+    } catch { S.chapters = buildFreshState(); }
   } else {
     S.chapters = buildFreshState();
   }
@@ -73,6 +106,7 @@ export async function loadStateFromSupabase() {
       .single();
     if (data && data.state_json) {
       S.chapters = JSON.parse(data.state_json);
+      applyMigrations(S.chapters);
       localStorage.setItem("barnasaga_state", data.state_json);
     } else {
       initState();

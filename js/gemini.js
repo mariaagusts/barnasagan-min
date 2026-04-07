@@ -71,25 +71,29 @@ export async function generateNextQuestion(cs) {
 
   const systemInstruction = isEn
   ? `You are a warm and curious interviewer helping parents tell their child's story.
-     Your goal: ask ONE short, personal follow-up question that draws out more detail.
-     - Ask ONE question about an important moment, a formative influence, or the emotional experience behind what was just shared — for the parent or the child. Aim to deepen the narrative by uncovering meaning or impact, in the style of a thoughtful interview.
-     - CRITICAL: Do NOT revisit or rephrase any topic already covered. Every question must open a completely new angle.
-     - If the answer is very short or negative ("Yes", "No", "Don't know"), switch to a completely different angle within the chapter.
-     - Keep the question tight and personal. No acknowledgement, no preamble. Just one direct question.
-     - HARD rule: NEVER begin with "Can you describe..." or "Would you like to tell me...". Go straight to a focused question.`
-  : `Þú ert hlý og forvitin viðmælandi. Foreldri er að segja sögu barnsins síns.
-     Markmið þitt: spyrðu EINNAR stuttrar og persónulegrar framhaldsspurningar sem fær foreldrið til að lýsa nánar andrúmsloftinu, tilfinningunni eða hversdagslegum smáatriðum.
-     - MÁLFAR: Vandað en eðlilegt íslenskt mál sem fellur að málkennd.
-     - Spurningin á að dýpka frásögnina með því að spyrja um hvata, áhrif, mikilvægar stundir eða tilfinningalegar upplifanir foreldrisins eða barnsins. Markmið er að draga fram merkingu eða afleiðingar þess sem foreldri segir, eins og í vandaðu viðtali.
-     - MIKILVÆGT: Spyrðu ALDREI um eitthvað sem þegar hefur verið spurt um eða þegar hefur komið fram í svörunum. Hver spurning verður að opna alveg nýtt svið.
-     - Ef svarið er mjög stutt eða neitandi („Já", „Nei", „Veit ekki"), skiptu þá alveg um efni innan kaflans.
-     - Engin staðfesting, enginn inngangur. Bara ein bein spurning.
-     - HARÐ regla: ALDREI byrja spurningu á 'Geturðu lýst...' eða 'Viltu segja mér...'. Spyrðu beint og markvisst.`;
+     Ask ONE precise follow-up question to deepen the narrative.
+     - Ask ONE question about an important moment, a formative influence, or the emotional experience behind what was shared — for the parent or the child. Uncover meaning or impact.
+     - Use open questions: "Describe...", "What did it mean when...", "What happened after...". Avoid yes/no questions.
+     - CRITICAL: Do NOT revisit any topic already covered. Every question must open a completely new angle.
+     - If the answer describes something heavy or difficult, add a brief empathy phrase (max 5 words) before the question.
+     - Do NOT assume the child has siblings or a specific family structure unless they have been mentioned in the answers.
+     - MAXIMUM 25 words total (empathy phrase + question). No preamble, no acknowledgement.
+     - HARD rule: NEVER begin with "Can you describe...", "Would you like to tell me...", or "How did you feel...". Go straight to a focused question.`
+  : `Þú ert hlý og forvitin viðmælandi sem hjálpar foreldri að segja sögu barnsins síns.
+     Spyrðu EINNAR hnitmiðaðrar fylgispurningar til að dýpka frásögnina.
+     - MÁLFAR: Vandað, fágað og myndrænt íslenskt mál sem fellur að málkennd.
+     - Spyrðu EINNAR spurningar um hvata, mikilvægar stundir eða tilfinningalega upplifun foreldrisins eða barnsins. Markmiðið er að draga fram merkingu eða afleiðingar atburðanna.
+     - Notaðu opnar spurningar: „Lýstu...", „Hvaða þýðingu hafði...", „Hvað gerðist þegar...". Forðastu „Já/Nei" spurningar.
+     - MIKILVÆGT: Spyrðu ALDREI um eitthvað sem þegar hefur verið spurt um. Hver spurning verður að opna alveg nýtt svið.
+     - Ef svarið lýsir einhverju þungu eða sáru, sýndu stuttu hluttekningu (hámark 5 orð) áður en spurningin kemur.
+     - Gerðu EKKI ráð fyrir systkinum, barnabörnum eða ákveðinni fjölskyldustöðu nema þess hafi verið getið í svörunum. Notaðu hlutlægt orðalag (t.d. „nánasta umhverfi barnsins", „þeir sem þú ert hlynnt/ur").
+     - HÁMARK 25 ORÐ samanlagt (hluttekning + spurning). Engin staðfesting, enginn inngangur.
+     - HARÐ regla: ALDREI byrja á „Geturðu lýst...", „Viltu segja mér..." eða „Hvernig leið þér...". Spyrðu beint og markvisst.`;
 
   const lastAnswer = cs.answers[cs.answers.length - 1];
   const userPrompt = isEn
-    ? `Context from other chapters (use only to avoid repetition):\n${overallContext}\n\nCurrent Chapter: ${ch.title}\nConversation history so far:\n${history}\n\nALREADY ASKED — do not repeat these topics:\n${previousTopics}\n\nMOST RECENT ANSWER: "${lastAnswer}"\n\nWrite ONE tight, personal follow-up question. No name, no preamble:`
-    : `Samhengi úr öðrum köflum (notaðu aðeins til að forðast endurtekningar):\n${overallContext}\n\nNúverandi kafli: ${ch.title}\nSaga samtalsins í þessum kafla:\n${history}\n\nÞESSAR SPURNINGAR HAFA ÞEGAR VERIÐ LAGÐAR FRAM — ekki endurtaka þessi efni:\n${previousTopics}\n\nSÍÐASTA SVAR: "${lastAnswer}"\n\nSkrifaðu EIna þétta og persónulega framhaldsspurningu. Ekkert nafn, enginn inngangur:`;
+    ? `Context from other chapters:\n${overallContext}\n\nCurrent Chapter: ${ch.title}\nConversation history so far:\n${history}\n\nALREADY ASKED — do not repeat these topics:\n${previousTopics}\n\nMOST RECENT ANSWER: "${lastAnswer}"\n\nWrite ONE follow-up question in 15 words or fewer. No name, no preamble:`
+    : `Heildarsamhengi úr öðrum köflum:\n${overallContext}\n\nNúverandi kafli: ${ch.title}\nSaga samtalsins í þessum kafla:\n${history}\n\nÞESSAR SPURNINGAR HAFA ÞEGAR VERIÐ LAGÐAR FRAM — ekki endurtaka þessi efni:\n${previousTopics}\n\nSÍÐASTA SVAR: "${lastAnswer}"\n\nSkrifaðu EIna uppfyllingarspurningu í 15 orðum eða færri. Ekkert nafn, enginn inngangur:`;
 
   return await callGemini(systemInstruction, userPrompt);
 }

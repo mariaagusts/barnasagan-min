@@ -16,6 +16,61 @@ function esc(s) {
 
 let bonusMode = false;
 
+// ── Sandwich helpers ──────────────────────────
+
+function shouldAskFollowUp(answer) {
+  if (!answer) return false;
+  const trimmed = answer.trim();
+  const skipPhrases = /^(já|nei|veit\s*ekki|kannski|ekkert|—|no|yes|don't\s*know|nothing|i\s*don't\s*know)\.?$/i;
+  if (skipPhrases.test(trimmed)) return false;
+  return trimmed.split(/\s+/).length > 3;
+}
+
+async function advanceQuestion(cs) {
+  const wasFollowUp = cs.awaitingFollowUp;
+  cs.awaitingFollowUp = false;
+
+  if (wasFollowUp) {
+    // After a follow-up: always go to next isCore (or free-form if all cores done)
+    const nextCoreQ = cs.coreTexts[cs.coreAnswered];
+    if (nextCoreQ) {
+      cs.questions.push(nextCoreQ);
+    } else {
+      const freeQ = await generateNextQuestion(cs);
+      cs.questions.push(freeQ);
+    }
+  } else {
+    // After an isCore: increment counter, decide whether to ask follow-up
+    cs.coreAnswered++;
+    const lastAns = cs.answers[cs.answers.length - 1];
+    if (shouldAskFollowUp(lastAns)) {
+      const followUpQ = await generateNextQuestion(cs);
+      cs.questions.push(followUpQ);
+      cs.awaitingFollowUp = true;
+    } else {
+      const nextCoreQ = cs.coreTexts[cs.coreAnswered];
+      if (nextCoreQ) {
+        cs.questions.push(nextCoreQ);
+      } else {
+        const freeQ = await generateNextQuestion(cs);
+        cs.questions.push(freeQ);
+      }
+    }
+  }
+  saveState();
+}
+
+function pushFallbackQuestion(cs) {
+  const fallbackTexts = cs.coreTexts || [];
+  const idx = cs.coreAnswered % (fallbackTexts.length || 1);
+  const fallback = fallbackTexts[idx] || (S.lang === "en" ? "Tell me more about this period of your child's life." : "Segðu mér meira um þetta tímabil í lífi barnsins.");
+  cs.questions.push(fallback);
+  cs.awaitingFollowUp = false;
+  saveState();
+}
+
+// ── Core UI functions ─────────────────────────
+
 export function enterChapter(id) {
   bonusMode = false;
   S.chapterId = id;
@@ -37,13 +92,23 @@ export function renderInterviewQuestion() {
     const isChapterDone = (cs.complete || qIdx >= 20) && !bonusMode;
     if (isChapterDone) { showChapterComplete(); return; }
 
-    const chapterIS = CHAPTERS.find(c => c.id === S.chapterId);
-    const chapterEN = CHAPTERS_EN.find(c => c.id === S.chapterId);
-    const seeds = S.lang === "en" ? chapterEN.seeds : chapterIS.seeds;
-    const fallback = S.lang === "en" ? "Tell me more about this period of your life." : "Segðu mér meira um þetta tímabil lífsins.";
-    const q = (seeds && qIdx < seeds.length) ? seeds[qIdx] : (cs.questions[qIdx] || seeds[qIdx % seeds.length] || fallback);
+    const fallback = S.lang === "en" ? "Tell me more about this period of your child's life." : "Segðu mér meira um þetta tímabil í lífi barnsins.";
+    const q = cs.questions[qIdx] || fallback;
+
+    // Progress label: core question number or follow-up indicator
     const qNumEl = document.getElementById("q-num");
-    if (qNumEl) qNumEl.textContent = t("qOf") + " " + (qIdx + 1) + " " + t("of20");
+    if (qNumEl) {
+      if (cs.awaitingFollowUp) {
+        qNumEl.textContent = S.lang === "en" ? "Follow-up" : "Fylgispurning";
+      } else {
+        const coreNum = (cs.coreAnswered || 0) + 1;
+        const coreTotal = cs.coreTexts?.length || 0;
+        qNumEl.textContent = S.lang === "en"
+          ? `Core question ${coreNum} of ${coreTotal}`
+          : `Kjarnaspurning ${coreNum} af ${coreTotal}`;
+      }
+    }
+
     if (document.getElementById("question-text")) {
       document.getElementById("question-text").textContent = q;
       document.getElementById("question-text").innerHTML += ` <button onclick="showCustomQuestionInput()" title="Bæta við eigin spurningu" style="background:none;border:1px solid var(--border);border-radius:50%;width:22px;height:22px;font-size:12px;cursor:pointer;color:var(--brown);padding:0;vertical-align:middle;margin-left:8px;">+</button>`;
@@ -136,14 +201,11 @@ export async function addCustomQuestion() {
   const cs = getChapterState(S.chapterId);
   const qIdx = cs.answers.length;
 
-  // Setjum spurningu notandans inn á næsta stað
   cs.questions[qIdx] = customQ;
   saveState();
 
-  // Lokum innsláttarreitnum
   cancelCustomQuestion();
 
-  // Endurteiknum spurningu
   document.getElementById("question-area").innerHTML = `<p class="question" id="question-text"></p>`;
   renderInterviewQuestion();
 }
@@ -171,16 +233,10 @@ export async function submitAnswer() {
   ta.disabled = true;
 
   try {
-    const nextQ = await generateNextQuestion(cs);
-    cs.questions.push(nextQ);
-    saveState();
+    await advanceQuestion(cs);
   } catch(err) {
     console.error("Gemini villa:", err);
-    const ch = CHAPTERS.find(c => c.id === S.chapterId);
-    const fallbacks = ch ? ch.seeds : [];
-    const fallback = fallbacks[cs.answers.length % fallbacks.length] || "Segðu mér meira um þetta tímabil lífsins.";
-    cs.questions.push(fallback);
-    saveState();
+    pushFallbackQuestion(cs);
     const ind = document.getElementById("save-indicator");
     if (ind) { ind.textContent = "⚠️ Gemini villa — nota staðgengilsspurningu"; ind.classList.add("visible"); setTimeout(() => { ind.textContent = "✓ Framvinda vistuð"; ind.classList.remove("visible"); }, 3000); }
   }
@@ -280,24 +336,25 @@ export function skipQuestion() {
     return;
   }
 
-  document.getElementById("question-area").innerHTML = `<div class="loading-dots"><span class="dot1">•</span><span class="dot2">•</span><span class="dot3">•</span></div>`;
-  document.getElementById("answer-input").value = "";
-  document.getElementById("answer-input").disabled = true;
-  document.getElementById("btn-next").disabled = true;
+  // Skip always goes to next core (no follow-up after a skip)
+  const wasFollowUp = cs.awaitingFollowUp;
+  cs.awaitingFollowUp = false;
+  if (!wasFollowUp) cs.coreAnswered++;
 
-  generateNextQuestion(cs).then(nextQ => {
-    cs.questions.push(nextQ);
-    saveState();
-    document.getElementById("question-area").innerHTML = `<p class="question" id="question-text"></p>`;
-    document.getElementById("answer-input").disabled = false;
-    renderInterviewQuestion();
-  }).catch(() => {
-    cs.questions.push(cs.questions[cs.answers.length % cs.questions.length]);
-    saveState();
-    document.getElementById("question-area").innerHTML = `<p class="question" id="question-text"></p>`;
-    document.getElementById("answer-input").disabled = false;
-    renderInterviewQuestion();
-  });
+  const nextCoreQ = cs.coreTexts[cs.coreAnswered];
+  if (nextCoreQ) {
+    cs.questions.push(nextCoreQ);
+  } else {
+    const fallbackTexts = cs.coreTexts || [];
+    cs.questions.push(fallbackTexts[cs.coreAnswered % (fallbackTexts.length || 1)] || (S.lang === "en" ? "Tell me more about this period of your child's life." : "Segðu mér meira um þetta tímabil í lífi barnsins."));
+  }
+  saveState();
+
+  document.getElementById("question-area").innerHTML = `<p class="question" id="question-text"></p>`;
+  document.getElementById("answer-input").value = "";
+  document.getElementById("answer-input").disabled = false;
+  document.getElementById("btn-next").disabled = true;
+  renderInterviewQuestion();
 }
 
 export function showChapterComplete() {

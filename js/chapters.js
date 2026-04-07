@@ -8,110 +8,110 @@ export const CHAPTERS = [
     id: 0, emoji: "🍼", title: "Nýja lífið",
     desc: "Fæðingin, nafnið og fyrstu klukkustundirnar",
     seeds: [
-      "Hvað heitir barnið þitt og hvenær og hvar fæddist það?",
-      "Hver var fæðingarþyngd og fæðingarlengd barnsins þíns við fæðingu?",
-      "Gekk barninu vel að halda þyngd eftir fæðinguna? Var það duglegt að drekka mjólk?",
-      "Hvernig var dagurinn sem barnið kom í heiminn, hvernig leið ykkur, foreldrunum?",
-      "Hvernig fékk það nafnið sem það fékk? Er saga á bak við það?"
+      { text: "Hvað heitir barnið þitt og hvenær og hvar fæddist það?", isCore: true },
+      { text: "Hver var fæðingarþyngd og fæðingarlengd barnsins þíns við fæðingu?", isCore: false },
+      { text: "Gekk barninu vel að halda þyngd eftir fæðinguna? Var það duglegt að drekka mjólk?", isCore: false },
+      { text: "Hvernig var dagurinn sem barnið kom í heiminn, hvernig leið ykkur, foreldrunum?", isCore: true },
+      { text: "Hvernig fékk það nafnið sem það fékk? Er saga á bak við það?", isCore: true }
     ]
   },
   {
     id: 1, emoji: "👶", title: "Fyrstu skrefin",
     desc: "Fyrstu orð, fyrstu skref og þroskinn",
     seeds: [
-      "Hvenær fór barnið að ganga og manst þú eftir því augnabliki?",
-      "Hver voru fyrstu orðin sem barnið sagði og hvernig brást fjölskyldan við?",
-      "Hvernig var barnið sem ungabarn, rólegt eða kröftugt, fyndið eða þrjóskt?",
-      "Manstu eftir fyrsta brosinu og hvenær það kom?"
+      { text: "Hvenær fór barnið að ganga og manst þú eftir því augnabliki?", isCore: true },
+      { text: "Hver voru fyrstu orðin sem barnið sagði og hvernig brást fjölskyldan við?", isCore: false },
+      { text: "Hvernig var barnið sem ungabarn, rólegt eða kröftugt, fyndið eða þrjóskt?", isCore: true },
+      { text: "Manstu eftir fyrsta brosinu og hvenær það kom?", isCore: false }
     ]
   },
   {
     id: 2, emoji: "🌟", title: "Karakterinn og einkennin",
     desc: "Hvað gerir þetta barn að einstakling",
     seeds: [
-      "Hvernig myndir þú lýsa persónu barnsins með þremur orðum?",
-      "Hvað er það sem gerir barnið þitt að einstakling, eitthvað sem lýsir þessu barni vel?"
+      { text: "Hvernig myndir þú lýsa persónu barnsins með þremur orðum?", isCore: true },
+      { text: "Hvað er það sem gerir barnið þitt að einstakling, eitthvað sem lýsir þessu barni vel?", isCore: true }
     ]
   },
   {
     id: 3, emoji: "🎮", title: "Leikur og hugmyndaflug",
     desc: "Hvernig barnið leikur sér og hvað hrífur það mest",
     seeds: [
-      "Hver er uppáhalds leikurinn eða leikfangið hjá barninu?",
-      "Á barnið einhvern ímyndaðan heim eða persónur sem það leikur sér alltaf í?",
-      "Hvernig leikur barnið sér, eitt, með systkinum eða vinum?"
+      { text: "Hver er uppáhalds leikurinn eða leikfangið hjá barninu?", isCore: true },
+      { text: "Á barnið einhvern ímyndaðan heim eða persónur sem það leikur sér alltaf í?", isCore: true },
+      { text: "Hvernig leikur barnið sér, eitt, með öðrum eða í hópi?", isCore: false }
     ]
   },
   {
     id: 4, emoji: "📚", title: "Skólinn og nám",
     desc: "Fyrsti skóladagurinn og lærdómurinn",
     seeds: [
-      "Hvernig var fyrsti skóladagurinn, hvernig leið barninu og hvernig leið þér?",
-      "Í hvaða námsgreinum blómstrar barnið og hverjar reynast barninu erfiðari?",
-      "Er einhver kennari sem hefur haft sérstök áhrif á barnið?"
+      { text: "Hvernig var fyrsti skóladagurinn, hvernig leið barninu og hvernig leið þér?", isCore: true },
+      { text: "Í hvaða námsgreinum blómstrar barnið og hverjar reynast barninu erfiðari?", isCore: true },
+      { text: "Er einhver kennari sem hefur haft sérstök áhrif á barnið?", isCore: false }
     ]
   },
   {
     id: 5, emoji: "👫", title: "Vinir og félagslíf",
     desc: "Bestu vinir og leikfélagar",
     seeds: [
-      "Á barnið besta vin? Segðu frá honum/henni.",
-      "Hvernig er félagslíf barnsins, finnst því betra að vera í hópi eða einsamalt?",
-      "Er einhver uppáhaldsminnig frá leikjum eða tómstundum með vinum?"
+      { text: "Á barnið besta vin? Segðu frá honum/henni.", isCore: true },
+      { text: "Hvernig er félagslíf barnsins, finnst því betra að vera í hópi eða einsamalt?", isCore: false },
+      { text: "Er einhver uppáhaldsminnig frá leikjum eða tómstundum með vinum?", isCore: true }
     ]
   },
   {
     id: 6, emoji: "🎨", title: "Áhugamál og tómstundir",
     desc: "Það sem barnið elskar að gera",
     seeds: [
-      "Hvað er barnið að gera þegar það er ánægt, þ.e. uppáhalds tómstundin?",
-      "Er eitthvað sem barnið er sérstaklega hrifið af, íþrótt, tónlist, list eða eitthvað annað?",
-      "Hvað getur barnið gert í langan tíma án þess að leiðast?"
+      { text: "Hvað er barnið að gera þegar það er ánægt, þ.e. uppáhalds tómstundin?", isCore: true },
+      { text: "Er eitthvað sem barnið er sérstaklega hrifið af, íþrótt, tónlist, list eða eitthvað annað?", isCore: true },
+      { text: "Hvað getur barnið gert í langan tíma án þess að leiðast?", isCore: false }
     ]
   },
   {
     id: 7, emoji: "🏠", title: "Fjölskyldan og heimilið",
-    desc: "Heimilið, foreldrar og systkini",
+    desc: "Heimilið og náinn hringur barnsins",
     seeds: [
-      "Hvernig er barnið í samskiptum við systkini eða nána fjölskyldu?",
-      "Er einhver hluti af daglegu lífi heimilisins sem barnið elskar sérstaklega?",
-      "Hvernig myndi barnið lýsa heimilinu sínu ef þú spyrðir það?"
+      { text: "Hvernig er barnið í samskiptum við nána fjölskyldu og þá sem standa þér næst?", isCore: false },
+      { text: "Er einhver hluti af daglegu lífi heimilisins sem barnið elskar sérstaklega?", isCore: true },
+      { text: "Hvernig myndi barnið lýsa heimilinu sínu ef þú spyrðir það?", isCore: true }
     ]
   },
   {
     id: 8, emoji: "😂", title: "Fyndnar minningar",
     desc: "Þau augnablik sem við hlæjum enn að",
     seeds: [
-      "Er einhver fyndin saga frá bernsku barnsins sem þú munt aldrei gleyma?",
-      "Hefur barnið sagt eitthvað óvænt eða skemmtilegt sem þú myndir gjarnan vilja skrá niður?",
-      "Manst þú eftir einhverjum augnablikum þar sem þið hlóguð saman af öllu hjarta?"
+      { text: "Er einhver fyndin saga frá bernsku barnsins sem þú munt aldrei gleyma?", isCore: true },
+      { text: "Hefur barnið sagt eitthvað óvænt eða skemmtilegt sem þú myndir gjarnan vilja skrá niður?", isCore: true },
+      { text: "Manst þú eftir einhverjum augnablikum þar sem þið hlóguð saman af öllu hjarta?", isCore: false }
     ]
   },
   {
     id: 9, emoji: "💪", title: "Áskoranir og vöxtur",
     desc: "Erfiðleikar sem barnið hefur sigrað",
     seeds: [
-      "Er eitthvað sem hefur verið erfitt fyrir barnið, og hvernig tókst því að komast í gegnum það?",
-      "Hvernig bregst barnið við þegar eitthvað gengur ekki upp?",
-      "Í hvaða aðstæðum hefur barnið vaxið mest, eitthvað sem gerðist þar sem þú sást það þroskast?"
+      { text: "Er eitthvað sem hefur verið erfitt fyrir barnið, og hvernig tókst því að komast í gegnum það?", isCore: true },
+      { text: "Hvernig bregst barnið við þegar eitthvað gengur ekki upp?", isCore: false },
+      { text: "Í hvaða aðstæðum hefur barnið vaxið mest, eitthvað sem gerðist þar sem þú sást það þroskast?", isCore: true }
     ]
   },
   {
     id: 10, emoji: "✨", title: "Sérstakar minningar",
     desc: "Augnablik sem sitja eftir",
     seeds: [
-      "Hver er uppáhalds minning þín með barninu þínu hingað til?",
-      "Er einhver dagur sem þú myndir vilja upplifa aftur með barninu?",
-      "Áttu eitthvað augnablik með barninu þínu þar sem þú hugsar, \"þessu mun ég aldrei gleyma\"?"
+      { text: "Hver er uppáhalds minning þín með barninu þínu hingað til?", isCore: true },
+      { text: "Er einhver dagur sem þú myndir vilja upplifa aftur með barninu?", isCore: false },
+      { text: "Áttu eitthvað augnablik með barninu þínu þar sem þú hugsar, \"þessu mun ég aldrei gleyma\"?", isCore: true }
     ]
   },
   {
     id: 11, emoji: "🌈", title: "Vonir og framtíðin",
     desc: "Von og óskir fyrir barnið",
     seeds: [
-      "Veistu hvað barnið þitt dreymir um að verða þegar það er orðið stórt? (að svo stöddu!)",
-      "Hvaða ósk eða von hefur þú sem foreldri fyrir barnið þitt?",
-      "Ef barnið þitt gæti lesið þessa bók eftir 20 ár, hvað myndirðu vilja að það vissi?"
+      { text: "Veistu hvað barnið þitt dreymir um að verða þegar það er orðið stórt? (að svo stöddu!)", isCore: false },
+      { text: "Hvaða ósk eða von hefur þú sem foreldri fyrir barnið þitt?", isCore: true },
+      { text: "Ef barnið þitt gæti lesið þessa bók eftir 20 ár, hvað myndirðu vilja að það vissi?", isCore: true }
     ]
   }
 ];
@@ -121,110 +121,110 @@ export const CHAPTERS_EN = [
     id: 0, emoji: "🍼", title: "The Arrival",
     desc: "Birth, the name and the first hours",
     seeds: [
-      "What is your child's name, and when and where were they born?",
-      "What was your child's birth weight and length?",
-      "Did your child have any difficulty maintaining weight after birth? Were they good at feeding?",
-      "What was the day your child arrived like — how did you feel as a parent?",
-      "How did your child get their name? Is there a story behind it?"
+      { text: "What is your child's name, and when and where were they born?", isCore: true },
+      { text: "What was your child's birth weight and length?", isCore: false },
+      { text: "Did your child have any difficulty maintaining weight after birth? Were they good at feeding?", isCore: false },
+      { text: "What was the day your child arrived like — how did you feel as a parent?", isCore: true },
+      { text: "How did your child get their name? Is there a story behind it?", isCore: true }
     ]
   },
   {
     id: 1, emoji: "👶", title: "First Steps",
     desc: "First words, first steps and early development",
     seeds: [
-      "When did your child start walking, and do you remember that moment?",
-      "What were the first words your child said, and how did the family react?",
-      "What was your child like as a baby — calm or lively, funny or stubborn?",
-      "Do you remember your child's first smile, and when it came?"
+      { text: "When did your child start walking, and do you remember that moment?", isCore: true },
+      { text: "What were the first words your child said, and how did the family react?", isCore: false },
+      { text: "What was your child like as a baby — calm or lively, funny or stubborn?", isCore: true },
+      { text: "Do you remember your child's first smile, and when it came?", isCore: false }
     ]
   },
   {
     id: 2, emoji: "🌟", title: "Personality & Character",
     desc: "What makes this child unique",
     seeds: [
-      "How would you describe your child's personality in three words?",
-      "What is it that makes your child distinctly themselves — something that is completely them?"
+      { text: "How would you describe your child's personality in three words?", isCore: true },
+      { text: "What is it that makes your child distinctly themselves — something that is completely them?", isCore: true }
     ]
   },
   {
     id: 3, emoji: "🎮", title: "Play & Imagination",
     desc: "How your child plays and what captivates them",
     seeds: [
-      "What is your child's favourite game or toy?",
-      "Does your child have a favourite imaginary world or fantasy world they return to?",
-      "How does your child prefer to play — alone, with siblings, or with friends?"
+      { text: "What is your child's favourite game or toy?", isCore: true },
+      { text: "Does your child have a favourite imaginary world or fantasy world they return to?", isCore: true },
+      { text: "How does your child prefer to play — alone, with others, or in a group?", isCore: false }
     ]
   },
   {
     id: 4, emoji: "📚", title: "School & Learning",
     desc: "The first school day and the joy of learning",
     seeds: [
-      "What was the first day of school like — for your child and for you?",
-      "Which subjects does your child enjoy most, and which less?",
-      "Has a teacher had a special influence on your child?"
+      { text: "What was the first day of school like — for your child and for you?", isCore: true },
+      { text: "Which subjects does your child enjoy most, and which less?", isCore: true },
+      { text: "Has a teacher had a special influence on your child?", isCore: false }
     ]
   },
   {
     id: 5, emoji: "👫", title: "Friends & Social Life",
     desc: "Best friends and playmates",
     seeds: [
-      "Does your child have a best friend? Tell me about them.",
-      "What is your child's social life like — do they enjoy being in a group or prefer their own company?",
-      "Is there a favourite memory from playing or spending time with friends?"
+      { text: "Does your child have a best friend? Tell me about them.", isCore: true },
+      { text: "What is your child's social life like — do they enjoy being in a group or prefer their own company?", isCore: false },
+      { text: "Is there a favourite memory from playing or spending time with friends?", isCore: true }
     ]
   },
   {
     id: 6, emoji: "🎨", title: "Hobbies & Interests",
     desc: "What your child loves to do",
     seeds: [
-      "What is your child doing when they are happiest — their favourite pastime?",
-      "Is there a sport, art form or special interest your child is particularly into?",
-      "Is there something your child can do for hours without noticing the time?"
+      { text: "What is your child doing when they are happiest — their favourite pastime?", isCore: true },
+      { text: "Is there a sport, art form or special interest your child is particularly into?", isCore: true },
+      { text: "Is there something your child can do for hours without noticing the time?", isCore: false }
     ]
   },
   {
     id: 7, emoji: "🏠", title: "Family & Home",
-    desc: "Home life, parents and siblings",
+    desc: "Home life and the child's close circle",
     seeds: [
-      "How is your child with siblings or close family members?",
-      "Is there a part of your daily home life that your child especially loves?",
-      "How would your child describe their home if you asked them?"
+      { text: "How is your child with close family and the people nearest to them?", isCore: false },
+      { text: "Is there a part of your daily home life that your child especially loves?", isCore: true },
+      { text: "How would your child describe their home if you asked them?", isCore: true }
     ]
   },
   {
     id: 8, emoji: "😂", title: "Funny Memories",
     desc: "Those moments we still laugh about",
     seeds: [
-      "Is there a funny story from your child's early years that you will never forget?",
-      "Has your child said something unexpected or funny that you would love to write down?",
-      "When did you laugh the most together — you and your child?"
+      { text: "Is there a funny story from your child's early years that you will never forget?", isCore: true },
+      { text: "Has your child said something unexpected or funny that you would love to write down?", isCore: true },
+      { text: "When did you laugh the most together — you and your child?", isCore: false }
     ]
   },
   {
     id: 9, emoji: "💪", title: "Challenges & Growth",
     desc: "Difficulties your child has overcome",
     seeds: [
-      "Has your child faced something difficult — and how did they handle it?",
-      "How does your child react when something does not go their way?",
-      "In what way has your child grown most — a moment where you watched them truly develop?"
+      { text: "Has your child faced something difficult — and how did they handle it?", isCore: true },
+      { text: "How does your child react when something does not go their way?", isCore: false },
+      { text: "In what way has your child grown most — a moment where you watched them truly develop?", isCore: true }
     ]
   },
   {
     id: 10, emoji: "✨", title: "Special Memories",
     desc: "Moments that stay with you",
     seeds: [
-      "What is your favourite memory with your child so far?",
-      "Is there a day you would love to relive with your child?",
-      "What moment with your child has made you think: I will never forget this?"
+      { text: "What is your favourite memory with your child so far?", isCore: true },
+      { text: "Is there a day you would love to relive with your child?", isCore: false },
+      { text: "What moment with your child has made you think: I will never forget this?", isCore: true }
     ]
   },
   {
     id: 11, emoji: "🌈", title: "Hopes & The Future",
     desc: "Hopes and wishes for your child",
     seeds: [
-      "What does your child dream about — what do they want to be when they grow up?",
-      "What wish or hope do you hold as a parent for your child?",
-      "If your child could read this book in 20 years — what do you want them to know?"
+      { text: "What does your child dream about — what do they want to be when they grow up?", isCore: false },
+      { text: "What wish or hope do you hold as a parent for your child?", isCore: true },
+      { text: "If your child could read this book in 20 years — what do you want them to know?", isCore: true }
     ]
   }
 ];
@@ -269,6 +269,7 @@ export const STORY_STYLES = {
     MIKILVÆGT: Forðastu að útskýra brandarann í lokin eða segja „við hlógum mikið". Láttu atvikið tala fyrir sig.
     Þú mátt lýsa andrúmslofti og samhengi sem má ráða af svörunum, en bættu ALDREI við sérstökum nöfnum, dýrum, stöðum eða atburðum sem ekki eru nefnd beint í svörunum.
     Gættu þess að málfræði sé rétt og falli að íslenskri málkennd.
+    Show, don't tell. Einbeittu þér að skynfæraloýsingum og innri einræðu frekar en að draga saman atburði.
 
     DÆMI UM RÉTTAN TÓN:
     „Hann neitaði alfarið að viðurkenna tilvist grænmetis. Það mátti ekki vera á diskinum og helst ekki í sama póstnúmeri. Tilraunir okkar til að kalla spergilkál 'lítil tré' voru dæmdar til að mistakast – hann lét ekki blekkja sig."`,
@@ -293,6 +294,7 @@ export const STORY_STYLES = {
     Málfar: Stuttar setningar og eðlilegt barnamál (t.d. „mér fannst", „það var svo gaman", „ég hlakkaði svo mikið til"). Gættu þess að beygja sagnir rétt (ekki „mér líkaði" heldur „mér fannst gaman").
     MIKILVÆGT: Engin „fullorðinsleg" djúphugsun eða tilgerð.
     Þú mátt lýsa andrúmslofti og samhengi sem má ráða af svörunum, en bættu ALDREI við sérstökum nöfnum, dýrum, stöðum eða atburðum sem ekki eru nefnd beint í svörunum.
+    Show, don't tell. Einbeittu þér að skynfæraloýsingum og innri einræðu frekar en að draga saman atburði.
 
     DÆMI UM RÉTTAN TÓN:
     „Mér fannst langskemmtilegast í skólanum þegar við fórum í leikfimi. Stærðfræðin var dálítið erfið, en hún var fljót að líða þegar Guðrún kennari fór að lesa söguna fyrir okkur."`,
@@ -317,6 +319,7 @@ export const STORY_STYLES = {
     Málfar: Notaðu rétt heiti á stöðum og stofnunum (t.d. „Landspítalinn", „skírður í höfuðið á"). Forðastu of mörg lýsingarorð.
     MIKILVÆGT: Engar tilfinningasemi eða upphrópanir. Halda skal skýrri strúktúr.
     Haltu þér við það sem foreldri sagði. Bættu ekki við túlkunum eða þínum eigin efni.
+    Show, don't tell. Einbeittu þér að skynfæraloýsingum frekar en að draga saman atburði.
 
     DÆMI UM RÉTTAN TÓN:
     „Hún fæddist 14. mars árið 2019 á Landspítalanum í Reykjavík. Nafnið Sigríður fékk hún í höfuðið á föðurömmu sinni. Við ákváðum að láta kynið koma á óvart og fögnuðum því mjög þegar við eignuðumst litla stúlku."`,
