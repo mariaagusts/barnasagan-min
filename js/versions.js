@@ -7,10 +7,11 @@ import { renderMarkdown, injectStoryPhotos } from './story.js';
 import { showScreen } from './modals.js';
 
 export const STYLE_LABELS = {
-  natural:  { is: "📝 Einlægt",    en: "📝 Natural"  },
-  poetic:   { is: "✨ Ljóðrænt",   en: "✨ Poetic"   },
-  fun:      { is: "😄 Gamansamur", en: "😄 Playful"  },
-  raw:      { is: "📋 Hrein frásögn", en: "📋 Raw & Direct" }
+  hlylegt:      { is: "💛 Persónulegt",   en: "💛 Warm"         },
+  gamansamur:   { is: "😄 Gamansamur",    en: "😄 Playful"      },
+  barnid_segir: { is: "🧒 Barnið segir",  en: "🧒 Child's Voice" },
+  aventurulegur:{ is: "🦄 Ævintýralegur", en: "🦄 Adventurous"  },
+  hnitmiðaður:  { is: "📄 Hnitmiðaður",   en: "📄 Focused"      }
 };
 
 export function getSavedVersions() {
