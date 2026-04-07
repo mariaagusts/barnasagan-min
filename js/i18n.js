@@ -122,7 +122,7 @@ export const UI = {
       { q: "Hvernig er greitt?", a: "Við notum Paddle sem greiðslumiðlara. Þeir taka við kredit- og debetkortum og sjá um VSK í samræmi við lög þíns lands." },
       { q: "Get ég fengið endurgreiðslu?", a: "Já, við bjóðum upp á 14 daga endurgreiðslurétt ef PDF-niðurhal hefur ekki verið notað. Hafðu samband á <a href='mailto:saganmin@saganmin.is' style='color:var(--gold);'>saganmin@saganmin.is</a>." },
       { q: "Af hverju er verðið í evrum en ekki íslenskum krónum?", a: "Barnasagan mín er íslenskt verkefni með íslenska kennitölu, en þær íslensku greiðslulausnir sem við þekkjum krefjast mánaðarlegrar áskriftar sem er of dýr fyrir lítið verkefni eins og þetta. Við notum því Paddle sem greiðslumiðlara — þeir styðja því miður ekki íslenskar krónur, svo við gjaldfærum tímabundið í evrum (€45). Þetta gæti breyst síðar. Bankinn þinn reiknar sjálfkrafa út krónuverðið á greiðsludegi." },
-      { q: "Get ég gefið þetta að gjöf?", a: "Já! Smelltu á „Kaupa gjafakóða". Þú færð kóðann sendan á netfangið þitt." },
+      { q: "Get ég gefið þetta að gjöf?", a: "Já! Smelltu á \u201EKaupa gjafakóða\u201C. Þú færð kóðann sendan á netfangið þitt." },
       { q: "Eru gögnin mín örugg?", a: "Já, fyllsta öryggis er gætt. Svör þín eru geymd á dulkóðuðum gagnagrunni og enginn annar notandi hefur aðgang að þeim. Barnasagan mín er rekin af íslensku félagi (kt. 471025-0380) og við seljum aldrei persónuupplýsingar." },
       { q: "Hvernig eyði ég reikningnum mínum?", a: "Þú getur eytt framvindu þinni hvenær sem er með 'Eyða framvindu' takkanum í kaflayfirlitinu. Til að eyða reikningnum þínum að fullu og öllum gögnum sem við geymum skaltu hafa samband við okkur á saganmin@saganmin.is. Við munum bregðast við innan 30 daga." },
 
