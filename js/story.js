@@ -206,6 +206,9 @@ export async function generateStory(systemPrompt, userMsg) {
       const englishStory = await callGemini(englishPrompt, msg + allParts.join("\n\n"), true);
 
       const styleLabel = STORY_STYLES[S.styleKey || "natural"].label;
+      const barnidSegirRule = S.styleKey === 'barnid_segir'
+        ? `\n- Sérstaklega í „Barnið segir" stíl: Gættu þess að þýðingin sé einlæg og barnaleg. Ekki nota orðfæri sem er of flókið eða fullorðinslegt fyrir sjónarhorn barns.`
+        : '';
       const translatePrompt = `Þú ert sérfræðingur í íslenskri þýðingu og ævisöguritun.
 Þýddu eftirfarandi enska lífssögu yfir á íslensku í stílnum: ${styleLabel}
 MIKILVÆGT:
@@ -219,6 +222,8 @@ MIKILVÆGT:
 - Bannað er að nota niðurstöðu- eða lærdómssetningar í lok kafla
 - Engin hrós, ekkert væmið mál
 - Gættu þess að ná náttúrulegri íslenskri málkennd. Forðastu 'translationese' og beinar enskar setningabyggingar. Textinn á að hljóma eins og hann hafi verið skrifaður upprunalega á íslensku.
+- Fjölbreytileiki: Notaðu fjölbreytta setningalengd og forðastu að of margar setningar byrji á „Ég" eða nafni barnsins, jafnvel þótt skrifað sé í þriðju persónu. Það gerir textann lifandi.
+- Málkennd yfir nákvæmni: Ef enska dæmið notar myndmál eða orðatiltæki sem virka illa á íslensku, finndu sambærilega íslenska hliðstæðu sem fellur að málkennd okkar í stað þess að þýða orðin beint.${barnidSegirRule}
 
 Enska textinn:
 ${englishStory}`;
@@ -231,7 +236,7 @@ ${englishStory}`;
       S.storyText = await callGemini(promptWithRule, msg + allParts.join("\n\n"), true);
     }
 
-    const proofPrompt = `Þú ert vandvirkur íslenskur prófarkalesari.
+    const proofPrompt = `Þú ert vandvirkur íslenskur prófarkalesari. Valinn ritstíll er: ${STORY_STYLES[S.styleKey || "hlylegt"].label}.
 Lestu yfir eftirfarandi texta og skilaðu hreinsuðri útgáfu þar sem:
 - Málfræðivillur eru leiðréttar (fallstjórn, beyging, samræmi)
 - Orð sem hljóma eins og bein þýðing úr ensku eru skipt út fyrir náttúrulegar íslenskar hliðstæður
@@ -239,6 +244,9 @@ Lestu yfir eftirfarandi texta og skilaðu hreinsuðri útgáfu þar sem:
 - # og ## fyrirsagnir eru óbreyttar
 - Efni og röð er ALDREI breytt — eingöngu málfar
 - Gættu þess að ná náttúrulegri íslenskri málkennd. Forðastu 'translationese' og beinar enskar setningabyggingar. Textinn á að hljóma eins og hann hafi verið skrifaður upprunalega á íslensku.
+- Miskunnarlaus hreinsun: Vertu miskunnarlaus við að fjarlægja orðalag sem hljómar eins og þýðing. Ef orðatiltæki eða sagnir eru notaðar í rangri eða klunnalegri merkingu (t.d. „hnikka" í stað „kinka kolli"), skaltu leiðrétta það samkvæmt vandaðri íslenskri rithefð.
+- Flæði og taktur: Gættu þess að textinn verði ekki stirður eða of hátíðlegur. Markmiðið er lifandi og blæbrigðaríkt mál sem rennur vel.
+- Samræmi við stíl: Leiðréttingarnar verða að virða valinn ritstíl. Haltu „Hreinni frásögn" einfaldri en „Ljóðrænum" eða „Ævintýralegum" ríkum af myndmáli.
 Skilaðu EINGÖNGU leiðréttum texta, engar útskýringar.`;
     updateLoadingStep(3);
     S.storyText = await callGemini(proofPrompt, S.storyText, true);
