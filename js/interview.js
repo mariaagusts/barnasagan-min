@@ -91,7 +91,7 @@ export function renderInterviewQuestion() {
   try {
     const cs = getChapterState(S.chapterId);
     const qIdx = cs.answers.length;
-    const isChapterDone = (cs.complete || qIdx >= 20) && !bonusMode;
+    const isChapterDone = (cs.complete || qIdx >= 10) && !bonusMode;
     if (isChapterDone) { showChapterComplete(); return; }
 
     const fallback = S.lang === "en" ? "Tell me more about this period of your child's life." : "Segðu mér meira um þetta tímabil í lífi barnsins.";
@@ -124,9 +124,9 @@ export function renderInterviewQuestion() {
     document.getElementById("btn-next").textContent = t("nextBtn");
     ta.oninput = () => { document.getElementById("btn-next").disabled = !ta.value.trim(); };
 
-    const pct = Math.min((qIdx / 20) * 100, 100);
+    const pct = Math.min((qIdx / 10) * 100, 100);
     document.getElementById("progress-fill").style.width = pct + "%";
-    document.getElementById("progress-label").textContent = qIdx > 20 ? qIdx + "/20 (100%)" : qIdx + "/20";
+    document.getElementById("progress-label").textContent = qIdx > 10 ? qIdx + "/10 (100%)" : qIdx + "/10";
     hideMicError();
     renderInterviewPhotos();
 
@@ -222,7 +222,7 @@ export async function submitAnswer() {
   cs.answers.push(ans);
   saveState();
 
-  if (cs.answers.length >= 20 && !bonusMode) {
+  if (cs.answers.length >= 10 && !bonusMode) {
     cs.complete = true;
     saveState();
     showChapterComplete();
@@ -331,7 +331,7 @@ export function skipQuestion() {
   cs.answers.push("—");
   saveState();
 
-  if (cs.answers.length >= 20 && !bonusMode) {
+  if (cs.answers.length >= 10 && !bonusMode) {
     cs.complete = true;
     saveState();
     showChapterComplete();
