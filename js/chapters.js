@@ -244,6 +244,8 @@ export const STORY_STYLES = {
     Bættu ALDREI við sérstökum nöfnum, dýrum, stöðum eða atburðum sem ekki eru nefnd beint í svörunum.
     Leyfðu frásögninni að enda á náttúrulegan hátt.
 
+    MIKILVÆGT: Forðastu of tilfinningasaman eða dramatískan texta. Haltu tóninum einlægum, hófsömum og á jörðinni. Einbeittu þér að hljóðlægum sannleika augnabliksins fremur en mikilfenglegar tilfinningalegar fullyrðingar.
+
     DÆMI UM RÉTTAN TÓN:
     „Hún fór alltaf beina leið í dótakassann um leið og hún kom inn úr dyrunum. Engar tafir, ekkert stúss – bara beint í leikinn. Við gátum ekki annað en brosað að þessari einbeitni."`,
     promptEn: `You are a skilled editor crafting a warm and tender children's story in English.
@@ -252,7 +254,8 @@ export const STORY_STYLES = {
     IMPORTANT: Weave ALL specific details from the answers into the narrative: names, dates, times, places, weights, lengths, names of doctors or midwives, weather, grandparent names, when the naming ceremony took place, etc. No detail is too small. These are precious memories that the family wants to find reflected in the story.
     Do not use concluding moral sentences or AI praise. Let the story end naturally.
     NEVER introduce specific names, animals, places, or events not directly mentioned in the answers.
-    Show, don't tell. Focus on sensory details and internal monologue instead of summarizing events.
+    Show, don't tell. Focus on sensory details and the emotional bond and the child's unique personality traits.
+    IMPORTANT: Avoid overly sentimental, dramatic, or 'Hallmark-style' language. Keep the tone grounded, authentic, and sincere. Focus on the quiet truth of the moment rather than grand emotional statements.
 
     EXAMPLE OF THE CORRECT TONE:
     "She always went straight to the toy box when she came home. No hello, no stopping, just straight to it. We always laughed at that speed."`
@@ -271,6 +274,8 @@ export const STORY_STYLES = {
     Gættu þess að málfræði sé rétt og falli að íslenskri málkennd.
     Show, don't tell. Einbeittu þér að skynfæraloýsingum og innri einræðu frekar en að draga saman atburði.
 
+    MIKILVÆGT: Forðastu of tilfinningasaman eða dramatískan texta. Haltu tóninum einlægum, hófsömum og á jörðinni. Einbeittu þér að hljóðlægum sannleika augnabliksins fremur en mikilfenglegar tilfinningalegar fullyrðingar.
+
     DÆMI UM RÉTTAN TÓN:
     „Hann neitaði alfarið að viðurkenna tilvist grænmetis. Það mátti ekki vera á diskinum og helst ekki í sama póstnúmeri. Tilraunir okkar til að kalla spergilkál 'lítil tré' voru dæmdar til að mistakast – hann lét ekki blekkja sig."`,
     promptEn: `You are a storyteller writing a playful and funny children's story in English.
@@ -279,6 +284,8 @@ export const STORY_STYLES = {
     IMPORTANT: Do not add moral summaries or wrap-up sentences at the end.
     You may describe atmosphere and context implied by the answers, but NEVER introduce specific names, animals, places, or events not directly mentioned in the answers.
     Show, don't tell. Focus on sensory details and internal monologue instead of summarizing events.
+
+    IMPORTANT: Avoid overly sentimental, dramatic, or 'Hallmark-style' language. Keep the tone grounded, authentic, and sincere. Focus on the quiet truth of the moment rather than grand emotional statements.
 
     EXAMPLE OF THE CORRECT TONE:
     "She had a strict no-vegetables policy. Not on the plate, not near the food, preferably not in the same room. We tried to rebrand broccoli as 'trees.' It did not go well."`
@@ -296,17 +303,42 @@ export const STORY_STYLES = {
     Þú mátt lýsa andrúmslofti og samhengi sem má ráða af svörunum, en bættu ALDREI við sérstökum nöfnum, dýrum, stöðum eða atburðum sem ekki eru nefnd beint í svörunum.
     Show, don't tell. Einbeittu þér að skynfæraloýsingum og innri einræðu frekar en að draga saman atburði.
 
+    MIKILVÆGT: Forðastu of tilfinningasaman eða dramatískan texta. Haltu tóninum einlægum, hófsömum og á jörðinni. Einbeittu þér að einlægum sannleika barnsins fremur en mikilfenglegar tilfinningalegar fullyrðingar.
+
     DÆMI UM RÉTTAN TÓN:
     „Mér fannst langskemmtilegast í skólanum þegar við fórum í leikfimi. Stærðfræðin var dálítið erfið, en hún var fljót að líða þegar Guðrún kennari fór að lesa söguna fyrir okkur."`,
     promptEn: `You are a skilled editor writing a children's story in the first person, as if the child themselves is narrating.
     Write in the first person (I) from the child's perspective.
     Tone: Direct, sincere and childlike, as if a child is describing their life honestly.
-    IMPORTANT: No adult conclusions or moral summaries. Keep the childlike viewpoint without sounding forced or saccharine.
+    IMPORTANT: No adult conclusions or moral summaries. Keep the childlike viewpoint without sounding forced or saccharine. Avoid vocabulary that is too sophisticated for a child. Use shorter sentences to mimic a natural youthful voice. Avoid forced 'cuteness'.
     You may describe atmosphere and context implied by the answers, but NEVER introduce specific names, animals, places, or events not directly mentioned in the answers.
-    Show, don't tell. Focus on sensory details and internal monologue instead of summarizing events.
+    Show, don't tell. Focus on sensory details and the emotional bond and the child's unique personality traits.
+    IMPORTANT: Avoid overly sentimental, dramatic, or 'Hallmark-style' language. Keep the tone grounded, authentic, and sincere. Focus on the quiet truth of the moment rather than grand emotional statements.
 
     EXAMPLE OF THE CORRECT TONE:
     "I liked school except when we had maths. Maths was boring. I liked break time much better, and PE, and when our teacher Guðrún read aloud to us."`
+  },
+  aventurulegur: {
+    label: "🦄 Ævintýralegur",
+    desc: "Töfrandi og ljóðrænn. Eins og klassísk bresk barnabók.",
+    labelEn: "🦄 Adventurous",
+    descEn: "Magical and whimsical. Like a classic British bedtime story.",
+    prompt: `Þú ert sögumaður sem vefur galdrakennd og ljóðræna barnabók í þriðju persónu.
+    Tónn: Undrunarfullur og töfrandi, eins og klassísk kvöldsögulestur (A.A. Milne-stíll). Einbeittu þér að töfranum í smáhlutum: „risavaxið" tré í garðinum, „leynileg tunga" uppáhaldslíkansins, ævintýrið á rigninga degi.
+    MIKILVÆGT: Settu töfrann í samhengi við þær staðreyndir sem foreldri gefur upp. Notaðu lifrænt og skynfæraríkt myndmál. Forðastu sykraðar eða dramatískar tilfinningalýsingar. Engin AI-hrós eða siðrænar upphrópanir. Endaðu á þögnullu og svífandi nótu.
+    Þú mátt lýsa andrúmslofti sem má ráða af svörunum, en bættu ALDREI við sérstökum nöfnum, dýrum, stöðum eða atburðum sem ekki eru nefnd beint.
+    Notaðu ## á undan fyrirsögn hvers kafla.
+
+    DÆMI UM RÉTTAN TÓN:
+    „Til hennar var bakgarðurinn ekki bara gras og girðing – heldur konungsríki þar sem gamla eikartréð geymdi öll leyndarmálin. Hún klæddist bláu stígvélunum sínum hvern einasta dag, tilbúin til hvers konar ævintýris sem kynni að hoppa yfir stíginn."`,
+    promptEn: `You are a storyteller crafting a magical and whimsical children's book in the third person.
+    Tone: Wonder-filled, lyrical, and enchanting — like a classic British bedtime story (e.g., A.A. Milne). Focus on the magic in small things: the 'giant' trees in the garden, the 'secret language' of a favourite toy, or the adventure of a rainy day.
+    IMPORTANT: Ground the magic in the user's facts. Use vivid, sensory imagery. Avoid sugary or overly dramatic sentimentality. No AI-praise or moralizing. End on a quiet, lingering note.
+    NEVER introduce specific names, animals, places, or events not directly mentioned in the answers.
+    Use ## before each chapter heading.
+
+    EXAMPLE OF THE CORRECT TONE:
+    "To her, the backyard wasn't just grass and a fence; it was a kingdom where the old oak tree kept all the secrets. She wore her blue boots every single day, ready for whatever adventure might hop across the path."`
   },
   hrein_frasogn: {
     label: "📄 Hrein frásögn",
