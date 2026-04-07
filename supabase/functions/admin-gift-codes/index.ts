@@ -30,25 +30,29 @@ Deno.serve(async (req: Request) => {
     return new Response("Unauthorized", { status: 401, headers: CORS });
   }
 
-  const saganSb   = makeSb(Deno.env.get("SUPABASE_URL")!, Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!);
-  const barnaSb   = makeSb(Deno.env.get("BARNASAGAN_SUPABASE_URL")!, Deno.env.get("BARNASAGAN_SERVICE_ROLE_KEY")!);
+  const saganSb = makeSb(Deno.env.get("SUPABASE_URL")!, Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!);
+  const barnaSb = makeSb(Deno.env.get("BARNASAGAN_SUPABASE_URL")!, Deno.env.get("BARNASAGAN_SERVICE_ROLE_KEY")!);
 
-  // POST — create a new code
-  if (req.method === "POST") {
-    const { code, note, site } = await req.json();
-    if (!code) return new Response(JSON.stringify({ error: "No code" }), { status: 400, headers: CORS });
-    const upper = code.toUpperCase().trim();
-    const row = { code: upper, used: false, note: note || null };
+  // Parse body if present
+  let body: { code?: string; note?: string; site?: string } | null = null;
+  try {
+    const text = await req.text();
+    if (text && text.trim()) body = JSON.parse(text);
+  } catch { /* no body */ }
 
-    const targets = site === "sagan" ? [saganSb] : site === "barna" ? [barnaSb] : [saganSb, barnaSb];
+  // Create a new code (body has a code field)
+  if (body?.code) {
+    const upper = body.code.toUpperCase().trim();
+    const row = { code: upper, used: false, note: body.note || null };
+    const targets = body.site === "sagan" ? [saganSb] : body.site === "barna" ? [barnaSb] : [saganSb, barnaSb];
     for (const sb of targets) {
       const { error } = await sb.from("gift_codes").insert(row);
-      if (error) return new Response(JSON.stringify({ error: error.message }), { status: 500, headers: CORS });
+      if (error) return new Response(JSON.stringify({ error: error.message }), { status: 500, headers: { ...CORS, "Content-Type": "application/json" } });
     }
     return new Response(JSON.stringify({ success: true, code: upper }), { headers: { ...CORS, "Content-Type": "application/json" } });
   }
 
-  // GET — list all codes from both sites
+  // List all codes from both sites
   const [saganRes, barnaRes] = await Promise.all([
     saganSb.from("gift_codes").select("id, code, used, used_by, used_at, note, created_at").order("created_at", { ascending: false }),
     barnaSb.from("gift_codes").select("id, code, used, used_by, used_at, note, created_at").order("created_at", { ascending: false }),
