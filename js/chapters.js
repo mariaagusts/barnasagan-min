@@ -93,7 +93,7 @@ export const CHAPTERS = [
     seeds: [
       { text: "Er eitthvað sem hefur verið erfitt fyrir barnið, og hvernig tókst því að komast í gegnum það?", isCore: true },
       { text: "Hvernig bregst barnið við þegar eitthvað gengur ekki upp?", isCore: false },
-      { text: "Í hvaða aðstæðum hefur barnið vaxið mest, eitthvað sem gerðist þar sem þú sást það þroskast?", isCore: true }
+      { text: "Manst þú eftir augnabliki þar sem barnið sýndi mikinn þroska eða kom þér á óvart með nýrri hlið á sjálfu sér?", isCore: true }
     ]
   },
   {
