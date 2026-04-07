@@ -130,9 +130,9 @@ export const UI = {
       { q: "Hvernig stillir kerfið sig á fjölskylduna okkar?", a: "Þegar þú skráir þig inn í fyrsta skipti spyr kerfið hvort barnið eigi mömmu og pabba, tvær mæður, tvo feður eða einstæðan foreldri. Þessar upplýsingar eru geymdar og notaðar af kerfinu til að nota réttum foreldraheitum í bókinni. Ef þú vilt breyta stillingunum eftir á, smelltu á 👨‍👩‍👧 takkann efst til hægri á Mitt svæði skjánum." },
       { q: "Þarf ég að svara öllum spurningum í einu?", a: "Alls ekki. Þú getur tekið þér hlé hvenær sem hentar. Framvinda þín vistast sjálfkrafa og þú getur haldið áfram þar sem frá var horfið, hvort sem það er að nokkrum dögum eða vikum liðnum." },
       { q: "Hversu langan tíma tekur þetta?", a: "Það er algjörlega í þínum höndum. Margir svara einni eða tveimur spurningum á dag og klára bókina á nokkrum vikum. Sumir (þeir sem eru mögulega búnir að týna minningarbókinni sem var keypt 🤭) geta keyrt í gegnum svörin á mun styttri tíma en aðrir taka sér lengri tíma. Engin pressa, framvindan vistast sjálfkrafa og bíður þín." },
-      { q: "Get ég skrifað á ensku?", a: "Já. Þú getur skipt um tungumál hvenær sem er. Athugaðu þó að bókin þín verður mótuð á því tungumáli sem er valið þegar þú smellir á 'Forskoða bókina þína'. Kerfið sér þá um að samræma frásögnina á því máli." },
+      { q: "Get ég skrifað á ensku?", a: "Já. Þú getur skipt um tungumál hvenær sem er. Bókin verður á því máli sem er valið þegar þú forskoðar." },
       { q: "Get ég talað í stað þess að skrifa?", a: "Já, notaðu 🎙 hnappinn í vafranum eða 🎤 á lyklaborði síma eða spjaldtölvu. Á iOS þarf að nota 🎤 á lyklaborðinu og hafa íslensku stillta á símanum til að dikta á íslensku." },
-      { q: "Hvað ef ég man ekki nákvæmlegar dagsetningar?", a: "Það gerir ekkert til. Skrifaðu 'um það bil' eða lýstu tímabilinu. Sögunni er ætlað að fanga minningarnar fremur en nákvæma dagatalsskráningu." },
+      { q: "Hvað ef ég man ekki nákvæmlegar dagsetningar?", a: "Það gerir ekkert til. Skrifaðu 'um það bil' eða lýstu tímabilinu. Barnasögunni er ætlað að fanga augnablikin fremur en nákvæma dagatalsskráningu." },
       { q: "Hversu mikið má ég skrifa við hverja spurningu?", a: "Það eru engin efri mörk. Þú getur skrifað eina setningu eða heila síðu. Kerfið dregur saman það mikilvægasta og tryggir að frásögnin sé jafnvæg og falleg." },
       { q: "Get ég bætt við mínum eigin spurningum?", a: "Já! Við hliðina á hverri spurningu er '+' takki. Þar getur þú slegið inn þína eigin spurningu sem birtist strax sem næsta spurning í kaflanum." },
       { q: "Get ég breytt svörunum mínum?", a: "Já. 'Breyta' takki undir hverju svari. Athugaðu að þú þarft að forskoða bókina aftur til að uppfærð svör birtist í textanum." },
@@ -148,18 +148,12 @@ export const UI = {
       { q: "Hvað með titil á bókina?", a: "Þegar sagan þín er tilbúin stingur kerfið upp á fimm skapandi titlum fyrir barnasöguna þína. Þú getur valið þann besta eða skrifað þinn eigin." },
       { q: "Hvar birtast myndirnar mínar?", a: "Myndir sem þú hleður upp í hverjum kafla birtast sem smámyndir í PDF-skjalinu strax á eftir textanum. Aðrar myndir sem þú bætir við safnið þitt birtast í myndasafni aftast í bókinni." },
       { q: "Hvað ef ég vil að sagan sé einföld og bein, án tilfinningasemi?", a: "Veldu 'Hnitmiðaður'. Þá færðu hnitmiðaða barnasögu þar sem raunverulegar minningar og staðreyndir tala sínu máli." },
-      { q: "Get ég breytt textanum eftir að hann er búinn til?", a: "Já, þegar þú velur 'Forskoða bókina þína' býr kerfið til drög. Þú getur síðan farið í 'Breyta texta' og lagfært allt sem þér finnst mega fara betur, bætt við upplýsingum eða breytt orðalagi áður en þú hleður niður lokagerðinni." },
+      { q: "Get ég breytt textanum eftir að hann er búinn til?", a: "Já. Þú getur notað hnappinn 'Breyta texta' í söguglugganum til að fínstilla frásögnina áður en þú hleður henni niður." },
       { q: "Getur textinn innihaldið villur?", a: "Já, kerfið setur saman frásögnina sjálfkrafa og geta þess vegna birst málfræði- eða stafsetningarvillur í textanum. Við mælum eindregið með að fara yfir textann með 'Breyta texta' takkanum áður en þú hleður niður bókinni." },
       { q: "Get ég bætt við myndum í bókina?", a: "Já! Í hverju kaflaviðtali er hægt að hlaða upp myndum sem tengjast þeim kafla, þær birtast þá í bókinni í lok viðkomandi kafla. Þú getur einnig bætt við almennum myndum í sögugluggunum, sem birtast aftast í bókinni." },
 
       { heading: "Tækni og ráð" },
-      { q: "Get ég bætt Barnasögu minni á heimaskjá símans eins og app?", a: `Já! Þú getur vistað vefsíðuna á heimaskjáinn þinn og notað hana eins og app, án þess að þurfa að hlaða niður neinu.<br><br>
-    <strong>Á iPhone/iPad (Safari):</strong><br>
-    1. Ýttu á kassann með örinni sem bendir upp — Deila hnappurinn — í miðjunni neðst.<br>
-    2. Skrunaðu niður í listanum og veldu „Bæta við heimaskjá" (Add to Home Screen).<br><br>
-    <strong>Á Android (Chrome):</strong><br>
-    Opnaðu síðuna í Chrome, smelltu á þrípunkta valmyndina (⋮) efst og veldu „Bæta við heimaskjá" eða „Setja upp app".<br><br>
-    Vefsíðan opnast þá beint án vafrastikunnar og lítur út eins og alvöru app.` }
+      { q: "Get ég bætt Barnasögu minni á heimaskjá símans eins og app?", a: "Já! iPhone: Safari → Deila → Bæta við heimaskjá. Android: Chrome → ⋮ → Bæta við heimaskjá." }
     ],
     aboutTitle: "Um",
     faqTitle: "Spurningar",
