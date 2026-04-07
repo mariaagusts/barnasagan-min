@@ -223,7 +223,8 @@ MIKILVÆGT:
 - Engin hrós, ekkert væmið mál
 - Gættu þess að ná náttúrulegri íslenskri málkennd. Forðastu 'translationese' og beinar enskar setningabyggingar. Textinn á að hljóma eins og hann hafi verið skrifaður upprunalega á íslensku.
 - Fjölbreytileiki: Notaðu fjölbreytta setningalengd og forðastu að of margar setningar byrji á „Ég" eða nafni barnsins, jafnvel þótt skrifað sé í þriðju persónu. Það gerir textann lifandi.
-- Málkennd yfir nákvæmni: Ef enska dæmið notar myndmál eða orðatiltæki sem virka illa á íslensku, finndu sambærilega íslenska hliðstæðu sem fellur að málkennd okkar í stað þess að þýða orðin beint.${barnidSegirRule}
+- Málkennd yfir nákvæmni: Ef enska dæmið notar myndmál eða orðatiltæki sem virka illa á íslensku, finndu sambærilega íslenska hliðstæðu sem fellur að málkennd okkar í stað þess að þýða orðin beint.
+- STRANGT BANN: Ekki bæta við lyktarlýsingum eða öðrum skynrænum smáatriðum sem notandinn hefur ekki nefnt. Einbeittu þér að sjónrænum staðreyndum og beinum athöfnum.${barnidSegirRule}
 
 Enska textinn:
 ${englishStory}`;
@@ -246,7 +247,8 @@ Lestu yfir eftirfarandi texta og skilaðu hreinsuðri útgáfu þar sem:
 - Gættu þess að ná náttúrulegri íslenskri málkennd. Forðastu 'translationese' og beinar enskar setningabyggingar. Textinn á að hljóma eins og hann hafi verið skrifaður upprunalega á íslensku.
 - Miskunnarlaus hreinsun: Vertu miskunnarlaus við að fjarlægja orðalag sem hljómar eins og þýðing. Ef orðatiltæki eða sagnir eru notaðar í rangri eða klunnalegri merkingu (t.d. „hnikka" í stað „kinka kolli"), skaltu leiðrétta það samkvæmt vandaðri íslenskri rithefð.
 - Flæði og taktur: Gættu þess að textinn verði ekki stirður eða of hátíðlegur. Markmiðið er lifandi og blæbrigðaríkt mál sem rennur vel.
-- Samræmi við stíl: Leiðréttingarnar verða að virða valinn ritstíl. Haltu „Hreinni frásögn" einfaldri en „Ljóðrænum" eða „Ævintýralegum" ríkum af myndmáli.
+- Samræmi við stíl: Leiðréttingarnar verða að virða valinn ritstíl. Haltu „Hnitmiðaðri" frásögn einfaldri en „Persónulegum" eða „Ævintýralegum" stíl.
+- STRANGT BANN: Ef þýðingin hefur bætt við lyktarlýsingum eða öðrum skynrænum smáatriðum sem notandinn nefndi ekki, fjarlægðu þær.
 Skilaðu EINGÖNGU leiðréttum texta, engar útskýringar.`;
     updateLoadingStep(3);
     S.storyText = await callGemini(proofPrompt, S.storyText, true);

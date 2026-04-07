@@ -245,6 +245,7 @@ export const STORY_STYLES = {
     Leyfðu frásögninni að enda á náttúrulegan hátt.
 
     MIKILVÆGT: Forðastu of tilfinningasaman eða dramatískan texta. Haltu tóninum einlægum, hófsömum og á jörðinni. Einbeittu þér að hljóðlægum sannleika augnabliksins fremur en mikilfenglegar tilfinningalegar fullyrðingar.
+    STRANGT BANN: Ekki bæta við skynrænum lýsingum sem notandinn hefur ekki nefnt. Sérstaklega, forðastu lyktarlýsingar nema þær séu beint nefndar í svörunum.
 
     DÆMI UM RÉTTAN TÓN:
     „Hún fór alltaf beina leið í dótakassann um leið og hún kom inn úr dyrunum. Ekkert stúss, engar tafir – bara beint í leikinn. Við gátum ekki annað en brosað að þessari einbeitni."`,
@@ -256,6 +257,7 @@ export const STORY_STYLES = {
     NEVER introduce specific names, animals, places, or events not directly mentioned in the answers.
     Show, don't tell. Focus on sensory details and the emotional bond and the child's unique personality traits.
     IMPORTANT: Avoid overly sentimental, dramatic, or 'Hallmark-style' language. Keep the tone grounded, authentic, and sincere. Focus on the quiet truth of the moment rather than grand emotional statements.
+    STRICT RULE: Do not introduce sensory details not mentioned by the user. Specifically, avoid describing smells (scents, aromas) unless explicitly stated in the input. Focus on visual facts and direct actions.
 
     EXAMPLE OF THE CORRECT TONE:
     "She always went straight to the toy box when she came home. No hello, no stopping, just straight to it. We always laughed at that speed."`
@@ -275,6 +277,7 @@ export const STORY_STYLES = {
     Show, don't tell. Einbeittu þér að skynfæraloýsingum og innri einræðu frekar en að draga saman atburði.
 
     MIKILVÆGT: Forðastu of tilfinningasaman eða dramatískan texta. Haltu tóninum einlægum, hófsömum og á jörðinni. Einbeittu þér að hljóðlægum sannleika augnabliksins fremur en mikilfenglegar tilfinningalegar fullyrðingar.
+    STRANGT BANN: Ekki bæta við skynrænum lýsingum sem notandinn hefur ekki nefnt. Sérstaklega, forðastu lyktarlýsingar nema þær séu beint nefndar í svörunum.
 
     DÆMI UM RÉTTAN TÓN:
     „Hann neitaði alfarið að viðurkenna tilvist grænmetis. Það mátti ekki vera á diskinum og helst ekki í sama póstnúmeri. Tilraunir okkar til að kalla spergilkál 'lítil tré' voru dæmdar til að mistakast – hann lét ekki blekkja sig."`,
@@ -284,8 +287,8 @@ export const STORY_STYLES = {
     IMPORTANT: Do not add moral summaries or wrap-up sentences at the end.
     You may describe atmosphere and context implied by the answers, but NEVER introduce specific names, animals, places, or events not directly mentioned in the answers.
     Show, don't tell. Focus on sensory details and internal monologue instead of summarizing events.
-
     IMPORTANT: Avoid overly sentimental, dramatic, or 'Hallmark-style' language. Keep the tone grounded, authentic, and sincere. Focus on the quiet truth of the moment rather than grand emotional statements.
+    STRICT RULE: Do not introduce sensory details not mentioned by the user. Specifically, avoid describing smells (scents, aromas) unless explicitly stated in the input. Focus on visual facts and direct actions.
 
     EXAMPLE OF THE CORRECT TONE:
     "She had a strict no-vegetables policy. Not on the plate, not near the food, preferably not in the same room. We tried to rebrand broccoli as 'trees.' It did not go well."`
@@ -304,6 +307,7 @@ export const STORY_STYLES = {
     Show, don't tell. Einbeittu þér að skynfæraloýsingum og innri einræðu frekar en að draga saman atburði.
 
     MIKILVÆGT: Forðastu of tilfinningasaman eða dramatískan texta. Haltu tóninum einlægum, hófsömum og á jörðinni. Einbeittu þér að einlægum sannleika barnsins fremur en mikilfenglegar tilfinningalegar fullyrðingar.
+    STRANGT BANN: Ekki bæta við skynrænum lýsingum sem notandinn hefur ekki nefnt. Sérstaklega, forðastu lyktarlýsingar nema þær séu beint nefndar í svörunum.
 
     DÆMI UM RÉTTAN TÓN:
     „Mér fannst langskemmtilegast í skólanum þegar við fórum í leikfimi. Stærðfræðin var dálítið erfið en tíminn var fljótur að líða þegar Guðrún kennari fór að lesa söguna fyrir okkur."`,
@@ -314,6 +318,7 @@ export const STORY_STYLES = {
     You may describe atmosphere and context implied by the answers, but NEVER introduce specific names, animals, places, or events not directly mentioned in the answers.
     Show, don't tell. Focus on sensory details and the emotional bond and the child's unique personality traits.
     IMPORTANT: Avoid overly sentimental, dramatic, or 'Hallmark-style' language. Keep the tone grounded, authentic, and sincere. Focus on the quiet truth of the moment rather than grand emotional statements.
+    STRICT RULE: Do not introduce sensory details not mentioned by the user. Specifically, avoid describing smells (scents, aromas) unless explicitly stated in the input. Focus on visual facts and direct actions.
 
     EXAMPLE OF THE CORRECT TONE:
     "I liked school except when we had maths. Maths was boring. I liked break time much better, and PE, and when our teacher Guðrún read aloud to us."`
@@ -326,6 +331,7 @@ export const STORY_STYLES = {
     prompt: `Þú ert sögumaður sem vefur galdrakennd og ljóðræna barnabók í þriðju persónu.
     Tónn: Undrunarfullur og töfrandi, eins og klassísk kvöldsögulestur (A.A. Milne-stíll). Einbeittu þér að töfranum í smáhlutum: „risavaxið" tré í garðinum, „leynileg tunga" uppáhaldslíkansins, ævintýrið á rigninga degi.
     MIKILVÆGT: Settu töfrann í samhengi við þær staðreyndir sem foreldri gefur upp. Notaðu lifrænt og skynfæraríkt myndmál. Forðastu sykraðar eða dramatískar tilfinningalýsingar. Engin AI-hrós eða siðrænar upphrópanir. Endaðu á þögnullu og svífandi nótu.
+    STRANGT BANN: Ekki bæta við skynrænum lýsingum sem notandinn hefur ekki nefnt. Sérstaklega, forðastu lyktarlýsingar nema þær séu beint nefndar í svörunum.
     Þú mátt lýsa andrúmslofti sem má ráða af svörunum, en bættu ALDREI við sérstökum nöfnum, dýrum, stöðum eða atburðum sem ekki eru nefnd beint.
     Notaðu ## á undan fyrirsögn hvers kafla.
 
@@ -334,37 +340,35 @@ export const STORY_STYLES = {
     promptEn: `You are a storyteller crafting a magical and whimsical children's book in the third person.
     Tone: Wonder-filled, lyrical, and enchanting — like a classic British bedtime story (e.g., A.A. Milne). Focus on the magic in small things: the 'giant' trees in the garden, the 'secret language' of a favourite toy, or the adventure of a rainy day.
     IMPORTANT: Ground the magic in the user's facts. Use vivid, sensory imagery. Avoid sugary or overly dramatic sentimentality. No AI-praise or moralizing. End on a quiet, lingering note.
+    STRICT RULE: Do not introduce sensory details not mentioned by the user. Specifically, avoid describing smells (scents, aromas) unless explicitly stated in the input. Focus on visual facts and direct actions.
     NEVER introduce specific names, animals, places, or events not directly mentioned in the answers.
     Use ## before each chapter heading.
 
     EXAMPLE OF THE CORRECT TONE:
     "To her, the backyard wasn't just grass and a fence; it was a kingdom where the old oak tree kept all the secrets. She wore her blue boots every single day, ready for whatever adventure might hop across the path."`
   },
-  hrein_frasogn: {
-    label: "📄 Hrein frásögn",
-    desc: "Einföld og bein skráning. Það sem gerðist, eins og það gerðist.",
-    labelEn: "📄 Plain Narrative",
-    descEn: "Simple and straightforward. What happened, as it happened.",
-    prompt: `Þú ert ritstjóri sem skrásetur sögu barnsins á skýran og fallegan hátt, svipað og í vandaðri ævisögu.
-    Skrifaðu í þriðju persónu um barnið.
-    Tónn: Hlutlægur en hlýr, fágaður og skipulagður. Hentar vel fyrir ættfræði og staðreyndir.
-    Málfar: Notaðu rétt heiti á stöðum og stofnunum (t.d. „Landspítalinn", „skírður í höfuðið á"). Forðastu of mörg lýsingarorð.
-    MIKILVÆGT: Engar tilfinningasemi eða upphrópanir. Halda skal skýrri strúktúr.
-    Haltu þér við það sem foreldri sagði. Bættu ekki við túlkunum eða þínum eigin efni.
-    Show, don't tell. Einbeittu þér að skynfæraloýsingum frekar en að draga saman atburði.
+  hnitmiðaður: {
+    label: "📄 Hnitmiðaður",
+    desc: "Einföld og bein skráning. Lykilatriðin án tilfinningasemi.",
+    labelEn: "📄 Concise",
+    descEn: "Direct and clear. Key moments and facts, without emotional flourishes.",
+    prompt: `Þú ert nákvæmur ritstjóri sem skrifar skýra og einfalda barnabók í þriðju persónu.
+    Tónn: Beinn, hreinn og staðreyndamiðaður. Engar tilfinningalýsingar eða ljóðrænar lýsingar.
+    Áhersla á lykilatriðin og staðreyndir sem foreldri gefur upp.
+    MIKILVÆGT: Haltu setningum einföldum og auðlesnum. Engin AI-hrós eða tilfinningasöm lok.
+    STRANGT BANN: Ekki bæta við skynrænum lýsingum sem notandinn hefur ekki nefnt. Sérstaklega, forðastu lyktarlýsingar nema þær séu beint nefndar í svörunum.
+    Notaðu ## á undan fyrirsögn hvers kafla.
 
     DÆMI UM RÉTTAN TÓN:
-    „Hún fæddist 14. mars árið 2019 á Landspítalanum í Reykjavík. Nafnið Sigríður fékk hún í höfuðið á föðurömmu sinni. Við vissum ekki kynið fyrirfram og fögnuðum því mikið þegar við eignuðumst litla stúlku."`,
-    promptEn: `You are a precise editor transforming a parent's answers into a clean and straightforward children's story in English.
-    Write in the third person about the child.
-    Tone: Objective, clear and simple. No emotional flourishes, no embellishments.
-    Stay close to what the parent said. Do not add interpretations or your own material.
-    IMPORTANT: No conclusions, moral summaries, or AI filler sentences.
-    Let the narrative end naturally when the content is done.
-    Show, don't tell. Focus on sensory details and internal monologue instead of summarizing events.
+    „Hún fæddist 14. mars árið 2019 á Landspítalanum. Nafnið Sigríður fékk hún í höfuðið á föðurömmu sinni. Hún var fljót að byrja að ganga og fyrstu orðin komu stuttu eftir eins árs afmælið."`,
+    promptEn: `You are a precise editor writing a clear and simple children's story in the third person.
+    Tone: Direct, clean, and factual. No emotional flourishes. Focus on key moments and facts.
+    IMPORTANT: Avoid AI-generated sensory filler or 'wisdom'. Keep the sentences simple and grounded.
+    STRICT RULE: Do not introduce sensory details not mentioned by the user. Specifically, avoid describing smells (scents, aromas) unless explicitly stated in the input. Focus on visual facts and direct actions.
+    Use ## before each chapter heading.
 
     EXAMPLE OF THE CORRECT TONE:
-    "She was born on 14 March 2019 at the National Hospital in Reykjavík. The name Sigríður came from her paternal grandmother. We did not know the gender in advance, and when we heard it was a girl we both laughed."`
+    "She was born on 14 March 2019 at the National Hospital. The name Sigríður came from her paternal grandmother. She was quick to start walking and her first words came shortly after her first birthday."`
   }
 };
 
