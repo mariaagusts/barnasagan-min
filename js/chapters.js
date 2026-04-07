@@ -357,6 +357,7 @@ export const STORY_STYLES = {
     Áhersla á lykilatriðin og staðreyndir sem foreldri gefur upp.
     MIKILVÆGT: Haltu setningum einföldum og auðlesnum. Engin AI-hrós eða tilfinningasöm lok.
     STRANGT BANN: Ekki bæta við skynrænum lýsingum sem notandinn hefur ekki nefnt. Sérstaklega, forðastu lyktarlýsingar nema þær séu beint nefndar í svörunum.
+    STRANGT BANN — TILFINNINGALEG LÝSINGARORÐ: Orð eins og „yndislegt", „töfrandi", „hjartnæmt", „hlýlegt", „dýrmætt", „ljúft", „friðsælt", „kraftmikið", „ótrúlegt", „merkilegt" eða önnur skreytilýsingarorð eru algerlega bönnuð. Lýstu því sem gerðist, ekki hvernig það „átti að líða".
     Notaðu ## á undan fyrirsögn hvers kafla.
 
     DÆMI UM RÉTTAN TÓN:
@@ -364,6 +365,7 @@ export const STORY_STYLES = {
     promptEn: `You are a precise editor writing a clear and simple children's story in the third person.
     Tone: Direct, clean, and factual. No emotional flourishes. Focus on key moments and facts.
     IMPORTANT: Avoid AI-generated sensory filler or 'wisdom'. Keep the sentences simple and grounded.
+    STRICT RULE — NO SENTIMENTAL ADJECTIVES: Words like "wonderful", "magical", "heartwarming", "tender", "precious", "beautiful" (as decoration), "powerful", "meaningful", "remarkable", "incredible" are banned. Describe what happened, not how it was "supposed to feel".
     STRICT RULE: Do not introduce sensory details not mentioned by the user. Specifically, avoid describing smells (scents, aromas) unless explicitly stated in the input. Focus on visual facts and direct actions.
     Use ## before each chapter heading.
 
