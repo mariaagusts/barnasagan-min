@@ -9,9 +9,9 @@ export const CHAPTERS = [
     desc: "Fæðingin, nafnið og fyrstu klukkustundirnar",
     seeds: [
       { text: "Hvað heitir barnið þitt og hvenær og hvar fæddist það?", isCore: true },
-      { text: "Hver var fæðingarþyngd og fæðingarlengd barnsins þíns við fæðingu?", isCore: false },
+      { text: "Hversu þungt og langt var barnið við fæðingu?", isCore: false },
       { text: "Gekk barninu vel að halda þyngd eftir fæðinguna? Var það duglegt að drekka mjólk?", isCore: false },
-      { text: "Hvernig var dagurinn sem barnið kom í heiminn, hvernig leið ykkur, foreldrunum?", isCore: true },
+      { text: "Hvernig var dagurinn sem barnið kom í heiminn, hvernig leið ykkur sem tókuð á móti því?", isCore: true },
       { text: "Hvernig fékk það nafnið sem það fékk? Er saga á bak við það?", isCore: true }
     ]
   },
@@ -30,7 +30,7 @@ export const CHAPTERS = [
     desc: "Hvað gerir þetta barn að einstakling",
     seeds: [
       { text: "Hvernig myndir þú lýsa persónu barnsins með þremur orðum?", isCore: true },
-      { text: "Hvað er það sem gerir barnið þitt að einstakling, eitthvað sem lýsir þessu barni vel?", isCore: true }
+      { text: "Hvað er það sem gerir barnið þitt að einstaklingi, eitthvað sem lýsir því vel?", isCore: true }
     ]
   },
   {
@@ -55,7 +55,7 @@ export const CHAPTERS = [
     id: 5, emoji: "👫", title: "Vinir og félagslíf",
     desc: "Bestu vinir og leikfélagar",
     seeds: [
-      { text: "Á barnið besta vin? Segðu frá honum/henni.", isCore: true },
+      { text: "Á barnið besta vin eða vinkonu? Segðu mér frá þeim.", isCore: true },
       { text: "Hvernig er félagslíf barnsins, finnst því betra að vera í hópi eða einsamalt?", isCore: false },
       { text: "Er einhver uppáhaldsminnig frá leikjum eða tómstundum með vinum?", isCore: true }
     ]
@@ -73,7 +73,7 @@ export const CHAPTERS = [
     id: 7, emoji: "🏠", title: "Fjölskyldan og heimilið",
     desc: "Heimilið og náinn hringur barnsins",
     seeds: [
-      { text: "Hvernig er barnið í samskiptum við nána fjölskyldu og þá sem standa þér næst?", isCore: false },
+      { text: "Hvernig er barnið í samskiptum við sína nánustu og þá sem standa ykkur næst?", isCore: false },
       { text: "Er einhver hluti af daglegu lífi heimilisins sem barnið elskar sérstaklega?", isCore: true },
       { text: "Hvernig myndi barnið lýsa heimilinu sínu ef þú spyrðir það?", isCore: true }
     ]
@@ -102,14 +102,14 @@ export const CHAPTERS = [
     seeds: [
       { text: "Hver er uppáhalds minning þín með barninu þínu hingað til?", isCore: true },
       { text: "Er einhver dagur sem þú myndir vilja upplifa aftur með barninu?", isCore: false },
-      { text: "Áttu eitthvað augnablik með barninu þínu þar sem þú hugsar, \"þessu mun ég aldrei gleyma\"?", isCore: true }
+      { text: "Áttu eitthvað augnablik með barninu þínu þar sem þú hugsar: „Þessu mun ég aldrei gleyma"?", isCore: true }
     ]
   },
   {
     id: 11, emoji: "🌈", title: "Vonir og framtíðin",
     desc: "Von og óskir fyrir barnið",
     seeds: [
-      { text: "Veistu hvað barnið þitt dreymir um að verða þegar það er orðið stórt? (að svo stöddu!)", isCore: false },
+      { text: "Veistu hvað barnið þitt dreymir um að verða þegar það er orðið stórt (að svo stöddu)?", isCore: false },
       { text: "Hvaða ósk eða von hefur þú sem foreldri fyrir barnið þitt?", isCore: true },
       { text: "Ef barnið þitt gæti lesið þessa bók eftir 20 ár, hvað myndirðu vilja að það vissi?", isCore: true }
     ]
