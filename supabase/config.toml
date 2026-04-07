@@ -1,0 +1,7 @@
+project_id = "barnasagan-min"
+
+[functions.admin-gift-codes]
+verify_jwt = false
+
+[functions.admin-stats]
+verify_jwt = false
