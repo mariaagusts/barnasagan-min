@@ -269,6 +269,71 @@ Skilaðu EINGÖNGU leiðréttum texta, engar útskýringar.`;
   document.getElementById("btn-edit-story").style.display = "inline-block";
   document.getElementById("btn-text-warning").style.display = "inline-flex";
   document.getElementById("floating-warning-btn").style.display = "flex";
+  fetchAndShowTitleSuggestions();
+}
+
+export async function fetchAndShowTitleSuggestions() {
+  if (!S.storyText) return;
+  const btn = document.getElementById("btn-title-suggestions");
+  if (btn) { btn.disabled = true; btn.textContent = "..."; }
+  try {
+    const childName = S.chapters.bookAuthor || "";
+    const titlePrompt = S.lang === "en"
+      ? `You are a professional book editor. Based on the children's story provided, suggest exactly 5 creative and tasteful book titles in Icelandic.
+STRICT RULES:
+- Use the child's name "${childName}" exactly as provided. Never change the gender or spelling.
+- Avoid clichés like "Vegferð", "Tapestry", or "Journey".
+- Provide 5 options: Classic, Whimsical, Modern, Minimalist, and one based on a key detail from the story.
+- Return ONLY the 5 titles, one per line, numbered 1–5. No explanations, no labels.`
+      : `Þú ert faglegur bókaritstjóri. Gefðu nákvæmlega 5 hugmyndir að titlum á íslensku fyrir þessa barnabók.
+STRANGAR REGLUR:
+- Notaðu nafnið „${childName}" nákvæmlega eins og gefið upp. Breyttu aldrei kyni eða stafsetningu.
+- Forðastu klisjur eins og „Vegferð", „Þráðurinn" eða „Ævintýri".
+- Gefðu 5 valkosti: Klassískan, Töfrandi, Nútímalegan, Hnitmiðaðan og einn byggðan á lykilatriði úr sögunni.
+- Skilaðu EINGÖNGU 5 titlum, einn í hverri línu, númeraðir 1–5. Engar útskýringar.`;
+    const resp = await callGemini(titlePrompt, S.storyText.slice(0, 3000), false);
+    const titles = resp.split('\n')
+      .map(l => l.replace(/^\d+[\.\)]\s*/, '').trim())
+      .filter(l => l.length > 2 && l.length < 80)
+      .slice(0, 5);
+    if (titles.length > 0) showTitleModal(titles);
+  } catch(e) {
+    console.warn("Titlatillögur mistókust:", e);
+  } finally {
+    if (btn) {
+      btn.disabled = false;
+      btn.textContent = S.lang === "en" ? "🏷️ Title suggestions" : "🏷️ Fá titlatillögur";
+    }
+  }
+}
+
+export function showTitleModal(suggestions) {
+  document.getElementById("title-modal-overlay")?.remove();
+  const overlay = document.createElement("div");
+  overlay.id = "title-modal-overlay";
+  overlay.className = "style-modal-overlay";
+  const isIS = S.lang !== "en";
+  const current = S.chapters.bookTitle || "";
+  const suggBtns = suggestions.map(t => `
+    <button class="title-sugg-btn" data-title="${esc(t)}" onclick="selectTitleSuggestion(this)"
+      style="display:block;width:100%;text-align:left;padding:10px 14px;margin-bottom:6px;background:var(--cream);border:1px solid var(--border);border-radius:4px;cursor:pointer;font-family:'Fredoka One',cursive;font-size:14px;color:var(--dark);">
+      ${esc(t)}
+    </button>`).join("");
+  overlay.innerHTML = `
+    <div class="style-modal" style="max-width:480px;position:relative;">
+      <button onclick="document.getElementById('title-modal-overlay').remove()" style="position:absolute;top:-8px;right:-8px;background:var(--dark);color:var(--cream);border:none;border-radius:50%;width:28px;height:28px;font-size:16px;cursor:pointer;line-height:1;">✕</button>
+      <h3 style="font-family:'Fredoka One',cursive;font-size:18px;margin-bottom:8px;color:var(--dark);">${isIS ? "Titlatillögur" : "Title suggestions"}</h3>
+      <p style="font-size:13px;color:var(--mid);margin-bottom:14px;">${isIS ? "Smelltu á tillögu eða skrifaðu þinn eigin titil:" : "Click a suggestion or write your own:"}</p>
+      ${suggBtns}
+      <input type="text" id="title-custom-input" value="${esc(current)}"
+        placeholder="${isIS ? "Eða skrifaðu þinn eigin titil..." : "Or write your own title..."}"
+        style="width:100%;padding:10px;border:1px solid var(--border);border-radius:4px;font-size:14px;font-family:'Fredoka One',cursive;box-sizing:border-box;margin-top:8px;color:var(--dark);background:var(--cream);">
+      <button onclick="confirmBookTitle()"
+        style="margin-top:12px;background:var(--dark);color:var(--cream);border:none;padding:10px 0;font-size:12px;font-family:'Nunito',sans-serif;font-weight:700;cursor:pointer;border-radius:3px;width:100%;letter-spacing:0.1em;text-transform:uppercase;">
+        ${isIS ? "Staðfesta titil" : "Confirm title"}
+      </button>
+    </div>`;
+  document.body.appendChild(overlay);
 }
 
 export function renderBookAuthor() {
@@ -320,8 +385,25 @@ export function closeWarningModal() {
   document.getElementById("warning-modal-overlay").style.display = "none";
 }
 
+window.selectTitleSuggestion = function(btn) {
+  document.querySelectorAll('.title-sugg-btn').forEach(b => b.style.background = 'var(--cream)');
+  btn.style.background = 'var(--warm, #fff5e6)';
+  document.getElementById('title-custom-input').value = btn.dataset.title;
+};
+window.confirmBookTitle = function() {
+  const val = document.getElementById('title-custom-input')?.value.trim();
+  if (val) {
+    S.chapters.bookTitle = val;
+    saveState();
+    const el = document.getElementById('book-title-display');
+    if (el) { el.textContent = val; document.getElementById('book-title-wrap').style.display = 'block'; }
+  }
+  document.getElementById('title-modal-overlay')?.remove();
+};
+
 window.showStoryScreen = showStoryScreen;
 window.startStoryWithStyle = startStoryWithStyle;
+window.fetchAndShowTitleSuggestions = fetchAndShowTitleSuggestions;
 window.editBookAuthor = editBookAuthor;
 window.showPrintModal = showPrintModal;
 window.closePrintModal = closePrintModal;

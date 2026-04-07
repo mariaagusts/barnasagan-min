@@ -665,9 +665,16 @@
       </div>
 
       <div style="text-align:center;margin-bottom:32px;"><span class="ornament-sm">✦ ✦ ✦</span></div>
+      <div id="book-title-wrap" style="text-align:center;margin-bottom:8px;display:none;">
+        <span id="book-title-display" style="font-family:'Fredoka One',cursive;font-size:22px;font-weight:700;color:var(--dark);"></span>
+        <button onclick="fetchAndShowTitleSuggestions()" style="background:none;border:none;cursor:pointer;color:var(--mid);font-size:13px;margin-left:6px;" title="Breyta titli">✏️</button>
+      </div>
       <div style="text-align:center;margin-bottom:16px;">
         <span id="book-author-display" style="font-family:'Fredoka One',cursive;font-size:15px;color:var(--orange);"></span>
         <button onclick="editBookAuthor()" style="background:none;border:none;cursor:pointer;color:var(--mid);font-size:13px;margin-left:8px;" title="Breyta nafni">✏️</button>
+      </div>
+      <div style="text-align:center;margin-bottom:20px;">
+        <button id="btn-title-suggestions" onclick="fetchAndShowTitleSuggestions()" style="background:none;border:1px solid var(--border);border-radius:20px;padding:6px 16px;font-size:12px;cursor:pointer;color:var(--orange);font-family:'Nunito',sans-serif;letter-spacing:0.05em;">🏷️ Fá titlatillögur</button>
       </div>
       <div class="story-body" id="story-body" contenteditable="false" spellcheck="true"></div>
       <div style="text-align:center;margin-top:16px;display:flex;align-items:center;justify-content:center;gap:10px;">
