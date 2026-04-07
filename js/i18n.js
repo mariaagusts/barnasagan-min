@@ -148,7 +148,7 @@ export const UI = {
       { q: "Hvað með titil á bókina?", a: "Þegar sagan þín er tilbúin stingur kerfið upp á fimm skapandi titlum fyrir barnasöguna þína. Þú getur valið þann besta eða skrifað þinn eigin." },
       { q: "Hvar birtast myndirnar mínar?", a: "Myndir sem þú hleður upp í hverjum kafla birtast sem smámyndir í PDF-skjalinu strax á eftir textanum. Aðrar myndir sem þú bætir við safnið þitt birtast í myndasafni aftast í bókinni." },
       { q: "Hvað ef ég vil að sagan sé einföld og bein, án tilfinningasemi?", a: "Veldu 'Hnitmiðaður'. Þá færðu hnitmiðaða barnasögu þar sem raunverulegar minningar og staðreyndir tala sínu máli." },
-      { q: "Get ég breytt textanum eftir að hann er búinn til?", a: "Já. Þú getur notað hnappinn 'Breyta texta' í söguglugganum til að fínstilla frásögnina áður en þú hleður henni niður." },
+      { q: "Get ég breytt textanum eftir að hann er búinn til?", a: "Já, þegar þú velur 'Forskoða bókina þína' býr kerfið til drög. Þú getur síðan farið í 'Breyta texta' og lagfært allt sem þér finnst mega fara betur, bætt við upplýsingum eða breytt orðalagi áður en þú hleður niður lokagerðinni." },
       { q: "Getur textinn innihaldið villur?", a: "Já, kerfið setur saman frásögnina sjálfkrafa og geta þess vegna birst málfræði- eða stafsetningarvillur í textanum. Við mælum eindregið með að fara yfir textann með 'Breyta texta' takkanum áður en þú hleður niður bókinni." },
       { q: "Get ég bætt við myndum í bókina?", a: "Já! Í hverju kaflaviðtali er hægt að hlaða upp myndum sem tengjast þeim kafla, þær birtast þá í bókinni í lok viðkomandi kafla. Þú getur einnig bætt við almennum myndum í sögugluggunum, sem birtast aftast í bókinni." },
 
