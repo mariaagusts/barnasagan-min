@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="is">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gjafabréf · Barnasagan mín</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Nunito:wght@300;400;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream: #EAE4D0; --warm: #F0DDC8; --gold: #C4876B; --brown: #A8674E;
+      --dark: #3C2A1E; --mid: #7A5A48; --border: #D8C4A8; --text-light: #B89888;
+    }
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--cream);
+      min-height: 100vh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 40px 20px;
+    }
+    .page-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px; color: var(--dark);
+      margin-bottom: 8px; text-align: center;
+    }
+    .page-sub {
+      font-size: 14px; color: var(--mid); font-weight: 400;
+      margin-bottom: 36px; text-align: center; line-height: 1.6; max-width: 420px;
+    }
+    .input-wrap {
+      display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;
+      margin-bottom: 12px;
+    }
+    .code-input {
+      border: 2px solid var(--border); border-radius: 12px;
+      padding: 12px 16px; font-size: 16px; letter-spacing: 2px;
+      width: 230px; outline: none; font-family: inherit;
+      color: var(--dark); background: #fff; text-transform: uppercase;
+      transition: border-color 0.2s;
+    }
+    .code-input:focus { border-color: var(--gold); }
+    .btn-generate {
+      background: var(--gold); color: #fff; border: none;
+      border-radius: 12px; padding: 12px 24px;
+      font-size: 15px; font-weight: 800; cursor: pointer;
+      font-family: 'Nunito', sans-serif; letter-spacing: 0.02em;
+      transition: background 0.2s;
+    }
+    .btn-generate:hover { background: var(--brown); }
+    .msg { font-size: 13px; color: var(--mid); min-height: 18px; text-align: center; margin-bottom: 24px; }
+    .preview-wrap { display: none; flex-direction: column; align-items: center; gap: 16px; }
+    .card {
+      width: 560px; max-width: 100%;
+      background: linear-gradient(135deg, #EAE4D0 0%, #F0DDC8 50%, #F5C8A0 100%);
+      border: 2px solid var(--gold);
+      border-radius: 16px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 44px 48px; text-align: center; position: relative;
+    }
+    .card::before {
+      content: ''; position: absolute; inset: 8px;
+      border: 1px solid rgba(196,135,107,0.35); border-radius: 10px; pointer-events: none;
+    }
+    .card-site { font-family: 'Playfair Display', serif; font-size: 13px; color: var(--brown); letter-spacing: 0.08em; margin-bottom: 10px; }
+    .card-headline { font-family: 'Playfair Display', serif; font-size: 30px; color: var(--dark); margin-bottom: 14px; line-height: 1.2; }
+    .card-sub { font-size: 13px; color: var(--mid); font-weight: 400; line-height: 1.7; margin-bottom: 22px; max-width: 320px; }
+    .card-label { font-size: 10px; color: var(--brown); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 8px; }
+    .card-code {
+      background: #fff; border: 1.5px solid var(--gold); border-radius: 10px;
+      padding: 10px 28px; font-family: monospace; font-size: 22px; font-weight: 700;
+      color: var(--dark); letter-spacing: 0.15em;
+    }
+    .card-redeem { margin-top: 18px; font-size: 11px; color: var(--mid); }
+    .card-footer { margin-top: 20px; font-size: 10px; color: var(--text-light); letter-spacing: 0.08em; }
+    .btn-print {
+      background: var(--dark); color: var(--cream); border: none;
+      border-radius: 12px; padding: 12px 32px;
+      font-size: 15px; font-weight: 800; cursor: pointer;
+      font-family: 'Nunito', sans-serif;
+    }
+    .btn-print:hover { background: var(--brown); }
+    .back-link { margin-top: 12px; font-size: 13px; color: var(--brown); text-decoration: none; opacity: 0.7; }
+    .back-link:hover { opacity: 1; }
+
+    @media print {
+      body { background: #fff; padding: 0; display: block; }
+      .input-wrap, .msg, .btn-print, .back-link, .page-title, .page-sub { display: none !important; }
+      .preview-wrap { display: flex !important; align-items: center; }
+      .card { width: 148mm; padding: 12mm 14mm; border-radius: 4mm; }
+      .card::before { inset: 4mm; border-radius: 2mm; }
+      * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+
+<h1 class="page-title">Gjafabréf · Barnasagan mín</h1>
+<p class="page-sub">Sláðu inn gjafakóðann þinn hér að neðan og við búum til fallegt gjafabréf sem þú getur prentað eða sent áfram.</p>
+
+<div class="input-wrap">
+  <input class="code-input" id="code-input" type="text" placeholder="BARNA-XXXXXXXX"
+    onkeydown="if(event.key==='Enter') generate()"
+    oninput="this.value=this.value.toUpperCase()">
+  <button class="btn-generate" onclick="generate()">Búa til gjafabréf</button>
+</div>
+<p class="msg" id="msg"></p>
+
+<div class="preview-wrap" id="preview">
+  <div class="card" id="gift-card">
+    <div class="card-site">Barnasagan mín</div>
+    <div class="card-headline">Gjafabréf</div>
+    <div class="card-sub">Þessi kóði veitir fullan aðgang að Barnasagan mín — vefsíðuna sem hjálpar þér að varðveita barnæskusögur barnsins þíns í fallega bók.</div>
+    <div class="card-label">Gjafakóði</div>
+    <div class="card-code" id="card-code-text"></div>
+    <div class="card-redeem">Fara á barnasagan.is · smella á „Ertu með gjafakóða?"</div>
+    <div class="card-footer">barnasagan.is</div>
+  </div>
+  <button class="btn-print" onclick="window.print()">🖨 Prenta gjafabréf</button>
+  <a class="back-link" href="index.html">← Til baka</a>
+</div>
+
+<script>
+  function generate() {
+    const code = document.getElementById('code-input').value.trim().toUpperCase();
+    const msg = document.getElementById('msg');
+    if (!code) { msg.style.color = '#c62828'; msg.textContent = 'Sláðu inn gjafakóðann þinn.'; return; }
+    if (!/^[A-Z0-9\-]+$/.test(code)) { msg.style.color = '#c62828'; msg.textContent = 'Ógildur kóði.'; return; }
+    document.getElementById('card-code-text').textContent = code;
+    document.getElementById('preview').style.display = 'flex';
+    msg.textContent = '';
+    document.getElementById('preview').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+</script>
+</body>
+</html>
