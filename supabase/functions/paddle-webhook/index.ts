@@ -3,6 +3,7 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 const SINGLE_PRICE_ID      = "pri_01kmy15wqc1dewnyj9wn9rattc";
 const GIFT_SINGLE_PRICE_ID = "pri_01kmyfmm00s0ycnkfhpk3v1wb1";
 const MULTI_PRICE_ID       = "pri_01kns9z3dgxq27twp818yc9pev";
+const UPGRADE_PRICE_ID     = "pri_01knsb4zv6s03vfq4vk7aref6v";
 const GIFT_MULTI_PRICE_ID  = "pri_01knsa2x2m8k4qz65jehajbgy1";
 
 function generateGiftCode(): string {
@@ -90,7 +91,8 @@ Deno.serve(async (req: Request) => {
       (item: { price?: { id?: string } }) => item?.price?.id === GIFT_MULTI_PRICE_ID,
     );
     const isMulti = data?.items?.some(
-      (item: { price?: { id?: string } }) => item?.price?.id === MULTI_PRICE_ID,
+      (item: { price?: { id?: string } }) =>
+        item?.price?.id === MULTI_PRICE_ID || item?.price?.id === UPGRADE_PRICE_ID,
     );
 
     const sb = createClient(
