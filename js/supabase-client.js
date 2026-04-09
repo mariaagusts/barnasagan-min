@@ -37,8 +37,8 @@ function migrateChapterState(cs, chDef) {
   if (cs.coreTexts !== undefined) return;
   const coreSeeds = chDef.seeds.filter(s => s.isCore);
   cs.coreTexts = coreSeeds.map(s => s.text);
-  cs.awaitingFollowUp = cs.awaitingFollowUp ?? false;
   cs.coreAnswered = 0;
+  cs.fuIdx = cs.fuIdx ?? 0;
   for (let i = 0; i < Math.min(cs.questions.length, cs.answers.length); i++) {
     if (cs.coreTexts.includes(cs.questions[i])) cs.coreAnswered++;
   }

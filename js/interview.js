@@ -16,77 +16,71 @@ function esc(s) {
 
 let bonusMode = false;
 
-// ── Sandwich helpers ──────────────────────────
-
-function shouldAskFollowUp(answer) {
-  if (!answer) return false;
-  const trimmed = answer.trim();
-  const skipPhrases = /^(já|nei|veit\s*ekki|kannski|ekkert|—|no|yes|don't\s*know|nothing|i\s*don't\s*know)\.?$/i;
-  if (skipPhrases.test(trimmed)) return false;
-  return trimmed.split(/\s+/).length > 3;
-}
-
 async function advanceQuestion(cs) {
-  const wasFollowUp = cs.awaitingFollowUp;
-  cs.awaitingFollowUp = false;
+  const ch = getChapters().find(c => c.id === S.chapterId);
+  const fuSeeds = ch?.seeds?.filter(s => !s.isCore).map(s => s.text) || [];
 
   const askAI = async () => {
     const text = await Promise.race([
       generateNextQuestion(cs),
       new Promise((_, reject) => setTimeout(() => reject(new Error("Timeout")), 15000))
     ]);
-    // If AI returns a question already in the list, skip to next core instead
     const alreadyAsked = cs.questions.some(q => q.trim().toLowerCase() === text.trim().toLowerCase());
     if (alreadyAsked) {
-      const nextCore = cs.coreTexts[cs.coreAnswered];
-      const ch = getChapters().find(c => c.id === S.chapterId);
+      const fuIdx = cs.fuIdx || 0;
+      if (fuSeeds[fuIdx]) {
+        cs.fuIdx = fuIdx + 1;
+        return fuSeeds[fuIdx];
+      }
       const title = ch?.title || "";
-      return nextCore || (S.lang === "en" ? `Is there anything else you'd like to share about ${title}?` : `Er eitthvað fleira sem þú vilt deila um ${title}?`);
+      return S.lang === "en"
+        ? `Is there anything else you'd like to share about ${title}?`
+        : `Er eitthvað fleira sem þú vilt deila um ${title}?`;
     }
     return text;
   };
 
-  if (wasFollowUp) {
-    // After a follow-up: always go to next isCore (or free-form if all cores done)
-    const nextCoreQ = cs.coreTexts[cs.coreAnswered];
-    if (nextCoreQ) {
-      cs.questions.push(nextCoreQ);
-    } else {
-      cs.questions.push(await askAI());
-    }
-  } else {
-    // After an isCore: increment counter, decide whether to ask follow-up
+  // Core → AI → Core → AI → AI...
+  // After a core answer: AI next. After AI answer: next core (if any), else AI.
+  const lastQ = cs.questions[cs.answers.length - 1];
+  const wasCore = cs.coreTexts.includes(lastQ);
+
+  if (wasCore) {
     cs.coreAnswered++;
-    const lastAns = cs.answers[cs.answers.length - 1];
-    if (shouldAskFollowUp(lastAns)) {
-      cs.questions.push(await askAI());
-      cs.awaitingFollowUp = true;
+    cs.questions.push(await askAI());
+  } else {
+    const nextCore = cs.coreTexts[cs.coreAnswered];
+    if (nextCore) {
+      cs.questions.push(nextCore);
     } else {
-      const nextCoreQ = cs.coreTexts[cs.coreAnswered];
-      if (nextCoreQ) {
-        cs.questions.push(nextCoreQ);
-      } else {
-        cs.questions.push(await askAI());
-      }
+      cs.questions.push(await askAI());
     }
   }
   saveState();
 }
 
 function pushFallbackQuestion(cs) {
-  const fallbackTexts = cs.coreTexts || [];
-  const nextCore = fallbackTexts[cs.coreAnswered];
+  const ch = getChapters().find(c => c.id === S.chapterId);
+  const fuSeeds = ch?.seeds?.filter(s => !s.isCore).map(s => s.text) || [];
+  const lastQ = cs.questions[cs.answers.length - 1];
+  const wasCore = cs.coreTexts.includes(lastQ);
+  if (wasCore) cs.coreAnswered++;
+
+  const nextCore = cs.coreTexts[cs.coreAnswered];
   if (nextCore) {
     cs.questions.push(nextCore);
   } else {
-    const ch = getChapters().find(c => c.id === S.chapterId);
-    const title = ch?.title || "";
-    const generic = S.lang === "en"
-      ? `Is there anything else you'd like to share about ${title}?`
-      : `Er eitthvað fleira sem þú vilt deila um ${title}?`;
-    cs.questions.push(generic);
+    const fuIdx = cs.fuIdx || 0;
+    if (fuSeeds[fuIdx]) {
+      cs.fuIdx = fuIdx + 1;
+      cs.questions.push(fuSeeds[fuIdx]);
+    } else {
+      const title = ch?.title || "";
+      cs.questions.push(S.lang === "en"
+        ? `Is there anything else you'd like to share about ${title}?`
+        : `Er eitthvað fleira sem þú vilt deila um ${title}?`);
+    }
   }
-  cs.awaitingFollowUp = false;
   saveState();
 }
 
@@ -120,21 +114,31 @@ export function renderInterviewQuestion() {
       : `Er eitthvað fleira sem þú vilt deila um ${chTitle}?`;
     const q = cs.questions[qIdx] || fallback;
 
-    // Progress label: core question number or follow-up indicator
+    // Progress label
     const qNumEl = document.getElementById("q-num");
     if (qNumEl) {
-      if (cs.awaitingFollowUp) {
-        qNumEl.textContent = S.lang === "en" ? "Follow-up" : "Fylgispurning";
+      const isCurrentCore = cs.coreTexts?.includes(q);
+      if (isCurrentCore) {
+        const coreNum = cs.coreTexts.indexOf(q) + 1;
+        const coreTotal = cs.coreTexts.length;
+        qNumEl.textContent = S.lang === "en"
+          ? `Core question ${coreNum} of ${coreTotal}`
+          : `Kjarnaspurning ${coreNum} af ${coreTotal}`;
       } else {
-        const coreNum = (cs.coreAnswered || 0) + 1;
-        const coreTotal = cs.coreTexts?.length || 0;
-        if (coreNum > coreTotal) {
-          qNumEl.textContent = S.lang === "en" ? "Follow-up" : "Fylgispurning";
-        } else {
-          qNumEl.textContent = S.lang === "en"
-            ? `Core question ${coreNum} of ${coreTotal}`
-            : `Kjarnaspurning ${coreNum} af ${coreTotal}`;
-        }
+        qNumEl.textContent = S.lang === "en" ? "Follow-up" : "Fylgispurning";
+      }
+    }
+
+    // Nudge if unanswered cores remain and approaching limit
+    const nudgeEl = document.getElementById("core-nudge");
+    if (nudgeEl) {
+      const coresLeft = (cs.coreTexts?.length || 0) - (cs.coreAnswered || 0);
+      const showNudge = coresLeft > 0 && qIdx >= 7;
+      nudgeEl.style.display = showNudge ? "block" : "none";
+      if (showNudge) {
+        nudgeEl.textContent = S.lang === "en"
+          ? `💡 ${coresLeft} core question${coresLeft > 1 ? "s" : ""} still unanswered`
+          : `💡 ${coresLeft} kjarnaspurning${coresLeft > 1 ? "ar" : ""} eftir`;
       }
     }
 
@@ -365,22 +369,17 @@ export function skipQuestion() {
     return;
   }
 
-  // Skip always goes to next core (no follow-up after a skip)
-  const wasFollowUp = cs.awaitingFollowUp;
-  cs.awaitingFollowUp = false;
-  if (!wasFollowUp) cs.coreAnswered++;
+  // Skip: same flow as normal advance but no AI call
+  const skippedQ = cs.questions[cs.answers.length - 1];
+  const skippedWasCore = cs.coreTexts.includes(skippedQ);
+  if (skippedWasCore) cs.coreAnswered++;
 
   const nextCoreQ = cs.coreTexts[cs.coreAnswered];
-  if (nextCoreQ) {
-    cs.questions.push(nextCoreQ);
-  } else {
-    const skipCh = getChapters().find(c => c.id === S.chapterId);
-    const skipTitle = skipCh?.title || "";
-    const generic = S.lang === "en"
-      ? `Is there anything else you'd like to share about ${skipTitle}?`
-      : `Er eitthvað fleira sem þú vilt deila um ${skipTitle}?`;
-    cs.questions.push(generic);
-  }
+  const skipCh = getChapters().find(c => c.id === S.chapterId);
+  const skipTitle = skipCh?.title || "";
+  cs.questions.push(nextCoreQ || (S.lang === "en"
+    ? `Is there anything else you'd like to share about ${skipTitle}?`
+    : `Er eitthvað fleira sem þú vilt deila um ${skipTitle}?`));
   saveState();
 
   document.getElementById("question-area").innerHTML = `<p class="question" id="question-text"></p>`;
@@ -420,6 +419,8 @@ export function continueChapter() {
   document.getElementById("chapter-complete-wrap").style.display = "none";
   document.getElementById("question-card").style.display = "block";
   renderInterviewQuestion();
+  // In bonus mode, no AI generates questions — show custom input directly
+  setTimeout(() => showCustomQuestionInput(), 50);
 }
 
 window.continueChapter = continueChapter;
