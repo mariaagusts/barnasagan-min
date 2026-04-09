@@ -177,6 +177,26 @@
         </button>
       </div>
 
+      <div style="margin-top:18px;text-align:center;">
+        <button onclick="toggleGiftCodeBox()" style="background:none;border:none;color:var(--gold);font-size:13px;cursor:pointer;font-family:'Nunito',sans-serif;text-decoration:underline;padding:0;opacity:0.85;">
+          <span class="lang-is">Ertu með gjafakóða?</span>
+          <span class="lang-en" style="display:none;">Have a gift code?</span>
+        </button>
+        <div id="hero-gift-box" style="display:none;margin-top:12px;">
+          <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;">
+            <input id="hero-gift-input" type="text" placeholder="BARNA-XXXXXXXX"
+              onkeydown="if(event.key==='Enter') submitHeroGiftCode()"
+              style="border:2px solid var(--border);border-radius:8px;padding:10px 14px;font-size:15px;letter-spacing:2px;width:200px;outline:none;font-family:inherit;color:var(--text);background:#fff;">
+            <button onclick="submitHeroGiftCode()"
+              style="background:var(--orange);color:#fff;border:none;border-radius:8px;padding:10px 20px;font-size:14px;font-weight:600;cursor:pointer;font-family:'Nunito',sans-serif;">
+              <span class="lang-is">Innleysa</span>
+              <span class="lang-en" style="display:none;">Redeem</span>
+            </button>
+          </div>
+          <p id="hero-gift-msg" style="margin-top:10px;font-size:13px;min-height:18px;color:var(--text-light);"></p>
+        </div>
+      </div>
+
       <div class="hero-divider"></div>
 
       <div class="hero-stats">

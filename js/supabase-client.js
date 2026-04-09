@@ -195,6 +195,14 @@ export async function loadPaidStatus() {
   }
 }
 
+export async function redeemGiftCode(code) {
+  const sb = getSupabase();
+  if (!sb) return { success: false, error: "no_client" };
+  const { data, error } = await sb.functions.invoke('redeem-gift-code', { body: { code } });
+  if (error || !data?.success) return { success: false };
+  return { success: true };
+}
+
 export function getChapterState(id) {
   return S.chapters.chapters.find(c => c.id === id)
     ?? { id, questions: [], answers: [], coreTexts: [], coreAnswered: 0, awaitingFollowUp: false, complete: false, photos: [] };

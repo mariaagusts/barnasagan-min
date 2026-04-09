@@ -4,7 +4,7 @@
 import { S } from './state.js';
 import { setLang, applyLang } from './i18n.js';
 import './chapters.js';
-import { getSupabase, initState } from './supabase-client.js';
+import { getSupabase, initState, redeemGiftCode } from './supabase-client.js';
 import { onSignedIn } from './auth.js';
 import './map.js';
 import './family.js';
@@ -84,6 +84,46 @@ document.addEventListener("keydown", (e) => {
 
 window.toggleDark = toggleDark;
 window.updateNav = updateNav;
+
+window.toggleGiftCodeBox = function() {
+  const box = document.getElementById("hero-gift-box");
+  if (!box) return;
+  const open = box.style.display === "block";
+  box.style.display = open ? "none" : "block";
+  if (!open) document.getElementById("hero-gift-input")?.focus();
+};
+
+window.submitHeroGiftCode = async function() {
+  const input = document.getElementById("hero-gift-input");
+  const msg = document.getElementById("hero-gift-msg");
+  const code = input?.value.trim().toUpperCase();
+  if (!code) return;
+  const lang = S.lang || 'is';
+
+  const sb = getSupabase();
+  const { data: { user } } = await sb.auth.getUser();
+  if (!user) {
+    showScreen('auth');
+    return;
+  }
+
+  msg.style.color = '#888';
+  msg.textContent = lang === 'en' ? 'Checking...' : 'Athuga...';
+  try {
+    const result = await redeemGiftCode(code);
+    if (result.success) {
+      msg.style.color = '#2e7d32';
+      msg.textContent = lang === 'en' ? 'Code redeemed! You now have full access.' : 'Gjafakóðinn er innleystur! Þú hefur nú fullan aðgang.';
+      setTimeout(() => { import('./supabase-client.js').then(m => m.loadPaidStatus()).then(() => showScreen('map')); }, 1500);
+    } else {
+      msg.style.color = '#c62828';
+      msg.textContent = lang === 'en' ? 'Invalid or already used code.' : 'Kóðinn er ekki gildur eða hefur þegar verið notaður.';
+    }
+  } catch(e) {
+    msg.style.color = '#c62828';
+    msg.textContent = lang === 'en' ? 'Something went wrong.' : 'Eitthvað fór úrskeiðis.';
+  }
+};
 
 window.toggleHamburger = function() {
   document.getElementById("nav-mobile-menu").classList.toggle("open");
