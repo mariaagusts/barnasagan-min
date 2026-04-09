@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gjafabréf · Barnasagan mín</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Nunito:wght@300;400;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -83,20 +85,13 @@
     .back-link { margin-top: 12px; font-size: 13px; color: var(--brown); text-decoration: none; opacity: 0.7; }
     .back-link:hover { opacity: 1; }
 
-    @media print {
-      body { background: #fff; padding: 0; display: block; }
-      .input-wrap, .msg, .btn-print, .back-link, .page-title, .page-sub { display: none !important; }
-      .preview-wrap { display: flex !important; align-items: center; }
-      .card { width: 148mm; padding: 12mm 14mm; border-radius: 4mm; }
-      .card::before { inset: 4mm; border-radius: 2mm; }
-      * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    }
+    .btn-print.loading { opacity: 0.7; cursor: not-allowed; }
   </style>
 </head>
 <body>
 
 <h1 class="page-title">Gjafabréf · Barnasagan mín</h1>
-<p class="page-sub">Sláðu inn gjafakóðann þinn hér að neðan og við búum til fallegt gjafabréf sem þú getur prentað eða sent áfram.</p>
+<p class="page-sub">Sláðu inn gjafakóðann þinn hér að neðan og við búum til fallegt gjafabréf sem þú getur vistað sem PDF og sent áfram.</p>
 
 <div class="input-wrap">
   <input class="code-input" id="code-input" type="text" placeholder="BARNA-XXXXXXXX"
@@ -116,11 +111,21 @@
     <div class="card-redeem">Fara á barnasagan.is · smella á „Ertu með gjafakóða?"</div>
     <div class="card-footer">barnasagan.is</div>
   </div>
-  <button class="btn-print" onclick="window.print()">🖨 Prenta gjafabréf</button>
+  <button class="btn-print" id="btn-pdf" onclick="downloadPDF()">⬇ Vista sem PDF</button>
   <a class="back-link" href="index.html">← Til baka</a>
 </div>
 
 <script>
+  // Auto-populate from URL ?code=
+  window.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get('code');
+    if (code) {
+      document.getElementById('code-input').value = code.toUpperCase();
+      generate();
+    }
+  });
+
   function generate() {
     const code = document.getElementById('code-input').value.trim().toUpperCase();
     const msg = document.getElementById('msg');
@@ -130,6 +135,41 @@
     document.getElementById('preview').style.display = 'flex';
     msg.textContent = '';
     document.getElementById('preview').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  async function downloadPDF() {
+    const btn = document.getElementById('btn-pdf');
+    btn.textContent = 'Bíð...';
+    btn.classList.add('loading');
+    btn.disabled = true;
+    try {
+      const card = document.getElementById('gift-card');
+      const canvas = await html2canvas(card, {
+        scale: 3,
+        useCORS: true,
+        backgroundColor: null,
+        logging: false,
+      });
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a5' });
+      const pageW = doc.internal.pageSize.getWidth();
+      const pageH = doc.internal.pageSize.getHeight();
+      const ratio = canvas.height / canvas.width;
+      const imgW = pageW - 16;
+      const imgH = imgW * ratio;
+      const x = 8;
+      const y = (pageH - imgH) / 2;
+      doc.addImage(canvas.toDataURL('image/png'), 'PNG', x, y, imgW, imgH);
+      const code = document.getElementById('card-code-text').textContent || 'gjafabref';
+      doc.save(`gjafabref-${code}.pdf`);
+    } catch (err) {
+      alert('Ekki tókst að búa til PDF. Prófaðu aftur.');
+      console.error(err);
+    } finally {
+      btn.textContent = '⬇ Vista sem PDF';
+      btn.classList.remove('loading');
+      btn.disabled = false;
+    }
   }
 </script>
 </body>
