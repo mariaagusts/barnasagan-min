@@ -277,6 +277,58 @@ export async function downloadPDF(whiteBg = false) {
   }
   await flushChapterPhotos();
 
+  // ── Hæð barnsins ──────────────────────────────────────
+  if (S.heights && S.heights.length > 0) {
+    addPage();
+    y = margin + 10;
+    doc.setFont("EBGaramond", "italic");
+    doc.setFontSize(22);
+    doc.setTextColor(139, 94, 60);
+    doc.text("Hæð barnsins", W / 2, y, { align: "center" });
+    y += 8;
+    doc.setDrawColor(196, 154, 108);
+    doc.setLineWidth(0.4);
+    doc.line(margin, y, W / 2 - 35, y);
+    doc.line(W / 2 + 35, y, W - margin, y);
+    y += 16;
+
+    // Sort oldest first for PDF (chronological)
+    const sortedHeights = [...S.heights].sort((a, b) => a.measured_at.localeCompare(b.measured_at));
+    for (const h of sortedHeights) {
+      if (y + 20 > H - margin) { addPage(); y = margin + 10; }
+      const d = new Date(h.measured_at + 'T00:00:00');
+      const dateStr = d.toLocaleDateString('is-IS', { day: 'numeric', month: 'long', year: 'numeric' });
+
+      doc.setFont("EBGaramond", "normal");
+      doc.setFontSize(13);
+      doc.setTextColor(44, 26, 14);
+      const weightPart = h.weight_kg ? `  ·  ${h.weight_kg} kg` : '';
+      doc.text(`${h.height_cm} cm${weightPart}`, margin, y);
+
+      doc.setFontSize(10);
+      doc.setTextColor(139, 94, 60);
+      doc.text(dateStr, margin, y + 6);
+      y += 6;
+
+      if (h.note) {
+        doc.setFont("EBGaramond", "italic");
+        doc.setFontSize(10);
+        doc.setTextColor(100, 80, 60);
+        const noteLines = doc.splitTextToSize(h.note, contentW - 10);
+        for (const nl of noteLines) {
+          y += 5;
+          if (y > H - margin) { addPage(); y = margin + 10; }
+          doc.text(nl, margin + 4, y);
+        }
+      }
+
+      doc.setDrawColor(220, 190, 160);
+      doc.setLineWidth(0.2);
+      doc.line(margin, y + 5, W - margin, y + 5);
+      y += 14;
+    }
+  }
+
   // ── Gullmolabanki ─────────────────────────────────────
   if (S.gullmolar && S.gullmolar.length > 0) {
     addPage();

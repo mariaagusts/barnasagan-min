@@ -4,6 +4,7 @@
 import { S } from './state.js';
 import { loadStateFromSupabase, buildFreshState, addChild, renameChild } from './supabase-client.js';
 import { loadGullmolar, updateGullmolaMapTile } from './gullmoli.js';
+import { loadHeights, updateHeightsMapTile } from './heights.js';
 
 export function renderChildSwitcher() {
   const switcher = document.getElementById("child-switcher");
@@ -55,12 +56,13 @@ export async function switchToChild(childId) {
   S.activeChildId = childId;
   S.chapters = buildFreshState();
   localStorage.removeItem("barnasaga_state");
-  await Promise.all([loadStateFromSupabase(), loadGullmolar()]);
+  await Promise.all([loadStateFromSupabase(), loadGullmolar(), loadHeights()]);
   renderChildSwitcher();
   closeChildSwitcher();
   const { renderMap } = await import('./map.js');
   renderMap();
   updateGullmolaMapTile();
+  updateHeightsMapTile();
   const { showMap } = await import('./modals.js');
   showMap();
 }

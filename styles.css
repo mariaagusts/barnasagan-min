@@ -983,3 +983,21 @@ footer a { color: var(--gold); text-decoration: none; }
   .gullmola-fab { bottom: 20px; right: 16px; width: 46px; height: 46px; font-size: 20px; }
   .gullmola-qa-box, .gullmola-bank-box { padding: 22px 18px; }
 }
+
+/* ── Heights tile ── */
+.heights-tile { border: 2px solid #a8d5ab !important; background: linear-gradient(135deg, #f5fbf5 0%, #e8f5e9 100%) !important; }
+.heights-tile:hover { border-color: #5b8a5f !important; box-shadow: 0 8px 28px rgba(91,138,95,0.15) !important; }
+.heights-tile::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #a8d5ab, #5b8a5f); }
+.heights-tile-count { font-size: 12px; color: #4a7a4e; font-weight: 600; margin-top: 12px; }
+
+/* ── Height cards ── */
+.height-card { background: var(--warm); border: 1px solid var(--border); border-radius: 14px; padding: 16px 18px; margin-bottom: 12px; }
+.height-main { display: flex; align-items: baseline; gap: 12px; margin-bottom: 6px; }
+.height-value { font-family: 'Fredoka One', cursive; font-size: 1.8rem; color: #3a6b3e; }
+.height-unit { font-size: 1rem; color: var(--mid); }
+.height-weight { font-size: 13px; color: var(--mid); }
+.height-diff { font-size: 12px; color: #5b8a5f; font-weight: 700; background: #e8f5e9; border-radius: 20px; padding: 2px 8px; }
+.height-note { font-size: 13px; color: var(--mid); font-style: italic; margin-bottom: 6px; }
+.height-meta { display: flex; align-items: center; justify-content: space-between; margin-top: 8px; }
+.height-date { font-size: 11px; color: #4a7a4e; }
+.height-actions { display: flex; gap: 6px; }

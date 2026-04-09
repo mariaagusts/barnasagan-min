@@ -11,6 +11,7 @@ import { showScreen } from './modals.js';
 import { getFamilyContext } from './family.js';
 import { enterChapter } from './interview.js';
 import { updateGullmolaMapTile } from './gullmoli.js';
+import { updateHeightsMapTile } from './heights.js';
 
 export function renderMap() {
   const chapters = getChapters();
@@ -32,6 +33,9 @@ export function renderMap() {
   const gullCountLabel = gullCount === 1
     ? (S.lang === 'en' ? '1 phrase' : '1 gullmola')
     : (S.lang === 'en' ? `${gullCount} phrases` : `${gullCount} gullmolar`);
+
+  const latestHeight = S.heights?.[0];
+  const heightTileCount = S.heights?.length || 0;
 
   grid.innerHTML = chapters.map((ch, i) => {
     const cs = getChapterState(ch.id);
@@ -63,12 +67,19 @@ export function renderMap() {
         </div>`;
   }).join("") + `
     <div class="chapter-card gullmola-tile" onclick="openGullmolaBank()">
-      <span class="chapter-emoji">💬</span>
+      <span class="chapter-emoji">✨</span>
       <div class="chapter-name" style="color:var(--gold);">Gullmolabanki</div>
       <div class="chapter-desc">${S.lang === 'en' ? 'Funny and memorable things your child says' : 'Fyndnar og eftirminnilegur setningar barnsins'}</div>
       <div class="gullmola-tile-count" id="gullmola-tile-count-wrap">${gullCount > 0 ? gullCountLabel : (S.lang === 'en' ? 'Add first phrase →' : 'Bæta við fyrstu →')}</div>
+    </div>
+    <div class="chapter-card heights-tile" onclick="openHeightsModal()">
+      <span class="chapter-emoji">📏</span>
+      <div class="chapter-name" style="color:#5b8a5f;">${S.lang === 'en' ? "Child's Height" : 'Hæð barnsins'}</div>
+      <div class="chapter-desc">${S.lang === 'en' ? "Track your child's growth over time" : 'Fylgstu með vexti barnsins'}</div>
+      <div class="heights-tile-count" id="heights-tile-count-wrap">${latestHeight ? `📏 ${latestHeight.height_cm} cm` : (S.lang === 'en' ? 'Add first measurement →' : 'Bæta við fyrstu mælingu →')}</div>
     </div>`;
   updateGullmolaMapTile();
+  updateHeightsMapTile();
 }
 
 export async function previewChapter(id) {
