@@ -195,7 +195,10 @@ export async function loadPaidStatus() {
   }
 }
 
-export function getChapterState(id) { return S.chapters.chapters.find(c => c.id === id); }
+export function getChapterState(id) {
+  return S.chapters.chapters.find(c => c.id === id)
+    ?? { id, questions: [], answers: [], coreTexts: [], coreAnswered: 0, awaitingFollowUp: false, complete: false, photos: [] };
+}
 export function totalAnswers() { return S.chapters.chapters.reduce((s, c) => s + c.answers.length, 0); }
 export function completedChapters() { return S.chapters.chapters.filter(c => c.complete).length; }
 
