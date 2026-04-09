@@ -106,8 +106,13 @@ window.submitHeroGiftCode = async function() {
 
   const sb = getSupabase();
   const { data: { user } } = await sb.auth.getUser();
+
   if (!user) {
-    showScreen('auth');
+    // Save code and send to auth — will be redeemed after sign in
+    sessionStorage.setItem('pendingGiftCode', code);
+    msg.style.color = '#2e7d32';
+    msg.textContent = lang === 'en' ? 'Great! Now sign in or create an account to redeem your code.' : 'Frábært! Skráðu þig inn eða stofnaðu aðgang til að innleysa kóðann.';
+    setTimeout(() => showScreen('auth'), 1500);
     return;
   }
 

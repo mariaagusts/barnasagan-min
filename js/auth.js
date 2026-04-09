@@ -79,6 +79,15 @@ export async function handleAuth() {
 
 export async function onSignedIn() {
   document.getElementById("map-user-email").textContent = S.user.email;
+
+  // Redeem pending gift code if user arrived via gift code flow
+  const pendingCode = sessionStorage.getItem('pendingGiftCode');
+  if (pendingCode) {
+    sessionStorage.removeItem('pendingGiftCode');
+    const { redeemGiftCode } = await import('./supabase-client.js');
+    await redeemGiftCode(pendingCode);
+  }
+
   await Promise.all([loadChildren(), loadPaidStatus()]);
   const { updateNav } = await import('./app.js');
   updateNav();
