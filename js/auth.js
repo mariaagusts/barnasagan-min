@@ -115,6 +115,32 @@ export async function forgotPassword() {
   else { showAuthSuccess("✓ Hlekk til að endurstilla lykilorð hefur verið sendur á " + email); }
 }
 
+export function showPasswordResetForm() {
+  document.getElementById("auth-normal-form").style.display = "none";
+  document.getElementById("auth-reset-form").style.display = "block";
+  document.getElementById("auth-tabs") && (document.querySelector(".auth-tabs").style.display = "none");
+  document.getElementById("auth-title").textContent = "Nýtt lykilorð";
+  document.getElementById("auth-sub-text").textContent = "Veldu nýtt lykilorð fyrir aðganginn þinn.";
+  document.getElementById("auth-back-btn").style.display = "none";
+  const { showScreen } = import('./modals.js');
+  import('./modals.js').then(m => m.showScreen('auth'));
+}
+
+export async function submitNewPassword() {
+  const pw = document.getElementById("auth-new-password").value;
+  const pw2 = document.getElementById("auth-confirm-password").value;
+  if (!pw || pw.length < 6) { showAuthError("Lykilorðið þarf að vera að minnsta kosti 6 stafir."); return; }
+  if (pw !== pw2) { showAuthError("Lykilorðin eru ekki eins."); return; }
+  const sb = getSupabase();
+  if (!sb) return;
+  const { error } = await sb.auth.updateUser({ password: pw });
+  if (error) { showAuthError(authErrorMsg(error.message)); return; }
+  showAuthSuccess("✓ Lykilorðið þitt hefur verið uppfært. Velkomin/n!");
+  document.getElementById("auth-reset-form").style.display = "none";
+  document.getElementById("auth-normal-form").style.display = "block";
+  setTimeout(() => onSignedIn(), 1500);
+}
+
 export async function signOut() {
   const sb = getSupabase();
   if (sb) await sb.auth.signOut();
@@ -137,3 +163,5 @@ window.switchTab = switchTab;
 window.handleAuth = handleAuth;
 window.forgotPassword = forgotPassword;
 window.signOut = signOut;
+window.submitNewPassword = submitNewPassword;
+window.showPasswordResetForm = showPasswordResetForm;

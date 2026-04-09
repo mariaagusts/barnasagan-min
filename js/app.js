@@ -29,7 +29,11 @@ export async function initApp() {
   if (session) { S.user = session.user; onSignedIn(); }
   else { showScreen("landing"); }
   sb.auth.onAuthStateChange((event, session) => {
-    if (event === "SIGNED_IN" && session && !S.user) {
+    if (event === "PASSWORD_RECOVERY") {
+      S.user = session.user;
+      import('./auth.js').then(m => m.showPasswordResetForm());
+    }
+    else if (event === "SIGNED_IN" && session && !S.user) {
       S.user = session.user;
       onSignedIn();
     }

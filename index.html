@@ -526,12 +526,25 @@
       </div>
       <div class="auth-error" id="auth-error"></div>
       <div class="auth-success" id="auth-success"></div>
-      <input type="email" class="field-input" id="auth-email" placeholder="Tölvupóstfang" autocomplete="email">
-      <input type="password" class="field-input" id="auth-password" placeholder="Lykilorð" autocomplete="current-password">
-      <button class="btn-primary" id="auth-btn" onclick="handleAuth()" style="width:100%;margin-top:4px;">Innskrá →</button>
-      <p style="text-align:right;margin-top:10px;font-size:13px;">
-        <a href="#" onclick="forgotPassword();return false;" style="color:var(--orange);font-weight:700;">Gleymt lykilorð?</a>
-      </p>
+
+      <!-- Normal login/signup form -->
+      <div id="auth-normal-form">
+        <input type="email" class="field-input" id="auth-email" placeholder="Tölvupóstfang" autocomplete="email">
+        <input type="password" class="field-input" id="auth-password" placeholder="Lykilorð" autocomplete="current-password">
+        <button class="btn-primary" id="auth-btn" onclick="handleAuth()" style="width:100%;margin-top:4px;">Innskrá →</button>
+        <p style="text-align:right;margin-top:10px;font-size:13px;">
+          <a href="#" onclick="forgotPassword();return false;" style="color:var(--orange);font-weight:700;">Gleymt lykilorð?</a>
+        </p>
+      </div>
+
+      <!-- Password reset form (shown when arriving via recovery link) -->
+      <div id="auth-reset-form" style="display:none;">
+        <p style="font-size:14px;color:var(--mid);margin-bottom:16px;">Veldu nýtt lykilorð fyrir aðganginn þinn.</p>
+        <input type="password" class="field-input" id="auth-new-password" placeholder="Nýtt lykilorð" autocomplete="new-password">
+        <input type="password" class="field-input" id="auth-confirm-password" placeholder="Staðfesta lykilorð" autocomplete="new-password" style="margin-top:8px;">
+        <button class="btn-primary" onclick="submitNewPassword()" style="width:100%;margin-top:12px;">Vista nýtt lykilorð →</button>
+      </div>
+
       <p class="api-note" id="auth-note">🔒 Gögn þín eru geymd á öruggan hátt.</p>
     </div>
   </div>
