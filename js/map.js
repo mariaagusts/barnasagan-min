@@ -69,7 +69,7 @@ export function renderMap() {
     <div class="chapter-card gullmola-tile" onclick="openGullmolaBank()">
       <span class="chapter-emoji">✨</span>
       <div class="chapter-name" style="color:var(--gold);">Gullmolabanki</div>
-      <div class="chapter-desc">${S.lang === 'en' ? 'Funny and memorable things your child says' : 'Fyndnar og eftirminnilegur setningar barnsins'}</div>
+      <div class="chapter-desc">${S.lang === 'en' ? 'Funny and memorable things your child says' : 'Fyndnar og eftirminnilegar setningar barnsins'}</div>
       <div class="gullmola-tile-count" id="gullmola-tile-count-wrap">${gullCount > 0 ? gullCountLabel : (S.lang === 'en' ? 'Add first phrase →' : 'Bæta við fyrstu →')}</div>
     </div>
     <div class="chapter-card heights-tile" onclick="openHeightsModal()">
