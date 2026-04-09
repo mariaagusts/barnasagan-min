@@ -203,6 +203,7 @@ export function renderHistory() {
     <div class="history-item" id="history-item-${i}">
       <div class="history-q">
         ${esc(cs.questions[i])}
+        <button class="history-delete-btn" onclick="deleteAnswer(${i})" title="${t("deleteBtn")}">${t("deleteBtn")}</button>
         <button class="history-edit-btn" onclick="editAnswer(${i})">${t("editBtn")}</button>
       </div>
       <div class="history-a" id="history-a-${i}">${esc(a)}</div>
@@ -229,6 +230,19 @@ export function saveAnswer(i) {
     saveState();
   }
   renderHistory();
+}
+
+export function deleteAnswer(i) {
+  const cs = getChapterState(S.chapterId);
+  const wasCore = cs.coreTexts.includes(cs.questions[i]);
+  cs.questions.splice(i, 1);
+  cs.answers.splice(i, 1);
+  if (wasCore && cs.coreAnswered > 0) cs.coreAnswered--;
+  cs.complete = false;
+  saveState();
+  renderHistory();
+  const histCount = document.getElementById("history-count");
+  if (histCount) histCount.textContent = cs.answers.length;
 }
 
 export function showCustomQuestionInput() {
@@ -444,6 +458,7 @@ window.continueChapter = continueChapter;
 window.enterChapter = enterChapter;
 window.editAnswer = editAnswer;
 window.saveAnswer = saveAnswer;
+window.deleteAnswer = deleteAnswer;
 window.showCustomQuestionInput = showCustomQuestionInput;
 window.cancelCustomQuestion = cancelCustomQuestion;
 window.addCustomQuestion = addCustomQuestion;
