@@ -91,7 +91,7 @@ export function updateGullmolaMapTile() {
   const count = S.gullmolar.length;
   const label = count === 1
     ? (S.lang === 'en' ? '1 phrase' : '1 gullmola')
-    : (S.lang === 'en' ? `${count} phrases` : `${count} gullmolur`);
+    : (S.lang === 'en' ? `${count} phrases` : `${count} gullmolar`);
   wrap.textContent = count > 0 ? label : (S.lang === 'en' ? 'Add first phrase →' : 'Bæta við fyrstu →');
 }
 
@@ -155,7 +155,7 @@ export function renderGullmolaBank() {
   if (title) {
     const child = S.children.find(c => c.id === S.activeChildId);
     title.textContent = child
-      ? (S.lang === 'en' ? `${child.child_name}'s Golden Phrases` : `Gullmolur ${child.child_name}`)
+      ? (S.lang === 'en' ? `${child.child_name}'s Golden Phrases` : `Gullmolar ${child.child_name}`)
       : (S.lang === 'en' ? 'Golden Phrase Bank' : 'Gullmolabanki');
   }
 
@@ -166,7 +166,7 @@ export function renderGullmolaBank() {
         <p style="font-size:16px;line-height:1.7;">
           ${S.lang === 'en'
             ? 'No golden phrases yet.<br>Tap the speech bubble button to capture the first one!'
-            : 'Engar gullmolur enn.<br>Smelltu á gullna talbubblan til að skrá þá fyrstu!'}
+            : 'Engir gullmolar enn.<br>Smelltu á gullnu talbúbbluna til að skrá þá fyrstu!'}
         </p>
       </div>`;
     return;
@@ -219,7 +219,7 @@ export async function confirmDeleteGullmoli(id) {
   if (!g) return;
   const msg = S.lang === 'en'
     ? `Delete this phrase?\n\n"${g.quote}"`
-    : `Eyða þessari gullmolu?\n\n"${g.quote}"`;
+    : `Eyða þessum gullmola?\n\n"${g.quote}"`;
   if (!confirm(msg)) return;
   await deleteGullmoli(id);
   renderGullmolaBank();

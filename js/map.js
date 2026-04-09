@@ -31,7 +31,7 @@ export function renderMap() {
   const gullCount = S.gullmolar?.length || 0;
   const gullCountLabel = gullCount === 1
     ? (S.lang === 'en' ? '1 phrase' : '1 gullmola')
-    : (S.lang === 'en' ? `${gullCount} phrases` : `${gullCount} gullmolur`);
+    : (S.lang === 'en' ? `${gullCount} phrases` : `${gullCount} gullmolar`);
 
   grid.innerHTML = chapters.map((ch, i) => {
     const cs = getChapterState(ch.id);
