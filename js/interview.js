@@ -65,8 +65,16 @@ async function advanceQuestion(cs) {
 function pushFallbackQuestion(cs) {
   const fallbackTexts = cs.coreTexts || [];
   const nextCore = fallbackTexts[cs.coreAnswered];
-  const generic = S.lang === "en" ? "Tell me more about this period of your child's life." : "Segðu mér meira um þetta tímabil í lífi barnsins.";
-  cs.questions.push(nextCore || generic);
+  if (nextCore) {
+    cs.questions.push(nextCore);
+  } else {
+    const ch = getChapters().find(c => c.id === S.chapterId);
+    const title = ch?.title || "";
+    const generic = S.lang === "en"
+      ? `Is there anything else you'd like to share about ${title}?`
+      : `Er eitthvað fleira sem þú vilt deila um ${title}?`;
+    cs.questions.push(generic);
+  }
   cs.awaitingFollowUp = false;
   saveState();
 }
@@ -94,7 +102,11 @@ export function renderInterviewQuestion() {
     const isChapterDone = (cs.complete || qIdx >= 10) && !bonusMode;
     if (isChapterDone) { showChapterComplete(); return; }
 
-    const fallback = S.lang === "en" ? "Tell me more about this period of your child's life." : "Segðu mér meira um þetta tímabil í lífi barnsins.";
+    const ch = getChapters().find(c => c.id === S.chapterId);
+    const chTitle = ch?.title || "";
+    const fallback = S.lang === "en"
+      ? `Is there anything else you'd like to share about ${chTitle}?`
+      : `Er eitthvað fleira sem þú vilt deila um ${chTitle}?`;
     const q = cs.questions[qIdx] || fallback;
 
     // Progress label: core question number or follow-up indicator
@@ -348,8 +360,16 @@ export function skipQuestion() {
   if (!wasFollowUp) cs.coreAnswered++;
 
   const nextCoreQ = cs.coreTexts[cs.coreAnswered];
-  const generic = S.lang === "en" ? "Tell me more about this period of your child's life." : "Segðu mér meira um þetta tímabil í lífi barnsins.";
-  cs.questions.push(nextCoreQ || generic);
+  if (nextCoreQ) {
+    cs.questions.push(nextCoreQ);
+  } else {
+    const skipCh = getChapters().find(c => c.id === S.chapterId);
+    const skipTitle = skipCh?.title || "";
+    const generic = S.lang === "en"
+      ? `Is there anything else you'd like to share about ${skipTitle}?`
+      : `Er eitthvað fleira sem þú vilt deila um ${skipTitle}?`;
+    cs.questions.push(generic);
+  }
   saveState();
 
   document.getElementById("question-area").innerHTML = `<p class="question" id="question-text"></p>`;
