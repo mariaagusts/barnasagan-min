@@ -5,7 +5,7 @@ import { S } from './state.js';
 import { t } from './i18n.js';
 import { getChapters, CHAPTERS, CHAPTERS_EN } from './chapters.js';
 import { getChapterState, saveState, uploadPhoto, deletePhoto } from './supabase-client.js';
-import { generateNextQuestion } from './gemini.js';
+import { generateNextQuestion, warmUpProxy } from './gemini.js';
 import { stopListening, hideMicError } from './speech.js';
 import { showScreen } from './modals.js';
 import { showMap } from './modals.js';
@@ -111,6 +111,7 @@ function pushFallbackQuestion(cs) {
 export function enterChapter(id) {
   bonusMode = false;
   S.chapterId = id;
+  warmUpProxy(); // Wake up Edge Function before user answers
   const chapters = getChapters();
   const ch = chapters.find(c => c.id === id);
   document.getElementById("banner-emoji").textContent = ch.emoji;

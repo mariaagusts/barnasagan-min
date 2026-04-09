@@ -45,6 +45,18 @@ export async function callGemini(systemPrompt, userMsg, usePro = false) {
   throw new Error(`Villa: ${lastError || "Óþekkt"}`);
 }
 
+export function warmUpProxy() {
+  fetch(GEMINI_PROXY, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${SUPABASE_KEY}`,
+      "apikey": SUPABASE_KEY,
+    },
+    body: JSON.stringify({ ping: true }),
+  }).catch(() => {}); // Fire and forget — ignore errors
+}
+
 export async function generateNextQuestion(cs) {
   const chapters = getChapters();
   const ch = chapters.find(c => c.id === S.chapterId);
