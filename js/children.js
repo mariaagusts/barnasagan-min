@@ -53,6 +53,7 @@ export async function switchToChild(childId) {
   if (childId === S.activeChildId) { closeChildSwitcher(); return; }
   S.activeChildId = childId;
   S.chapters = buildFreshState();
+  localStorage.removeItem("barnasaga_state");
   await loadStateFromSupabase();
   renderChildSwitcher();
   closeChildSwitcher();
