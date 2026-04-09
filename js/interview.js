@@ -73,12 +73,17 @@ async function advanceQuestion(cs) {
 function pushFallbackQuestion(cs) {
   const ch = getChapters().find(c => c.id === S.chapterId);
   const fuSeeds = ch?.seeds?.filter(s => !s.isCore).map(s => s.text) || [];
+
+  // Never overwrite a question that already exists at the next slot
+  const nextIdx = cs.answers.length;
+  if (cs.questions[nextIdx] !== undefined) { saveState(); return; }
+
   const lastQ = cs.questions[cs.answers.length - 1];
   const wasCore = cs.coreTexts.includes(lastQ);
   if (wasCore) cs.coreAnswered++;
 
   const nextCore = cs.coreTexts[cs.coreAnswered];
-  if (nextCore) {
+  if (nextCore && !cs.questions.includes(nextCore)) {
     cs.questions.push(nextCore);
   } else {
     const fuIdx = cs.fuIdx || 0;
