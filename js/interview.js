@@ -45,6 +45,10 @@ async function advanceQuestion(cs) {
   const lastQ = cs.questions[cs.answers.length - 1];
   const wasCore = cs.coreTexts.includes(lastQ);
 
+  // Only push if next slot is empty — never overwrite a question that already exists
+  const nextIdx = cs.answers.length;
+  if (cs.questions[nextIdx] !== undefined) { saveState(); return; }
+
   if (wasCore) {
     cs.coreAnswered++;
     cs.questions.push(await askAI());
