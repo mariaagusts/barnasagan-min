@@ -64,9 +64,9 @@ async function advanceQuestion(cs) {
 
 function pushFallbackQuestion(cs) {
   const fallbackTexts = cs.coreTexts || [];
-  const idx = cs.coreAnswered % (fallbackTexts.length || 1);
-  const fallback = fallbackTexts[idx] || (S.lang === "en" ? "Tell me more about this period of your child's life." : "Segðu mér meira um þetta tímabil í lífi barnsins.");
-  cs.questions.push(fallback);
+  const nextCore = fallbackTexts[cs.coreAnswered];
+  const generic = S.lang === "en" ? "Tell me more about this period of your child's life." : "Segðu mér meira um þetta tímabil í lífi barnsins.";
+  cs.questions.push(nextCore || generic);
   cs.awaitingFollowUp = false;
   saveState();
 }
@@ -105,9 +105,13 @@ export function renderInterviewQuestion() {
       } else {
         const coreNum = (cs.coreAnswered || 0) + 1;
         const coreTotal = cs.coreTexts?.length || 0;
-        qNumEl.textContent = S.lang === "en"
-          ? `Core question ${coreNum} of ${coreTotal}`
-          : `Kjarnaspurning ${coreNum} af ${coreTotal}`;
+        if (coreNum > coreTotal) {
+          qNumEl.textContent = S.lang === "en" ? "Follow-up" : "Fylgispurning";
+        } else {
+          qNumEl.textContent = S.lang === "en"
+            ? `Core question ${coreNum} of ${coreTotal}`
+            : `Kjarnaspurning ${coreNum} af ${coreTotal}`;
+        }
       }
     }
 
@@ -344,12 +348,8 @@ export function skipQuestion() {
   if (!wasFollowUp) cs.coreAnswered++;
 
   const nextCoreQ = cs.coreTexts[cs.coreAnswered];
-  if (nextCoreQ) {
-    cs.questions.push(nextCoreQ);
-  } else {
-    const fallbackTexts = cs.coreTexts || [];
-    cs.questions.push(fallbackTexts[cs.coreAnswered % (fallbackTexts.length || 1)] || (S.lang === "en" ? "Tell me more about this period of your child's life." : "Segðu mér meira um þetta tímabil í lífi barnsins."));
-  }
+  const generic = S.lang === "en" ? "Tell me more about this period of your child's life." : "Segðu mér meira um þetta tímabil í lífi barnsins.";
+  cs.questions.push(nextCoreQ || generic);
   saveState();
 
   document.getElementById("question-area").innerHTML = `<p class="question" id="question-text"></p>`;
