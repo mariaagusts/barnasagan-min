@@ -23,7 +23,7 @@ async function advanceQuestion(cs) {
   const askAI = async () => {
     const text = await Promise.race([
       generateNextQuestion(cs),
-      new Promise((_, reject) => setTimeout(() => reject(new Error("Timeout")), 15000))
+      new Promise((_, reject) => setTimeout(() => reject(new Error("Timeout")), 30000))
     ]);
     const alreadyAsked = cs.questions.some(q => q.trim().toLowerCase() === text.trim().toLowerCase());
     if (alreadyAsked) {
