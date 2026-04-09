@@ -39,7 +39,7 @@ Deno.serve(async (req: Request) => {
 
     const body = JSON.stringify({
       contents: [{ role: "user", parts: [{ text: systemPrompt + "\n\n" + userMsg }] }],
-      generationConfig: { temperature: 0.8, maxOutputTokens: 16384 },
+      generationConfig: { temperature: 0.8, maxOutputTokens: 256 },
     });
 
     for (let ki = 0; ki < keys.length; ki++) {
@@ -55,7 +55,7 @@ Deno.serve(async (req: Request) => {
         const data = await res.json();
 
         if (data.error?.code === 503 || data.error?.status === "UNAVAILABLE") {
-          if (attempt < 3) await new Promise((r) => setTimeout(r, 5000));
+          if (attempt < 3) await new Promise((r) => setTimeout(r, 1000));
           continue;
         }
 
