@@ -28,14 +28,17 @@ async function advanceQuestion(cs) {
     const alreadyAsked = cs.questions.some(q => q.trim().toLowerCase() === text.trim().toLowerCase());
     if (alreadyAsked) {
       const fuIdx = cs.fuIdx || 0;
-      if (fuSeeds[fuIdx]) {
-        cs.fuIdx = fuIdx + 1;
-        return fuSeeds[fuIdx];
+      const unusedFu = fuSeeds.slice(fuIdx).find(f => !cs.questions.includes(f));
+      if (unusedFu) {
+        cs.fuIdx = fuSeeds.indexOf(unusedFu) + 1;
+        return unusedFu;
       }
       const title = ch?.title || "";
-      return S.lang === "en"
+      const fallback = S.lang === "en"
         ? `Is there anything else you'd like to share about ${title}?`
         : `Er eitthvað fleira sem þú vilt deila um ${title}?`;
+      if (cs.questions.includes(fallback)) { cs.complete = true; return null; }
+      return fallback;
     }
     return text;
   };
@@ -51,13 +54,17 @@ async function advanceQuestion(cs) {
 
   if (wasCore) {
     cs.coreAnswered++;
-    cs.questions.push(await askAI());
+    const q = await askAI();
+    if (cs.complete) { saveState(); return; }
+    cs.questions.push(q);
   } else {
     const nextCore = cs.coreTexts[cs.coreAnswered];
     if (nextCore) {
       cs.questions.push(nextCore);
     } else {
-      cs.questions.push(await askAI());
+      const q = await askAI();
+      if (cs.complete) { saveState(); return; }
+      cs.questions.push(q);
     }
   }
   saveState();
@@ -75,14 +82,20 @@ function pushFallbackQuestion(cs) {
     cs.questions.push(nextCore);
   } else {
     const fuIdx = cs.fuIdx || 0;
-    if (fuSeeds[fuIdx]) {
-      cs.fuIdx = fuIdx + 1;
-      cs.questions.push(fuSeeds[fuIdx]);
+    const unusedFu = fuSeeds.slice(fuIdx).find(f => !cs.questions.includes(f));
+    if (unusedFu) {
+      cs.fuIdx = fuSeeds.indexOf(unusedFu) + 1;
+      cs.questions.push(unusedFu);
     } else {
       const title = ch?.title || "";
-      cs.questions.push(S.lang === "en"
+      const fallback = S.lang === "en"
         ? `Is there anything else you'd like to share about ${title}?`
-        : `Er eitthvað fleira sem þú vilt deila um ${title}?`);
+        : `Er eitthvað fleira sem þú vilt deila um ${title}?`;
+      if (cs.questions.includes(fallback)) {
+        cs.complete = true;
+      } else {
+        cs.questions.push(fallback);
+      }
     }
   }
   saveState();
