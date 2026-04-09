@@ -530,6 +530,18 @@
         <button class="btn-nav-login" id="map-about-link" onclick="showAbout()" style="font-size:12px;">Um</button>
         <button class="btn-nav-login" id="map-faq-link" onclick="showFaq()" style="font-size:12px;">Spurningar</button>
         <span class="user-email" id="map-user-email"></span>
+        <div class="child-switcher" id="child-switcher">
+          <button class="child-switcher-btn" onclick="toggleChildSwitcher()">
+            <span id="child-switcher-name">Barn 1</span>
+            <span style="font-size:10px;opacity:0.5;">▾</span>
+          </button>
+          <div class="child-switcher-dropdown" id="child-switcher-dropdown">
+            <div id="child-switcher-list"></div>
+            <div style="border-top:1px solid var(--border);margin-top:4px;padding-top:4px;">
+              <button class="child-add-btn" onclick="handleAddChild()">+ Bæta við barni</button>
+            </div>
+          </div>
+        </div>
         <button class="btn-signout" onclick="showFamilySetup()" title="Breyta fjölskyldustillingu" style="font-size:11px;padding:4px 10px;" id="map-family-btn">👫</button>
         <button class="btn-signout" id="map-signout-btn" onclick="signOut()">Útskrá</button>
         <button class="inner-hamburger" onclick="toggleInnerMenu()">☰</button>
@@ -1044,6 +1056,11 @@
   <button onclick="closeInnerMenu();showFaq()">Spurningar</button>
   <button onclick="closeInnerMenu();showAbout()">Um</button>
   <button onclick="closeInnerMenu();showMap()">Mitt svæði</button>
+  <div id="inner-menu-child-section" style="display:none;border-top:1px solid var(--border);padding:8px 0 4px;">
+    <div style="font-size:11px;color:var(--mid);padding:4px 16px 8px;font-family:'Nunito',sans-serif;">Barnið sem á sögu</div>
+    <div id="inner-menu-child-list"></div>
+    <button id="inner-menu-add-child" style="display:none;" onclick="handleAddChild();closeInnerMenu();">+ Bæta við barni</button>
+  </div>
   <button onclick="closeInnerMenu();signOut()" style="color:var(--mid);">Útskrá</button>
 </div>
 

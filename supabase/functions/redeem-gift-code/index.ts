@@ -39,7 +39,7 @@ Deno.serve(async (req: Request) => {
     // Look up the code
     const { data: gift, error: fetchError } = await sb
       .from("gift_codes")
-      .select("id, used")
+      .select("id, used, plan")
       .eq("code", code.toUpperCase().trim())
       .maybeSingle();
 
@@ -57,13 +57,22 @@ Deno.serve(async (req: Request) => {
       used_at: new Date().toISOString(),
     }).eq("id", gift.id);
 
+    // Determine plan — never downgrade an existing multi-plan user
+    const giftPlan: "single" | "multi" = gift.plan || "single";
+    const { data: existing } = await sb.from("paid_users")
+      .select("plan")
+      .eq("email", user.email.toLowerCase())
+      .maybeSingle();
+    const finalPlan: "single" | "multi" =
+      existing?.plan === "multi" ? "multi" : giftPlan;
+
     // Grant access
     await sb.from("paid_users").upsert(
-      { email: user.email.toLowerCase(), gift_code: code.toUpperCase().trim() },
+      { email: user.email.toLowerCase(), gift_code: code.toUpperCase().trim(), plan: finalPlan },
       { onConflict: "email" }
     );
 
-    return new Response(JSON.stringify({ success: true }), { headers: corsHeaders });
+    return new Response(JSON.stringify({ success: true, plan: finalPlan }), { headers: corsHeaders });
   } catch (err) {
     console.error("Redeem error:", err);
     return new Response(JSON.stringify({ error: "Server error" }), { status: 500, headers: corsHeaders });

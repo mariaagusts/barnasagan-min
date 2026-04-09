@@ -3,8 +3,7 @@
 // ══════════════════════════════════════════════
 import { S } from './state.js';
 import { t } from './i18n.js';
-import { getSupabase } from './supabase-client.js';
-import { loadStateFromSupabase, loadPaidStatus } from './supabase-client.js';
+import { getSupabase, loadStateFromSupabase, loadPaidStatus, loadChildren, createFirstChild } from './supabase-client.js';
 
 export function switchTab(mode) {
   S.authMode = mode;
@@ -78,15 +77,26 @@ export async function handleAuth() {
 
 export async function onSignedIn() {
   document.getElementById("map-user-email").textContent = S.user.email;
-  await Promise.all([loadStateFromSupabase(), loadPaidStatus()]);
+  await Promise.all([loadChildren(), loadPaidStatus()]);
   const { updateNav } = await import('./app.js');
   updateNav();
-  if (!S.chapters.familyType) {
+
+  if (S.children.length === 0) {
+    // Brand new user — create first child slot, then show family setup
+    await createFirstChild();
     const { showFamilySetup } = await import('./family.js');
     showFamilySetup();
   } else {
-    const { showMap } = await import('./modals.js');
-    showMap();
+    await loadStateFromSupabase();
+    const { renderChildSwitcher } = await import('./children.js');
+    renderChildSwitcher();
+    if (!S.chapters.familyType) {
+      const { showFamilySetup } = await import('./family.js');
+      showFamilySetup();
+    } else {
+      const { showMap } = await import('./modals.js');
+      showMap();
+    }
   }
 }
 
@@ -106,10 +116,15 @@ export async function signOut() {
   const sb = getSupabase();
   if (sb) await sb.auth.signOut();
   S.user = null;
+  S.children = [];
+  S.activeChildId = null;
+  S.plan = "single";
   const { showScreen } = await import('./modals.js');
   showScreen("landing");
   const { updateNav } = await import('./app.js');
   updateNav();
+  const switcher = document.getElementById("child-switcher");
+  if (switcher) switcher.style.display = "none";
 }
 
 window.switchTab = switchTab;

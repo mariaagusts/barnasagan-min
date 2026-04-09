@@ -14,9 +14,13 @@ export const STYLE_LABELS = {
   hnitmiðaður:  { is: "📄 Hnitmiðaður",   en: "📄 Focused"      }
 };
 
+function _versionsKey() {
+  return `saganmin_versions_${S.activeChildId || "default"}`;
+}
+
 export function getSavedVersions() {
   try {
-    return JSON.parse(localStorage.getItem("saganmin_versions") || "[]");
+    return JSON.parse(localStorage.getItem(_versionsKey()) || "[]");
   } catch { return []; }
 }
 
@@ -36,7 +40,7 @@ export function saveStoryVersion(styleKey, lang) {
   };
   versions.unshift(newVersion);
   if (versions.length > MAX_VERSIONS) versions.pop();
-  localStorage.setItem("saganmin_versions", JSON.stringify(versions));
+  localStorage.setItem(_versionsKey(), JSON.stringify(versions));
   S.currentVersionIndex = 0;
   renderVersionsSidebar();
 }
@@ -98,7 +102,7 @@ export function renameVersion(id) {
   const newName = prompt("Nýtt nafn á útgáfuna:", v.label);
   if (newName && newName.trim()) {
     v.label = newName.trim();
-    localStorage.setItem("saganmin_versions", JSON.stringify(versions));
+    localStorage.setItem(_versionsKey(), JSON.stringify(versions));
     renderVersionsSidebar();
   }
 }
@@ -110,7 +114,7 @@ export function deleteVersion(id) {
   if (!confirm(msg)) return;
   let versions = getSavedVersions();
   versions = versions.filter(v => v.id !== id);
-  localStorage.setItem("saganmin_versions", JSON.stringify(versions));
+  localStorage.setItem(_versionsKey(), JSON.stringify(versions));
   S.currentVersionIndex = 0;
   renderVersionsSidebar();
 }
@@ -136,7 +140,7 @@ export function updateCurrentVersion() {
 
   versions[idx].text = S.storyText;
   S.currentVersionIndex = idx;
-  localStorage.setItem("saganmin_versions", JSON.stringify(versions));
+  localStorage.setItem(_versionsKey(), JSON.stringify(versions));
   renderVersionsSidebar();
 }
 

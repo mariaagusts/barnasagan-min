@@ -411,6 +411,36 @@ html[lang="en"] .lang-is { display: none !important; }
     </button>
   </div>
 
+  <!-- Multi-child / Family plan -->
+  <div class="card featured" style="background:linear-gradient(135deg,#4E342E 0%,#3E2723 100%);border-color:#6D4C41;">
+    <div class="card-badge lang-is" style="background:var(--orange);">Fjölskyldupakki · Mörg börn</div>
+    <div class="card-badge lang-en" style="display:none;background:var(--orange);">Family plan · Multiple children</div>
+    <div class="card-name">
+      <span class="lang-is">Fjölskyldupakkinn</span>
+      <span class="lang-en" style="display:none;">Family plan</span>
+    </div>
+    <div class="card-desc">
+      <span class="lang-is">Saga um hvert barn á heimilinu</span>
+      <span class="lang-en" style="display:none;">A story for every child in the family</span>
+    </div>
+    <div class="price-wrap">
+      <div class="price-amount"><span class="price-currency" style="color:var(--gold);">€</span>80</div>
+      <div class="price-note lang-is">Ein greiðsla. Engin áskrift, aldrei.</div>
+      <div class="price-note lang-en" style="display:none;">One payment. No subscription, ever.</div>
+    </div>
+    <ul class="features">
+      <li><span class="check">✓</span><span class="feat-text lang-is">Allt í Fullum aðgangi</span><span class="feat-text lang-en" style="display:none;">Everything in Full access</span></li>
+      <li><span class="check">✓</span><span class="feat-text lang-is">Bæta við fleiri börnum á reikninginn</span><span class="feat-text lang-en" style="display:none;">Add multiple children to the account</span></li>
+      <li><span class="check">✓</span><span class="feat-text lang-is">Allir 12 kaflar fyrir hvert barn</span><span class="feat-text lang-en" style="display:none;">All 12 chapters per child</span></li>
+      <li><span class="check">✓</span><span class="feat-text lang-is">Sérstakt PDF fyrir hvert barn</span><span class="feat-text lang-en" style="display:none;">Separate PDF for each child</span></li>
+      <li><span class="check">✓</span><span class="feat-text lang-is">Hægt að uppfæra frá Fullum aðgangi</span><span class="feat-text lang-en" style="display:none;">Upgrade from Full access at any time</span></li>
+    </ul>
+    <button class="btn-paid" onclick="openMultiCheckout()">
+      <span class="lang-is">Kaupa fjölskyldupakka →</span>
+      <span class="lang-en" style="display:none;">Get family plan →</span>
+    </button>
+  </div>
+
   <!-- Gift purchase -->
   <div class="card" style="margin-top:16px;text-align:center;">
     <div class="card-badge lang-is">🎁 Gjöf</div>
@@ -423,9 +453,13 @@ html[lang="en"] .lang-is { display: none !important; }
       <span class="lang-is">Þú færð gjafakóða sendan á netfangið þitt. Gefðu hann áfram og viðtakandinn innleysir hann hér fyrir neðan.</span>
       <span class="lang-en" style="display:none;">You receive a gift code by email. Pass it on and the recipient redeems it here.</span>
     </div>
-    <button class="btn-paid" onclick="openGiftCheckout()">
-      <span class="lang-is">Kaupa gjafakóða →</span>
-      <span class="lang-en" style="display:none;">Buy gift code →</span>
+    <button class="btn-paid" onclick="openGiftCheckout()" style="margin-bottom:10px;">
+      <span class="lang-is">Kaupa gjafakóða (eitt barn) →</span>
+      <span class="lang-en" style="display:none;">Buy gift code (single child) →</span>
+    </button>
+    <button class="btn-paid" onclick="openMultiGiftCheckout()" style="background:var(--orange);">
+      <span class="lang-is">Kaupa fjölskyldukóða (mörg börn) →</span>
+      <span class="lang-en" style="display:none;">Buy family gift code (multiple children) →</span>
     </button>
   </div>
 
@@ -575,6 +609,35 @@ html[lang="en"] .lang-is { display: none !important; }
   Paddle.Initialize({
     token: 'live_ff319f8e763b6e55dabb332b1e4'
   });
+
+  async function openMultiCheckout() {
+    const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    const { data: { user } } = await sb.auth.getUser();
+    if (!user) { window.location.href = 'index.html'; return; }
+    Paddle.Checkout.open({
+      items: [{ priceId: 'pri_01kns9z3dgxq27twp818yc9pev', quantity: 1 }],
+      customData: { email: user.email },
+      settings: { successUrl: 'https://barnasagan.is/pricing.html?success=multi' }
+    });
+  }
+
+  async function openMultiGiftCheckout() {
+    const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    const { data: { user } } = await sb.auth.getUser();
+    let buyerEmail = user?.email;
+    if (!buyerEmail) {
+      const lang = localStorage.getItem('barnasagan_lang') || 'is';
+      buyerEmail = prompt(lang === 'en'
+        ? 'Enter your email address to receive the gift code:'
+        : 'Sláðu inn netfangið þitt til að fá gjafakóðann:');
+      if (!buyerEmail) return;
+    }
+    Paddle.Checkout.open({
+      items: [{ priceId: 'pri_01knsa2x2m8k4qz65jehajbgy1', quantity: 1 }],
+      customData: { email: buyerEmail },
+      settings: { successUrl: 'https://barnasagan.is/pricing.html?gift=multi' }
+    });
+  }
 
   async function openCheckout() {
     const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);

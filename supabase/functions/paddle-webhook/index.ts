@@ -1,5 +1,10 @@
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
+const SINGLE_PRICE_ID      = "pri_01kmy15wqc1dewnyj9wn9rattc";
+const GIFT_SINGLE_PRICE_ID = "pri_01kmyfmm00s0ycnkfhpk3v1wb1";
+const MULTI_PRICE_ID       = "pri_01kns9z3dgxq27twp818yc9pev";
+const GIFT_MULTI_PRICE_ID  = "pri_01knsa2x2m8k4qz65jehajbgy1";
+
 function generateGiftCode(): string {
   const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
   let code = "BARN-";
@@ -9,11 +14,21 @@ function generateGiftCode(): string {
   return code;
 }
 
-async function sendGiftCodeEmail(buyerEmail: string, code: string, resendKey: string) {
+async function sendGiftCodeEmail(
+  buyerEmail: string,
+  code: string,
+  plan: "single" | "multi",
+  resendKey: string,
+) {
+  const isMulti = plan === "multi";
+
+  const planLabelIs = isMulti ? "Fjölskyldupakkinn (mörg börn)" : "Fullur aðgangur";
+  const planLabelEn = isMulti ? "Family plan (multiple children)" : "Full access";
+
   const html = `
     <div style="font-family:sans-serif;max-width:520px;margin:0 auto;padding:32px 24px;">
       <h2 style="color:#3E2723;font-size:22px;margin-bottom:8px;">Gjafakóðinn þinn er tilbúinn 🎁</h2>
-      <p style="color:#795548;">Þú hefur keypt fullan aðgang að <strong>Barnasagan mín</strong> sem gjöf. Hér er gjafakóðinn:</p>
+      <p style="color:#795548;">Þú hefur keypt <strong>${planLabelIs}</strong> að <strong>Barnasagan mín</strong> sem gjöf. Hér er gjafakóðinn:</p>
       <div style="background:#FFF3E0;border:2px solid #FF9800;border-radius:12px;padding:20px;text-align:center;margin:24px 0;">
         <span style="font-size:28px;font-weight:bold;letter-spacing:4px;color:#E65100;">${code}</span>
       </div>
@@ -26,7 +41,7 @@ async function sendGiftCodeEmail(buyerEmail: string, code: string, resendKey: st
   const enHtml = `
     <div style="font-family:sans-serif;max-width:520px;margin:0 auto;padding:32px 24px;">
       <h2 style="color:#3E2723;font-size:22px;margin-bottom:8px;">Your gift code is ready 🎁</h2>
-      <p style="color:#795548;">You have purchased full access to <strong>Barnasagan mín</strong> as a gift. Here is the gift code:</p>
+      <p style="color:#795548;">You have purchased <strong>${planLabelEn}</strong> for <strong>Barnasagan mín</strong> as a gift. Here is the gift code:</p>
       <div style="background:#FFF3E0;border:2px solid #FF9800;border-radius:12px;padding:20px;text-align:center;margin:24px 0;">
         <span style="font-size:28px;font-weight:bold;letter-spacing:4px;color:#E65100;">${code}</span>
       </div>
@@ -65,16 +80,27 @@ Deno.serve(async (req: Request) => {
     }
 
     const data = body?.data;
-    const GIFT_PRICE_ID = "pri_01kmyfmm00s0ycnkfhpk3v1wb1";
-    const isGift = data?.items?.some((item: { price?: { id?: string } }) => item?.price?.id === GIFT_PRICE_ID);
     const transactionId = data?.id as string | undefined;
+    const priceId = data?.items?.[0]?.price?.id as string | undefined;
+
+    const isGiftSingle = data?.items?.some(
+      (item: { price?: { id?: string } }) => item?.price?.id === GIFT_SINGLE_PRICE_ID,
+    );
+    const isGiftMulti = data?.items?.some(
+      (item: { price?: { id?: string } }) => item?.price?.id === GIFT_MULTI_PRICE_ID,
+    );
+    const isMulti = data?.items?.some(
+      (item: { price?: { id?: string } }) => item?.price?.id === MULTI_PRICE_ID,
+    );
 
     const sb = createClient(
       Deno.env.get("SUPABASE_URL")!,
       Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!,
     );
 
-    if (isGift) {
+    // ── Gift purchase (single or multi) ──────────────────────────────
+    if (isGiftSingle || isGiftMulti) {
+      const plan: "single" | "multi" = isGiftMulti ? "multi" : "single";
       const buyerEmail = (data?.custom_data?.email || data?.customer?.email) as string | undefined;
       if (!buyerEmail) {
         console.error("Gift purchase: no buyer email", JSON.stringify(body));
@@ -87,6 +113,7 @@ Deno.serve(async (req: Request) => {
         code,
         buyer_email: buyerEmail.toLowerCase(),
         transaction_id: transactionId,
+        plan,
       });
 
       if (error) {
@@ -96,32 +123,34 @@ Deno.serve(async (req: Request) => {
 
       const resendKey = Deno.env.get("RESEND_API_KEY");
       if (resendKey) {
-        await sendGiftCodeEmail(buyerEmail, code, resendKey);
+        await sendGiftCodeEmail(buyerEmail, code, plan, resendKey);
       }
 
-      console.log("Gift code created:", code, "for:", buyerEmail);
-      return new Response("OK", { status: 200 });
-
-    } else {
-      const email = data?.custom_data?.email as string | undefined;
-      if (!email) {
-        console.error("No email in custom_data", JSON.stringify(body));
-        return new Response("No email", { status: 400 });
-      }
-
-      const { error } = await sb.from("paid_users").upsert(
-        { email: email.toLowerCase(), paddle_transaction_id: transactionId },
-        { onConflict: "email" },
-      );
-
-      if (error) {
-        console.error("DB error:", error);
-        return new Response("DB error", { status: 500 });
-      }
-
-      console.log("Payment recorded for:", email);
+      console.log(`Gift code (${plan}) created:`, code, "for:", buyerEmail);
       return new Response("OK", { status: 200 });
     }
+
+    // ── Direct purchase (single or multi) ────────────────────────────
+    const email = data?.custom_data?.email as string | undefined;
+    if (!email) {
+      console.error("No email in custom_data", JSON.stringify(body));
+      return new Response("No email", { status: 400 });
+    }
+
+    const plan: "single" | "multi" = isMulti ? "multi" : "single";
+
+    const { error } = await sb.from("paid_users").upsert(
+      { email: email.toLowerCase(), paddle_transaction_id: transactionId, plan },
+      { onConflict: "email" },
+    );
+
+    if (error) {
+      console.error("DB error:", error);
+      return new Response("DB error", { status: 500 });
+    }
+
+    console.log(`Payment (${plan}) recorded for:`, email);
+    return new Response("OK", { status: 200 });
 
   } catch (err) {
     console.error("Webhook error:", err);

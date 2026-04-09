@@ -2,7 +2,7 @@
 //  FAMILY TYPE — setup and context for Gemini
 // ══════════════════════════════════════════════
 import { S } from './state.js';
-import { saveState } from './supabase-client.js';
+import { saveState, getSupabase } from './supabase-client.js';
 
 const FAMILY_CONTEXT = {
   "mamma-pabbi": {
@@ -46,6 +46,20 @@ export function closeFamilySetup() {
 
 export async function setFamilyType(type) {
   S.chapters.familyType = type;
+
+  // Sync to children table so it persists across state reloads
+  if (S.activeChildId) {
+    const sb = getSupabase();
+    if (sb) {
+      await sb.from("children")
+        .update({ family_type: type })
+        .eq("id", S.activeChildId)
+        .eq("user_id", S.user.id);
+      const child = S.children.find(c => c.id === S.activeChildId);
+      if (child) child.family_type = type;
+    }
+  }
+
   closeFamilySetup();
   await saveState();
   const { showMap } = await import('./modals.js');

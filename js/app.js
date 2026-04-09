@@ -14,6 +14,7 @@ import './interview.js';
 import './story.js';
 import './versions.js';
 import './export.js';
+import './children.js';
 import './admin.js';
 import { showScreen } from './modals.js';
 import './modals.js';

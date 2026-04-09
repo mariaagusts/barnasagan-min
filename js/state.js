@@ -12,6 +12,9 @@ export const S = {
   recognition: null,
   styleKey: "natural",
   isPaid: false,
+  plan: "single",        // 'single' | 'multi'
+  children: [],          // [{ id, child_name, family_type }]
+  activeChildId: null,
   sbClient: null,
   authMode: "login",
   adminMode: false,
