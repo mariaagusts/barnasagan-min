@@ -164,7 +164,7 @@ export async function loadStateFromSupabase() {
       .select("state_json")
       .eq("user_id", S.user.id)
       .eq("child_id", S.activeChildId)
-      .single();
+      .maybeSingle();
     if (data && data.state_json) {
       S.chapters = JSON.parse(data.state_json);
       applyMigrations(S.chapters);
