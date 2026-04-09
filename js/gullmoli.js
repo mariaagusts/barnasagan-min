@@ -162,11 +162,11 @@ export function renderGullmolaBank() {
   if (S.gullmolar.length === 0) {
     body.innerHTML = `
       <div style="text-align:center;padding:48px 20px;color:var(--mid);">
-        <div style="font-size:3.5rem;margin-bottom:16px;">💬</div>
-        <p style="font-size:16px;line-height:1.7;">
+        <div style="font-size:3.5rem;margin-bottom:16px;filter:sepia(1) saturate(4) hue-rotate(5deg) brightness(1.1);">💬</div>
+        <p style="font-size:15px;line-height:1.7;">
           ${S.lang === 'en'
-            ? 'No golden phrases yet.<br>Tap the speech bubble button to capture the first one!'
-            : 'Engir gullmolar enn.<br>Smelltu á gullnu talbúbbluna til að skrá þá fyrstu!'}
+            ? 'No golden phrases yet — tap the button above to add the first one!'
+            : 'Engir gullmolar enn — smelltu á hnappinn hér að ofan til að skrá þá fyrstu!'}
         </p>
       </div>`;
     return;
