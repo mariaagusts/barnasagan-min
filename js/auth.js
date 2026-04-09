@@ -4,6 +4,7 @@
 import { S } from './state.js';
 import { t } from './i18n.js';
 import { getSupabase, loadStateFromSupabase, loadPaidStatus, loadChildren, createFirstChild } from './supabase-client.js';
+import { loadGullmolar, updateGullmolaFab } from './gullmoli.js';
 
 export function switchTab(mode) {
   S.authMode = mode;
@@ -87,7 +88,8 @@ export async function onSignedIn() {
     const { showFamilySetup } = await import('./family.js');
     showFamilySetup();
   } else {
-    await loadStateFromSupabase();
+    await Promise.all([loadStateFromSupabase(), loadGullmolar()]);
+    updateGullmolaFab();
     const { renderChildSwitcher } = await import('./children.js');
     renderChildSwitcher();
     if (!S.chapters.familyType) {
@@ -119,6 +121,8 @@ export async function signOut() {
   S.children = [];
   S.activeChildId = null;
   S.plan = "single";
+  S.gullmolar = [];
+  updateGullmolaFab();
   const { showScreen } = await import('./modals.js');
   showScreen("landing");
   const { updateNav } = await import('./app.js');

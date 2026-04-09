@@ -10,6 +10,7 @@ import { renderMarkdown } from './story.js';
 import { showScreen } from './modals.js';
 import { getFamilyContext } from './family.js';
 import { enterChapter } from './interview.js';
+import { updateGullmolaMapTile } from './gullmoli.js';
 
 export function renderMap() {
   const chapters = getChapters();
@@ -26,6 +27,11 @@ export function renderMap() {
   const btn = document.getElementById("btn-generate-story");
   btn.style.display = enough ? "inline-block" : "none";
   btn.textContent = enough ? `✨ ${t("previewBtn").replace("✨ ","")} (${total} ${t("mapAnswers").toLowerCase()})` : "";
+
+  const gullCount = S.gullmolar?.length || 0;
+  const gullCountLabel = gullCount === 1
+    ? (S.lang === 'en' ? '1 phrase' : '1 gullmola')
+    : (S.lang === 'en' ? `${gullCount} phrases` : `${gullCount} gullmolur`);
 
   grid.innerHTML = chapters.map((ch, i) => {
     const cs = getChapterState(ch.id);
@@ -55,7 +61,14 @@ export function renderMap() {
         </div>
         ${answered > 0 ? `<button class="chapter-preview-btn" onclick="event.stopPropagation();previewChapter(${ch.id})">👁 Forskoða kafla</button>` : ''}
         </div>`;
-  }).join("");
+  }).join("") + `
+    <div class="chapter-card gullmola-tile" onclick="openGullmolaBank()">
+      <span class="chapter-emoji">💬</span>
+      <div class="chapter-name" style="color:var(--gold);">Gullmolabanki</div>
+      <div class="chapter-desc">${S.lang === 'en' ? 'Funny and memorable things your child says' : 'Fyndnar og eftirminnilegur setningar barnsins'}</div>
+      <div class="gullmola-tile-count" id="gullmola-tile-count-wrap">${gullCount > 0 ? gullCountLabel : (S.lang === 'en' ? 'Add first phrase →' : 'Bæta við fyrstu →')}</div>
+    </div>`;
+  updateGullmolaMapTile();
 }
 
 export async function previewChapter(id) {

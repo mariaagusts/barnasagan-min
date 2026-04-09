@@ -277,6 +277,67 @@ export async function downloadPDF(whiteBg = false) {
   }
   await flushChapterPhotos();
 
+  // ── Gullmolabanki ─────────────────────────────────────
+  if (S.gullmolar && S.gullmolar.length > 0) {
+    addPage();
+    y = margin + 10;
+    doc.setFont("EBGaramond", "italic");
+    doc.setFontSize(22);
+    doc.setTextColor(139, 94, 60);
+    doc.text("Gullmolabanki", W / 2, y, { align: "center" });
+    y += 8;
+    doc.setDrawColor(196, 154, 108);
+    doc.setLineWidth(0.4);
+    doc.line(margin, y, W / 2 - 35, y);
+    doc.line(W / 2 + 35, y, W - margin, y);
+    y += 14;
+
+    for (const g of S.gullmolar) {
+      if (y + 30 > H - margin) { addPage(); y = margin + 10; }
+
+      // Opening quote mark
+      doc.setFont("EBGaramond", "italic");
+      doc.setFontSize(13);
+      doc.setTextColor(44, 26, 14);
+      const quoteLines = doc.splitTextToSize(`"${g.quote}"`, contentW - 10);
+      for (const ql of quoteLines) {
+        if (y > H - 30) { addPage(); y = margin + 10; }
+        doc.text(ql, margin + 5, y);
+        y += 7;
+      }
+
+      // Context
+      if (g.context) {
+        doc.setFont("EBGaramond", "normal");
+        doc.setFontSize(10);
+        doc.setTextColor(139, 94, 60);
+        const ctxLines = doc.splitTextToSize(g.context, contentW - 10);
+        for (const cl of ctxLines) {
+          if (y > H - 30) { addPage(); y = margin + 10; }
+          doc.text(cl, margin + 5, y);
+          y += 5.5;
+        }
+      }
+
+      // Date
+      if (g.said_at) {
+        const d = new Date(g.said_at + 'T00:00:00');
+        const dateStr = d.toLocaleDateString('is-IS', { day: 'numeric', month: 'long', year: 'numeric' });
+        doc.setFont("EBGaramond", "normal");
+        doc.setFontSize(9);
+        doc.setTextColor(180, 150, 120);
+        doc.text(dateStr, margin + 5, y);
+        y += 5;
+      }
+
+      // Separator line
+      doc.setDrawColor(220, 190, 160);
+      doc.setLineWidth(0.2);
+      doc.line(margin, y + 3, W - margin, y + 3);
+      y += 12;
+    }
+  }
+
   // ── Myndasafn ────────────────────────────────────────
   if (S.uploadedPhotos.length > 0) {
     addPage();

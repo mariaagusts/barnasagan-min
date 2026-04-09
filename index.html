@@ -892,6 +892,47 @@
 <button class="floating-info-btn" id="floating-info-btn" onclick="showInfoModal()"
   title="Hvar eru gögn þín geymd?">❓</button>
 
+<!-- ══ GULLMOLABANKI FAB ══ -->
+<button class="gullmola-fab" id="gullmola-fab" onclick="openGullmolaQuickAdd()"
+  title="Skrá gullmolu" style="display:none;">💬</button>
+
+<!-- ══ GULLMOLABANKI QUICK-ADD MODAL ══ -->
+<div id="gullmola-quickadd-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:3000;align-items:center;justify-content:center;padding:20px;" onclick="if(event.target===this)closeGullmolaQuickAdd()">
+  <div class="gullmola-qa-box">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+      <div>
+        <div style="font-size:1.5rem;">💬</div>
+        <h3 style="font-family:'Fredoka One',cursive;font-size:1.3rem;color:var(--orange);margin:4px 0 0;">Gullmolabanki</h3>
+      </div>
+      <button onclick="closeGullmolaQuickAdd()" style="background:none;border:none;font-size:20px;cursor:pointer;color:var(--mid);">✕</button>
+    </div>
+    <textarea id="gullmola-qa-quote" class="gullmola-qa-textarea"
+      placeholder="Hvað sagði barnið?..." rows="3"></textarea>
+    <input id="gullmola-qa-context" type="text" class="gullmola-qa-input"
+      placeholder="Samhengi, t.d. í morgunmat, 3ja ára (valfrjálst)">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;">
+      <label style="font-size:12px;color:var(--mid);white-space:nowrap;">Dagsetning:</label>
+      <input id="gullmola-qa-date" type="date" class="gullmola-qa-date-input">
+    </div>
+    <button id="gullmola-qa-save" class="gullmola-qa-save-btn" onclick="saveGullmolaQuickAdd()">Vista</button>
+  </div>
+</div>
+
+<!-- ══ GULLMOLABANKI COLLECTION MODAL ══ -->
+<div id="gullmola-bank-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:3000;align-items:flex-start;justify-content:center;padding:24px 16px;overflow-y:auto;" onclick="if(event.target===this)closeGullmolaBank()">
+  <div class="gullmola-bank-box">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;">
+      <div>
+        <div style="font-size:1.8rem;">💬</div>
+        <h2 id="gullmola-bank-title" style="font-family:'Fredoka One',cursive;font-size:1.5rem;color:var(--orange);margin:4px 0 0;">Gullmolabanki</h2>
+      </div>
+      <button onclick="closeGullmolaBank()" style="background:none;border:none;font-size:22px;cursor:pointer;color:var(--mid);">✕</button>
+    </div>
+    <button onclick="closeGullmolaBank();openGullmolaQuickAdd();" class="gullmola-bank-add-btn">+ Bæta við gullmolu</button>
+    <div id="gullmola-bank-body" style="margin-top:20px;"></div>
+  </div>
+</div>
+
 <!-- ══ CHAPTER PREVIEW MODAL ══ -->
 <div id="chapter-preview-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:2000;overflow-y:auto;padding:40px 20px;" onclick="if(event.target===this)closeChapterPreview()">
   <div style="max-width:700px;margin:0 auto;background:white;border-radius:20px;padding:48px;position:relative;">
