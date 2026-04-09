@@ -30,10 +30,21 @@ async function advanceQuestion(cs) {
   const wasFollowUp = cs.awaitingFollowUp;
   cs.awaitingFollowUp = false;
 
-  const askAI = () => Promise.race([
-    generateNextQuestion(cs),
-    new Promise((_, reject) => setTimeout(() => reject(new Error("Timeout")), 15000))
-  ]);
+  const askAI = async () => {
+    const text = await Promise.race([
+      generateNextQuestion(cs),
+      new Promise((_, reject) => setTimeout(() => reject(new Error("Timeout")), 15000))
+    ]);
+    // If AI returns a question already in the list, skip to next core instead
+    const alreadyAsked = cs.questions.some(q => q.trim().toLowerCase() === text.trim().toLowerCase());
+    if (alreadyAsked) {
+      const nextCore = cs.coreTexts[cs.coreAnswered];
+      const ch = getChapters().find(c => c.id === S.chapterId);
+      const title = ch?.title || "";
+      return nextCore || (S.lang === "en" ? `Is there anything else you'd like to share about ${title}?` : `Er eitthvað fleira sem þú vilt deila um ${title}?`);
+    }
+    return text;
+  };
 
   if (wasFollowUp) {
     // After a follow-up: always go to next isCore (or free-form if all cores done)
