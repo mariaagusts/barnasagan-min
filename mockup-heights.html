@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="is">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mockup · Hæð barnsins · Barnasagan mín</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream:#FFFBF2; --warm:#FFF3E0; --gold:#FF9800; --orange:#F57C00;
+  --text:#3E2723; --mid:#795548; --border:#FFCC80; --radius:16px;
+  --shadow:0 4px 20px rgba(0,0,0,0.08); --dark:#3E2723; --brown:#F57C00;
+  --card:#FFFFFF; --gold-lt:#FFE0B2; --green:#5b8a5f; --green-lt:#e8f5e9;
+}
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+body { min-height:100vh; background:rgba(62,39,35,0.5); font-family:'Nunito',sans-serif; color:var(--text); -webkit-font-smoothing:antialiased; display:flex; align-items:flex-start; justify-content:center; padding:40px 16px; }
+
+.heights-box {
+  background: white;
+  border-radius: 24px;
+  padding: 36px 32px;
+  width: 100%;
+  max-width: 540px;
+  box-shadow: 0 16px 60px rgba(0,0,0,0.25);
+}
+.bank-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:24px; }
+.close-btn { background:none; border:none; font-size:22px; cursor:pointer; color:var(--mid); }
+.bank-add-btn { display:block; width:100%; padding:12px 20px; background:var(--green-lt); border:2px dashed var(--green); border-radius:50px; font-family:'Nunito',sans-serif; font-size:14px; font-weight:800; color:var(--green); cursor:pointer; text-align:center; margin-bottom:24px; }
+
+/* Bar chart */
+.chart-wrap { margin:8px 0 24px; }
+.chart-row { display:flex; align-items:center; gap:12px; margin-bottom:10px; }
+.chart-age { font-size:11px; color:var(--mid); font-weight:700; width:60px; text-align:right; flex-shrink:0; }
+.chart-bar-wrap { flex:1; background:#f0f4f0; border-radius:8px; overflow:hidden; height:28px; position:relative; }
+.chart-bar { height:100%; background:linear-gradient(90deg, var(--green), #7bbf80); border-radius:8px; display:flex; align-items:center; justify-content:flex-end; padding-right:8px; transition:width 0.6s ease; }
+.chart-val { font-size:12px; font-weight:800; color:white; }
+.chart-note { font-size:11px; color:var(--mid); width:90px; flex-shrink:0; }
+
+/* Entry list */
+.section-label { font-size:11px; color:var(--mid); letter-spacing:0.1em; text-transform:uppercase; font-weight:800; margin-bottom:12px; }
+.height-entry { background:var(--green-lt); border:1.5px solid #a5d6a7; border-radius:14px; padding:14px 18px; margin-bottom:10px; display:flex; align-items:center; gap:16px; position:relative; }
+.height-main { font-family:'Fredoka One',cursive; font-size:22px; color:var(--green); }
+.height-weight { font-size:13px; color:var(--mid); font-weight:700; }
+.height-date { font-size:12px; color:var(--mid); }
+.height-note-txt { font-size:12px; color:var(--green); margin-top:2px; font-style:italic; }
+.height-growth { background:white; border:1px solid #a5d6a7; border-radius:50px; padding:3px 10px; font-size:11px; color:var(--green); font-weight:800; }
+.height-delete { position:absolute; top:12px; right:14px; background:none; border:none; font-size:13px; color:var(--mid); opacity:0.4; cursor:pointer; }
+</style>
+</head>
+<body>
+
+<div class="heights-box">
+  <div class="bank-header">
+    <div>
+      <div style="font-size:1.8rem;">📏</div>
+      <h2 style="font-family:'Fredoka One',cursive;font-size:1.5rem;color:var(--green);margin-top:4px;">Hæð barnsins</h2>
+    </div>
+    <button class="close-btn">✕</button>
+  </div>
+
+  <button class="bank-add-btn">+ Bæta við mælingu</button>
+
+  <!-- Mini bar chart -->
+  <div class="section-label">Vaxtarferill</div>
+  <div class="chart-wrap">
+    <div class="chart-row">
+      <span class="chart-age">Fæðing</span>
+      <div class="chart-bar-wrap"><div class="chart-bar" style="width:28%"><span class="chart-val">50 cm</span></div></div>
+      <span class="chart-note"></span>
+    </div>
+    <div class="chart-row">
+      <span class="chart-age">1 árs</span>
+      <div class="chart-bar-wrap"><div class="chart-bar" style="width:48%"><span class="chart-val">76 cm</span></div></div>
+      <span class="chart-note"></span>
+    </div>
+    <div class="chart-row">
+      <span class="chart-age">2 ára</span>
+      <div class="chart-bar-wrap"><div class="chart-bar" style="width:58%"><span class="chart-val">88 cm</span></div></div>
+      <span class="chart-note"></span>
+    </div>
+    <div class="chart-row">
+      <span class="chart-age">3 ára</span>
+      <div class="chart-bar-wrap"><div class="chart-bar" style="width:68%"><span class="chart-val">96 cm</span></div></div>
+      <span class="chart-note"></span>
+    </div>
+    <div class="chart-row">
+      <span class="chart-age">4 ára</span>
+      <div class="chart-bar-wrap"><div class="chart-bar" style="width:78%"><span class="chart-val">104 cm</span></div></div>
+      <span class="chart-note">Nýjast</span>
+    </div>
+  </div>
+
+  <!-- Entry list -->
+  <div class="section-label" style="margin-top:8px;">Allar mælingar</div>
+
+  <div class="height-entry">
+    <button class="height-delete">🗑</button>
+    <div class="height-main">104 cm</div>
+    <div>
+      <div class="height-weight">14,2 kg</div>
+      <div class="height-date">Mars 2024 · 4 ára</div>
+      <div class="height-note-txt">Leikmot í fótbolta, fyrsti dagurinn</div>
+    </div>
+    <div style="margin-left:auto;"><span class="height-growth">+8 cm</span></div>
+  </div>
+
+  <div class="height-entry">
+    <button class="height-delete">🗑</button>
+    <div class="height-main">96 cm</div>
+    <div>
+      <div class="height-weight">13,0 kg</div>
+      <div class="height-date">Mars 2023 · 3 ára</div>
+      <div class="height-note-txt">Heilsugæslan, þriggja ára skoðun</div>
+    </div>
+    <div style="margin-left:auto;"><span class="height-growth">+8 cm</span></div>
+  </div>
+
+  <div class="height-entry">
+    <button class="height-delete">🗑</button>
+    <div class="height-main">88 cm</div>
+    <div>
+      <div class="height-weight">11,8 kg</div>
+      <div class="height-date">Mars 2022 · 2 ára</div>
+      <div class="height-note-txt"></div>
+    </div>
+    <div style="margin-left:auto;"><span class="height-growth">+12 cm</span></div>
+  </div>
+
+  <div class="height-entry">
+    <button class="height-delete">🗑</button>
+    <div class="height-main">76 cm</div>
+    <div>
+      <div class="height-weight">9,5 kg</div>
+      <div class="height-date">Mars 2021 · 1 árs</div>
+      <div class="height-note-txt">Eins árs skoðun</div>
+    </div>
+    <div style="margin-left:auto;"><span class="height-growth">+26 cm</span></div>
+  </div>
+
+  <div class="height-entry">
+    <button class="height-delete">🗑</button>
+    <div class="height-main">50 cm</div>
+    <div>
+      <div class="height-weight">3,4 kg</div>
+      <div class="height-date">15. mars 2020 · Fæðing</div>
+      <div class="height-note-txt">Landspítalinn</div>
+    </div>
+    <div style="margin-left:auto;"></div>
+  </div>
+</div>
+
+</body>
+</html>

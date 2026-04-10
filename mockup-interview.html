@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="is">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mockup · Spurning · Barnasagan mín</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream:#FFFBF2; --warm:#FFF3E0; --gold:#FF9800; --orange:#F57C00;
+  --text:#3E2723; --mid:#795548; --border:#FFCC80; --radius:16px;
+  --shadow:0 4px 20px rgba(0,0,0,0.08); --dark:#3E2723; --brown:#F57C00;
+  --card:#FFFFFF; --gold-lt:#FFE0B2;
+}
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+body { min-height:100vh; background:var(--cream); font-family:'Nunito',sans-serif; color:var(--text); -webkit-font-smoothing:antialiased; }
+@keyframes fadein { from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)} }
+
+.landing-nav { position:fixed; top:0; left:0; right:0; z-index:100; background:rgba(255,251,242,0.97); backdrop-filter:blur(8px); border-bottom:1px solid var(--border); padding:0 32px; height:60px; display:flex; align-items:center; justify-content:space-between; }
+.nav-logo { font-family:'Fredoka One',cursive; font-size:22px; color:var(--orange); }
+.btn-back { background:transparent; border:1px solid var(--border); color:var(--orange); padding:8px 18px; font-size:13px; font-family:'Nunito',sans-serif; font-weight:700; cursor:pointer; border-radius:50px; }
+.progress-wrap { display:flex; align-items:center; gap:10px; }
+.progress-bar { width:140px; height:6px; background:var(--gold-lt); border-radius:3px; overflow:hidden; }
+.progress-fill { height:100%; background:linear-gradient(90deg,var(--gold),var(--orange)); border-radius:3px; }
+.progress-label { font-size:12px; color:var(--orange); font-weight:800; }
+
+.page-wrap { max-width:860px; margin:0 auto; padding:100px 24px 80px; animation:fadein 0.45s ease; }
+
+.chapter-banner { background:var(--dark); color:white; padding:16px 24px; border-radius:20px; margin-bottom:24px; display:flex; align-items:center; gap:14px; }
+.chapter-banner-emoji { font-size:24px; }
+.chapter-banner-text { font-size:10px; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); font-weight:800; }
+.chapter-banner-title { font-family:'Fredoka One',cursive; font-size:18px; }
+
+.card { background:white; border:1px solid var(--border); border-radius:20px; padding:40px 44px; box-shadow:var(--shadow); }
+.q-num { font-size:10px; letter-spacing:0.15em; color:var(--gold); text-transform:uppercase; font-weight:800; margin-bottom:16px; }
+.question { font-family:'Fredoka One',cursive; font-size:22px; line-height:1.5; color:var(--text); margin-bottom:28px; }
+textarea { width:100%; background:var(--cream); border:2px solid var(--border); border-radius:12px; padding:16px; font-size:15px; font-family:'Nunito',sans-serif; color:var(--text); outline:none; resize:none; line-height:1.7; }
+textarea:focus { border-color:var(--gold); }
+.action-row { display:flex; align-items:center; gap:12px; margin-top:20px; flex-wrap:wrap; }
+.btn-mic { background:transparent; border:2px solid var(--orange); color:var(--orange); padding:10px 22px; font-size:13px; font-family:'Nunito',sans-serif; font-weight:800; cursor:pointer; border-radius:50px; }
+.btn-next { margin-left:auto; background:var(--orange); color:white; border:none; padding:12px 32px; font-size:13px; font-family:'Nunito',sans-serif; font-weight:800; cursor:pointer; border-radius:50px; }
+.btn-skip { background:transparent; border:1px solid var(--border); color:var(--mid); padding:10px 20px; font-size:13px; font-family:'Nunito',sans-serif; font-weight:700; cursor:pointer; border-radius:50px; }
+.save-indicator { margin-top:10px; font-size:12px; color:var(--orange); font-style:italic; }
+
+.history-wrap { margin-top:24px; background:white; border:1px solid var(--border); border-radius:20px; padding:16px 24px; box-shadow:var(--shadow); }
+.history-wrap summary { cursor:pointer; font-size:12px; color:var(--orange); letter-spacing:0.08em; text-transform:uppercase; font-weight:800; }
+.history-item { margin-top:16px; padding-top:16px; border-top:1px dashed var(--border); }
+.history-q { font-size:12px; color:var(--orange); font-style:italic; margin-bottom:6px; font-weight:700; }
+.history-a { font-size:14px; color:var(--text); line-height:1.7; }
+.history-delete-btn { float:right; background:none; border:none; color:var(--mid); font-size:11px; cursor:pointer; font-family:'Nunito',sans-serif; font-weight:700; opacity:0.5; }
+</style>
+</head>
+<body>
+
+<nav class="landing-nav">
+  <span class="nav-logo">Barnasagan mín</span>
+  <div style="display:flex;align-items:center;gap:12px;">
+    <button class="btn-back">← Kaflayfirlit</button>
+    <div class="progress-wrap">
+      <div class="progress-bar"><div class="progress-fill" style="width:30%"></div></div>
+      <span class="progress-label">3/10</span>
+    </div>
+  </div>
+</nav>
+
+<div class="page-wrap">
+  <div class="chapter-banner">
+    <span class="chapter-banner-emoji">🌟</span>
+    <div>
+      <div class="chapter-banner-text">Kafli 3</div>
+      <div class="chapter-banner-title">Karakterinn og einkennin</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="q-num">Spurning 4</div>
+    <p class="question">Hvernig sýnir barnið þitt kærleika eða hluttekningu gagnvart öðrum?</p>
+    <textarea rows="6" placeholder="Segðu frá barninu þínu...">Embla er ótrúlega hluttekin. Hún tekur eftir þegar einhver er sorgmæddur löngu áður en við fullorðna sjáum það. Þegar vinkonan hennar í leikskólanum grét vegna þess að mamma hennar var sein að sækja hana tók Embla hana í hendina og sagði: "Mamma þín er að koma, hún elskar þig." Hún var þá 3 ára og hálf.</textarea>
+    <div class="action-row">
+      <button class="btn-mic">🎙 Segja frá</button>
+      <button class="btn-skip">Sleppa →</button>
+      <button class="btn-next">Næsta →</button>
+    </div>
+    <div class="save-indicator">✓ Framvinda vistuð</div>
+  </div>
+
+  <details class="history-wrap" open style="margin-top:24px;">
+    <summary>Fyrri svör í þessum kafla (3)</summary>
+
+    <div class="history-item">
+      <button class="history-delete-btn">🗑 Eyða</button>
+      <div class="history-q">Hvernig myndir þú lýsa persónuleika barnsins þíns?</div>
+      <div class="history-a">Embla er kát og fyndnasta manneskja sem ég þekki. Hún er alltaf með nýjar hugmyndir og þykir frábært að gera aðra hamingjusama. Hún er líka mjög einbeitt þegar eitthvað kemur við hug hennar, eins og þegar hún ákveður að teikna og situr við það í klukkutíma.</div>
+    </div>
+
+    <div class="history-item">
+      <button class="history-delete-btn">🗑 Eyða</button>
+      <div class="history-q">Hvað gerist þegar Embla er reið eða sorgmædd?</div>
+      <div class="history-a">Hún kemur alltaf í faðminn. Það er eina sem hún vill þegar henni líður illa. Ekki orð, bara faðmur. Eftir stutta stund segir hún hvað er að, eins og hún þurfi fyrst að hlaða sig upp með hlýju til að geta talað um það.</div>
+    </div>
+
+    <div class="history-item">
+      <button class="history-delete-btn">🗑 Eyða</button>
+      <div class="history-q">Hvernig bregst Embla við nýjum aðstæðum eða framandi fólki?</div>
+      <div class="history-a">Hún er iðulega tortryggin í fyrstu en þegar hún treystir einhverjum gefur hún sig alveg. Í leikskólanum tók það hana viku að tala við kennarann en eftir það var hann bestur. Hún er ekki feiminn, hún er bara vandvirkur í að velja hverjum hún gefur traust sitt.</div>
+    </div>
+  </details>
+</div>
+</body>
+</html>

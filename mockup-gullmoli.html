@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="is">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mockup · Gullmolabanki · Barnasagan mín</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream:#FFFBF2; --warm:#FFF3E0; --gold:#FF9800; --orange:#F57C00;
+  --text:#3E2723; --mid:#795548; --border:#FFCC80; --radius:16px;
+  --shadow:0 4px 20px rgba(0,0,0,0.08); --dark:#3E2723; --brown:#F57C00;
+  --card:#FFFFFF; --gold-lt:#FFE0B2;
+}
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+body { min-height:100vh; background:rgba(62,39,35,0.5); font-family:'Nunito',sans-serif; color:var(--text); -webkit-font-smoothing:antialiased; display:flex; align-items:flex-start; justify-content:center; padding:40px 16px; }
+
+.gullmola-bank-box {
+  background: white;
+  border-radius: 24px;
+  padding: 36px 32px;
+  width: 100%;
+  max-width: 520px;
+  box-shadow: 0 16px 60px rgba(0,0,0,0.25);
+}
+
+.bank-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:24px; }
+.bank-title-wrap { display:flex; flex-direction:column; }
+.bank-emoji { font-size:2rem; }
+.bank-title { font-family:'Fredoka One',cursive; font-size:1.5rem; color:var(--orange); margin-top:4px; }
+
+.bank-add-btn {
+  display:block; width:100%; padding:12px 20px;
+  background:var(--warm); border:2px dashed var(--gold); border-radius:50px;
+  font-family:'Nunito',sans-serif; font-size:14px; font-weight:800; color:var(--orange);
+  cursor:pointer; text-align:center; margin-bottom:20px;
+}
+
+.gullmola-entry {
+  background: linear-gradient(135deg, #fffdf5 0%, #fff8e6 100%);
+  border: 1.5px solid #e8c56a;
+  border-radius: 16px;
+  padding: 18px 20px;
+  margin-bottom: 12px;
+  position: relative;
+}
+.gullmola-quote {
+  font-family: 'Nunito', sans-serif;
+  font-size: 15px;
+  color: var(--text);
+  line-height: 1.65;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+.gullmola-quote::before { content: '✨ '; }
+.gullmola-meta {
+  font-size: 12px;
+  color: #b8860b;
+  font-weight: 600;
+}
+.gullmola-context {
+  font-size: 12px;
+  color: var(--mid);
+  margin-top: 4px;
+}
+.gullmola-delete { position:absolute; top:14px; right:14px; background:none; border:none; font-size:14px; color:var(--mid); opacity:0.4; cursor:pointer; }
+.gullmola-delete:hover { opacity:0.9; color:#c0392b; }
+
+.close-btn { background:none; border:none; font-size:22px; cursor:pointer; color:var(--mid); padding:4px 8px; }
+</style>
+</head>
+<body>
+
+<div class="gullmola-bank-box">
+  <div class="bank-header">
+    <div class="bank-title-wrap">
+      <span class="bank-emoji">✨</span>
+      <span class="bank-title">Gullmolabanki</span>
+    </div>
+    <button class="close-btn">✕</button>
+  </div>
+
+  <button class="bank-add-btn">+ Bæta við gullmola</button>
+
+  <div class="gullmola-entry">
+    <button class="gullmola-delete">🗑</button>
+    <div class="gullmola-quote">Mamma, æðislegt er þegar við erum bæði heima.</div>
+    <div class="gullmola-meta">15. janúar 2025</div>
+    <div class="gullmola-context">Þegar við fórum í búð saman, 4 ára og 9 mánaða</div>
+  </div>
+
+  <div class="gullmola-entry">
+    <button class="gullmola-delete">🗑</button>
+    <div class="gullmola-quote">Af hverju fara skýin aldrei í svefn?</div>
+    <div class="gullmola-meta">3. nóvember 2024</div>
+    <div class="gullmola-context">Á bílferð heim frá ömmu og afa, 4 ára</div>
+  </div>
+
+  <div class="gullmola-entry">
+    <button class="gullmola-delete">🗑</button>
+    <div class="gullmola-quote">Ég elska þig meira en alla kassa í búðinni.</div>
+    <div class="gullmola-meta">22. ágúst 2024</div>
+    <div class="gullmola-context">Við hjónaband vinkoninnar, 3 ára og 5 mánaða</div>
+  </div>
+
+  <div class="gullmola-entry">
+    <button class="gullmola-delete">🗑</button>
+    <div class="gullmola-quote">Mjaú, ég heiti Embla og ég er köttur í dag.</div>
+    <div class="gullmola-meta">10. júní 2024</div>
+    <div class="gullmola-context">Við morgunmat, vildi ekki klæðast</div>
+  </div>
+
+  <div class="gullmola-entry">
+    <button class="gullmola-delete">🗑</button>
+    <div class="gullmola-quote">Pabbi, þegar ég verð stór verð ég að læra hvað fuglarnir segja.</div>
+    <div class="gullmola-meta">28. mars 2024</div>
+    <div class="gullmola-context">Í garðinum, 3 ára og 1 mánuðar</div>
+  </div>
+
+  <div class="gullmola-entry">
+    <button class="gullmola-delete">🗑</button>
+    <div class="gullmola-quote">Þetta er best! Við eigum að gera þetta alltaf á þriðjudögum.</div>
+    <div class="gullmola-meta">12. febrúar 2024</div>
+    <div class="gullmola-context">Eftir pönnukökukvöld, 2 ára og 11 mánaða</div>
+  </div>
+
+  <div style="text-align:center;margin-top:16px;font-size:13px;color:var(--mid);">12 gullmolar í bankanum</div>
+</div>
+
+</body>
+</html>
