@@ -150,6 +150,15 @@ export async function submitNewPassword() {
   setTimeout(() => onSignedIn(), 1500);
 }
 
+export async function signInWithGoogle() {
+  const sb = getSupabase();
+  if (!sb) return;
+  await sb.auth.signInWithOAuth({
+    provider: 'google',
+    options: { redirectTo: 'https://barnasagan.is' },
+  });
+}
+
 export async function signOut() {
   const sb = getSupabase();
   if (sb) await sb.auth.signOut();
@@ -171,6 +180,7 @@ export async function signOut() {
 window.switchTab = switchTab;
 window.handleAuth = handleAuth;
 window.forgotPassword = forgotPassword;
+window.signInWithGoogle = signInWithGoogle;
 window.signOut = signOut;
 window.submitNewPassword = submitNewPassword;
 window.showPasswordResetForm = showPasswordResetForm;
