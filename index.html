@@ -482,13 +482,16 @@
         function scaleAmiB() {
           var wrap = document.querySelector('.ami-outer');
           var scaler = document.getElementById('ami-scaler-b');
-          if (!wrap || !scaler) return;
+          if (!wrap || !scaler || wrap.offsetWidth === 0) return;
           var scale = wrap.offsetWidth / 1060;
           scaler.style.transform = 'scale(' + scale + ')';
           wrap.style.height = Math.round(600 * scale) + 'px';
         }
-        window.addEventListener('load', scaleAmiB);
         window.addEventListener('resize', scaleAmiB);
+        window.addEventListener('load', scaleAmiB);
+        if (window.ResizeObserver) {
+          new ResizeObserver(scaleAmiB).observe(document.getElementById('ami-scaler-b'));
+        }
       })();
     </script>
   </div>
