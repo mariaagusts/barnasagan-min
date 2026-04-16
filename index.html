@@ -12,15 +12,15 @@
 <meta name="theme-color" content="#FF9800">
 <meta name="description" content="Skráðu söguna um barnið þitt með persónulegum spurningum. Barnasagan mín hjálpar þér að búa til fallega barnasögubók, dýrmæt gjöf sem barnið mun ávallt muna.">
 <meta name="keywords" content="barnasaga, barnaminningar, barn, fjölskylda, bók, íslenska, foreldrar">
-<meta property="og:title" content="Barnasagan mín — Sagan sem barnið þitt mun ávallt muna">
+<meta property="og:title" content="Barnasagan mín — Saga barnsins þíns, skrifuð af þér">
 <meta property="og:description" content="Svaraðu persónulegum spurningum um barnið þitt og fáðu fallega barnasögubók. Dýrmæt gjöf fyrir fjölskylduna.">
 <meta property="og:image" content="https://barnasagan.is/logo.png">
 <meta property="og:url" content="https://barnasagan.is">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Barnasagan mín — Sagan sem barnið þitt mun ávallt muna">
+<meta name="twitter:title" content="Barnasagan mín — Saga barnsins þíns, skrifuð af þér">
 <meta name="twitter:description" content="Svaraðu persónulegum spurningum um barnið þitt og fáðu fallega barnasögubók.">
-<title>Barnasagan mín — Sagan sem barnið þitt mun ávallt muna</title>
+<title>Barnasagan mín — Saga barnsins þíns, skrifuð af þér</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <script src="https://browser.sentry-cdn.com/8.53.0/bundle.min.js" crossorigin="anonymous"></script>
@@ -115,7 +115,7 @@
     <button class="btn-nav-login" id="nav-faq-link" onclick="showFaq()">Spurningar</button>
     <button class="btn-nav-login" id="nav-login-btn" onclick="showScreen('auth')">Innskrá</button>
     <button class="dark-toggle" id="dark-toggle-btn" onclick="toggleDark()">🌙</button>
-    <button class="btn-nav-cta" id="nav-cta-btn" onclick="showScreen('auth')">Byrja að skrifa</button>
+    <button class="btn-nav-cta" id="nav-cta-btn" onclick="showScreen('auth')">Skráðu minningarnar</button>
     <button class="nav-hamburger" id="nav-hamburger" onclick="toggleHamburger()" aria-label="Valmynd">☰</button>
   </div>
 </nav>
@@ -125,7 +125,7 @@
   <button onclick="closeHamburger();showFaq()"><span class="lang-is">Spurningar</span><span class="lang-en" style="display:none;">FAQ</span></button>
   <button onclick="closeHamburger();toggleDark()"><span class="lang-is">Ljóst/dökkt</span><span class="lang-en" style="display:none;">Light/dark</span></button>
   <button onclick="closeHamburger();showScreen('auth')"><span class="lang-is">Innskrá</span><span class="lang-en" style="display:none;">Sign in</span></button>
-  <button onclick="closeHamburger();showScreen('auth')" style="color:var(--text);"><span class="lang-is">Byrja að skrifa →</span><span class="lang-en" style="display:none;">Start writing →</span></button>
+  <button onclick="closeHamburger();showScreen('auth')" style="color:var(--text);"><span class="lang-is">Skráðu minningarnar →</span><span class="lang-en" style="display:none;">Start writing →</span></button>
 </div>
 
 <!-- ══ COMING SOON ══ -->
@@ -154,22 +154,22 @@
     <div class="hero-inner">
       <img src="logo.svg" alt="Barnasagan mín" class="hero-logo-img">
       <div class="hero-badge">
-        <span class="lang-is">Fyrir foreldra · Barnaminningar</span>
+        <span class="lang-is">Öll fyrstu árin á einum stað</span>
         <span class="lang-en" style="display:none;">For parents · Children's memories</span>
       </div>
       <h1 class="hero-title" style="color:var(--text)">
-        <span class="lang-is">Sagan sem barnið þitt mun ávallt muna</span>
+        <span class="lang-is">Saga barnsins þíns, skrifuð af þér</span>
         <span class="lang-en" style="display:none;">The story your child will always treasure</span>
       </h1>
 
       <p class="hero-sub">
-        <span class="lang-is" id="hero-sub-text">Persónulegar spurningar leiða þig í gegnum bernsku barnsins, kafla fyrir kafla. Niðurstaðan er falleg barnasögubók, dýrmæt gjöf sem barnið mun aldrei gleyma.</span>
+        <span class="lang-is" id="hero-sub-text">Við vitum að heilaþokan er raunveruleg og minningarnar fljótar að dofna. Barnasagan hjálpar þér að fanga dýrmætustu augnablikin á einfaldan hátt, án þess að bæta of miklu á verkefnalistann.</span>
         <span class="lang-en" style="display:none;">Personalized questions guide you through your child's early years, chapter by chapter. The result is a beautiful children's memoir, a priceless gift they will always treasure.</span>
       </p>
 
       <div class="hero-actions">
         <button class="btn-primary" id="hero-cta1" onclick="showScreen('auth');">
-          Byrja að skrifa →
+          Skráðu minningarnar →
         </button>
         <button class="btn-outline" id="hero-cta2" onclick="switchTab('login'); showScreen('auth');">
           <span class="lang-is">Innskráning</span>

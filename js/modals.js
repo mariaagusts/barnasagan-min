@@ -15,6 +15,8 @@ export function showScreen(name) {
   if (infoBtn) infoBtn.style.display = innerUserScreens.includes(name) ? "flex" : "none";
   const warningBtn = document.getElementById("floating-warning-btn");
   if (warningBtn) warningBtn.style.display = innerUserScreens.includes(name) ? "flex" : "none";
+  const fab = document.getElementById("gullmola-fab");
+  if (fab) fab.style.display = (innerUserScreens.includes(name) && fab.dataset.loggedIn === "1") ? "flex" : "none";
   if (name === "auth") switchTab("login");
 }
 

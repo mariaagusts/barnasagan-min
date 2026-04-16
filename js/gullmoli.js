@@ -80,7 +80,10 @@ function _esc(str) {
 export function updateGullmolaFab() {
   const fab = document.getElementById('gullmola-fab');
   if (!fab) return;
-  fab.style.display = S.user ? 'flex' : 'none';
+  fab.dataset.loggedIn = S.user ? "1" : "0";
+  const activeScreen = document.querySelector(".screen.active")?.id?.replace("screen-", "") || "";
+  const appScreens = ["map", "interview", "story"];
+  fab.style.display = (S.user && appScreens.includes(activeScreen)) ? 'flex' : 'none';
 }
 
 // ── Map tile ─────────────────────────────────────
