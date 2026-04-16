@@ -23,6 +23,9 @@ import './modals.js';
 
 export async function initApp() {
   setLang(S.lang);
+  if (new URLSearchParams(window.location.search).has('landing')) {
+    showScreen("landing"); return;
+  }
   const sb = getSupabase();
   if (!sb) { showScreen("landing"); return; }
   const { data: { session } } = await sb.auth.getSession();
