@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="is">
-<head>
-<meta charset="UTF-8">
+<!-- saved from url=(0026)https://www.barnasagan.is/ -->
+<html lang="is"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="format-detection" content="telephone=no">
-<link rel="icon" type="image/svg+xml" href="logo.svg">
-<link rel="manifest" href="/manifest.json">
-<link rel="apple-touch-icon" href="/icon-512.png">
+<link rel="icon" type="image/svg+xml" href="./logo.svg">
+<link rel="manifest" href="https://www.barnasagan.is/manifest.json">
+<link rel="apple-touch-icon" href="https://www.barnasagan.is/icon-512.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Barnasagan mín">
 <meta name="theme-color" content="#FF9800">
@@ -21,13 +21,13 @@
 <meta name="twitter:title" content="Barnasagan mín — Saga barnsins þíns, skrifuð af þér">
 <meta name="twitter:description" content="Svaraðu persónulegum spurningum um barnið þitt og fáðu fallega barnasögubók.">
 <title>Barnasagan mín — Saga barnsins þíns, skrifuð af þér</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
-<script src="https://browser.sentry-cdn.com/8.53.0/bundle.min.js" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link href="./css2" rel="stylesheet">
+<script src="./bundle.min.js.download" crossorigin="anonymous"></script>
 <script>Sentry.init({ dsn: "https://3dffe5efa9367901339c38a2a48d702d@o4511174425182208.ingest.de.sentry.io/4511174438158416", release: "barnasagan@1.0" });</script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<link rel="stylesheet" href="styles.css">
+<script src="./supabase-js@2"></script>
+<script src="./jspdf.umd.min.js.download"></script>
+<link rel="stylesheet" href="./styles.css">
 <style>
 /* Inline overrides for index.html specific elements */
 :root {
@@ -104,28 +104,28 @@
 })();
 </script>
 
-<nav class="landing-nav">
-  <span class="nav-logo" onclick="showScreen('landing')" style="cursor:pointer;">Barnasagan mín</span>
+<nav class="landing-nav" style="display: flex;">
+  <span class="nav-logo" onclick="showScreen(&#39;landing&#39;)" style="cursor:pointer;">Barnasagan mín</span>
   <div class="nav-actions">
     <div class="lang-toggle">
-      <button class="lang-btn active" id="nav-lang-is" onclick="setLang('is')">IS</button>
-      <button class="lang-btn" id="nav-lang-en" onclick="setLang('en')">EN</button>
+      <button class="lang-btn active" id="nav-lang-is" onclick="setLang(&#39;is&#39;)">IS</button>
+      <button class="lang-btn" id="nav-lang-en" onclick="setLang(&#39;en&#39;)">EN</button>
     </div>
     <button class="btn-nav-login" id="nav-about-link" onclick="showAbout()">Um</button>
     <button class="btn-nav-login" id="nav-faq-link" onclick="showFaq()">Spurningar</button>
-    <button class="btn-nav-login" id="nav-login-btn" onclick="showScreen('auth')">Innskrá</button>
+    <button class="btn-nav-login" id="nav-login-btn" onclick="showScreen(&#39;auth&#39;)">Innskrá</button>
     <button class="dark-toggle" id="dark-toggle-btn" onclick="toggleDark()">🌙</button>
-    <button class="btn-nav-cta" id="nav-cta-btn" onclick="showScreen('auth')">Skráðu minningarnar</button>
+    <button class="btn-nav-cta" id="nav-cta-btn" onclick="showScreen(&#39;auth&#39;)">Byrja að skrifa</button>
     <button class="nav-hamburger" id="nav-hamburger" onclick="toggleHamburger()" aria-label="Valmynd">☰</button>
   </div>
 </nav>
 
 <div class="nav-mobile-menu" id="nav-mobile-menu">
-  <button onclick="closeHamburger();showAbout()"><span class="lang-is">Um</span><span class="lang-en" style="display:none;">About</span></button>
-  <button onclick="closeHamburger();showFaq()"><span class="lang-is">Spurningar</span><span class="lang-en" style="display:none;">FAQ</span></button>
-  <button onclick="closeHamburger();toggleDark()"><span class="lang-is">Ljóst/dökkt</span><span class="lang-en" style="display:none;">Light/dark</span></button>
-  <button onclick="closeHamburger();showScreen('auth')"><span class="lang-is">Innskrá</span><span class="lang-en" style="display:none;">Sign in</span></button>
-  <button onclick="closeHamburger();showScreen('auth')" style="color:var(--text);"><span class="lang-is">Skráðu minningarnar →</span><span class="lang-en" style="display:none;">Start writing →</span></button>
+  <button onclick="closeHamburger();showAbout()"><span class="lang-is" style="display: block;">Um</span><span class="lang-en" style="display:none;">About</span></button>
+  <button onclick="closeHamburger();showFaq()"><span class="lang-is" style="display: block;">Spurningar</span><span class="lang-en" style="display:none;">FAQ</span></button>
+  <button onclick="closeHamburger();toggleDark()"><span class="lang-is" style="display: block;">Ljóst/dökkt</span><span class="lang-en" style="display:none;">Light/dark</span></button>
+  <button onclick="closeHamburger();showScreen(&#39;auth&#39;)"><span class="lang-is" style="display: block;">Innskrá</span><span class="lang-en" style="display:none;">Sign in</span></button>
+  <button onclick="closeHamburger();showScreen(&#39;auth&#39;)" style="color:var(--text);"><span class="lang-is" style="display: block;">Skráðu minningarnar →</span><span class="lang-en" style="display:none;">Start writing →</span></button>
 </div>
 
 <!-- ══ COMING SOON ══ -->
@@ -141,55 +141,47 @@
   <div class="cs-pw-box" id="cs-pw-box">
     <p>Þróunarteymi</p>
     <div class="cs-pw-error" id="cs-pw-error">Rangt lykilorð</div>
-    <input type="password" id="cs-pw-input" placeholder="Lykilorð..." onkeydown="if(event.key==='Enter') checkCsPw()">
+    <input type="password" id="cs-pw-input" placeholder="Lykilorð..." onkeydown="if(event.key===&#39;Enter&#39;) checkCsPw()">
     <button class="btn-primary" onclick="checkCsPw()" style="width:100%;padding:11px;">Opna →</button>
   </div>
 </div>
 
 <!-- ══ LANDING ══ -->
-<div id="screen-landing" class="screen">
+<div id="screen-landing" class="screen active">
 
   <!-- Hero -->
   <div class="landing-hero">
     <div class="hero-inner">
-      <img src="logo.svg" alt="Barnasagan mín" class="hero-logo-img">
+      <img src="./logo.svg" alt="Barnasagan mín" class="hero-logo-img">
       <div class="hero-badge">
-        <span class="lang-is">Öll fyrstu árin á einum stað</span>
+        <span class="lang-is" style="display: block;">Öll fyrstu árin á einum stað</span>
         <span class="lang-en" style="display:none;">For parents · Children's memories</span>
       </div>
       <h1 class="hero-title" style="color:var(--text)">
-        <span class="lang-is">Saga barnsins þíns, skrifuð af þér</span>
+        <span class="lang-is" style="display: block;">Saga barnsins þíns, skrifuð af þér</span>
         <span class="lang-en" style="display:none;">The story your child will always treasure</span>
       </h1>
 
       <p class="hero-sub">
-        <span class="lang-is" id="hero-sub-text">Við vitum að heilaþokan er raunveruleg og minningarnar fljótar að dofna. Barnasagan hjálpar þér að fanga dýrmætustu augnablikin á einfaldan hátt, án þess að bæta of miklu á verkefnalistann.</span>
+        <span class="lang-is" id="hero-sub-text" style="display: block;">Við vitum að heilaþokan er raunveruleg. Barnasagan hjálpar þér að fanga dýrmætustu augnablikin þegar þau gerast, án samviskubits eða auka álags.</span>
         <span class="lang-en" style="display:none;">Personalized questions guide you through your child's early years, chapter by chapter. The result is a beautiful children's memoir, a priceless gift they will always treasure.</span>
       </p>
 
       <div class="hero-actions">
-        <button class="btn-primary" id="hero-cta1" onclick="showScreen('auth');">
-          Skráðu minningarnar →
-        </button>
-        <button class="btn-outline" id="hero-cta2" onclick="switchTab('login'); showScreen('auth');">
-          <span class="lang-is">Innskráning</span>
-          <span class="lang-en" style="display:none;">Sign in</span>
-        </button>
+        <button class="btn-primary" id="hero-cta1" onclick="showScreen(&#39;auth&#39;);">Byrja að skrifa →</button>
+        <button class="btn-outline" id="hero-cta2" onclick="switchTab(&#39;login&#39;); showScreen(&#39;auth&#39;);">Innskrá</button>
       </div>
 
       <div style="margin-top:18px;text-align:center;">
         <button onclick="toggleGiftCodeBox()" class="btn-outline" style="font-size:14px;">
-          <span class="lang-is">Ertu með gjafakóða?</span>
+          <span class="lang-is" style="display: block;">Ertu með gjafakóða?</span>
           <span class="lang-en" style="display:none;">Have a gift code?</span>
         </button>
         <div id="hero-gift-box" style="display:none;margin-top:12px;">
           <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;">
-            <input id="hero-gift-input" type="text" placeholder="BARNA-XXXXXXXX"
-              onkeydown="if(event.key==='Enter') submitHeroGiftCode()"
-              style="border:2px solid var(--border);border-radius:8px;padding:10px 14px;font-size:15px;letter-spacing:2px;width:200px;outline:none;font-family:inherit;color:var(--text);background:#fff;">
-            <button onclick="submitHeroGiftCode()"
-              style="background:var(--orange);color:#fff;border:none;border-radius:8px;padding:10px 20px;font-size:14px;font-weight:600;cursor:pointer;font-family:'Nunito',sans-serif;">
-              <span class="lang-is">Innleysa</span>
+            <input id="hero-gift-input" type="text" placeholder="BARNA-XXXXXXXX" onkeydown="if(event.key===&#39;Enter&#39;) submitHeroGiftCode()" style="border:2px solid var(--border);border-radius:8px;padding:10px 14px;font-size:15px;letter-spacing:2px;width:200px;outline:none;font-family:inherit;color:var(--text);background:#fff;">
+            <button onclick="submitHeroGiftCode()" style="background:var(--orange);color:#fff;border:none;border-radius:8px;padding:10px 20px;font-size:14px;font-weight:600;cursor:pointer;font-family:&#39;Nunito&#39;,sans-serif;">
+              <span class="lang-is" style="display: block;">Innleysa</span>
               <span class="lang-en" style="display:none;">Redeem</span>
             </button>
           </div>
@@ -202,24 +194,15 @@
       <div class="hero-stats">
         <div>
           <span class="hero-stat-num">12</span>
-          <span class="hero-stat-lbl" id="hero-stat-0">
-            <span class="lang-is">Kaflar</span>
-            <span class="lang-en" style="display:none;">Chapters</span>
-          </span>
+          <span class="hero-stat-lbl" id="hero-stat-0">Kaflar</span>
         </div>
         <div>
           <span class="hero-stat-num">120</span>
-          <span class="hero-stat-lbl" id="hero-stat-1">
-            <span class="lang-is">Spurningar</span>
-            <span class="lang-en" style="display:none;">Questions</span>
-          </span>
+          <span class="hero-stat-lbl" id="hero-stat-1">Spurningar</span>
         </div>
         <div>
           <span class="hero-stat-num">1</span>
-          <span class="hero-stat-lbl" id="hero-stat-2">
-            <span class="lang-is">Barnasaga</span>
-            <span class="lang-en" style="display:none;">Story</span>
-          </span>
+          <span class="hero-stat-lbl" id="hero-stat-2">Barnasaga</span>
         </div>
       </div>
     </div>
@@ -228,44 +211,44 @@
   <!-- Steps -->
   <div class="steps-section">
     <h2 class="section-title">
-      <span class="lang-is">Hvernig virkar þetta?</span>
+      <span class="lang-is" style="display: block;">Hvernig virkar þetta?</span>
       <span class="lang-en" style="display:none;">How does it work?</span>
     </h2>
     <p class="section-sub">
-      <span class="lang-is">Þrjú einföld skref og sagan um barnið þitt verður að veruleika.</span>
+      <span class="lang-is" style="display: block;">Þrjú einföld skref og sagan um barnið þitt verður að veruleika.</span>
       <span class="lang-en" style="display:none;">Three simple steps, and your child's story is ready.</span>
     </p>
     <div class="steps-grid">
       <div class="step-item">
         <span class="step-num">1</span>
         <div class="step-title">
-          <span class="lang-is">Við spyrjum þig</span>
+          <span class="lang-is" style="display: block;">Við spyrjum þig</span>
           <span class="lang-en" style="display:none;">We ask you</span>
         </div>
         <p class="step-desc">
-          <span class="lang-is">12 kaflar og allt að 120 persónulegar spurningar leiða þig í gegnum bernsku barnsins, frá fæðingu, til leikskóla og lengra.<br><br>En þetta er ekki venjulegur spurningalisti, vefsíðan notar svörin þín til að dýpka samtalið og býr til persónulegar fylgispurningar sem byggja beint á því sem þú skrifar.</span>
+          <span class="lang-is" style="display: block;">12 kaflar og allt að 120 persónulegar spurningar leiða þig í gegnum bernsku barnsins, frá fæðingu, til leikskóla og lengra.<br><br>En þetta er ekki venjulegur spurningalisti, vefsíðan notar svörin þín til að dýpka samtalið og býr til persónulegar fylgispurningar sem byggja beint á því sem þú skrifar.</span>
           <span class="lang-en" style="display:none;">12 chapters and up to 120 personalized questions guide you through your child's early years, from birth through school and beyond.<br><br>But this is not an ordinary questionnaire. The site uses your answers to deepen the conversation and creates personalized follow-up questions that build directly on what you write.</span>
         </p>
       </div>
       <div class="step-item">
         <span class="step-num">2</span>
         <div class="step-title">
-          <span class="lang-is">Þú svarar</span>
+          <span class="lang-is" style="display: block;">Þú svarar</span>
           <span class="lang-en" style="display:none;">You answer</span>
         </div>
         <p class="step-desc">
-          <span class="lang-is">Skrifaðu á þínum eigin hraða. Framvindan vistast sjálfkrafa og bíður þín hvenær sem þér hentar. Þú getur hoppað á milli spurninga og kafla hvenær sem er, og þú getur alltaf breytt svörum afturvirkt.<br><br>Engin pressa að klára ákveðnar spurningar til að halda áfram með söguna.</span>
+          <span class="lang-is" style="display: block;">Skrifaðu á þínum eigin hraða. Framvindan vistast sjálfkrafa og bíður þín hvenær sem þér hentar. Þú getur hoppað á milli spurninga og kafla hvenær sem er, og þú getur alltaf breytt svörum afturvirkt.<br><br>Engin pressa að klára ákveðnar spurningar til að halda áfram með söguna.</span>
           <span class="lang-en" style="display:none;">Write at your own pace. Your progress saves automatically and waits for you whenever you're ready. You can jump between questions and chapters at any time, and you can always edit your answers retroactively.<br><br>No pressure to complete specific questions to keep going with your story.</span>
         </p>
       </div>
       <div class="step-item">
         <span class="step-num">3</span>
         <div class="step-title">
-          <span class="lang-is">Bókin er tilbúin</span>
+          <span class="lang-is" style="display: block;">Bókin er tilbúin</span>
           <span class="lang-en" style="display:none;">The book is ready</span>
         </div>
         <p class="step-desc">
-          <span class="lang-is">Vefsíðan sér um að setja bókina saman í lokin byggða á svörunum þínum. Þú velur ritstíl — Persónulegt, Gamansamur, Barnið segir, Ævintýralegur eða Hnitmiðaður — og kerfið setur saman barnasöguna í þeim stíl.<br><br>Þegar sagan er tilbúin færðu 5 hugmyndir að bókatitli sem þú getur valið úr eða skrifað þinn eigin. Að því loknu geturðu sótt barnasöguna sem PDF og jafnvel pantað prentaða bók, falleg og varanleg minning sem barnið getur alltaf leitað í. ✨</span>
+          <span class="lang-is" style="display: block;">Vefsíðan sér um að setja bókina saman í lokin byggða á svörunum þínum. Þú velur ritstíl — Persónulegt, Gamansamur, Barnið segir, Ævintýralegur eða Hnitmiðaður — og kerfið setur saman barnasöguna í þeim stíl.<br><br>Þegar sagan er tilbúin færðu 5 hugmyndir að bókatitli sem þú getur valið úr eða skrifað þinn eigin. Að því loknu geturðu sótt barnasöguna sem PDF og jafnvel pantað prentaða bók, falleg og varanleg minning sem barnið getur alltaf leitað í. ✨</span>
           <span class="lang-en" style="display:none;">The site takes care of putting the book together at the end, based on your answers. You choose the narrative style — Warm, Playful, in the Child's Voice, Adventurous, or Focused — and the system compiles the story in that style.<br><br>When the story is ready, you'll receive 5 title suggestions to choose from or write your own. Then you can download your child's story as a PDF and even order a printed book, a beautiful and lasting memory the child can always look back on. ✨</span>
         </p>
       </div>
@@ -275,44 +258,44 @@
   <!-- Gift section -->
   <div class="gift-section">
     <h2 class="section-title">
-      <span class="lang-is">Fullkomin gjöf</span>
+      <span class="lang-is" style="display: block;">Fullkomin gjöf</span>
       <span class="lang-en" style="display:none;">The perfect gift</span>
     </h2>
     <p class="section-sub" style="margin-bottom:0;">
-      <span class="lang-is">Gefðu barninu þínu gjöf sem varir, sögu bernskunnar skráða af þeim sem þekkir það best.</span>
+      <span class="lang-is" style="display: block;">Gefðu barninu þínu gjöf sem varir, sögu bernskunnar skráða af þeim sem þekkir það best.</span>
       <span class="lang-en" style="display:none;">Give your child a gift that lasts, the story of their childhood told by the person who knows them best.</span>
     </p>
     <div class="gift-cards">
       <div class="gift-card">
         <span class="gift-card-emoji">👶</span>
         <div class="gift-card-title">
-          <span class="lang-is">Fyrstu árin</span>
+          <span class="lang-is" style="display: block;">Fyrstu árin</span>
           <span class="lang-en" style="display:none;">The early years</span>
         </div>
         <p class="gift-card-desc">
-          <span class="lang-is">Fæðingin, fyrstu orðin, fyrstu skrefin. Persónulegar spurningar hjálpa þér að festa þessar dýrmætu minningar á blað.</span>
+          <span class="lang-is" style="display: block;">Fæðingin, fyrstu orðin, fyrstu skrefin. Persónulegar spurningar hjálpa þér að festa þessar dýrmætu minningar á blað.</span>
           <span class="lang-en" style="display:none;">The birth, first words, first steps. Personalized questions help you capture these precious memories before they fade.</span>
         </p>
       </div>
       <div class="gift-card">
         <span class="gift-card-emoji">😄</span>
         <div class="gift-card-title">
-          <span class="lang-is">Persónuleikinn</span>
+          <span class="lang-is" style="display: block;">Persónuleikinn</span>
           <span class="lang-en" style="display:none;">The personality</span>
         </div>
         <p class="gift-card-desc">
-          <span class="lang-is">Hvað gerir barnið þitt einstakt? Hvernig heldur það öllum á tánum? Þetta eru sögurnar sem barnið mun vilja lesa aftur og aftur á fullorðinsárum.</span>
+          <span class="lang-is" style="display: block;">Hvað gerir barnið þitt einstakt? Hvernig heldur það öllum á tánum? Þetta eru sögurnar sem barnið mun vilja lesa aftur og aftur á fullorðinsárum.</span>
           <span class="lang-en" style="display:none;">What makes your child unique? These are the stories they will most want to read as an adult.</span>
         </p>
       </div>
       <div class="gift-card">
         <span class="gift-card-emoji">📖</span>
         <div class="gift-card-title">
-          <span class="lang-is">Arfleifðin</span>
+          <span class="lang-is" style="display: block;">Arfleifðin</span>
           <span class="lang-en" style="display:none;">The legacy</span>
         </div>
         <p class="gift-card-desc">
-          <span class="lang-is">Þegar barnið þitt er fullorðið mun það geta lesið söguna um bernsku sína, skráða af þeim sem þekkir það best.</span>
+          <span class="lang-is" style="display: block;">Þegar barnið þitt er fullorðið mun það geta lesið söguna um bernsku sína, skráða af þeim sem þekkir það best.</span>
           <span class="lang-en" style="display:none;">When your child is grown, they will be able to read the story of their childhood, in the words of the parent who knows them best.</span>
         </p>
       </div>
@@ -323,21 +306,21 @@
   <div class="demo-section">
     <span class="ornament-sm" style="display:block;text-align:center;margin-bottom:24px;">✦ ✦ ✦</span>
     <h2 class="section-title">
-      <span class="lang-is">Barnasagan um Emblu</span>
+      <span class="lang-is" style="display: block;">Barnasagan um Emblu</span>
       <span class="lang-en" style="display:none;">Embla's childhood story</span>
     </h2>
     <p class="section-sub">
-      <span class="lang-is">Hér er dæmi úr barnasögu Emblu Bergsdóttur sem fæddist vorið 2020. Sjáðu hvernig niðurstaðan getur litið út.</span>
+      <span class="lang-is" style="display: block;">Hér er dæmi úr barnasögu Emblu Bergsdóttur sem fæddist vorið 2020. Sjáðu hvernig niðurstaðan getur litið út.</span>
       <span class="lang-en" style="display:none;">Embla Bergsdóttir was born on 15 March 2020. Her parent recorded her childhood story. See what the result looks like.</span>
     </p>
 
     <div class="demo-tabs">
-      <button class="demo-tab active" onclick="showDemoTab('cards',this)">
-        <span class="lang-is">Spurt og svarað</span>
+      <button class="demo-tab active" onclick="showDemoTab(&#39;cards&#39;,this)">
+        <span class="lang-is" style="display: block;">Spurt og svarað</span>
         <span class="lang-en" style="display:none;">Q&amp;A</span>
       </button>
-      <button class="demo-tab" onclick="showDemoTab('pdf',this)">
-        <span class="lang-is">PDF forskoðun</span>
+      <button class="demo-tab" onclick="showDemoTab(&#39;pdf&#39;,this)">
+        <span class="lang-is" style="display: block;">PDF forskoðun</span>
         <span class="lang-en" style="display:none;">PDF preview</span>
       </button>
     </div>
@@ -346,45 +329,45 @@
     <div class="demo-panel" id="demo-panel-cards">
       <div class="demo-qa-card">
         <div class="demo-qa-q">
-          <span class="lang-is">Kafli 1 · Nýja lífið</span>
+          <span class="lang-is" style="display: block;">Kafli 1 · Nýja lífið</span>
           <span class="lang-en" style="display:none;">Chapter 1 · The new life</span>
         </div>
         <p class="demo-qa-a">
           <em style="color:var(--mid);display:block;margin-bottom:12px;">Hvað heitir barnið þitt og hvenær og hvar fæddist það?</em>
-          <span class="lang-is">Barnið mitt heitir Embla Bergsdóttir. Hún fæddist 15. mars 2020 á Landspítalanum í Reykjavík. Hún var 3,4 kg og 50 cm.</span>
+          <span class="lang-is" style="display: block;">Barnið mitt heitir Embla Bergsdóttir. Hún fæddist 15. mars 2020 á Landspítalanum í Reykjavík. Hún var 3,4 kg og 50 cm.</span>
           <span class="lang-en" style="display:none;">My child is called Embla Bergsdóttir. She was born on 15 March 2020 at Landspítali University Hospital in Reykjavík. She weighed 3.4 kg and was 50 cm.</span>
         </p>
       </div>
       <div class="demo-qa-card">
         <div class="demo-qa-q">
-          <span class="lang-is">Kafli 1 · Nýja lífið</span>
+          <span class="lang-is" style="display: block;">Kafli 1 · Nýja lífið</span>
           <span class="lang-en" style="display:none;">Chapter 1 · The new life</span>
         </div>
         <p class="demo-qa-a">
-          <em style="color:var(--mid);display:block;margin-bottom:12px;"><span class="lang-is">Hvernig var dagurinn þegar barnið fæddist, hvernig leið foreldrinu/foreldrunum?</span><span class="lang-en" style="display:none;">What was the day your child arrived like — how did you feel as a parent?</span></em>
-          <span class="lang-is">Dagurinn var sérstakur á fleiri en einn hátt. Þetta var einmitt þegar COVID-faraldrinum var lýst yfir á Íslandi og heimurinn var farinn að lokast. Við fórum á spítalann í þögn og óvissu. Fjölskylda og vinir máttu ekki koma í heimsókn, og amma og afi sáu Emblu í gegnum skjáinn í fyrsta sinn. En þegar hún kom til sögunnar gleymdum við öllu öðru.</span>
+          <em style="color:var(--mid);display:block;margin-bottom:12px;"><span class="lang-is" style="display: block;">Hvernig var dagurinn þegar barnið fæddist, hvernig leið foreldrinu/foreldrunum?</span><span class="lang-en" style="display:none;">What was the day your child arrived like — how did you feel as a parent?</span></em>
+          <span class="lang-is" style="display: block;">Dagurinn var sérstakur á fleiri en einn hátt. Þetta var einmitt þegar COVID-faraldrinum var lýst yfir á Íslandi og heimurinn var farinn að lokast. Við fórum á spítalann í þögn og óvissu. Fjölskylda og vinir máttu ekki koma í heimsókn, og amma og afi sáu Emblu í gegnum skjáinn í fyrsta sinn. En þegar hún kom til sögunnar gleymdum við öllu öðru.</span>
           <span class="lang-en" style="display:none;">The day was special in more ways than one. It was exactly when COVID was declared a pandemic in Iceland and the world was closing down. We went to the hospital in silence and uncertainty. Family and friends could not visit, and grandparents first saw Embla through a screen. But when she arrived, we forgot everything else.</span>
         </p>
       </div>
       <div class="demo-qa-card">
         <div class="demo-qa-q">
-          <span class="lang-is">Kafli 2 · Fyrstu skrefin</span>
+          <span class="lang-is" style="display: block;">Kafli 2 · Fyrstu skrefin</span>
           <span class="lang-en" style="display:none;">Chapter 2 · First steps</span>
         </div>
         <p class="demo-qa-a">
-          <em style="color:var(--mid);display:block;margin-bottom:12px;"><span class="lang-is">Hvenær fór barnið að ganga og manstu eftir því augnabliki?</span><span class="lang-en" style="display:none;">When did your child start walking, and do you remember that moment?</span></em>
-          <span class="lang-is">Embla fór að ganga þegar hún var 11 mánaða. Við vorum í stofunni og hún stóð upp við borðið, sleppti og tók þrjú skref. Ég grét. Hún leit á mig eins og hún skildi ekki af hverju ég væri svona.</span>
+          <em style="color:var(--mid);display:block;margin-bottom:12px;"><span class="lang-is" style="display: block;">Hvenær fór barnið að ganga og manstu eftir því augnabliki?</span><span class="lang-en" style="display:none;">When did your child start walking, and do you remember that moment?</span></em>
+          <span class="lang-is" style="display: block;">Embla fór að ganga þegar hún var 11 mánaða. Við vorum í stofunni og hún stóð upp við borðið, sleppti og tók þrjú skref. Ég grét. Hún leit á mig eins og hún skildi ekki af hverju ég væri svona.</span>
           <span class="lang-en" style="display:none;">Embla started walking when she was 11 months old. We were in the living room and she pulled herself up at the table, let go, and took three steps. I cried. She looked at me as if she couldn't understand why I was like that.</span>
         </p>
       </div>
       <div class="demo-qa-card">
         <div class="demo-qa-q">
-          <span class="lang-is">Kafli 2 · Fyrstu skrefin</span>
+          <span class="lang-is" style="display: block;">Kafli 2 · Fyrstu skrefin</span>
           <span class="lang-en" style="display:none;">Chapter 2 · First steps</span>
         </div>
         <p class="demo-qa-a">
-          <em style="color:var(--mid);display:block;margin-bottom:12px;"><span class="lang-is">Hver voru fyrstu orðin sem barnið sagði og hvernig brást fjölskyldan við?</span><span class="lang-en" style="display:none;">What were the first words your child said, and how did the family react?</span></em>
-          <span class="lang-is">Fyrsta alvöru orðið var "mjaú" þegar við sáum kött í göngutúr. Hún sagði þetta svo skýrt og brosmilt. Við höfðum aldrei hlegið svona mikið af einu orði.</span>
+          <em style="color:var(--mid);display:block;margin-bottom:12px;"><span class="lang-is" style="display: block;">Hver voru fyrstu orðin sem barnið sagði og hvernig brást fjölskyldan við?</span><span class="lang-en" style="display:none;">What were the first words your child said, and how did the family react?</span></em>
+          <span class="lang-is" style="display: block;">Fyrsta alvöru orðið var "mjaú" þegar við sáum kött í göngutúr. Hún sagði þetta svo skýrt og brosmilt. Við höfðum aldrei hlegið svona mikið af einu orði.</span>
           <span class="lang-en" style="display:none;">The first real word was "miaow" when we saw a cat on a walk. She said it so clearly and with a smile. We had never laughed so hard at a single word.</span>
         </p>
       </div>
@@ -394,141 +377,79 @@
     <div class="demo-panel" id="demo-panel-pdf" style="display:none">
       <div class="demo-pdf-page">
         <div class="demo-pdf-chap">
-          <span class="lang-is">Kafli I · Nýja lífið</span>
+          <span class="lang-is" style="display: block;">Kafli I · Nýja lífið</span>
           <span class="lang-en" style="display:none;">Chapter I · The New Life</span>
         </div>
         <h3 class="demo-pdf-title">Embla Bergsdóttir</h3>
         <div class="demo-pdf-orn">✦ ✦ ✦</div>
         <div class="demo-pdf-body">
           <p>
-            <span class="lang-is">Embla Bergsdóttir fæddist 15. mars 2020 á Landspítalanum í Reykjavík, 3,4 kíló og 50 sentímetrar af fullkominni nýrri mannveru. Nafnið Embla kemur úr norrænum goðsögum þar sem hún er fyrsta konan í heiminum. Þegar foreldrar hennar sáu hana í fyrsta sinn vissu þau strax: þetta var hún.</span>
+            <span class="lang-is" style="display: block;">Embla Bergsdóttir fæddist 15. mars 2020 á Landspítalanum í Reykjavík, 3,4 kíló og 50 sentímetrar af fullkominni nýrri mannveru. Nafnið Embla kemur úr norrænum goðsögum þar sem hún er fyrsta konan í heiminum. Þegar foreldrar hennar sáu hana í fyrsta sinn vissu þau strax: þetta var hún.</span>
             <span class="lang-en" style="display:none;">Embla Bergsdóttir was born on 15 March 2020 at Landspítali University Hospital in Reykjavík, 3.4 kilos and 50 centimetres of perfect new life. The name Embla comes from Norse mythology, where she is the first woman in the world. When her parents saw her for the first time they knew at once: this was her.</span>
           </p>
           <p>
-            <span class="lang-is">Hún fæddist í miðjum COVID-faraldri. Íslandi var að lokast, heimurinn að breytast. Fjölskylda og vinir gátu ekki heimsótt, amma og afi sáu Emblu í gegnum skjáinn í fyrsta sinn. En á þeim degi þegar hún kom til sögunnar gleymdu foreldrar hennar öllu. „Heimurinn var í ólgu, en við vorum með lítið barn með fullkomnar hendur."</span>
+            <span class="lang-is" style="display: block;">Hún fæddist í miðjum COVID-faraldri. Íslandi var að lokast, heimurinn að breytast. Fjölskylda og vinir gátu ekki heimsótt, amma og afi sáu Emblu í gegnum skjáinn í fyrsta sinn. En á þeim degi þegar hún kom til sögunnar gleymdu foreldrar hennar öllu. „Heimurinn var í ólgu, en við vorum með lítið barn með fullkomnar hendur."</span>
             <span class="lang-en" style="display:none;">She was born in the middle of the COVID pandemic. Iceland was closing down, the world changing. Family and friends could not visit, grandparents first saw Embla through a screen. But on the day she arrived, her parents forgot everything else. "The world was in turmoil, but we had a tiny baby with perfect hands."</span>
           </p>
         </div>
         <div class="demo-pdf-foot">
-          <span class="lang-is">Barnasagan mín · Embla Bergsdóttir · 2026</span>
+          <span class="lang-is" style="display: block;">Barnasagan mín · Embla Bergsdóttir · 2026</span>
           <span class="lang-en" style="display:none;">My Child's Story · Embla Bergsdóttir · 2026</span>
         </div>
       </div>
 
       <div class="demo-pdf-page" style="margin-top:24px;">
         <div class="demo-pdf-chap">
-          <span class="lang-is">Kafli II · Fyrstu skrefin</span>
+          <span class="lang-is" style="display: block;">Kafli II · Fyrstu skrefin</span>
           <span class="lang-en" style="display:none;">Chapter II · First Steps</span>
         </div>
         <h3 class="demo-pdf-title">
-          <span class="lang-is">Embla Bergsdóttir</span>
+          <span class="lang-is" style="display: block;">Embla Bergsdóttir</span>
           <span class="lang-en" style="display:none;">Embla Bergsdóttir</span>
         </h3>
         <div class="demo-pdf-orn">✦ ✦ ✦</div>
         <div class="demo-pdf-body">
           <p>
-            <span class="lang-is">Ellefu mánaða gömul stóð Embla upp við borðið í stofunni, sleppti og tók þrjú skref. Foreldri hennar grét. Hún leit upp eins og hún skildi ekki af hverju.</span>
+            <span class="lang-is" style="display: block;">Ellefu mánaða gömul stóð Embla upp við borðið í stofunni, sleppti og tók þrjú skref. Foreldri hennar grét. Hún leit upp eins og hún skildi ekki af hverju.</span>
             <span class="lang-en" style="display:none;">At eleven months, Embla pulled herself up at the living-room table, let go, and took three steps. Her parent cried. She looked up as though she couldn't understand why.</span>
           </p>
           <p>
-            <span class="lang-is">Og þegar fjölskyldan var í gönguferð og Embla sá kött í fyrsta sinn sagði hún skýrt og brosmilt: „mjaú." Þau höfðu aldrei hlegið svona mikið af einu orði.</span>
+            <span class="lang-is" style="display: block;">Og þegar fjölskyldan var í gönguferð og Embla sá kött í fyrsta sinn sagði hún skýrt og brosmilt: „mjaú." Þau höfðu aldrei hlegið svona mikið af einu orði.</span>
             <span class="lang-en" style="display:none;">And when the family was out for a walk and Embla spotted a cat for the first time, she said clearly and with a smile: "miaow." They had never laughed so hard at a single word.</span>
           </p>
         </div>
         <div class="demo-pdf-foot">
-          <span class="lang-is">Barnasagan mín · Embla Bergsdóttir · 2026</span>
+          <span class="lang-is" style="display: block;">Barnasagan mín · Embla Bergsdóttir · 2026</span>
           <span class="lang-en" style="display:none;">My Child's Story · Embla Bergsdóttir · 2026</span>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Am I Responsive device viewer -->
-  <div class="ami-section">
-    <h2 class="section-title">
-      <span class="lang-is">Hönnuð fyrir alla tæki</span>
-      <span class="lang-en" style="display:none;">Designed for every device</span>
-    </h2>
-    <style>
-      .ami-section { padding:80px 24px 40px; text-align:center; background:var(--warm); border-top:1px solid var(--border); }
-      .ami-section .section-title { margin-bottom:48px; }
-      .ami-outer { max-width:900px; margin:0 auto; }
-      .ami-scaler-b { width:1060px; height:600px; transform-origin:top left; position:relative; }
-      .ami-scaler-b > div { background-repeat:no-repeat; background-size:100%; overflow:hidden; position:absolute; }
-      .ami-scaler-b iframe { transform-origin:top left; position:absolute; background:#fff; border:none; }
-      .ami-mob { background-image:url("rwd-mobile.png"); width:95px; height:196px; top:375px; left:300px; z-index:5; }
-      .ami-mob .ami-t { position:absolute; top:32px; left:11px; width:70px; height:105px; overflow:hidden; }
-      .ami-mob iframe { width:320px; height:480px; transform:scale(0.219); top:0; left:0; }
-      .ami-tab { background-image:url("rwd-tablet.png"); width:246px; height:400px; z-index:3; left:0; top:170px; }
-      .ami-tab .ami-t { position:absolute; top:35px; left:38px; width:168px; height:224px; overflow:hidden; }
-      .ami-tab iframe { width:768px; height:1024px; transform:scale(0.219); top:0; left:0; }
-      .ami-lap { background-image:url("rwd-laptop.png"); width:477px; height:307px; top:200px; left:360px; z-index:2; }
-      .ami-lap .ami-t { position:absolute; top:26px; left:60px; width:355px; height:222px; overflow:hidden; }
-      .ami-lap iframe { width:1280px; height:802px; transform:scale(0.277); top:0; left:0; }
-      .ami-desk { background-image:url("rwd-desktop.png"); width:566px; height:538px; top:0; left:400px; z-index:1; }
-      .ami-desk .ami-t { position:absolute; top:38px; left:28px; width:509px; height:316px; overflow:hidden; }
-      .ami-desk iframe { width:1600px; height:992px; transform:scale(0.3181); top:0; left:0; }
-    </style>
-    <div class="ami-outer">
-      <div class="ami-scaler-b" id="ami-scaler-b">
-        <div class="ami-mob"><div class="ami-t"><iframe src="amiresponsive-files/mobile.html" scrolling="yes"></iframe></div></div>
-        <div class="ami-tab"><div class="ami-t"><iframe src="amiresponsive-files/tablet.html" scrolling="yes"></iframe></div></div>
-        <div class="ami-lap"><div class="ami-t"><iframe src="amiresponsive-files/laptop.html" scrolling="yes"></iframe></div></div>
-        <div class="ami-desk"><div class="ami-t"><iframe src="amiresponsive-files/desktop.html" scrolling="yes"></iframe></div></div>
-      </div>
-    </div>
-    <script>
-      (function() {
-        function scaleAmiB() {
-          var wrap = document.querySelector('.ami-outer');
-          var scaler = document.getElementById('ami-scaler-b');
-          if (!wrap || !scaler) return;
-          var scale = wrap.offsetWidth / 1060;
-          scaler.style.transform = 'scale(' + scale + ')';
-          wrap.style.height = Math.round(600 * scale) + 'px';
-        }
-        window.addEventListener('load', scaleAmiB);
-        window.addEventListener('resize', scaleAmiB);
-      })();
-    </script>
-  </div>
-
   <!-- CTA -->
   <div class="cta-section">
-    <h2 id="cta-title">
-      <span class="lang-is">Byrjaðu í dag</span>
-      <span class="lang-en" style="display:none;">Start today</span>
-    </h2>
-    <p id="cta-sub">
-      <span class="lang-is">Gerðu söguna um barnið þitt að arfleifð sem það mun ávallt muna.</span>
-      <span class="lang-en" style="display:none;">Turn your child's story into a keepsake they will always treasure.</span>
-    </p>
-    <button class="btn-primary" id="cta-btn" onclick="showScreen('auth');">
-      <span class="lang-is">Hefja ferðalagið →</span>
-      <span class="lang-en" style="display:none;">Start writing →</span>
-    </button>
+    <h2 id="cta-title">Byrjaðu í dag</h2>
+    <p id="cta-sub">Markmið okkar er að gera skrásetningu bernskunnar að ánægjulegri samfylgd frekar en krefjandi verkefni.</p>
+    <button class="btn-primary" id="cta-btn" onclick="showScreen(&#39;auth&#39;);">Hefja ferðalagið →</button>
   </div>
 
   <!-- Features -->
   <div class="landing-features">
-    <h2 class="section-title" id="feat-title">
-      <span class="lang-is">Hvernig virkar þetta?</span>
-      <span class="lang-en" style="display:none;">How does it work?</span>
-    </h2>
-    <p class="section-sub" id="feat-sub" style="margin-bottom:4px;"></p>
-    <p class="section-sub" id="feat-sub2" style="margin-top:0;margin-bottom:60px;font-size:13px;opacity:0.6;"></p>
+    <h2 class="section-title" id="feat-title">Við höfum verið í þínum sporum</h2>
+    <p class="section-sub" id="feat-sub" style="margin-bottom:4px;">Sagan skrifar sig best á meðan hún er enn að gerast.</p>
+    <p class="section-sub" id="feat-sub2" style="margin-top:0;margin-bottom:60px;font-size:13px;opacity:0.6;">(Þessi saga týnist ekki inni í skáp eða í flutningum, og hún neitar ekki að skrifa ef það vantar að ydda blýantinn.)</p>
     <div class="features-grid">
       <div class="feature-card">
-        <div class="feature-title" id="feat1-title">Við spyrjum þig</div>
-        <p class="feature-desc" id="feat1-desc">Persónulegar spurningar um lífið sem barnið þitt er að upplifa, kafla fyrir kafla.</p>
+        <div class="feature-title" id="feat1-title">🍼 Minningar beint úr ofninum</div>
+        <p class="feature-desc" id="feat1-desc">Ekki bíða þar til barnið er fermt og við reynum að muna hvenær fyrsta tönnin mætti á svæðið.</p>
       </div>
       <div class="feature-card">
-        <div class="feature-title" id="feat2-title">Tala eða skrifa</div>
-        <p class="feature-desc" id="feat2-desc">Svaraðu með rödd eða lyklaborði, hvenær og hvar sem þér hentar.</p>
+        <div class="feature-title" id="feat2-title">🧠 Heilaþokan er raunveruleg</div>
+        <p class="feature-desc" id="feat2-desc">Milli svefnleysis og endalausra spurninga um af hverju himinninn sé blár er kraftaverk að muna hvað maður borðaði í morgunmat. Við geymum söguna á meðan þú leitar að lyklunum.</p>
       </div>
       <div class="feature-card">
-        <div class="feature-title" id="feat3-title">Sagan um barnið</div>
-        <p class="feature-desc" id="feat3-desc">Úr svörunum þínum verður til falleg barnasaga sem þú getur svo gefið barninu.</p>
+        <div class="feature-title" id="feat3-title">⚽ Engin heimaverkefni</div>
+        <p class="feature-desc" id="feat3-desc">Þú stýrir ferðinni. Skráðu minningar þegar þú hefur tíma; uppi í rúmi, á WC, í umferðinni. Barnasagan grípur þær, því þú hefur sama möguleika á að skrá niður svörin í tölvu eða á síma.</p>
       </div>
     </div>
   </div>
@@ -536,29 +457,29 @@
   <!-- Landing CTA dark -->
   <div class="landing-cta">
     <h2>
-      <span class="lang-is">Byrjaðu í dag, það er ókeypis</span>
+      <span class="lang-is" style="display: block;">Byrjaðu í dag, það er ókeypis</span>
       <span class="lang-en" style="display:none;">Start today, it's free</span>
     </h2>
     <p>
-      <span class="lang-is">Tveir kaflar eru opnir án greiðslu. Engin greiðslukort. Engar skuldbindingar.</span>
+      <span class="lang-is" style="display: block;">Tveir kaflar eru opnir án greiðslu. Engin greiðslukort. Engar skuldbindingar.</span>
       <span class="lang-en" style="display:none;">Two chapters are free. No credit card. No commitment.</span>
     </p>
-    <button class="btn-cta-gold" onclick="showScreen('auth');">
-      <span class="lang-is">Byrja að skrifa →</span>
+    <button class="btn-cta-gold" onclick="showScreen(&#39;auth&#39;);">
+      <span class="lang-is" style="display: block;">Byrja að skrifa →</span>
       <span class="lang-en" style="display:none;">Start writing →</span>
     </button>
   </div>
 
   <div class="landing-footer" style="line-height:1.8;padding:40px 24px;opacity:0.8;">
     <div style="margin-bottom:4px;font-size:12px;opacity:0.7;">
-      <span class="lang-is">© 2026 Barnasagan mín · barnasagan.is</span>
+      <span class="lang-is" style="display: block;">© 2026 Barnasagan mín · barnasagan.is</span>
       <span class="lang-en" style="display:none;">© 2026 My Child's Story · barnasagan.is</span>
     </div>
     <div style="margin-bottom:16px;font-size:12px;opacity:0.5;">Kt. 471025-0380</div>
     <div style="display:flex;gap:20px;justify-content:center;flex-wrap:wrap;">
-      <a href="/privacy.html" style="color:inherit;font-size:12px;letter-spacing:0.08em;opacity:0.7;"><span class="lang-is">Persónuvernd</span><span class="lang-en" style="display:none;">Privacy</span></a>
-      <a href="/terms.html" style="color:inherit;font-size:12px;letter-spacing:0.08em;opacity:0.7;"><span class="lang-is">Skilmálar</span><span class="lang-en" style="display:none;">Terms</span></a>
-      <a href="/pricing.html" style="color:inherit;font-size:12px;letter-spacing:0.08em;opacity:0.7;"><span class="lang-is">Verðskrá</span><span class="lang-en" style="display:none;">Pricing</span></a>
+      <a href="https://www.barnasagan.is/privacy.html" style="color:inherit;font-size:12px;letter-spacing:0.08em;opacity:0.7;"><span class="lang-is" style="display: block;">Persónuvernd</span><span class="lang-en" style="display:none;">Privacy</span></a>
+      <a href="https://www.barnasagan.is/terms.html" style="color:inherit;font-size:12px;letter-spacing:0.08em;opacity:0.7;"><span class="lang-is" style="display: block;">Skilmálar</span><span class="lang-en" style="display:none;">Terms</span></a>
+      <a href="https://www.barnasagan.is/pricing.html" style="color:inherit;font-size:12px;letter-spacing:0.08em;opacity:0.7;"><span class="lang-is" style="display: block;">Verðskrá</span><span class="lang-en" style="display:none;">Pricing</span></a>
     </div>
   </div>
 </div><!-- end #screen-landing -->
@@ -567,12 +488,12 @@
 <div id="screen-auth" class="screen">
   <div class="center-wrap">
     <div class="auth-box">
-      <div style="margin-bottom:20px;"><button class="btn-back" id="auth-back-btn" onclick="showScreen('landing')">← Til baka</button></div>
+      <div style="margin-bottom:20px;"><button class="btn-back" id="auth-back-btn" onclick="showScreen(&#39;landing&#39;)">← Til baka</button></div>
       <h2 id="auth-title">Barnasagan mín</h2>
       <p class="auth-sub" id="auth-sub-text">Skráðu þig inn eða stofnaðu nýjan aðgang</p>
       <div class="auth-tabs">
-        <button class="auth-tab active" id="auth-tab-login" onclick="switchTab('login')">Innskráning</button>
-        <button class="auth-tab" id="auth-tab-signup" onclick="switchTab('signup')">Nýskráning</button>
+        <button class="auth-tab active" id="auth-tab-login" onclick="switchTab(&#39;login&#39;)">Innskráning</button>
+        <button class="auth-tab" id="auth-tab-signup" onclick="switchTab(&#39;signup&#39;)">Nýskráning</button>
       </div>
       <div class="auth-error" id="auth-error"></div>
       <div class="auth-success" id="auth-success"></div>
@@ -583,15 +504,15 @@
         <input type="password" class="field-input" id="auth-password" placeholder="Lykilorð" autocomplete="current-password">
         <button class="btn-primary" id="auth-btn" onclick="handleAuth()" style="width:100%;margin-top:4px;">Innskrá →</button>
         <p style="text-align:right;margin-top:10px;font-size:13px;">
-          <a href="#" onclick="forgotPassword();return false;" style="color:var(--orange);font-weight:700;">Gleymt lykilorð?</a>
+          <a href="https://www.barnasagan.is/#" onclick="forgotPassword();return false;" style="color:var(--orange);font-weight:700;">Gleymt lykilorð?</a>
         </p>
         <div style="display:flex;align-items:center;gap:10px;margin:16px 0 4px;">
           <hr style="flex:1;border:none;border-top:1px solid var(--border);">
           <span style="font-size:12px;color:var(--mid);">eða</span>
           <hr style="flex:1;border:none;border-top:1px solid var(--border);">
         </div>
-        <button onclick="signInWithGoogle()" type="button" style="width:100%;display:flex;align-items:center;justify-content:center;gap:10px;padding:11px;border:1px solid var(--border);border-radius:4px;background:transparent;color:var(--dark);font-size:14px;font-family:'Lato',sans-serif;cursor:pointer;transition:background 0.15s;" onmouseover="this.style.background='rgba(0,0,0,0.04)'" onmouseout="this.style.background='transparent'">
-          <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+        <button onclick="signInWithGoogle()" type="button" style="width:100%;display:flex;align-items:center;justify-content:center;gap:10px;padding:11px;border:1px solid var(--border);border-radius:4px;background:transparent;color:var(--dark);font-size:14px;font-family:&#39;Lato&#39;,sans-serif;cursor:pointer;transition:background 0.15s;" onmouseover="this.style.background=&#39;rgba(0,0,0,0.04)&#39;" onmouseout="this.style.background=&#39;transparent&#39;">
+          <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"></path><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"></path><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"></path><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"></path></svg>
           Halda áfram með Google
         </button>
       </div>
@@ -613,11 +534,11 @@
 <div id="screen-map" class="screen">
   <div class="page-wrap">
     <div class="header-bar">
-      <button class="logo-small" onclick="showScreen('landing')" style="background:none;border:none;cursor:pointer;padding:0;">Barnasagan mín</button>
+      <button class="logo-small" onclick="showScreen(&#39;landing&#39;)" style="background:none;border:none;cursor:pointer;padding:0;">Barnasagan mín</button>
       <div style="display:flex;gap:10px;align-items:center;">
         <div class="lang-toggle">
-          <button class="lang-btn" id="map-lang-is" onclick="setLang('is')">IS</button>
-          <button class="lang-btn" id="map-lang-en" onclick="setLang('en')">EN</button>
+          <button class="lang-btn active" id="map-lang-is" onclick="setLang(&#39;is&#39;)">IS</button>
+          <button class="lang-btn" id="map-lang-en" onclick="setLang(&#39;en&#39;)">EN</button>
         </div>
         <button class="btn-nav-login" id="map-about-link" onclick="showAbout()" style="font-size:12px;">Um</button>
         <button class="btn-nav-login" id="map-faq-link" onclick="showFaq()" style="font-size:12px;">Spurningar</button>
@@ -655,10 +576,10 @@
     <div class="map-actions">
       <button class="btn-primary" id="btn-generate-story" onclick="showStoryScreen()" style="display:none">✨ Forskoða bókina þína</button>
       <button class="btn-outline" id="map-download-answers-btn" onclick="downloadAnswers()">📥 Sækja svör (.txt)</button>
-      <button class="btn-outline" id="map-delete-btn" onclick="resetConfirm()">🗑 Eyða framvindu</button>
+      <button class="btn-outline" id="map-delete-btn" onclick="resetConfirm()">🗑 Eyða</button>
     </div>
     <div class="inner-footer">
-      <a href="/privacy.html" target="_blank"><span class="lang-is">Persónuvernd</span><span class="lang-en" style="display:none;">Privacy</span></a> · <a href="/terms.html" target="_blank"><span class="lang-is">Skilmálar</span><span class="lang-en" style="display:none;">Terms</span></a> · <a href="/pricing.html" target="_blank"><span class="lang-is">Verðskrá</span><span class="lang-en" style="display:none;">Pricing</span></a>
+      <a href="https://www.barnasagan.is/privacy.html" target="_blank"><span class="lang-is" style="display: block;">Persónuvernd</span><span class="lang-en" style="display:none;">Privacy</span></a> · <a href="https://www.barnasagan.is/terms.html" target="_blank"><span class="lang-is" style="display: block;">Skilmálar</span><span class="lang-en" style="display:none;">Terms</span></a> · <a href="https://www.barnasagan.is/pricing.html" target="_blank"><span class="lang-is" style="display: block;">Verðskrá</span><span class="lang-en" style="display:none;">Pricing</span></a>
     </div>
   </div>
 </div>
@@ -667,12 +588,12 @@
 <div id="screen-interview" class="screen">
   <div class="page-wrap">
     <div class="header-bar">
-      <button class="logo-small" onclick="showScreen('landing')" style="background:none;border:none;cursor:pointer;padding:0;">Barnasagan mín</button>
+      <button class="logo-small" onclick="showScreen(&#39;landing&#39;)" style="background:none;border:none;cursor:pointer;padding:0;">Barnasagan mín</button>
       <div style="display:flex;align-items:center;gap:12px;">
         <button class="btn-back" id="interview-back-btn" onclick="showMap()">← Kaflayfirlit</button>
         <div class="lang-toggle">
-          <button class="lang-btn" id="interview-lang-is" onclick="setLang('is')">IS</button>
-          <button class="lang-btn" id="interview-lang-en" onclick="setLang('en')">EN</button>
+          <button class="lang-btn active" id="interview-lang-is" onclick="setLang(&#39;is&#39;)">IS</button>
+          <button class="lang-btn" id="interview-lang-en" onclick="setLang(&#39;en&#39;)">EN</button>
         </div>
         <button class="btn-nav-login" id="interview-about-link" onclick="showAbout()" style="font-size:12px;">Um</button>
         <button class="btn-nav-login" id="interview-faq-link" onclick="showFaq()" style="font-size:12px;">Spurningar</button>
@@ -695,7 +616,7 @@
       <div class="q-num" id="q-num">Spurning 1</div>
       <div id="question-area"><p class="question" id="question-text"></p></div>
       <div id="custom-question-area" style="display:none;margin-bottom:16px;">
-        <textarea id="custom-question-input" rows="2" placeholder="Skrifaðu þína eigin spurningu..." style="width:100%;padding:10px;font-family:'Nunito',sans-serif;font-size:14px;border:1px solid var(--border);border-radius:var(--radius);background:var(--warm);color:var(--text);resize:none;"></textarea>
+        <textarea id="custom-question-input" rows="2" placeholder="Skrifaðu þína eigin spurningu..." style="width:100%;padding:10px;font-family:&#39;Nunito&#39;,sans-serif;font-size:14px;border:1px solid var(--border);border-radius:var(--radius);background:var(--warm);color:var(--text);resize:none;"></textarea>
         <div style="display:flex;gap:8px;margin-top:8px;justify-content:flex-end;">
           <button onclick="cancelCustomQuestion()" style="padding:6px 14px;font-size:12px;border:1px solid var(--border);background:white;border-radius:50px;cursor:pointer;">Hætta við</button>
           <button onclick="addCustomQuestion()" style="padding:6px 14px;font-size:12px;background:var(--gold);color:white;border:none;border-radius:50px;cursor:pointer;">Bæta við →</button>
@@ -705,11 +626,11 @@
       <div class="action-row">
         <button class="btn-mic" id="btn-mic" onclick="toggleMic()">🎙 Segja frá</button>
         <button class="btn-back" id="btn-skip" onclick="skipQuestion()" style="margin-left:auto;">Sleppa →</button>
-        <button class="btn-next" id="btn-next" onclick="submitAnswer()" disabled>Næsta →</button>
+        <button class="btn-next" id="btn-next" onclick="submitAnswer()" disabled="">Næsta →</button>
       </div>
-      <div class="listen-indicator" id="listen-indicator">🔴 Hlusta... talaðu nú</div>
+      <div class="listen-indicator" id="listen-indicator">🔴 Ég hlusta... segðu mér frá</div>
       <div class="mic-error" id="mic-error"></div>
-      <div class="save-indicator" id="save-indicator">✓ Framvinda vistuð</div>
+      <div class="save-indicator" id="save-indicator"></div>
       <div id="core-nudge" style="display:none;margin-top:10px;padding:8px 12px;background:#fff8ed;border:1px solid #f59e0b;border-radius:8px;font-size:13px;color:#92400e;"></div>
     </div>
 
@@ -720,7 +641,7 @@
       <div class="chapter-photos-grid" id="interview-photos-grid">
         <button class="btn-add-photo" onclick="addChapterPhoto()" title="Bæta við mynd">+</button>
       </div>
-      <input type="file" id="chapter-photo-input" accept="image/*" multiple style="display:none" onchange="handleChapterPhotos(event)">
+      <input type="file" id="chapter-photo-input" accept="image/*" multiple="" style="display:none" onchange="handleChapterPhotos(event)">
     </div>
 
     <details class="history-wrap" id="history-wrap" style="display:none;margin-top:24px;">
@@ -734,12 +655,12 @@
 <div id="screen-story" class="screen">
   <div class="page-wrap">
     <div class="header-bar">
-      <button class="logo-small" onclick="showScreen('landing')" style="background:none;border:none;cursor:pointer;padding:0;">Barnasagan mín</button>
+      <button class="logo-small" onclick="showScreen(&#39;landing&#39;)" style="background:none;border:none;cursor:pointer;padding:0;">Barnasagan mín</button>
       <div style="display:flex;align-items:center;gap:12px;">
         <button class="btn-back" id="story-back-btn" onclick="showMap()">← Til baka</button>
         <div class="lang-toggle">
-          <button class="lang-btn" id="story-lang-is" onclick="setLang('is')">IS</button>
-          <button class="lang-btn" id="story-lang-en" onclick="setLang('en')">EN</button>
+          <button class="lang-btn active" id="story-lang-is" onclick="setLang(&#39;is&#39;)">IS</button>
+          <button class="lang-btn" id="story-lang-en" onclick="setLang(&#39;en&#39;)">EN</button>
         </div>
         <button class="btn-nav-login" id="story-about-link" onclick="showAbout()" style="font-size:12px;">Um</button>
         <button class="btn-nav-login" id="story-faq-link" onclick="showFaq()" style="font-size:12px;">Spurningar</button>
@@ -750,9 +671,7 @@
     <div class="story-loading" id="story-loading">
       <div class="spinner" style="font-size:50px;">✧</div>
       <p class="loading-text" id="story-loading-text">Við erum að leggja lokahönd á söguna um barnið þitt...</p>
-      <div id="story-loading-sub" style="font-size:14px;font-style:italic;color:var(--gold);margin-top:10px;opacity:0.8;">
-        Tengjum saman minningar...
-      </div>
+      <div id="story-loading-sub" style="font-size:14px;font-style:italic;color:var(--gold);margin-top:10px;opacity:0.8;">Þetta getur tekið smástund</div>
       <div style="margin-top:32px;width:280px;margin-left:auto;margin-right:auto;">
         <div style="display:flex;justify-content:space-between;margin-bottom:8px;font-size:12px;color:var(--orange);">
           <span id="loading-step-1" style="opacity:0.4;">✍️ Skrifa</span>
@@ -771,19 +690,19 @@
 
       <div style="text-align:center;margin-bottom:32px;"><span class="ornament-sm">✦ ✦ ✦</span></div>
       <div id="book-title-wrap" style="text-align:center;margin-bottom:8px;display:none;">
-        <span id="book-title-display" style="font-family:'Fredoka One',cursive;font-size:22px;font-weight:700;color:var(--dark);"></span>
+        <span id="book-title-display" style="font-family:&#39;Fredoka One&#39;,cursive;font-size:22px;font-weight:700;color:var(--dark);"></span>
         <button onclick="fetchAndShowTitleSuggestions()" style="background:none;border:none;cursor:pointer;color:var(--mid);font-size:13px;margin-left:6px;" title="Breyta titli">✏️</button>
       </div>
       <div style="text-align:center;margin-bottom:16px;">
-        <span id="book-author-display" style="font-family:'Fredoka One',cursive;font-size:15px;color:var(--orange);"></span>
+        <span id="book-author-display" style="font-family:&#39;Fredoka One&#39;,cursive;font-size:15px;color:var(--orange);"></span>
         <button onclick="editBookAuthor()" style="background:none;border:none;cursor:pointer;color:var(--mid);font-size:13px;margin-left:8px;" title="Breyta nafni">✏️</button>
       </div>
       <div style="text-align:center;margin-bottom:20px;">
-        <button id="btn-title-suggestions" onclick="fetchAndShowTitleSuggestions()" style="background:none;border:1px solid var(--border);border-radius:20px;padding:6px 16px;font-size:12px;cursor:pointer;color:var(--orange);font-family:'Nunito',sans-serif;letter-spacing:0.05em;">🏷️ Fá tillögur fyrir titil á sögu</button>
+        <button id="btn-title-suggestions" onclick="fetchAndShowTitleSuggestions()" style="background:none;border:1px solid var(--border);border-radius:20px;padding:6px 16px;font-size:12px;cursor:pointer;color:var(--orange);font-family:&#39;Nunito&#39;,sans-serif;letter-spacing:0.05em;">🏷️ Fá tillögur fyrir titil á sögu</button>
       </div>
       <div class="story-body" id="story-body" contenteditable="false" spellcheck="true"></div>
       <div style="text-align:center;margin-top:16px;display:flex;align-items:center;justify-content:center;gap:10px;">
-        <button id="btn-edit-story" onclick="toggleEditStory()" style="display:none;background:none;border:1px solid var(--border);border-radius:50px;padding:8px 20px;font-size:13px;cursor:pointer;font-family:'Nunito',sans-serif;color:var(--text);">✏️ <span id="edit-story-btn-text">Breyta texta</span></button>
+        <button id="btn-edit-story" onclick="toggleEditStory()" style="display:none;background:none;border:1px solid var(--border);border-radius:50px;padding:8px 20px;font-size:13px;cursor:pointer;font-family:&#39;Nunito&#39;,sans-serif;color:var(--text);">✏️ Breyta texta</button>
         <button id="btn-text-warning" onclick="showWarningModal()" style="display:none;background:var(--warm);border:1px solid #e8b4b0;border-radius:50%;width:40px;height:40px;font-size:18px;cursor:pointer;color:#c0392b;padding:0;line-height:1;box-shadow:var(--shadow);align-items:center;justify-content:center;">!</button>
       </div>
       <div style="text-align:center;margin-top:20px;margin-bottom:24px;">
@@ -791,9 +710,9 @@
       </div>
 
       <div style="margin-top:32px;padding-top:24px;border-top:1px solid var(--border);">
-        <h3 style="font-family:'Fredoka One',cursive;font-size:18px;color:var(--text);margin-bottom:8px;" id="closing-title">Lokaorð</h3>
+        <h3 style="font-family:&#39;Fredoka One&#39;,cursive;font-size:18px;color:var(--text);margin-bottom:8px;" id="closing-title">Lokaorð</h3>
         <p style="font-size:13px;color:var(--mid);margin-bottom:12px;" id="closing-sub">Skrifaðu eigin lokaorð sem birtast í bókinni þinni</p>
-        <textarea id="closing-words" rows="5" style="width:100%;border:1px solid var(--border);border-radius:var(--radius);padding:12px;font-size:15px;font-family:'Nunito',sans-serif;color:var(--text);background:var(--cream);resize:vertical;" placeholder="Skrifaðu lokaorð hér..."></textarea>
+        <textarea id="closing-words" rows="5" style="width:100%;border:1px solid var(--border);border-radius:var(--radius);padding:12px;font-size:15px;font-family:&#39;Nunito&#39;,sans-serif;color:var(--text);background:var(--cream);resize:vertical;" placeholder="Skrifaðu lokaorð hér..."></textarea>
       </div>
 
       <div style="margin-top:40px;">
@@ -812,11 +731,11 @@
 
       <!-- PHOTOS -->
       <div style="margin-top:48px;padding-top:36px;border-top:1px solid var(--border);">
-        <h2 style="font-family:'Fredoka One',cursive;font-size:22px;color:var(--text);margin-bottom:8px;" id="photos-title">Viðbótarmyndir</h2>
+        <h2 style="font-family:&#39;Fredoka One&#39;,cursive;font-size:22px;color:var(--text);margin-bottom:8px;" id="photos-title">Viðbótarmyndir</h2>
         <p style="font-size:14px;color:var(--mid);margin-bottom:24px;" id="photos-sub">Myndir sem eru ekki tengdar tilteknum kafla birtast aftast í bókinni.</p>
-        <label style="display:inline-block;background:var(--gold);color:white;padding:12px 28px;font-size:13px;font-family:'Nunito',sans-serif;font-weight:700;cursor:pointer;border-radius:50px;transition:all 0.25s;">
+        <label style="display:inline-block;background:var(--gold);color:white;padding:12px 28px;font-size:13px;font-family:&#39;Nunito&#39;,sans-serif;font-weight:700;cursor:pointer;border-radius:50px;transition:all 0.25s;">
           📷 <span id="photo-btn-text">Velja myndir</span>
-          <input type="file" id="photo-input" accept="image/*" multiple style="display:none;" onchange="handlePhotoUpload(event)">
+          <input type="file" id="photo-input" accept="image/*" multiple="" style="display:none;" onchange="handlePhotoUpload(event)">
         </label>
         <p style="font-size:12px;color:var(--mid);margin-top:10px;font-style:italic;" id="photos-hint">Þú getur valið margar myndir í einu</p>
         <div id="photo-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;margin-top:28px;"></div>
@@ -829,25 +748,22 @@
 <div id="screen-about" class="screen">
   <div class="page-wrap">
     <div class="header-bar">
-      <button class="logo-small" onclick="showScreen('landing')" style="background:none;border:none;cursor:pointer;padding:0;">Barnasagan mín</button>
+      <button class="logo-small" onclick="showScreen(&#39;landing&#39;)" style="background:none;border:none;cursor:pointer;padding:0;">Barnasagan mín</button>
       <div style="display:flex;align-items:center;gap:12px;">
         <div class="lang-toggle">
-          <button class="lang-btn active" id="about-lang-is" onclick="setLang('is')">IS</button>
-          <button class="lang-btn" id="about-lang-en" onclick="setLang('en')">EN</button>
+          <button class="lang-btn active" id="about-lang-is" onclick="setLang(&#39;is&#39;)">IS</button>
+          <button class="lang-btn" id="about-lang-en" onclick="setLang(&#39;en&#39;)">EN</button>
         </div>
         <button class="btn-back" id="about-back-btn" onclick="showScreen(_aboutReturnScreen)">← Til baka</button>
         <button class="inner-hamburger" onclick="toggleInnerMenu()">☰</button>
       </div>
     </div>
 
-    <h2 class="map-title" id="about-page-title">
-      <span class="lang-is">Um Barnasöguna mína</span>
-      <span class="lang-en" style="display:none;">About</span>
-    </h2>
+    <h2 class="map-title" id="about-page-title">Um</h2>
 
     <div style="max-width:700px;margin:32px 0;">
-      <div class="lang-is">
-        <p style="font-family:'Fredoka One',cursive;font-size:20px;color:var(--text);line-height:1.8;margin-bottom:24px;">
+      <div class="lang-is" style="display: block;">
+        <p style="font-family:&#39;Fredoka One&#39;,cursive;font-size:20px;color:var(--text);line-height:1.8;margin-bottom:24px;">
           „Ég heiti María Björg og þegar ég eignaðist mitt fyrsta barn keypti ég dásamlega barnabók. Hún var með plássi fyrir 50 blaðsíður af minningum og ég fyllti nákvæmlega fimm þeirra af mikilli samviskusemi."
         </p>
 
@@ -864,7 +780,7 @@
       <div class="lang-en" style="display:none;">
         <h2 class="map-title" style="margin-bottom:24px;">The story behind My Child's Story</h2>
 
-        <p style="font-family:'Fredoka One',cursive;font-size:20px;color:var(--text);line-height:1.8;margin-bottom:24px;">
+        <p style="font-family:&#39;Fredoka One&#39;,cursive;font-size:20px;color:var(--text);line-height:1.8;margin-bottom:24px;">
           My name is María Björg and I bought a baby book. A beautiful one, with space for 50 pages of memories.
         </p>
 
@@ -877,28 +793,28 @@
         <p><strong>Your child's story is unique. I'm here to help you tell it, right now while it matters.</strong></p>
       </div>
 
-      <p id="about-page-sub" style="color:var(--mid);margin-top:32px;margin-bottom:32px;"></p>
+      <p id="about-page-sub" style="color:var(--mid);margin-top:32px;margin-bottom:32px;">Tækifæri til að íhuga, minnast og skrá það sem máli skiptir.</p>
 
       <div class="features-grid" style="max-width:100%;margin-top:0;">
         <div class="feature-card">
           <span class="feature-icon">💬</span>
           <div class="feature-title" id="about-feat1-title">Við spyrjum þig</div>
-          <p class="feature-desc" id="about-feat1-desc">Við sendum þér hvetjandi og persónulegar spurningar sem kalla fram dýrmætar minningar. Þú þarft ekki að eiga erfitt með að byrja eða vita hvað skal skrifa, við leiðum þig áfram skref fyrir skref.</p>
+          <p class="feature-desc" id="about-feat1-desc">Persónulegar spurningar um lífið sem barnið er að lifa, kafla fyrir kafla.</p>
         </div>
         <div class="feature-card">
           <span class="feature-icon">🎙️</span>
           <div class="feature-title" id="about-feat2-title">Þegar þér hentar</div>
-          <p class="feature-desc" id="about-feat2-desc">Lífið með börnum er annasamt og tíminn dýrmætur. Þess vegna geturðu skrifað hvar og hvenær sem er, hvort sem það er í símanum á meðan barnið sefur eða í tölvunni þegar ró kemst á. Þú ræður hraðanum.</p>
+          <p class="feature-desc" id="about-feat2-desc">Á morgnana, á meðan barnið sefur, eða seint um kvöld.</p>
         </div>
         <div class="feature-card">
           <span class="feature-icon">📚</span>
           <div class="feature-title" id="about-feat3-title">Sagan um barnið</div>
-          <p class="feature-desc" id="about-feat3-desc">Úr svörum þínum verður til samfelld og vönduð frásögn um fyrstu árin og þroska barnsins þíns. Þetta er einstök gjöf sem varðveitir augnablikin sem annars gætu gleymst í hringiðu hversdagsins.</p>
+          <p class="feature-desc" id="about-feat3-desc">Úr svörunum þínum verður falleg barnasaga sem þú getur gefið barninu.</p>
         </div>
       </div>
 
       <div style="text-align:center;margin-top:40px;">
-        <button class="btn-primary" id="about-cta-btn" onclick="showScreen('auth')">Hefja ferðalagið →</button>
+        <button class="btn-primary" id="about-cta-btn" onclick="showScreen(&#39;auth&#39;)">Hefja ferðalagið →</button>
       </div>
     </div>
   </div>
@@ -908,32 +824,136 @@
 <div id="screen-faq" class="screen">
   <div class="page-wrap">
     <div class="header-bar">
-      <button class="logo-small" onclick="showScreen('landing')" style="background:none;border:none;cursor:pointer;padding:0;">Barnasagan mín</button>
+      <button class="logo-small" onclick="showScreen(&#39;landing&#39;)" style="background:none;border:none;cursor:pointer;padding:0;">Barnasagan mín</button>
       <div style="display:flex;align-items:center;gap:12px;">
         <div class="lang-toggle">
-          <button class="lang-btn active" id="faq-lang-is" onclick="setLang('is')">IS</button>
-          <button class="lang-btn" id="faq-lang-en" onclick="setLang('en')">EN</button>
+          <button class="lang-btn active" id="faq-lang-is" onclick="setLang(&#39;is&#39;)">IS</button>
+          <button class="lang-btn" id="faq-lang-en" onclick="setLang(&#39;en&#39;)">EN</button>
         </div>
-        <button class="btn-back" id="faq-back-btn" onclick="showScreen(_faqReturnScreen)">← <span class="lang-is">Til baka</span><span class="lang-en" style="display:none;">Back</span></button>
+        <button class="btn-back" id="faq-back-btn" onclick="showScreen(_faqReturnScreen)">← Til baka</button>
         <button class="inner-hamburger" onclick="toggleInnerMenu()">☰</button>
       </div>
     </div>
 
-    <h2 class="map-title" id="faq-page-title">
-      <span class="lang-is">Algengar spurningar</span>
-      <span class="lang-en" style="display:none;">Frequently Asked Questions</span>
-    </h2>
+    <h2 class="map-title" id="faq-page-title">Spurningar</h2>
     <p style="color:var(--mid);margin-bottom:40px;">
-      <span class="lang-is">Svör við því helsta varðandi ferlið, öryggið og úrvinnsluna.</span>
+      <span class="lang-is" style="display: block;">Svör við því helsta varðandi ferlið, öryggið og úrvinnsluna.</span>
       <span class="lang-en" style="display:none;">Answers to common questions regarding the process, security, and output.</span>
     </p>
 
     <div style="max-width:720px;margin-bottom:16px;text-align:right;">
-      <button id="faq-toggle-all-btn" onclick="toggleFaqAll()" style="background:none;border:1px solid var(--border);border-radius:50px;padding:6px 14px;font-size:13px;font-family:'Nunito',sans-serif;color:var(--mid);cursor:pointer;">
-        <span class="lang-is">Opna allt</span><span class="lang-en" style="display:none;">Expand all</span>
+      <button id="faq-toggle-all-btn" onclick="toggleFaqAll()" style="background:none;border:1px solid var(--border);border-radius:50px;padding:6px 14px;font-size:13px;font-family:&#39;Nunito&#39;,sans-serif;color:var(--mid);cursor:pointer;">
+        <span class="lang-is" style="display: block;">Opna allt</span><span class="lang-en" style="display:none;">Expand all</span>
       </button>
     </div>
-    <div id="faq-list" style="max-width:720px;"></div>
+    <div id="faq-list" style="max-width:720px;"><h3 class="faq-category">Um þjónustuna</h3><details class="faq-item">
+      <summary>Hvað er Barnasagan mín?</summary>
+      <p class="faq-answer">Barnasagan mín er vettvangur sem aðstoðar foreldra eða aðra nákomna við að skrá sögu barnsins síns með persónulegum og hvetjandi spurningum. Persónulegar spurningar leiða þig í gegnum mismunandi þætti bernskunnar og svörin þín mynda að lokum samfellda og vandaða barnasögu.</p>
+    </details><details class="faq-item">
+      <summary>Hverjum er þjónustan ætluð?</summary>
+      <p class="faq-answer">Barnasagan mín hentar öllum foreldrum eða aðstandendum sem vilja varðveita söguna um bernsku barnsins síns. Þú getur byrjað hvenær sem er, hvort sem barnið er nýfætt eða þegar farið í skóla.</p>
+    </details><details class="faq-item">
+      <summary>Kostar þjónustan eitthvað?</summary>
+      <p class="faq-answer">Fyrstu tveir kaflarnir eru ókeypis. Fullur aðgangur er keyptur með eingreiðslu, engin áskrift. Við bjóðum upp á tvo pakka: Fullan aðgang (eitt barn) og Fjölskyldupakkann (mörg börn). Sjá <a href="https://www.barnasagan.is/pricing.html" style="color:var(--gold);">verðskrá</a>.</p>
+    </details><details class="faq-item">
+      <summary>Get ég skráð fleiri en eitt barn á sama aðgang?</summary>
+      <p class="faq-answer">Já! Með Fjölskyldupakkanum getur þú bætt við eins mörgum börnum og þú vilt á sama aðgang. Hvert barn fær sína eigin sögu. Þú skiptir á milli barna með hnappinum efst á síðunni. Ef þú ert þegar með Fullan aðgang getur þú uppfært, sjá <a href="https://www.barnasagan.is/pricing.html" style="color:var(--gold);">verðskrá</a>.</p>
+    </details><details class="faq-item">
+      <summary>Er þetta virkilega ein greiðsla?</summary>
+      <p class="faq-answer">Já. Þú greiðir einu sinni og hefur fullan aðgang á meðan þjónustan er í rekstri.</p>
+    </details><details class="faq-item">
+      <summary>Get ég prófað áður en ég greiði?</summary>
+      <p class="faq-answer">Já, tveir kaflar eru opnir án greiðslu. Þegar þú ákveður að kaupa aðgang opnast allir 12 kaflar strax.</p>
+    </details><details class="faq-item">
+      <summary>Hvernig er greitt?</summary>
+      <p class="faq-answer">Við notum Paddle sem greiðslumiðlara. Tekur við kredit- og debetkortum.</p>
+    </details><details class="faq-item">
+      <summary>Get ég fengið endurgreiðslu?</summary>
+      <p class="faq-answer">Já, við bjóðum upp á 14 daga endurgreiðslurétt. Hafðu samband á <a href="mailto:hallo@saganmin.is" style="color:var(--gold);">hallo@saganmin.is</a>.</p>
+    </details><details class="faq-item">
+      <summary>Af hverju er verðið í evrum?</summary>
+      <p class="faq-answer">Greiðslumiðlarinn okkar, Paddle, styður ekki íslenskar krónur að svo stöddu. Við gjaldfærum því í evrum og bankinn þinn reiknar krónutöluna á greiðsludegi.</p>
+    </details><details class="faq-item">
+      <summary>Get ég gefið þetta að gjöf?</summary>
+      <p class="faq-answer">Já! Smelltu á „Kaupa gjafakóða". Þú færð kóðann sendan á netfangið þitt.</p>
+    </details><details class="faq-item">
+      <summary>Eru gögnin mín örugg?</summary>
+      <p class="faq-answer">Já. Svör geymd á dulkóðuðum gagnagrunni. Rekin af íslensku félagi (kt. 471025-0380), við seljum aldrei persónuupplýsingar.</p>
+    </details><details class="faq-item">
+      <summary>Hvernig eyði ég reikningnum mínum?</summary>
+      <p class="faq-answer">Eyddu framvindu með 'Eyða framvindu' eða hafðu samband á hallo@saganmin.is til að eyða reikningi að fullu.</p>
+    </details><h3 class="faq-category">Að skrifa söguna</h3><details class="faq-item">
+      <summary>Hvernig stillir vefsíðan sig á fjölskylduna okkar?</summary>
+      <p class="faq-answer">Þegar þú skráir þig inn í fyrsta skipti spyr vefsíðan hvort barnið eigi mömmu og pabba, tvær mæður, tvo feður eða einstæðan foreldri. Þessar upplýsingar eru geymdar og notaðar af vefsíðunni til að nota rétt foreldraheiti í bókinni. Ef þú vilt breyta stillingunum eftir á, smelltu á 👨‍👩‍👧 takkann efst til hægri á Mitt svæði skjánum.</p>
+    </details><details class="faq-item">
+      <summary>Þarf ég að svara öllum spurningum í einu?</summary>
+      <p class="faq-answer">Alls ekki. Þú getur tekið þér hlé hvenær sem hentar. Framvinda þín vistast sjálfkrafa og þú getur haldið áfram þar sem frá var horfið, hvort sem það er að nokkrum dögum eða vikum liðnum.</p>
+    </details><details class="faq-item">
+      <summary>Hversu langan tíma tekur þetta?</summary>
+      <p class="faq-answer">Það er algjörlega í þínum höndum. Margir svara einni eða tveimur spurningum á dag og klára bókina á nokkrum vikum. Sumir (þeir sem eru mögulega búnir að týna minningarbókinni sem var keypt 🤭) geta keyrt í gegnum svörin á mun styttri tíma en aðrir taka sér lengri tíma. Engin pressa, framvindan vistast sjálfkrafa og bíður þín.</p>
+    </details><details class="faq-item">
+      <summary>Get ég skrifað á ensku?</summary>
+      <p class="faq-answer">Já. Þú getur skipt um tungumál hvenær sem er. Bókin verður á því máli sem er valið þegar þú forskoðar.</p>
+    </details><details class="faq-item">
+      <summary>Get ég talað í stað þess að skrifa?</summary>
+      <p class="faq-answer">Já, notaðu 🎙 hnappinn í vafranum eða 🎤 á lyklaborði síma eða spjaldtölvu. Á iOS þarf að nota 🎤 á lyklaborðinu og hafa íslensku stillta á símanum til að dikta á íslensku.</p>
+    </details><details class="faq-item">
+      <summary>Hvað ef ég man ekki nákvæmlegar dagsetningar?</summary>
+      <p class="faq-answer">Það gerir ekkert til. Skrifaðu 'um það bil' eða lýstu tímabilinu. Barnasögunni er ætlað að fanga augnablikin fremur en nákvæma dagatalsskráningu.</p>
+    </details><details class="faq-item">
+      <summary>Hversu mikið má ég skrifa við hverja spurningu?</summary>
+      <p class="faq-answer">Það eru engin efri mörk. Þú getur skrifað eina setningu eða heila síðu. Kerfið dregur saman það mikilvægasta og tryggir að frásögnin sé jafnvæg og falleg.</p>
+    </details><details class="faq-item">
+      <summary>Get ég bætt við mínum eigin spurningum?</summary>
+      <p class="faq-answer">Já! Við hliðina á hverri spurningu er '+' takki. Þar getur þú slegið inn þína eigin spurningu sem birtist strax sem næsta spurning í kaflanum.</p>
+    </details><details class="faq-item">
+      <summary>Get ég breytt svörunum mínum?</summary>
+      <p class="faq-answer">Já. 'Breyta' takki undir hverju svari. Athugaðu að þú þarft að forskoða bókina aftur til að uppfærð svör birtist í textanum.</p>
+    </details><details class="faq-item">
+      <summary>Get ég notað þjónustuna á fleiri en einu tæki?</summary>
+      <p class="faq-answer">Já. Framvindan þín er vistuð á öruggan hátt á netþjóni og samstillist sjálfkrafa. Þú getur byrjað á tölvunni heima og haldið áfram á síma eða spjaldtölvu, svo lengi sem þú notar sama aðgang. En við mælum alltaf með að sækja svörin við spurningum sem textaskrá (.txt) reglulega.</p>
+    </details><details class="faq-item">
+      <summary>Hvað gerist ef tengingin brotnar meðan ég er að skrifa?</summary>
+      <p class="faq-answer">Ekkert glatast. Svörin þín eru vistuð staðbundið á tækinu þínu um leið og þú skrifar, og send á netþjóninn þegar tenging er til staðar. Ef tenging brotnar getur þú haldið áfram að skrifa og gögnin samstillast þegar þú ert aftur á netinu.</p>
+    </details><details class="faq-item">
+      <summary>Get ég bætt við fleiri spurningum eftir að kafla er lokið?</summary>
+      <p class="faq-answer">Já! Fyrir þá allra duglegustu er hægt að bæta við spurningum innan hvers kafla jafnvel þótt kaflinn hafi náð sínum 10 spurningum. Þessar 10 spurningar eru einungis viðmið, en við vitum vel að sumar minningar taka meira pláss í hjartanu en aðrar.</p>
+    </details><h3 class="faq-category">Bókin þín</h3><details class="faq-item">
+      <summary>Hvernig fer úrvinnslan fram?</summary>
+      <p class="faq-answer">Þegar þú hefur svarað nokkrum spurningum getur þú valið 'Skoða bókina þína'. Kerfið greinir svörin þín og setur þau upp í rökrétta og flæðandi barnasögu sem þú getur síðan yfirfarið og breytt.</p>
+    </details><details class="faq-item">
+      <summary>Er bókin alltaf eins þegar ég forskoða hana?</summary>
+      <p class="faq-answer">Nei. Í hvert sinn sem þú smellir á „Skoða bókina þína" verður til ný og sjálfstæð útgáfa af sögunni. Þetta þýðir að þú getur prófað mismunandi ritstíla og fengið nýja útgáfu í hvert skipti.
+
+Þegar þú forskoðar útgáfu sem þér líst vel á geturðu alltaf nálgast hana aftur í flipanum hægra megin á síðunni. Þar er haldið utan um eldri útgáfur svo þú getir borið þær saman eða hlaðið niður þeirri sem þér þykir best.</p>
+    </details><details class="faq-item">
+      <summary>Hvernig fæ ég fullbúna bók?</summary>
+      <p class="faq-answer">Þú getur hlaðið barnasögunni niður sem PDF skjali sem er faglega umbrotið með forsíðu og kaflaskiptingu. Einnig er hægt að flytja textann yfir í textaskrá.</p>
+    </details><details class="faq-item">
+      <summary>Get ég prentað barnasöguna mína sem alvöru bók?</summary>
+      <p class="faq-answer">Þú getur pantað prentað eintak í gegnum lulu.com. Þar er hægt að velja harðspjaldabók eða bók með mjúkri kápu sem er send heim til þín.</p>
+    </details><details class="faq-item">
+      <summary>Hvað með titil á bókina?</summary>
+      <p class="faq-answer">Þegar sagan þín er tilbúin stingur vefsíðan upp á fimm skapandi titlum fyrir barnasöguna þína. Þú getur valið þann besta eða skrifað þinn eigin.</p>
+    </details><details class="faq-item">
+      <summary>Hvar birtast myndirnar mínar?</summary>
+      <p class="faq-answer">Myndir sem þú hleður upp í hverjum kafla birtast sem smámyndir í PDF-skjalinu strax á eftir textanum. Aðrar myndir sem þú bætir við safnið þitt birtast í myndasafni aftast í bókinni.</p>
+    </details><details class="faq-item">
+      <summary>Hvað ef ég vil að sagan sé einföld og bein, án tilfinningasemi?</summary>
+      <p class="faq-answer">Veldu 'Hnitmiðaður'. Þá færðu hnitmiðaða barnasögu þar sem raunverulegar minningar og staðreyndir tala sínu máli.</p>
+    </details><details class="faq-item">
+      <summary>Get ég breytt textanum eftir að hann er búinn til?</summary>
+      <p class="faq-answer">Já, þegar þú velur 'Forskoða bókina þína' býr vefsíðan til drög. Þú getur síðan farið í 'Breyta texta' og lagfært allt sem þér finnst mega fara betur, bætt við upplýsingum eða breytt orðalagi áður en þú hleður niður lokagerðinni.</p>
+    </details><details class="faq-item">
+      <summary>Getur textinn innihaldið villur?</summary>
+      <p class="faq-answer">Já, vefsíðan setur saman frásögnina sjálfkrafa og geta þess vegna birst málfræði- eða stafsetningarvillur í textanum. Við mælum eindregið með að fara yfir textann með 'Breyta texta' takkanum áður en þú hleður niður bókinni.</p>
+    </details><details class="faq-item">
+      <summary>Get ég bætt við myndum í bókina?</summary>
+      <p class="faq-answer">Já! Í hverju kaflaviðtali er hægt að hlaða upp myndum sem tengjast þeim kafla, þær birtast þá í bókinni í lok viðkomandi kafla. Þú getur einnig bætt við almennum myndum í sögugluggunum, sem birtast aftast í bókinni.</p>
+    </details><h3 class="faq-category">Tækni og ráð</h3><details class="faq-item">
+      <summary>Get ég bætt Barnasögu minni á heimaskjá símans eins og app?</summary>
+      <p class="faq-answer">Já! iPhone: Safari → Deila → Bæta við heimaskjá. Android: Chrome → ⋮ → Bæta við heimaskjá.</p>
+    </details></div>
   </div>
 </div>
 
@@ -941,27 +961,82 @@
 <div id="screen-privacy" class="screen">
   <div class="page-wrap">
     <div class="header-bar">
-      <button class="logo-small" onclick="showScreen('landing')" style="background:none;border:none;cursor:pointer;padding:0;">Barnasagan mín</button>
+      <button class="logo-small" onclick="showScreen(&#39;landing&#39;)" style="background:none;border:none;cursor:pointer;padding:0;">Barnasagan mín</button>
       <div style="display:flex;align-items:center;gap:12px;">
         <div class="lang-toggle">
-          <button class="lang-btn active" id="privacy-lang-is" onclick="setLang('is')">IS</button>
-          <button class="lang-btn" id="privacy-lang-en" onclick="setLang('en')">EN</button>
+          <button class="lang-btn active" id="privacy-lang-is" onclick="setLang(&#39;is&#39;)">IS</button>
+          <button class="lang-btn" id="privacy-lang-en" onclick="setLang(&#39;en&#39;)">EN</button>
         </div>
-        <button class="btn-back" id="privacy-back-btn" onclick="showScreen(_privacyReturnScreen)">← <span class="lang-is">Til baka</span><span class="lang-en" style="display:none;">Back</span></button>
+        <button class="btn-back" id="privacy-back-btn" onclick="showScreen(_privacyReturnScreen)">← Til baka</button>
         <button class="inner-hamburger" onclick="toggleInnerMenu()">☰</button>
       </div>
     </div>
 
     <h2 class="map-title">
-      <span class="lang-is">Persónuvernd og öryggi</span>
+      <span class="lang-is" style="display: block;">Persónuvernd og öryggi</span>
       <span class="lang-en" style="display:none;">Privacy and Security</span>
     </h2>
 
-    <div id="privacy-content"></div>
+    <div id="privacy-content">
+      <p style="color:var(--mid);font-size:14px;margin-bottom:40px;">Gildir frá 30. mars 2026 · barnasagan.is</p>
+
+      <h3 style="font-family:&#39;Fredoka One&#39;,cursive;font-size:20px;margin:32px 0 12px;">1. Hver við erum</h3>
+      <p>Barnasagan mín (barnasagan.is) er þjónusta sem hjálpar foreldrum að skrá sögu barnsins síns. Þjónustan er rekin af Multa Bene Agere ehf. (kt. 471025-0380). Spurningar og athugasemdir varðandi persónuvernd má senda á <a href="mailto:saganmin@saganmin.is" style="color:var(--mid);">saganmin@saganmin.is</a>.</p>
+
+      <h3 style="font-family:&#39;Fredoka One&#39;,cursive;font-size:20px;margin:32px 0 12px;">2. Hvaða gögnum söfnum við</h3>
+      <p>Við geymum einungis þau gögn sem nauðsynleg eru til að sinna þessari þjónustu:</p>
+      <ul style="margin:12px 0 12px 20px;line-height:2;">
+        <li><strong>Tölvupóstfang</strong>, notað til innskráningar og auðkenningar</li>
+        <li><strong>Svör við spurningum</strong>, geymd á öruggan hátt og aðeins aðgengileg þér</li>
+        <li><strong>Framvindugögn</strong>, hvaða kafla þú hefur lokið</li>
+        <li><strong>Tímastimplar</strong>, hvenær gögn voru vistuð</li>
+      </ul>
+      <p>Við geymum <strong>ekki</strong> IP-föng, vafragögn, staðsetningargögn eða neinar aðrar persónugreinanlegar upplýsingar.</p>
+
+      <h3 style="font-family:&#39;Fredoka One&#39;,cursive;font-size:20px;margin:32px 0 12px;">3. Hvernig gögn þín eru vernduð</h3>
+      <p>Gögn þín eru geymd í gagnagrunni hjá Supabase (Amazon Web Services, Evrópa). Við notum <strong>Row Level Security (RLS)</strong>, þetta þýðir að tæknilegar öryggisreglur tryggja að aðeins þú getur lesið og skrifað þín eigin gögn. Enginn annar notandi, og ekkert forrit utan þíns eigin reiknings, hefur aðgang að svörum þínum. Öll samskipti milli vafrans þíns og þjóna eru dulkóðuð með TLS/SSL (HTTPS).</p>
+
+      <h3 style="font-family:&#39;Fredoka One&#39;,cursive;font-size:20px;margin:32px 0 12px;">4. Aðgangur rekstraraðila</h3>
+      <p><strong>Rekstraraðili Barnasögu minnar les ekki svör þín.</strong> Sagan sem þú skrifar um barnið þitt er þín ein. Hún er persónuleg og við höfum engan áhuga á að skoða hana.</p>
+      <p>Við segjum aldrei frá né seljum gögn þín til þriðja aðila. Öll gögn eru vernduð samkvæmt íslenskum lögum og GDPR-reglugerð Evrópusambandsins. Þú átt fullt yfirráð yfir eigin gögnum og getur krafist eyðingar þeirra hvenær sem er.</p>
+
+      <h3 style="font-family:&#39;Fredoka One&#39;,cursive;font-size:20px;margin:32px 0 12px;">5. Höfundarréttur</h3>
+      <p>Þú átt fullan og óskoraðan höfundarrétt að þeirri barnasögu sem verður til. Barnasagan mín hefur engar kröfur eða réttindi yfir því efni sem þú skrifar eða myndum sem þú hleður upp.</p>
+
+      <h3 style="font-family:&#39;Fredoka One&#39;,cursive;font-size:20px;margin:32px 0 12px;">6. Sjálfvirk úrvinnsla og gerð frásagna</h3>
+      <p>Til að aðstoða notendur við að móta samfellda og vandaða barnasögu nýtir þjónustan snjalla tæknilausn til sjálfvirkrar úrvinnslu á texta. Svör notenda eru greind með kerfisbundnum hætti til að búa til leiðandi spurningar og tengja minningar saman í eina heild. Við leggjum ríka áherslu á að engar persónugreinanlegar upplýsingar, svo sem nafn eða tölvupóstfang, eru sendar til utanaðkomandi tæknikerfa við þessa úrvinnslu.</p>
+
+      <h3 style="font-family:&#39;Fredoka One&#39;,cursive;font-size:20px;margin:32px 0 12px;">7. Geymsla í vafra</h3>
+      <p>Þjónustan notar <strong>localStorage</strong> í vafranum þínum til að vista framvindu þína staðbundið á tækinu þínu. Þessi gögn eru aðeins aðgengileg af barnasagan.is og á þínu eigin tæki.</p>
+
+      <h3 style="font-family:&#39;Fredoka One&#39;,cursive;font-size:20px;margin:32px 0 12px;">8. Réttindi þín</h3>
+      <p>Samkvæmt íslenskum lögum og GDPR átt þú rétt á að:</p>
+      <ul style="margin:12px 0 12px 20px;line-height:2;">
+        <li>Fá aðgang að öllum gögnum sem við geymum um þig</li>
+        <li>Krefjast leiðréttingar á röngum gögnum</li>
+        <li>Krefjast eyðingar á öllum gögnum þínum ("réttur til að gleymast")</li>
+        <li>Flytja gögn þín út (PDF eða textaskrá)</li>
+      </ul>
+      <p>Til að nýta þessi réttindi skaltu hafa samband á <a href="mailto:saganmin@saganmin.is" style="color:var(--mid);">saganmin@saganmin.is</a>. Við munum bregðast við innan 30 daga.</p>
+
+      <h3 style="font-family:&#39;Fredoka One&#39;,cursive;font-size:20px;margin:32px 0 12px;">9. Eyðing reiknings</h3>
+      <p>Þú getur eytt framvindu þinni hvenær sem er með "Eyða framvindu" takkanum í kaflayfirlit. Til að eyða reikningnum þínum að fullu og öllum gögnum skaltu hafa samband við okkur.</p>
+
+      <h3 style="font-family:&#39;Fredoka One&#39;,cursive;font-size:20px;margin:32px 0 12px;">10. Persónuvernd barna</h3>
+      <p>Barnasagan mín er þjónusta fyrir foreldra og aðra umsjónaraðila sem vilja varðveita minningar um barn sitt. Við söfnum ekki persónuupplýsingum um börn beint, allar upplýsingar koma frá foreldri/umsjónaraðila sem er skráður notandi þjónustunnar.</p>
+
+      <h3 style="font-family:&#39;Fredoka One&#39;,cursive;font-size:20px;margin:32px 0 12px;">11. Breytingar á stefnunni</h3>
+      <p>Ef við gerum verulegar breytingar á þessari persónuverndarstefnu munum við láta notendur vita með tölvupósti. Dagsetning efst á síðunni sýnir hvenær stefnan var síðast uppfærð.</p>
+
+      <div style="margin-top:48px;padding:24px;background:var(--warm);border-radius:8px;border-left:3px solid var(--gold);">
+        <p style="margin:0;font-size:14px;color:var(--mid);">Spurningar? Hafðu samband á <a href="mailto:saganmin@saganmin.is" style="color:var(--mid);">saganmin@saganmin.is</a></p>
+      </div>
+      <div style="height:60px;"></div>
+    </div>
   </div>
 </div>
 
-<script type="module" src="js/app.js"></script>
+<script type="module" src="./app.js.download"></script>
 
 <!-- ══ VERSIONS SIDEBAR ══ -->
 <div class="versions-sidebar" id="versions-sidebar">
@@ -980,14 +1055,11 @@
 </div>
 
 <!-- ══ FLOATING INFO BUTTON ══ -->
-<button class="floating-warning-btn" id="floating-warning-btn" onclick="showWarningModal()"
-  title="Getur textinn innihaldið villur?">❗</button>
-<button class="floating-info-btn" id="floating-info-btn" onclick="showInfoModal()"
-  title="Hvar eru gögn þín geymd?">❓</button>
+<button class="floating-warning-btn" id="floating-warning-btn" onclick="showWarningModal()" title="Getur textinn innihaldið villur?" style="display: none;">❗</button>
+<button class="floating-info-btn" id="floating-info-btn" onclick="showInfoModal()" title="Hvar eru gögn þín geymd?" style="display: none;">❓</button>
 
 <!-- ══ GULLMOLABANKI FAB ══ -->
-<button class="gullmola-fab" id="gullmola-fab" onclick="openGullmolaQuickAdd()"
-  title="Skrá gullmola" style="display:none;filter:none;">✨</button>
+<button class="gullmola-fab" id="gullmola-fab" onclick="openGullmolaQuickAdd()" title="Skrá gullmola" style="display:none;filter:none;">✨</button>
 
 <!-- ══ GULLMOLABANKI QUICK-ADD MODAL ══ -->
 <div id="gullmola-quickadd-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:3000;align-items:center;justify-content:center;padding:20px;" onclick="if(event.target===this)closeGullmolaQuickAdd()">
@@ -995,14 +1067,12 @@
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
       <div>
         <div style="font-size:1.5rem;;">✨</div>
-        <h3 style="font-family:'Fredoka One',cursive;font-size:1.3rem;color:var(--orange);margin:4px 0 0;">Gullmolabanki</h3>
+        <h3 style="font-family:&#39;Fredoka One&#39;,cursive;font-size:1.3rem;color:var(--orange);margin:4px 0 0;">Gullmolabanki</h3>
       </div>
       <button onclick="closeGullmolaQuickAdd()" style="background:none;border:none;font-size:20px;cursor:pointer;color:var(--mid);">✕</button>
     </div>
-    <textarea id="gullmola-qa-quote" class="gullmola-qa-textarea"
-      placeholder="Hvað sagði barnið?..." rows="3"></textarea>
-    <input id="gullmola-qa-context" type="text" class="gullmola-qa-input"
-      placeholder="Samhengi, t.d. í morgunmat, 3ja ára (valfrjálst)">
+    <textarea id="gullmola-qa-quote" class="gullmola-qa-textarea" placeholder="Hvað sagði barnið?..." rows="3"></textarea>
+    <input id="gullmola-qa-context" type="text" class="gullmola-qa-input" placeholder="Samhengi, t.d. í morgunmat, 3ja ára (valfrjálst)">
     <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;">
       <label style="font-size:12px;color:var(--mid);white-space:nowrap;">Dagsetning:</label>
       <input id="gullmola-qa-date" type="date" class="gullmola-qa-date-input">
@@ -1017,7 +1087,7 @@
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
       <div>
         <div style="font-size:1.5rem;">📏</div>
-        <h3 style="font-family:'Fredoka One',cursive;font-size:1.3rem;color:#5b8a5f;margin:4px 0 0;">Hæð barnsins</h3>
+        <h3 style="font-family:&#39;Fredoka One&#39;,cursive;font-size:1.3rem;color:#5b8a5f;margin:4px 0 0;">Hæð barnsins</h3>
       </div>
       <button onclick="closeHeightAdd()" style="background:none;border:none;font-size:20px;cursor:pointer;color:var(--mid);">✕</button>
     </div>
@@ -1046,7 +1116,7 @@
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;">
       <div>
         <div style="font-size:1.8rem;">📏</div>
-        <h2 id="heights-modal-title" style="font-family:'Fredoka One',cursive;font-size:1.5rem;color:#5b8a5f;margin:4px 0 0;">Hæð barnsins</h2>
+        <h2 id="heights-modal-title" style="font-family:&#39;Fredoka One&#39;,cursive;font-size:1.5rem;color:#5b8a5f;margin:4px 0 0;">Hæð barnsins</h2>
       </div>
       <button onclick="closeHeightsModal()" style="background:none;border:none;font-size:22px;cursor:pointer;color:var(--mid);">✕</button>
     </div>
@@ -1061,7 +1131,7 @@
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;">
       <div>
         <div style="font-size:1.8rem;;">✨</div>
-        <h2 id="gullmola-bank-title" style="font-family:'Fredoka One',cursive;font-size:1.5rem;color:var(--orange);margin:4px 0 0;">Gullmolabanki</h2>
+        <h2 id="gullmola-bank-title" style="font-family:&#39;Fredoka One&#39;,cursive;font-size:1.5rem;color:var(--orange);margin:4px 0 0;">Gullmolabanki</h2>
       </div>
       <button onclick="closeGullmolaBank()" style="background:none;border:none;font-size:22px;cursor:pointer;color:var(--mid);">✕</button>
     </div>
@@ -1083,49 +1153,48 @@
   <div class="family-setup-box">
     <div style="text-align:center;margin-bottom:28px;">
       <div style="font-size:2.2rem;margin-bottom:12px;">👫</div>
-      <h2 style="font-family:'Fredoka One',cursive;font-size:1.7rem;color:var(--orange);margin-bottom:8px;">
-        <span class="lang-is">Hvernig lítur fjölskyldan út?</span>
+      <h2 style="font-family:&#39;Fredoka One&#39;,cursive;font-size:1.7rem;color:var(--orange);margin-bottom:8px;">
+        <span class="lang-is" style="display: block;">Hvernig lítur fjölskyldan út?</span>
         <span class="lang-en" style="display:none;">What does your family look like?</span>
       </h2>
       <p style="color:var(--mid);font-size:0.93rem;line-height:1.6;">
-        <span class="lang-is">Við notum þetta til að skrifa frásögnina á réttan hátt. Hægt er að breyta þessu seinna.</span>
+        <span class="lang-is" style="display: block;">Við notum þetta til að skrifa frásögnina á réttan hátt. Hægt er að breyta þessu seinna.</span>
         <span class="lang-en" style="display:none;">We use this to write the story with the right family terms. You can change this later.</span>
       </p>
     </div>
     <div>
-      <button class="family-type-btn" onclick="setFamilyType('mamma-pabbi')">
+      <button class="family-type-btn" onclick="setFamilyType(&#39;mamma-pabbi&#39;)">
         <span style="font-size:1.5rem;">👫</span>
-        <span class="lang-is">Mamma og pabbi</span><span class="lang-en" style="display:none;">Mum and dad</span>
+        <span class="lang-is" style="display: block;">Mamma og pabbi</span><span class="lang-en" style="display:none;">Mum and dad</span>
       </button>
-      <button class="family-type-btn" onclick="setFamilyType('tvaer-maedur')">
+      <button class="family-type-btn" onclick="setFamilyType(&#39;tvaer-maedur&#39;)">
         <span style="font-size:1.5rem;">👭</span>
-        <span class="lang-is">Tvær mæður</span><span class="lang-en" style="display:none;">Two mothers</span>
+        <span class="lang-is" style="display: block;">Tvær mæður</span><span class="lang-en" style="display:none;">Two mothers</span>
       </button>
-      <button class="family-type-btn" onclick="setFamilyType('tveir-fedur')">
+      <button class="family-type-btn" onclick="setFamilyType(&#39;tveir-fedur&#39;)">
         <span style="font-size:1.5rem;">👬</span>
-        <span class="lang-is">Tveir feður</span><span class="lang-en" style="display:none;">Two fathers</span>
+        <span class="lang-is" style="display: block;">Tveir feður</span><span class="lang-en" style="display:none;">Two fathers</span>
       </button>
-      <button class="family-type-btn" onclick="setFamilyType('einstaed-mamma')">
+      <button class="family-type-btn" onclick="setFamilyType(&#39;einstaed-mamma&#39;)">
         <span style="font-size:1.5rem;">👩</span>
-        <span class="lang-is">Einstæð mamma</span><span class="lang-en" style="display:none;">Single mother</span>
+        <span class="lang-is" style="display: block;">Einstæð mamma</span><span class="lang-en" style="display:none;">Single mother</span>
       </button>
-      <button class="family-type-btn" onclick="setFamilyType('einstaedur-pabbi')">
+      <button class="family-type-btn" onclick="setFamilyType(&#39;einstaedur-pabbi&#39;)">
         <span style="font-size:1.5rem;">👨</span>
-        <span class="lang-is">Einstæður pabbi</span><span class="lang-en" style="display:none;">Single father</span>
+        <span class="lang-is" style="display: block;">Einstæður pabbi</span><span class="lang-en" style="display:none;">Single father</span>
       </button>
     </div>
   </div>
 </div>
 
 <!-- ══ WARNING MODAL ══ -->
-<div class="info-modal-overlay" id="warning-modal-overlay"
-  style="display:none;" onclick="if(event.target===this)closeWarningModal()">
+<div class="info-modal-overlay" id="warning-modal-overlay" style="display:none;" onclick="if(event.target===this)closeWarningModal()">
   <div class="info-modal">
     <button onclick="closeWarningModal()" style="position:absolute;top:12px;right:12px;background:var(--gold);color:white;border:none;border-radius:50%;width:28px;height:28px;font-size:16px;cursor:pointer;line-height:1;">✕</button>
-    <h3>⚠️ <span class="lang-is">Villur í textanum?</span><span class="lang-en" style="display:none;">Errors in the text?</span></h3>
+    <h3>⚠️ <span class="lang-is" style="display: block;">Villur í textanum?</span><span class="lang-en" style="display:none;">Errors in the text?</span></h3>
     <div class="info-row" style="background:var(--warm);border-radius:var(--radius);padding:16px;margin-top:16px;">
       <div class="info-row-text" style="font-size:14px;line-height:1.7;color:var(--text);">
-        <span class="lang-is">Kerfið setur saman frásögnina sjálfkrafa og geta þess vegna birst málfræði- eða stafsetningarvillur. Við mælum með að fara yfir textann með <strong style="white-space:nowrap;">„Breyta texta"</strong> takkanum áður en þú hleður niður bókinni.</span>
+        <span class="lang-is" style="display: block;">Kerfið setur saman frásögnina sjálfkrafa og geta þess vegna birst málfræði- eða stafsetningarvillur. Við mælum með að fara yfir textann með <strong style="white-space:nowrap;">„Breyta texta"</strong> takkanum áður en þú hleður niður bókinni.</span>
         <span class="lang-en" style="display:none;">The system compiles the narrative automatically and errors may occasionally appear. We recommend reviewing the text using the <strong style="white-space:nowrap;">"Edit text"</strong> button before downloading.</span>
       </div>
     </div>
@@ -1133,8 +1202,7 @@
 </div>
 
 <!-- ══ INFO MODAL ══ -->
-<div class="info-modal-overlay" id="info-modal-overlay"
-  style="display:none;" onclick="if(event.target===this)closeInfoModal()">
+<div class="info-modal-overlay" id="info-modal-overlay" style="display:none;" onclick="if(event.target===this)closeInfoModal()">
   <div class="info-modal">
     <h3>🔒 Hvar eru gögn þín geymd?</h3>
 
@@ -1162,21 +1230,14 @@
 </div>
 
 <!-- ══ RESET CONFIRM MODAL ══ -->
-<div class="info-modal-overlay" id="reset-modal-overlay"
-  style="display:none;" onclick="if(event.target===this)closeResetModal()">
+<div class="info-modal-overlay" id="reset-modal-overlay" style="display:none;" onclick="if(event.target===this)closeResetModal()">
   <div class="info-modal">
     <button onclick="closeResetModal()" style="position:absolute;top:12px;right:12px;background:var(--gold);color:white;border:none;border-radius:50%;width:28px;height:28px;font-size:16px;cursor:pointer;line-height:1;">✕</button>
     <h3 id="reset-modal-title">🗑 Eyða allri framvindu?</h3>
     <p id="reset-modal-body" style="color:var(--mid);font-size:14px;margin:12px 0 16px;line-height:1.7;">Þessi aðgerð er <strong>óafturkræf</strong>. Sláðu inn <strong>EYÐA</strong> til að staðfesta.</p>
-    <input type="text" id="reset-confirm-input" class="field-input"
-      placeholder="Sláðu inn EYÐA..."
-      oninput="checkResetInput()"
-      onkeydown="if(event.key==='Escape')closeResetModal();"
-      style="margin-bottom:16px;letter-spacing:0.1em;text-transform:uppercase;">
+    <input type="text" id="reset-confirm-input" class="field-input" placeholder="Sláðu inn EYÐA..." oninput="checkResetInput()" onkeydown="if(event.key===&#39;Escape&#39;)closeResetModal();" style="margin-bottom:16px;letter-spacing:0.1em;text-transform:uppercase;">
     <div style="display:flex;gap:10px;">
-      <button id="reset-confirm-btn" onclick="executeReset()"
-        style="flex:1;padding:12px;background:#c0392b;color:white;border:none;border-radius:50px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:700;letter-spacing:0.05em;cursor:pointer;opacity:0.4;pointer-events:none;transition:opacity 0.2s;"
-        disabled>Eyða öllu</button>
+      <button id="reset-confirm-btn" onclick="executeReset()" style="flex:1;padding:12px;background:#c0392b;color:white;border:none;border-radius:50px;font-family:&#39;Nunito&#39;,sans-serif;font-size:14px;font-weight:700;letter-spacing:0.05em;cursor:pointer;opacity:0.4;pointer-events:none;transition:opacity 0.2s;" disabled="">Eyða öllu</button>
       <button class="btn-back" onclick="closeResetModal()">Hætta við</button>
     </div>
   </div>
@@ -1190,7 +1251,7 @@
     <p id="print-modal-sub" style="color:var(--mid);font-size:14px;margin-bottom:8px;">Breyttu barnasögunni í alvöru bók!</p>
     <ol id="print-modal-steps">
       <li>Smelltu á <strong>"Hlaða niður sem PDF bók"</strong> hér að neðan</li>
-      <li>Farðu á <a href="https://www.lulu.com" target="_blank" style="color:var(--gold);">lulu.com</a></li>
+      <li>Farðu á <a href="https://www.lulu.com/" target="_blank" style="color:var(--gold);">lulu.com</a></li>
       <li>Veldu <strong>"Create"</strong> → <strong>"Print Book"</strong></li>
       <li>Hlaðaðu upp PDF-inu þínu</li>
       <li>Veldu stærð og pappírsgæði</li>
@@ -1208,10 +1269,7 @@
     <h3>🔐 Stjórnandi</h3>
     <p>Sláðu inn stjórnandakóðann til að fara í gegnum síðuna sem notandi.</p>
     <div class="admin-pw-error" id="admin-pw-error">Rangt lykilorð</div>
-    <input type="password" class="field-input" id="admin-pw-input"
-      placeholder="Stjórnandakóði..."
-      onkeydown="if(event.key==='Enter')checkAdminLogin(); if(event.key==='Escape')closeAdminLogin();"
-      style="margin-bottom:16px;">
+    <input type="password" class="field-input" id="admin-pw-input" placeholder="Stjórnandakóði..." onkeydown="if(event.key===&#39;Enter&#39;)checkAdminLogin(); if(event.key===&#39;Escape&#39;)closeAdminLogin();" style="margin-bottom:16px;">
     <div style="display:flex;gap:10px;">
       <button class="btn-primary" onclick="checkAdminLogin()" style="flex:1;padding:12px;">Innskrá →</button>
       <button class="btn-back" onclick="closeAdminLogin()">Hætta við</button>
@@ -1228,14 +1286,14 @@
 <!-- Inner screens mobile menu -->
 <div class="nav-inner-menu" id="nav-inner-menu">
   <div class="nav-inner-menu-header">
-    <span style="font-family:'Fredoka One',cursive;font-size:18px;color:var(--orange);">Barnasagan mín</span>
+    <span style="font-family:&#39;Fredoka One&#39;,cursive;font-size:18px;color:var(--orange);">Barnasagan mín</span>
     <button class="nav-inner-menu-close" onclick="closeInnerMenu()">✕</button>
   </div>
   <button onclick="closeInnerMenu();showFaq()">Spurningar</button>
   <button onclick="closeInnerMenu();showAbout()">Um</button>
   <button onclick="closeInnerMenu();showMap()">Mitt svæði</button>
   <div id="inner-menu-child-section" style="display:none;border-top:1px solid var(--border);padding:8px 0 4px;">
-    <div style="font-size:11px;color:var(--mid);padding:4px 16px 8px;font-family:'Nunito',sans-serif;">Barnið sem á sögu</div>
+    <div style="font-size:11px;color:var(--mid);padding:4px 16px 8px;font-family:&#39;Nunito&#39;,sans-serif;">Barnið sem á sögu</div>
     <div id="inner-menu-child-list"></div>
     <button id="inner-menu-add-child" style="display:none;" onclick="handleAddChild();closeInnerMenu();">+ Bæta við barni</button>
   </div>
@@ -1246,5 +1304,6 @@
   <button onclick="closeInnerMenu();signOut()" style="color:var(--mid);">Útskrá</button>
 </div>
 
-</body>
-</html>
+
+
+</body></html>
