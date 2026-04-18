@@ -405,10 +405,21 @@ html[lang="en"] .lang-is { display: none !important; }
       <li><span class="check">✓</span><span class="feat-text lang-is">Myndir í bókina</span><span class="feat-text lang-en" style="display:none;">Photos in the book</span></li>
       <li><span class="check">✓</span><span class="feat-text lang-is">Íslenska og enska</span><span class="feat-text lang-en" style="display:none;">Icelandic and English</span></li>
     </ul>
-    <button class="btn-paid" onclick="openCheckout()">
+    <label style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:#c9b8a8;margin-bottom:16px;cursor:pointer;">
+      <input type="checkbox" id="terms-accept" style="margin-top:2px;flex-shrink:0;">
+      <span class="lang-is">Ég hef lesið og samþykki <a href="/terms.html" target="_blank" style="color:var(--gold);">þjónustuskilmálana</a> og <a href="/privacy.html" target="_blank" style="color:var(--gold);">persónuverndarstefnuna</a>.</span>
+      <span class="lang-en" style="display:none;">I have read and accept the <a href="/terms.html" target="_blank" style="color:var(--gold);">terms of service</a> and <a href="/privacy.html" target="_blank" style="color:var(--gold);">privacy policy</a>.</span>
+    </label>
+    <button class="btn-paid" onclick="if(!document.getElementById('terms-accept').checked){alert(localStorage.getItem('barnasagan_lang')==='en'?'Please accept the terms to continue.':'Vinsamlegast samþykktu skilmálana til að halda áfram.');return;} openCheckout()">
       <span class="lang-is">Kaupa fullan aðgang →</span>
       <span class="lang-en" style="display:none;">Get full access →</span>
     </button>
+    <div style="display:flex;align-items:center;gap:8px;margin-top:16px;justify-content:center;">
+      <span style="font-size:11px;color:#c9b8a8;letter-spacing:0.05em;"><span class="lang-is">Við tökum við:</span><span class="lang-en" style="display:none;">We accept:</span></span>
+      <svg width="44" height="28" viewBox="0 0 44 28" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Visa"><rect width="44" height="28" rx="4" fill="#1A1F71"/><text x="22" y="19" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="white" letter-spacing="1">VISA</text></svg>
+      <svg width="44" height="28" viewBox="0 0 44 28" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Mastercard"><rect width="44" height="28" rx="4" fill="#252525"/><circle cx="17" cy="14" r="9" fill="#EB001B"/><circle cx="27" cy="14" r="9" fill="#F79E1B"/><path d="M22 7.2a9 9 0 0 1 0 13.6A9 9 0 0 1 22 7.2z" fill="#FF5F00"/></svg>
+      <span style="font-size:11px;color:#c9b8a8;">· ISK</span>
+    </div>
   </div>
 
   <!-- Multi-child / Family plan -->
@@ -436,10 +447,21 @@ html[lang="en"] .lang-is { display: none !important; }
       <li><span class="check">✓</span><span class="feat-text lang-is">Allir 12 kaflar fyrir hvert barn</span><span class="feat-text lang-en" style="display:none;">All 12 chapters per child</span></li>
       <li><span class="check">✓</span><span class="feat-text lang-is">Sérstakt PDF fyrir hvert barn</span><span class="feat-text lang-en" style="display:none;">Separate PDF for each child</span></li>
     </ul>
-    <button class="btn-paid" id="multi-checkout-btn" onclick="openMultiCheckout()">
+    <label style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:#c9b8a8;margin-bottom:16px;cursor:pointer;">
+      <input type="checkbox" id="terms-accept-multi" style="margin-top:2px;flex-shrink:0;">
+      <span class="lang-is">Ég hef lesið og samþykki <a href="/terms.html" target="_blank" style="color:var(--gold);">þjónustuskilmálana</a> og <a href="/privacy.html" target="_blank" style="color:var(--gold);">persónuverndarstefnuna</a>.</span>
+      <span class="lang-en" style="display:none;">I have read and accept the <a href="/terms.html" target="_blank" style="color:var(--gold);">terms of service</a> and <a href="/privacy.html" target="_blank" style="color:var(--gold);">privacy policy</a>.</span>
+    </label>
+    <button class="btn-paid" id="multi-checkout-btn" onclick="if(!document.getElementById('terms-accept-multi').checked){alert(localStorage.getItem('barnasagan_lang')==='en'?'Please accept the terms to continue.':'Vinsamlegast samþykktu skilmálana til að halda áfram.');return;} openMultiCheckout()">
       <span class="lang-is">Kaupa fjölskyldupakka →</span>
       <span class="lang-en" style="display:none;">Get family plan →</span>
     </button>
+    <div style="display:flex;align-items:center;gap:8px;margin-top:16px;justify-content:center;">
+      <span style="font-size:11px;color:#c9b8a8;letter-spacing:0.05em;"><span class="lang-is">Við tökum við:</span><span class="lang-en" style="display:none;">We accept:</span></span>
+      <svg width="44" height="28" viewBox="0 0 44 28" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Visa"><rect width="44" height="28" rx="4" fill="#1A1F71"/><text x="22" y="19" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="white" letter-spacing="1">VISA</text></svg>
+      <svg width="44" height="28" viewBox="0 0 44 28" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Mastercard"><rect width="44" height="28" rx="4" fill="#252525"/><circle cx="17" cy="14" r="9" fill="#EB001B"/><circle cx="27" cy="14" r="9" fill="#F79E1B"/><path d="M22 7.2a9 9 0 0 1 0 13.6A9 9 0 0 1 22 7.2z" fill="#FF5F00"/></svg>
+      <span style="font-size:11px;color:#c9b8a8;">· ISK</span>
+    </div>
   </div>
 
   <!-- Gift purchase -->
@@ -454,14 +476,24 @@ html[lang="en"] .lang-is { display: none !important; }
       <span class="lang-is">Þú færð gjafakóða sendan á netfangið þitt. Gefðu hann áfram og viðtakandinn innleysir hann hér fyrir neðan.</span>
       <span class="lang-en" style="display:none;">You receive a gift code by email. Pass it on and the recipient redeems it here.</span>
     </div>
-    <button class="btn-paid" onclick="openGiftCheckout()" style="margin-bottom:10px;">
+    <label style="display:flex;align-items:flex-start;gap:10px;font-size:13px;color:var(--mid);margin-bottom:12px;cursor:pointer;text-align:left;">
+      <input type="checkbox" id="terms-accept-gift" style="margin-top:2px;flex-shrink:0;">
+      <span class="lang-is">Ég samþykki <a href="/terms.html" target="_blank" style="color:var(--orange);">þjónustuskilmálana</a> og <a href="/privacy.html" target="_blank" style="color:var(--orange);">persónuverndarstefnuna</a>.</span>
+      <span class="lang-en" style="display:none;">I accept the <a href="/terms.html" target="_blank" style="color:var(--orange);">terms of service</a> and <a href="/privacy.html" target="_blank" style="color:var(--orange);">privacy policy</a>.</span>
+    </label>
+    <button class="btn-paid" onclick="if(!document.getElementById('terms-accept-gift').checked){alert(localStorage.getItem('barnasagan_lang')==='en'?'Please accept the terms to continue.':'Vinsamlegast samþykktu skilmálana til að halda áfram.');return;} openGiftCheckout()" style="margin-bottom:10px;">
       <span class="lang-is">Kaupa gjafakóða (eitt barn) →</span>
       <span class="lang-en" style="display:none;">Buy gift code (single child) →</span>
     </button>
-    <button class="btn-paid" onclick="openMultiGiftCheckout()" style="background:var(--orange);">
+    <button class="btn-paid" onclick="if(!document.getElementById('terms-accept-gift').checked){alert(localStorage.getItem('barnasagan_lang')==='en'?'Please accept the terms to continue.':'Vinsamlegast samþykktu skilmálana til að halda áfram.');return;} openMultiGiftCheckout()" style="background:var(--orange);">
       <span class="lang-is">Kaupa fjölskyldukóða (mörg börn) →</span>
       <span class="lang-en" style="display:none;">Buy family gift code (multiple children) →</span>
     </button>
+    <div style="display:flex;align-items:center;gap:8px;margin-top:14px;justify-content:center;">
+      <svg width="44" height="28" viewBox="0 0 44 28" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Visa"><rect width="44" height="28" rx="4" fill="#1A1F71"/><text x="22" y="19" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="white" letter-spacing="1">VISA</text></svg>
+      <svg width="44" height="28" viewBox="0 0 44 28" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Mastercard"><rect width="44" height="28" rx="4" fill="#252525"/><circle cx="17" cy="14" r="9" fill="#EB001B"/><circle cx="27" cy="14" r="9" fill="#F79E1B"/><path d="M22 7.2a9 9 0 0 1 0 13.6A9 9 0 0 1 22 7.2z" fill="#FF5F00"/></svg>
+      <span style="font-size:11px;color:var(--mid);">· ISK</span>
+    </div>
   </div>
 
 </div>
