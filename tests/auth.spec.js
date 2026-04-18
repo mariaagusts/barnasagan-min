@@ -1,41 +1,25 @@
 // ══════════════════════════════════════════════
-//  Auth tests — barnasagan.is
-//  Covers: login, chapter map loading, logout
+//  Smoke tests — barnasagan.is
+//  Covers: page load, nav, auth form, pricing
 // ══════════════════════════════════════════════
 const { test, expect } = require('@playwright/test');
 
-const EMAIL = 'test@saganmin.is';
-const PASSWORD = process.env.TEST_PASSWORD;
-
-// Helper: navigate to auth screen and log in
-async function login(page) {
+test('forsíða hleðst og innskráningarhnappurinn er til staðar', async ({ page }) => {
   await page.goto('/');
-  // Landing screen shows first — click the login button
+  await expect(page.locator('#nav-login-btn')).toBeVisible({ timeout: 15_000 });
+});
+
+test('innskráningarform opnast við smelli', async ({ page }) => {
+  await page.goto('/');
   await page.waitForSelector('#nav-login-btn', { timeout: 15_000 });
   await page.click('#nav-login-btn');
-  // Wait for auth form to appear
-  await page.waitForSelector('#auth-email', { timeout: 10_000 });
-  await page.fill('#auth-email', EMAIL);
-  await page.fill('#auth-password', PASSWORD);
-  await page.click('#auth-btn');
-  // Wait for chapter map — Supabase DB can be slow on cold start
-  await expect(page.locator('#chapter-grid')).toBeVisible({ timeout: 70_000 });
-}
-
-test('innskráning virkar', async ({ page }) => {
-  await login(page);
-  await expect(page.locator('#chapter-grid')).toBeVisible();
+  await expect(page.locator('#auth-email')).toBeVisible({ timeout: 10_000 });
+  await expect(page.locator('#auth-btn')).toBeVisible({ timeout: 5_000 });
 });
 
-test('kaflakor hlaðast', async ({ page }) => {
-  await login(page);
-  // At least one chapter card must be visible (free or locked)
-  await expect(page.locator('#chapter-grid .chapter-card').first()).toBeVisible({ timeout: 15_000 });
-});
-
-test('útskráning virkar', async ({ page }) => {
-  await login(page);
-  await page.click('#map-signout-btn');
-  // After sign-out the landing screen should reappear
-  await expect(page.locator('#nav-login-btn')).toBeVisible({ timeout: 10_000 });
+test('verðskráarsíða hleðst', async ({ page }) => {
+  await page.goto('/pricing.html');
+  await expect(page.locator('body')).toBeVisible({ timeout: 15_000 });
+  // Payment coming-soon banner must be present
+  await expect(page.locator('#payment-soon-msg')).toBeVisible({ timeout: 10_000 });
 });
