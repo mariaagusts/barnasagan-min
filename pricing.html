@@ -9,7 +9,6 @@
   <link rel="icon" type="image/svg+xml" href="logo.svg">
   <link rel="stylesheet" href="styles.css">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
-  <script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
 <style>
 :root {
   --cream:    #FFFBF2;
@@ -351,23 +350,6 @@ html[lang="en"] .lang-is { display: none !important; }
   </p>
 </div>
 
-<!-- Payment coming soon notice -->
-<div style="max-width:640px;margin:0 auto 8px;padding:0 24px;">
-  <div id="payment-soon-msg" style="background:#fffbea;border:1px solid #f0d060;border-radius:14px;padding:14px 20px;display:flex;align-items:flex-start;gap:12px;">
-    <span style="font-size:18px;line-height:1;">⏳</span>
-    <div>
-      <div style="font-size:14px;font-weight:800;color:var(--text);margin-bottom:4px;font-family:'Nunito',sans-serif;">
-        <span class="lang-is">Greiðsluþjónusta kemur bráðum</span>
-        <span class="lang-en" style="display:none;">Payment coming soon</span>
-      </div>
-      <div style="font-size:13px;color:var(--mid);line-height:1.6;font-family:'Nunito',sans-serif;">
-        <span class="lang-is">Við erum að ljúka uppsetningu á greiðslulausn og hún verður virk á næstu 1-2 virkum dögum. Hafðu samband á <a href="mailto:hallo@saganmin.is" style="color:var(--orange);">hallo@saganmin.is</a> ef þú vilt kaupa aðgang fyrr.</span>
-        <span class="lang-en" style="display:none;">We are finalising our payment setup and it will be live within 1-2 business days. Contact <a href="mailto:hallo@saganmin.is" style="color:var(--orange);">hallo@saganmin.is</a> if you'd like to purchase access sooner.</span>
-      </div>
-    </div>
-  </div>
-</div>
-
 <!-- Cards -->
 <div class="cards-wrap">
 
@@ -427,7 +409,7 @@ html[lang="en"] .lang-is { display: none !important; }
       <span class="lang-is">Ég hef lesið og samþykki <a href="/terms.html" target="_blank" style="color:var(--gold);">þjónustuskilmálana</a> og <a href="/privacy.html" target="_blank" style="color:var(--gold);">persónuverndarstefnuna</a>.</span>
       <span class="lang-en" style="display:none;">I have read and accept the <a href="/terms.html" target="_blank" style="color:var(--gold);">terms of service</a> and <a href="/privacy.html" target="_blank" style="color:var(--gold);">privacy policy</a>.</span>
     </label>
-    <button class="btn-paid" style="opacity:0.55;cursor:default;" onclick="showPaymentSoon(event)">
+    <button class="btn-paid" onclick="openCheckout()">
       <span class="lang-is">Kaupa fullan aðgang →</span>
       <span class="lang-en" style="display:none;">Get full access →</span>
     </button>
@@ -469,7 +451,7 @@ html[lang="en"] .lang-is { display: none !important; }
       <span class="lang-is">Ég hef lesið og samþykki <a href="/terms.html" target="_blank" style="color:var(--gold);">þjónustuskilmálana</a> og <a href="/privacy.html" target="_blank" style="color:var(--gold);">persónuverndarstefnuna</a>.</span>
       <span class="lang-en" style="display:none;">I have read and accept the <a href="/terms.html" target="_blank" style="color:var(--gold);">terms of service</a> and <a href="/privacy.html" target="_blank" style="color:var(--gold);">privacy policy</a>.</span>
     </label>
-    <button class="btn-paid" id="multi-checkout-btn" style="opacity:0.55;cursor:default;" onclick="showPaymentSoon(event)">
+    <button class="btn-paid" id="multi-checkout-btn" onclick="openMultiCheckout()">
       <span class="lang-is">Kaupa fjölskyldupakka →</span>
       <span class="lang-en" style="display:none;">Get family plan →</span>
     </button>
@@ -498,11 +480,11 @@ html[lang="en"] .lang-is { display: none !important; }
       <span class="lang-is">Ég samþykki <a href="/terms.html" target="_blank" style="color:var(--orange);">þjónustuskilmálana</a> og <a href="/privacy.html" target="_blank" style="color:var(--orange);">persónuverndarstefnuna</a>.</span>
       <span class="lang-en" style="display:none;">I accept the <a href="/terms.html" target="_blank" style="color:var(--orange);">terms of service</a> and <a href="/privacy.html" target="_blank" style="color:var(--orange);">privacy policy</a>.</span>
     </label>
-    <button class="btn-paid" style="opacity:0.55;cursor:default;margin-bottom:10px;" onclick="showPaymentSoon(event)">
+    <button class="btn-paid" style="margin-bottom:10px;" onclick="openGiftCheckout()">
       <span class="lang-is">Kaupa gjafakóða (eitt barn) →</span>
       <span class="lang-en" style="display:none;">Buy gift code (single child) →</span>
     </button>
-    <button class="btn-paid" style="opacity:0.55;cursor:default;background:var(--orange);" onclick="showPaymentSoon(event)">
+    <button class="btn-paid" style="background:var(--orange);" onclick="openMultiGiftCheckout()">
       <span class="lang-is">Kaupa fjölskyldukóða (mörg börn) →</span>
       <span class="lang-en" style="display:none;">Buy family gift code (multiple children) →</span>
     </button>
@@ -677,10 +659,6 @@ html[lang="en"] .lang-is { display: none !important; }
   const SUPABASE_URL = 'https://gyehrvryxdgvfhfhwyyy.supabase.co';
   const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd5ZWhydnJ5eGRndmZoZmh3eXl5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM5Njc4MDcsImV4cCI6MjA4OTU0MzgwN30.4paq-dwUIpUpdM6frnvnYYnih8kXU0cZv67Owdej8H8';
 
-  Paddle.Initialize({
-    token: 'live_ff319f8e763b6e55dabb332b1e4'
-  });
-
   async function detectUpgrade() {
     try {
       const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
@@ -688,12 +666,11 @@ html[lang="en"] .lang-is { display: none !important; }
       if (!user) return;
       const { data } = await sb.from('paid_users').select('plan').eq('email', user.email.toLowerCase()).maybeSingle();
       if (data?.plan === 'single') {
-        const lang = localStorage.getItem('barnasagan_lang') || 'is';
         const btn = document.getElementById('multi-checkout-btn');
         const priceEl = document.getElementById('multi-price-display');
         const noteIs = document.getElementById('multi-price-note-is');
         const noteEn = document.getElementById('multi-price-note-en');
-        if (priceEl) priceEl.innerHTML = '<span class="price-currency" style="color:var(--gold);">€</span>35';
+        if (priceEl) priceEl.innerHTML = '<span class="price-currency" style="color:var(--gold);">kr</span>4.500';
         if (noteIs) noteIs.textContent = 'Uppfærsla frá Fullum aðgangi. Ein greiðsla.';
         if (noteEn) noteEn.textContent = 'Upgrade from Full access. One payment.';
         if (btn) {
@@ -706,76 +683,40 @@ html[lang="en"] .lang-is { display: none !important; }
   }
   detectUpgrade();
 
-  async function openUpgradeCheckout() {
-    const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-    const { data: { user } } = await sb.auth.getUser();
-    if (!user) { window.location.href = 'index.html'; return; }
-    Paddle.Checkout.open({
-      items: [{ priceId: 'pri_01knsb4zv6s03vfq4vk7aref6v', quantity: 1 }],
-      customData: { email: user.email },
-      settings: { successUrl: 'https://barnasagan.is/pricing.html?success=multi' }
-    });
-  }
-
-  async function openMultiCheckout() {
-    const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-    const { data: { user } } = await sb.auth.getUser();
-    if (!user) { window.location.href = 'index.html'; return; }
-    Paddle.Checkout.open({
-      items: [{ priceId: 'pri_01kns9z3dgxq27twp818yc9pev', quantity: 1 }],
-      customData: { email: user.email },
-      settings: { successUrl: 'https://barnasagan.is/pricing.html?success=multi' }
-    });
-  }
-
-  async function openMultiGiftCheckout() {
-    const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-    const { data: { user } } = await sb.auth.getUser();
-    let buyerEmail = user?.email;
-    if (!buyerEmail) {
-      const lang = localStorage.getItem('barnasagan_lang') || 'is';
-      buyerEmail = prompt(lang === 'en'
-        ? 'Enter your email address to receive the gift code:'
-        : 'Sláðu inn netfangið þitt til að fá gjafakóðann:');
-      if (!buyerEmail) return;
-    }
-    Paddle.Checkout.open({
-      items: [{ priceId: 'pri_01knsa2x2m8k4qz65jehajbgy1', quantity: 1 }],
-      customData: { email: buyerEmail },
-      settings: { successUrl: 'https://barnasagan.is/pricing.html?gift=multi' }
-    });
-  }
-
-  async function openCheckout() {
-    const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-    const { data: { user } } = await sb.auth.getUser();
-    if (!user) {
-      window.location.href = 'index.html';
+  function openCheckout() {
+    if (!document.getElementById('terms-accept').checked) {
+      alert('Vinsamlegast samþykktu skilmálana til að halda áfram.');
       return;
     }
-    Paddle.Checkout.open({
-      items: [{ priceId: 'pri_01kmy15wqc1dewnyj9wn9rattc', quantity: 1 }],
-      customData: { email: user.email },
-      settings: { successUrl: 'https://barnasagan.is/pricing.html?success=1' }
-    });
+    window.open('https://kling.is/pay/3028e4c4-53a8-41df-acef-663ca8e9b2a3', '_blank');
   }
 
-  async function openGiftCheckout() {
-    const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-    const { data: { user } } = await sb.auth.getUser();
-    let buyerEmail = user?.email;
-    if (!buyerEmail) {
-      const lang = localStorage.getItem('barnasagan_lang') || 'is';
-      buyerEmail = prompt(lang === 'en'
-        ? 'Enter your email address to receive the gift code:'
-        : 'Sláðu inn netfangið þitt til að fá gjafakóðann:');
-      if (!buyerEmail) return;
+  function openMultiCheckout() {
+    if (!document.getElementById('terms-accept-multi').checked) {
+      alert('Vinsamlegast samþykktu skilmálana til að halda áfram.');
+      return;
     }
-    Paddle.Checkout.open({
-      items: [{ priceId: 'pri_01kmyfmm00s0ycnkfhpk3v1wb1', quantity: 1 }],
-      customData: { email: buyerEmail },
-      settings: { successUrl: 'https://barnasagan.is/pricing.html?gift=success' }
-    });
+    window.open('https://kling.is/pay/b3027cc3-883e-4b6b-8eaa-38f02cc92ba2', '_blank');
+  }
+
+  function openUpgradeCheckout() {
+    window.open('https://kling.is/pay/8333f326-e34f-4e35-b693-a0902e2f53bc', '_blank');
+  }
+
+  function openGiftCheckout() {
+    if (!document.getElementById('terms-accept-gift').checked) {
+      alert('Vinsamlegast samþykktu skilmálana til að halda áfram.');
+      return;
+    }
+    window.open('https://kling.is/pay/060059ef-083e-4a6e-89fd-e5f56971f82d', '_blank');
+  }
+
+  function openMultiGiftCheckout() {
+    if (!document.getElementById('terms-accept-gift').checked) {
+      alert('Vinsamlegast samþykktu skilmálana til að halda áfram.');
+      return;
+    }
+    window.open('https://kling.is/pay/b3027cc3-883e-4b6b-8eaa-38f02cc92ba2', '_blank');
   }
 
   async function redeemGiftCode() {
