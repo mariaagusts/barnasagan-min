@@ -20,6 +20,6 @@ test('innskráningarform opnast við smelli', async ({ page }) => {
 test('verðskráarsíða hleðst', async ({ page }) => {
   await page.goto('/pricing.html');
   await expect(page.locator('body')).toBeVisible({ timeout: 15_000 });
-  // Payment coming-soon banner must be present
-  await expect(page.locator('#payment-soon-msg')).toBeVisible({ timeout: 10_000 });
+  // Checkout button must be present
+  await expect(page.locator('#multi-checkout-btn')).toBeVisible({ timeout: 10_000 });
 });
