@@ -13,6 +13,10 @@ function esc(s) {
   return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
 }
 
+// Token budget for full story passes (the proxy clamps server-side).
+// Follow-up questions/titles keep the small default in callGemini.
+const STORY_MAX_TOKENS = 8192;
+
 export function renderMarkdown(text) {
   return text.split("\n").map(l => {
     if (l.startsWith("# "))  return `<h1>${esc(l.slice(2))}</h1>`;
@@ -179,9 +183,21 @@ export async function generateStory(systemPrompt, userMsg) {
   for (const ch of chapters) {
     const cs = getChapterState(ch.id);
     if (cs.answers.length === 0) continue;
+    // Skip "—" placeholder answers (skipped questions) — they add noise, not memories
     const pairs = cs.questions.slice(0, cs.answers.length)
-      .map((q, i) => `Q: ${q}\nA: ${cs.answers[i]}`).join("\n\n");
-    allParts.push(`=== ${ch.title} ===\n${pairs}`);
+      .map((q, i) => ({ q, a: cs.answers[i] }))
+      .filter(p => p.a && p.a.trim() !== "—")
+      .map(p => `Q: ${p.q}\nA: ${p.a}`).join("\n\n");
+    if (!pairs) continue;
+    // Weave chapter photo captions into the context so the story can reference them
+    const chPhotos = S.chapters.chapters.find(c => c.id === ch.id)?.photos || [];
+    const captions = chPhotos.map(p => p.caption).filter(Boolean);
+    const captionCtx = captions.length > 0
+      ? (S.lang === "en"
+        ? `\n\nPhotos in this chapter show: ${captions.join("; ")}. Weave subtle references to them where natural.`
+        : `\n\nMyndir í þessum kafla sýna: ${captions.join("; ")}. Fléttaðu stuttum vísunum í þær inn þar sem það á við.`)
+      : "";
+    allParts.push(`=== ${ch.title} ===\n${pairs}${captionCtx}`);
     chapterTitles.push(ch.title);
   }
   if (allParts.length === 0) {
@@ -203,7 +219,7 @@ export async function generateStory(systemPrompt, userMsg) {
       const englishPromptBase = S.lang === "en" ? prompt : STORY_STYLES[S.styleKey || "natural"].promptEn;
       const englishPrompt = englishPromptBase + `\nIMPORTANT: You MUST write a separate ## section for every one of these ${chapterTitles.length} chapters: ${chapterTitles.join(", ")}. Do not skip, merge, or omit any chapter.\n`;
       updateLoadingStep(1);
-      const englishStory = await callGemini(englishPrompt, msg + allParts.join("\n\n"), true);
+      const englishStory = await callGemini(englishPrompt, msg + allParts.join("\n\n"), true, STORY_MAX_TOKENS);
 
       const styleLabel = STORY_STYLES[S.styleKey || "natural"].label;
       const barnidSegirRule = S.styleKey === 'barnid_segir'
@@ -229,12 +245,12 @@ MIKILVÆGT:
 Enska textinn:
 ${englishStory}`;
       updateLoadingStep(2);
-      let translated = await callGemini(translatePrompt, "Þýddu textann:", true);
+      let translated = await callGemini(translatePrompt, "Þýddu textann:", true, STORY_MAX_TOKENS);
       translated = translated.replace(/^.*?þýdd.*?íslensku[:\.]?\s*/i, "");
       translated = translated.replace(/^.*?lífssagan.*?íslensku[:\.]?\s*/i, "");
       S.storyText = translated.trim();
     } else {
-      S.storyText = await callGemini(promptWithRule, msg + allParts.join("\n\n"), true);
+      S.storyText = await callGemini(promptWithRule, msg + allParts.join("\n\n"), true, STORY_MAX_TOKENS);
     }
 
     const proofPrompt = `Þú ert vandvirkur íslenskur prófarkalesari. Valinn ritstíll er: ${STORY_STYLES[S.styleKey || "hlylegt"].label}.
@@ -251,7 +267,7 @@ Lestu yfir eftirfarandi texta og skilaðu hreinsuðri útgáfu þar sem:
 - STRANGT BANN: Ef þýðingin hefur bætt við lyktarlýsingum eða öðrum skynrænum smáatriðum sem notandinn nefndi ekki, fjarlægðu þær.
 Skilaðu EINGÖNGU leiðréttum texta, engar útskýringar.`;
     updateLoadingStep(3);
-    S.storyText = await callGemini(proofPrompt, S.storyText, true);
+    S.storyText = await callGemini(proofPrompt, S.storyText, true, STORY_MAX_TOKENS);
 
     document.getElementById("story-body").innerHTML = renderMarkdown(S.storyText);
     injectStoryPhotos();

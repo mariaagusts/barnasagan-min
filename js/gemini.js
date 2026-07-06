@@ -5,10 +5,13 @@ import { S } from './state.js';
 import { SUPABASE_URL, SUPABASE_KEY, MODEL_FLASH, MODEL_PRO } from './config.js';
 import { getChapters } from './chapters.js';
 import { getChapterState } from './supabase-client.js';
+import { getFamilyContext } from './family.js';
 
 const GEMINI_PROXY = `${SUPABASE_URL}/functions/v1/gemini-proxy`;
 
-export async function callGemini(systemPrompt, userMsg, usePro = false) {
+// maxTokens: 256 default (questions/titles); story passes request much more.
+// The proxy clamps this server-side, so it is safe to expose.
+export async function callGemini(systemPrompt, userMsg, usePro = false, maxTokens = 256) {
   const models = usePro ? [MODEL_PRO, MODEL_FLASH] : [MODEL_FLASH];
   let lastError = "";
 
@@ -21,7 +24,7 @@ export async function callGemini(systemPrompt, userMsg, usePro = false) {
           "Authorization": `Bearer ${SUPABASE_KEY}`,
           "apikey": SUPABASE_KEY,
         },
-        body: JSON.stringify({ systemPrompt, userMsg, model }),
+        body: JSON.stringify({ systemPrompt, userMsg, model, maxTokens }),
       });
       const data = await res.json();
 
@@ -57,11 +60,39 @@ export function warmUpProxy() {
   }).catch(() => {}); // Fire and forget — ignore errors
 }
 
-export async function generateNextQuestion(cs) {
+// Client-side sanity check on AI-generated questions.
+// Returns the cleaned question, or null if it fails basic quality rules
+// (we rely on the prompt, but models don't always obey it).
+export function validateQuestion(text) {
+  if (!text || typeof text !== "string") return null;
+  let q = text.trim()
+    .replace(/^["'„“”]+|["'„“”]+$/g, "")            // strip surrounding quotes
+    .replace(/^(Spurning|Question)\s*[:\d\.\)]*\s*/i, "") // strip "Spurning:" prefixes
+    .trim();
+  if (!q) return null;
+  if (q.includes("\n")) q = q.split("\n")[0].trim();  // single line only
+  const words = q.split(/\s+/).length;
+  if (words < 3 || words > 30) return null;           // prompt says max ~25 words
+  if (!q.includes("?")) return null;                  // must actually be a question
+  return q;
+}
+
+// `avoid`: extra questions the AI must not repeat (e.g. ones the user rejected)
+export async function generateNextQuestion(cs, avoid = []) {
   const chapters = getChapters();
   const ch = chapters.find(c => c.id === S.chapterId);
 
   const isEn = (S.lang === "en");
+
+  // Compact child profile so every question stays personal
+  const childName = S.chapters?.bookAuthor
+    || S.children?.find(c => c.id === S.activeChildId)?.child_name || "";
+  const familyCtx = getFamilyContext(S.lang);
+  let profile = "";
+  if (childName) {
+    profile += isEn ? `The child's name is ${childName}. ` : `Barnið heitir ${childName}. `;
+  }
+  if (familyCtx) profile += familyCtx.trim() + " ";
 
   // Söfnum stuttu yfirliti úr öllum köflum til að Gemini hafi heildarmyndina
   let overallContext = "";
@@ -79,7 +110,8 @@ export async function generateNextQuestion(cs) {
   const history = answeredQuestions
     .map((q, i) => `Spurning ${i + 1}: ${q}\nSvar ${i + 1}: ${cs.answers[i]}`).join("\n\n");
 
-  const previousTopics = answeredQuestions.map((q, i) => `${i + 1}. ${q}`).join("\n");
+  const allPrevious = [...answeredQuestions, ...avoid];
+  const previousTopics = allPrevious.map((q, i) => `${i + 1}. ${q}`).join("\n");
 
   const systemInstruction = isEn
   ? `You are a warm and curious interviewer helping parents tell their child's story.
@@ -105,8 +137,8 @@ export async function generateNextQuestion(cs) {
 
   const lastAnswer = cs.answers[cs.answers.length - 1];
   const userPrompt = isEn
-    ? `Context from other chapters:\n${overallContext}\n\nCurrent Chapter: ${ch.title}\nConversation history so far:\n${history}\n\nALREADY ASKED — do not repeat these topics:\n${previousTopics}\n\nMOST RECENT ANSWER: "${lastAnswer}"\n\nWrite ONE follow-up question in 15 words or fewer. No name, no preamble:`
-    : `Heildarsamhengi úr öðrum köflum:\n${overallContext}\n\nNúverandi kafli: ${ch.title}\nSaga samtalsins í þessum kafla:\n${history}\n\nÞESSAR SPURNINGAR HAFA ÞEGAR VERIÐ LAGÐAR FRAM — ekki endurtaka þessi efni:\n${previousTopics}\n\nSÍÐASTA SVAR: "${lastAnswer}"\n\nSkrifaðu EIna uppfyllingarspurningu í 15 orðum eða færri. Ekkert nafn, enginn inngangur:`;
+    ? `${profile ? `About the child: ${profile}\n\n` : ""}Context from other chapters:\n${overallContext}\n\nCurrent Chapter: ${ch.title}\nConversation history so far:\n${history}\n\nALREADY ASKED — do not repeat these topics:\n${previousTopics}\n\nMOST RECENT ANSWER: "${lastAnswer}"\n\nWrite ONE follow-up question in 15 words or fewer. No name, no preamble:`
+    : `${profile ? `Um barnið: ${profile}\n\n` : ""}Heildarsamhengi úr öðrum köflum:\n${overallContext}\n\nNúverandi kafli: ${ch.title}\nSaga samtalsins í þessum kafla:\n${history}\n\nÞESSAR SPURNINGAR HAFA ÞEGAR VERIÐ LAGÐAR FRAM — ekki endurtaka þessi efni:\n${previousTopics}\n\nSÍÐASTA SVAR: "${lastAnswer}"\n\nSkrifaðu EIna uppfyllingarspurningu í 15 orðum eða færri. Ekkert nafn, enginn inngangur:`;
 
   return await callGemini(systemInstruction, userPrompt);
 }

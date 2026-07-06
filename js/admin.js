@@ -1,8 +1,30 @@
 // ══════════════════════════════════════════════
 //  ADMIN
+//  Passwords are verified server-side via the
+//  admin-auth edge function (see supabase/functions/admin-auth).
 // ══════════════════════════════════════════════
 import { S } from './state.js';
-import { ADMIN_PASSWORD, CS_PASSWORD } from './config.js';
+import { SUPABASE_URL, SUPABASE_KEY } from './config.js';
+
+const ADMIN_AUTH_URL = `${SUPABASE_URL}/functions/v1/admin-auth`;
+
+async function verifyPassword(password, kind) {
+  try {
+    const res = await fetch(ADMIN_AUTH_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${SUPABASE_KEY}`,
+        "apikey": SUPABASE_KEY,
+      },
+      body: JSON.stringify({ password, kind }),
+    });
+    const data = await res.json();
+    return data.ok === true;
+  } catch {
+    return false;
+  }
+}
 
 export function openAdminLogin() {
   document.getElementById("admin-overlay").style.display = "flex";
@@ -17,7 +39,8 @@ export function closeAdminLogin() {
 
 export async function checkAdminLogin() {
   const val = document.getElementById("admin-pw-input").value;
-  if (val === ADMIN_PASSWORD) {
+  const ok = await verifyPassword(val, "admin");
+  if (ok) {
     S.adminMode = true;
     localStorage.setItem("saganmin_admin", "true");
     closeAdminLogin();
@@ -52,7 +75,8 @@ export function toggleCsPw() {
 
 export async function checkCsPw() {
   const val = document.getElementById("cs-pw-input").value;
-  if (val === CS_PASSWORD) {
+  const ok = await verifyPassword(val, "cs");
+  if (ok) {
     localStorage.setItem("saganmin_preview", "true");
     document.getElementById("cs-pw-input").value = "";
     document.getElementById("cs-pw-box").classList.remove("visible");

@@ -141,7 +141,7 @@ export async function previewChapter(id) {
   const msg = `Búðu til ítarlega og fallega frásögn fyrir þennan kafla. Notaðu ALLAR sérstakar upplýsingar úr svörunum: nöfn, dagsetningar, tíma, staði, þyngd, lengd, nöfn aðstandenda og önnur sérstök smáatriði. Þetta eru dýrmætar minningar og hvert smáatriði skiptir máli.${familyCtx}\n\n=== ${ch.title} ===\n${pairs}`;
 
   try {
-    const text = await callGemini(prompt, msg, true);
+    const text = await callGemini(prompt, msg, true, 2048);
     clearInterval(interval);
     document.getElementById("chapter-preview-body").innerHTML = renderMarkdown(`## ${ch.title}\n\n${text}`);
   } catch(e) {

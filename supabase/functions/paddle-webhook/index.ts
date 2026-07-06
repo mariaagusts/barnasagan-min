@@ -8,10 +8,10 @@ const GIFT_MULTI_PRICE_ID  = "pri_01knsa2x2m8k4qz65jehajbgy1";
 
 function generateGiftCode(): string {
   const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+  const rand = new Uint8Array(8);
+  crypto.getRandomValues(rand); // cryptographically secure, not Math.random
   let code = "BARN-";
-  for (let i = 0; i < 8; i++) {
-    code += chars[Math.floor(Math.random() * chars.length)];
-  }
+  for (let i = 0; i < 8; i++) code += chars[rand[i] % chars.length];
   return code;
 }
 

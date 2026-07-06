@@ -5,7 +5,7 @@ import { S } from './state.js';
 import { t } from './i18n.js';
 import { getChapters, CHAPTERS, CHAPTERS_EN } from './chapters.js';
 import { getChapterState, saveState, uploadPhoto, deletePhoto } from './supabase-client.js';
-import { generateNextQuestion, warmUpProxy } from './gemini.js';
+import { generateNextQuestion, warmUpProxy, validateQuestion } from './gemini.js';
 import { stopListening, hideMicError } from './speech.js';
 import { showScreen } from './modals.js';
 import { showMap } from './modals.js';
@@ -21,11 +21,13 @@ async function advanceQuestion(cs) {
   const fuSeeds = ch?.seeds?.filter(s => !s.isCore).map(s => s.text) || [];
 
   const askAI = async () => {
-    const text = await Promise.race([
-      generateNextQuestion(cs),
+    const raw = await Promise.race([
+      generateNextQuestion(cs, cs.rejected || []),
       new Promise((_, reject) => setTimeout(() => reject(new Error("Timeout")), 30000))
     ]);
-    const alreadyAsked = cs.questions.some(q => q.trim().toLowerCase() === text.trim().toLowerCase());
+    // Sanity check: models don't always obey the prompt rules
+    const text = validateQuestion(raw);
+    const alreadyAsked = !text || cs.questions.some(q => q.trim().toLowerCase() === text.trim().toLowerCase());
     if (alreadyAsked) {
       const fuIdx = cs.fuIdx || 0;
       const unusedFu = fuSeeds.slice(fuIdx).find(f => !cs.questions.includes(f));
@@ -167,7 +169,12 @@ export function renderInterviewQuestion() {
 
     if (document.getElementById("question-text")) {
       document.getElementById("question-text").textContent = q;
-      document.getElementById("question-text").innerHTML += ` <button onclick="showCustomQuestionInput()" title="Bæta við eigin spurningu" style="background:none;border:1px solid var(--border);border-radius:50%;width:22px;height:22px;font-size:12px;cursor:pointer;color:var(--brown);padding:0;vertical-align:middle;margin-left:8px;">+</button>`;
+      document.getElementById("question-text").innerHTML += ` <button onclick="showCustomQuestionInput()" title="${S.lang === "en" ? "Add your own question" : "Bæta við eigin spurningu"}" style="background:none;border:1px solid var(--border);border-radius:50%;width:22px;height:22px;font-size:12px;cursor:pointer;color:var(--brown);padding:0;vertical-align:middle;margin-left:8px;">+</button>`;
+      // Regenerate button — only for AI/bonus questions, not core ones
+      const isCore = cs.coreTexts?.includes(q);
+      if (!isCore && cs.answers.length > 0) {
+        document.getElementById("question-text").innerHTML += ` <button onclick="regenerateQuestion()" title="${S.lang === "en" ? "Get a different question" : "Fá aðra spurningu"}" style="background:none;border:1px solid var(--border);border-radius:50%;width:22px;height:22px;font-size:12px;cursor:pointer;color:var(--brown);padding:0;vertical-align:middle;margin-left:4px;">↻</button>`;
+      }
     }
 
     const ta = document.getElementById("answer-input");
@@ -368,12 +375,31 @@ export function renderInterviewPhotos() {
   grid.innerHTML = "";
 
   photos.forEach((photo, i) => {
+    const wrap = document.createElement("div");
+    wrap.style.cssText = "position:relative;display:inline-block;";
+
     const img = document.createElement("img");
     img.src = photo.url || photo.data || "";
     img.className = "chapter-photo-thumb";
-    img.title = photo.name;
-    img.onclick = () => removeChapterPhoto(i);
-    grid.appendChild(img);
+    img.title = photo.caption || (S.lang === "en" ? "Click to add a caption" : "Smelltu til að bæta við lýsingu");
+    // Click = edit caption (captions are woven into the story text)
+    img.onclick = () => editChapterPhotoCaption(i);
+    wrap.appendChild(img);
+
+    const del = document.createElement("button");
+    del.textContent = "✕";
+    del.title = S.lang === "en" ? "Remove photo" : "Fjarlægja mynd";
+    del.style.cssText = "position:absolute;top:-6px;right:-6px;width:18px;height:18px;border-radius:50%;border:none;background:var(--dark,#3C2A1E);color:#fff;font-size:10px;line-height:1;cursor:pointer;padding:0;";
+    del.onclick = (e) => { e.stopPropagation(); removeChapterPhoto(i); };
+    wrap.appendChild(del);
+
+    if (photo.caption) {
+      const cap = document.createElement("div");
+      cap.textContent = photo.caption;
+      cap.style.cssText = "font-size:10px;color:var(--mid,#8b7355);max-width:90px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:center;";
+      wrap.appendChild(cap);
+    }
+    grid.appendChild(wrap);
   });
 
   const addBtn = document.createElement("button");
@@ -384,6 +410,20 @@ export function renderInterviewPhotos() {
   grid.appendChild(addBtn);
 }
 
+export function editChapterPhotoCaption(index) {
+  const chIdx = S.chapterId;
+  const photo = S.chapters.chapters[chIdx]?.photos?.[index];
+  if (!photo) return;
+  const msg = S.lang === "en"
+    ? "Caption for this photo (used in the story):"
+    : "Lýsing á myndinni (notuð í sögunni):";
+  const val = prompt(msg, photo.caption || "");
+  if (val === null) return;
+  photo.caption = val.trim();
+  saveState();
+  renderInterviewPhotos();
+}
+
 export async function removeChapterPhoto(index) {
   if (!confirm(S.lang === "en" ? "Remove this photo?" : "Fjarlægja þessa mynd?")) return;
   const chIdx = S.chapterId;
@@ -392,6 +432,44 @@ export async function removeChapterPhoto(index) {
   S.chapters.chapters[chIdx].photos.splice(index, 1);
   saveState();
   renderInterviewPhotos();
+}
+
+// "Get a different question" — replaces the current AI question with a fresh
+// one. Rejected questions are remembered so they don't come back.
+export async function regenerateQuestion() {
+  const cs = getChapterState(S.chapterId);
+  const qIdx = cs.answers.length;
+  const currentQ = cs.questions[qIdx];
+  if (!currentQ || cs.coreTexts.includes(currentQ)) return;
+
+  cs.rejected = cs.rejected || [];
+  if (!cs.rejected.includes(currentQ)) cs.rejected.push(currentQ);
+
+  document.getElementById("question-area").innerHTML = `<div class="loading-dots"><span class="dot1">•</span><span class="dot2">•</span><span class="dot3">•</span></div>`;
+
+  let newQ = null;
+  try {
+    const raw = await Promise.race([
+      generateNextQuestion(cs, cs.rejected),
+      new Promise((_, reject) => setTimeout(() => reject(new Error("Timeout")), 30000))
+    ]);
+    const text = validateQuestion(raw);
+    if (text && !cs.questions.includes(text) && !cs.rejected.includes(text)) newQ = text;
+  } catch (err) {
+    console.error("Gemini villa við endurgerð:", err);
+  }
+
+  if (!newQ) {
+    // Fallback: next unused bonus seed
+    const ch = getChapters().find(c => c.id === S.chapterId);
+    const fuSeeds = ch?.seeds?.filter(s => !s.isCore).map(s => s.text) || [];
+    newQ = fuSeeds.find(f => !cs.questions.includes(f) && !cs.rejected.includes(f)) || currentQ;
+  }
+
+  cs.questions[qIdx] = newQ;
+  saveState();
+  document.getElementById("question-area").innerHTML = `<p class="question" id="question-text"></p>`;
+  renderInterviewQuestion();
 }
 
 export function skipQuestion() {
@@ -470,7 +548,9 @@ window.cancelCustomQuestion = cancelCustomQuestion;
 window.addCustomQuestion = addCustomQuestion;
 window.submitAnswer = submitAnswer;
 window.skipQuestion = skipQuestion;
+window.regenerateQuestion = regenerateQuestion;
 window.addChapterPhoto = addChapterPhoto;
 window.handleChapterPhotos = handleChapterPhotos;
 window.removeChapterPhoto = removeChapterPhoto;
+window.editChapterPhotoCaption = editChapterPhotoCaption;
 window.renderHistory = renderHistory;

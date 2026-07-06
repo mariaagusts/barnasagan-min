@@ -97,13 +97,14 @@ window.toggleGiftCodeBox = function() {
   if (!box) return;
   const open = box.style.display === "block";
   box.style.display = open ? "none" : "block";
-  if (!open) document.getElementById("hero-gift-input")?.focus();
+  const giftInput = document.getElementById("hero-gift-input");
+  if (!open && giftInput) giftInput.focus();
 };
 
 window.submitHeroGiftCode = async function() {
   const input = document.getElementById("hero-gift-input");
   const msg = document.getElementById("hero-gift-msg");
-  const code = input?.value.trim().toUpperCase();
+  const code = input ? input.value.trim().toUpperCase() : '';
   if (!code) return;
   const lang = S.lang || 'is';
 

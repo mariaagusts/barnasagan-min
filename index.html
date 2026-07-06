@@ -29,6 +29,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <link rel="stylesheet" href="styles.css">
 <style>
+/* ⚠️ NOTE: This :root block OVERRIDES the design tokens in styles.css for
+   this page only. index.html renders with the ORANGE palette (#FF9800),
+   while pricing/privacy/terms use the ROSE GOLD palette (#C4876B) from
+   styles.css. If that split is unintentional, delete this :root block
+   (and the [data-theme="dark"] one below) so all pages share styles.css. */
 /* Inline overrides for index.html specific elements */
 :root {
   --cream:    #FFFBF2;

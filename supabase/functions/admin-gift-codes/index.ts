@@ -7,15 +7,17 @@ const CORS = {
   "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
 };
 
-function verifyAdmin(req: Request): string | null {
+// Verifies the JWT SIGNATURE via Supabase Auth (not just base64 decoding,
+// which would let anyone forge a token with an admin email).
+async function verifyAdmin(req: Request): Promise<string | null> {
   const auth = req.headers.get("authorization");
   if (!auth) return null;
   try {
     const token = auth.replace(/^Bearer\s+/i, "").trim();
-    const b64 = token.split(".")[1].replace(/-/g, "+").replace(/_/g, "/");
-    const padded = b64 + "=".repeat((4 - (b64.length % 4)) % 4);
-    const payload = JSON.parse(atob(padded));
-    return ADMIN_EMAILS.includes(payload.email) ? payload.email : null;
+    const sb = makeSb(Deno.env.get("SUPABASE_URL")!, Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!);
+    const { data, error } = await sb.auth.getUser(token);
+    if (error || !data?.user?.email) return null;
+    return ADMIN_EMAILS.includes(data.user.email) ? data.user.email : null;
   } catch { return null; }
 }
 
@@ -26,7 +28,7 @@ function makeSb(url: string, key: string) {
 Deno.serve(async (req: Request) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: CORS });
 
-  if (!verifyAdmin(req)) {
+  if (!(await verifyAdmin(req))) {
     return new Response("Unauthorized", { status: 401, headers: CORS });
   }
 

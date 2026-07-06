@@ -26,15 +26,17 @@ Deno.serve(async (req: Request) => {
   const rawBody = await req.text();
   console.log("kling-webhook (barnasagan) payload:", rawBody);
 
+  // FAIL CLOSED: without the secret we cannot verify the sender,
+  // so we reject rather than accept unverified payment events.
   const secret = Deno.env.get("KLING_WEBHOOK_SECRET");
-  if (secret) {
-    const valid = await verifyKlingSignature(rawBody, req.headers.get("X-Kling-Signature") || "", secret);
-    if (!valid) {
-      console.error("Ógilt Kling undirskrift");
-      return new Response("Forbidden", { status: 403 });
-    }
-  } else {
-    console.warn("KLING_WEBHOOK_SECRET ekki stilltur");
+  if (!secret) {
+    console.error("KLING_WEBHOOK_SECRET ekki stilltur — hafna öllum webhook köllum");
+    return new Response("Webhook secret not configured", { status: 503 });
+  }
+  const valid = await verifyKlingSignature(rawBody, req.headers.get("X-Kling-Signature") || "", secret);
+  if (!valid) {
+    console.error("Ógilt Kling undirskrift");
+    return new Response("Forbidden", { status: 403 });
   }
 
   try {
@@ -156,8 +158,10 @@ async function verifyKlingSignature(rawBody: string, sigHeader: string, secret: 
 
 function generateGiftCode(): string {
   const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+  const rand = new Uint8Array(8);
+  crypto.getRandomValues(rand); // cryptographically secure, not Math.random
   let code = "BARN-";
-  for (let i = 0; i < 8; i++) code += chars[Math.floor(Math.random() * chars.length)];
+  for (let i = 0; i < 8; i++) code += chars[rand[i] % chars.length];
   return code;
 }
 
