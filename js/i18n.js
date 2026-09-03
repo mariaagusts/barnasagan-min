@@ -121,11 +121,11 @@ export const UI = {
       { q: "Er þetta virkilega ein greiðsla?", a: "Já. Þú greiðir einu sinni og hefur fullan aðgang á meðan þjónustan er í rekstri." },
       { q: "Get ég prófað áður en ég greiði?", a: "Já, tveir kaflar eru opnir án greiðslu. Þegar þú ákveður að kaupa aðgang opnast allir 12 kaflar strax." },
       { q: "Hvernig er greitt?", a: "Við notum Kling.is sem greiðslumiðlara. Þeir taka við Visa og Mastercard kredit- og debetkortum. Greiðsla fer fram í íslenskum krónum (ISK)." },
-      { q: "Get ég fengið endurgreiðslu?", a: "Já, við bjóðum upp á 14 daga endurgreiðslurétt. Hafðu samband á <a href='mailto:hallo@barnasagan.is' style='color:var(--gold);'>hallo@barnasagan.is</a>." },
+      { q: "Get ég fengið endurgreiðslu?", a: "Já, við bjóðum upp á 14 daga endurgreiðslurétt. Hafðu samband á <a href='mailto:hallo@saganmin.is' style='color:var(--gold);'>hallo@saganmin.is</a>." },
       { q: "Hvenær fæ ég aðgang?", a: "Tafarlaust eftir greiðslu. Þú getur hafið ritun sögunnar strax, engin bið." },
       { q: "Get ég gefið þetta að gjöf?", a: `Já! Smelltu á „Kaupa gjafakóða". Þú færð kóðann sendan á netfangið þitt.` },
       { q: "Eru gögnin mín örugg?", a: "Já. Svör geymd á dulkóðuðum gagnagrunni. Rekin af íslensku félagi (kt. 471025-0380), við seljum aldrei persónuupplýsingar." },
-      { q: "Hvernig eyði ég reikningnum mínum?", a: "Eyddu framvindu með 'Eyða framvindu' eða hafðu samband á hallo@barnasagan.is til að eyða reikningi að fullu." },
+      { q: "Hvernig eyði ég reikningnum mínum?", a: "Eyddu framvindu með 'Eyða framvindu' eða hafðu samband á hallo@saganmin.is til að eyða reikningi að fullu." },
 
       { heading: "Að skrifa söguna" },
       { q: "Hvernig stillir vefsíðan sig á fjölskylduna okkar?", a: "Þegar þú skráir þig inn í fyrsta skipti spyr vefsíðan hvort barnið eigi mömmu og pabba, tvær mæður, tvo feður eða einstæðan foreldri. Þessar upplýsingar eru geymdar og notaðar af vefsíðunni til að nota rétt foreldraheiti í bókinni. Ef þú vilt breyta stillingunum eftir á, smelltu á 👨‍👩‍👧 takkann efst til hægri á Mitt svæði skjánum." },

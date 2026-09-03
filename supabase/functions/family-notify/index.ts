@@ -90,7 +90,7 @@ Deno.serve(async (req: Request) => {
       method: "POST",
       headers: { "Authorization": `Bearer ${resendKey}`, "Content-Type": "application/json" },
       body: JSON.stringify({
-        from: "Barnasagan mín <hallo@barnasagan.is>",
+        from: "Barnasagan mín <hallo@saganmin.is>", // saganmin.is er staðfesta lénið í Resend
         to: email,
         subject: childName
           ? `${q.asker_name} sendi þér spurningu um söguna um ${childName}`
