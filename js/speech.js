@@ -6,7 +6,6 @@
 // ══════════════════════════════════════════════
 import { S } from './state.js';
 import { transcribeAudio } from './gemini.js';
-import { uploadVoiceRecording } from './supabase-client.js';
 
 let recorder = null;
 let chunks = [];
@@ -189,10 +188,7 @@ async function transcribeBlob(blob, mimeType) {
     if (!text) {
       showMicError(S.lang === "en" ? "No speech was heard. Try again." : "Engin rödd greindist. Reyndu aftur.");
     } else {
-      // Röddin sjálf er dýrmæt: geymum upptökuna með sögunni (fail-soft)
-      uploadVoiceRecording(blob, S.chapterId).then(path => {
-        if (path) (S.pendingVoicePaths = S.pendingVoicePaths || []).push(path);
-      });
+      // Upptöku foreldris er hent eftir umritun; aðeins rödd barnsins er geymd (sjá barnsrodd.js)
       const ta = document.getElementById("answer-input");
       if (ta) {
         ta.value = (ta.value.trim() ? ta.value.trim() + " " : "") + text;

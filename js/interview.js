@@ -150,7 +150,6 @@ function pushFallbackQuestion(cs) {
 export function enterChapter(id) {
   bonusMode = false;
   S.chapterId = id;
-  S.pendingVoicePaths = [];
   warmUpProxy(); // Wake up Edge Function before user answers
   const chapters = getChapters();
   const ch = chapters.find(c => c.id === id);
@@ -256,16 +255,13 @@ export function renderHistory() {
     const summary = histWrap.querySelector("summary");
     if (summary) summary.textContent = `${t("historyLabel")} (${cs.answers.length})`;
   }
-  const vnotes = cs.voiceNotes || [];
   document.getElementById("history-list").innerHTML = cs.answers.map((a, i) => {
-    const rec = vnotes.find(n => n.i === i);
     return `
     <div class="history-item" id="history-item-${i}">
       <div class="history-q">
         ${esc(cs.questions[i])}
         <button class="history-delete-btn" onclick="deleteAnswer(${i})" title="${t("deleteBtn")}">${t("deleteBtn")}</button>
         <button class="history-edit-btn" onclick="editAnswer(${i})">${t("editBtn")}</button>
-        ${rec ? `<button class="voice-play-btn" onclick="playVoiceNote('${esc(rec.path)}', this)" title="${S.lang === "en" ? "Listen to the recording" : "Hlusta á upptökuna"}">▶ ${S.lang === "en" ? "Listen" : "Hlusta"}</button>` : ""}
       </div>
       <div class="history-a" id="history-a-${i}">${esc(a)}</div>
     </div>`;
@@ -297,12 +293,6 @@ export function saveAnswer(i) {
 export function deleteAnswer(i) {
   const cs = getChapterState(S.chapterId);
   const wasCore = cs.coreTexts.includes(cs.questions[i]);
-  // Eydum upptokum svarsins ur geymslunni og endurrodum hinum
-  const vnotes = cs.voiceNotes || [];
-  vnotes.filter(n => n.i === i).forEach(n => {
-    import('./supabase-client.js').then(m => m.deleteVoiceRecording(n.path)).catch(() => {});
-  });
-  cs.voiceNotes = vnotes.filter(n => n.i !== i).map(n => n.i > i ? { ...n, i: n.i - 1 } : n);
   cs.questions.splice(i, 1);
   cs.answers.splice(i, 1);
   if (wasCore && cs.coreAnswered > 0) cs.coreAnswered--;
@@ -313,33 +303,6 @@ export function deleteAnswer(i) {
   if (histCount) histCount.textContent = cs.answers.length;
 }
 
-let voiceAudio = null;
-let voiceBtn = null;
-export async function playVoiceNote(path, btn) {
-  const label = S.lang === "en" ? "▶ Listen" : "▶ Hlusta";
-  if (voiceAudio && voiceBtn === btn) {
-    voiceAudio.pause();
-    voiceAudio = null;
-    btn.textContent = label;
-    voiceBtn = null;
-    return;
-  }
-  if (voiceAudio) {
-    voiceAudio.pause();
-    if (voiceBtn) voiceBtn.textContent = label;
-    voiceAudio = null; voiceBtn = null;
-  }
-  btn.textContent = "…";
-  const { getVoiceUrl } = await import('./supabase-client.js');
-  const url = await getVoiceUrl(path);
-  if (!url) { btn.textContent = label; return; }
-  voiceAudio = new Audio(url);
-  voiceBtn = btn;
-  btn.textContent = S.lang === "en" ? "⏸ Playing" : "⏸ Í spilun";
-  voiceAudio.onended = () => { btn.textContent = label; voiceAudio = null; voiceBtn = null; };
-  voiceAudio.play().catch(() => { btn.textContent = label; voiceAudio = null; voiceBtn = null; });
-}
-window.playVoiceNote = playVoiceNote;
 
 export function showCustomQuestionInput() {
   document.getElementById("custom-question-area").style.display = "block";
@@ -378,11 +341,6 @@ export async function submitAnswer() {
 
   const cs = getChapterState(S.chapterId);
   cs.answers.push(ans);
-  if (S.pendingVoicePaths && S.pendingVoicePaths.length) {
-    cs.voiceNotes = cs.voiceNotes || [];
-    S.pendingVoicePaths.forEach(pth => cs.voiceNotes.push({ i: cs.answers.length - 1, path: pth }));
-    S.pendingVoicePaths = [];
-  }
   saveState();
 
   // Oryggisthak: spyrillinn lokar kaflanum sjalfur thegar sagan er sogd,
@@ -564,7 +522,6 @@ export async function regenerateQuestion() {
 
 export function skipQuestion() {
   const cs = getChapterState(S.chapterId);
-  S.pendingVoicePaths = [];
   cs.answers.push("—");
   saveState();
 

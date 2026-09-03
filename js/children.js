@@ -5,6 +5,7 @@ import { S } from './state.js';
 import { loadStateFromSupabase, buildFreshState, addChild, renameChild } from './supabase-client.js';
 import { loadGullmolar, updateGullmolaMapTile } from './gullmoli.js';
 import { loadHeights, updateHeightsMapTile } from './heights.js';
+import { loadBarnsrodd, updateBarnsroddMapTile } from './barnsrodd.js';
 
 export function renderChildSwitcher() {
   const switcher = document.getElementById("child-switcher");
@@ -56,7 +57,7 @@ export async function switchToChild(childId) {
   S.activeChildId = childId;
   S.chapters = buildFreshState();
   localStorage.removeItem("barnasaga_state");
-  await Promise.all([loadStateFromSupabase(), loadGullmolar(), loadHeights()]);
+  await Promise.all([loadStateFromSupabase(), loadGullmolar(), loadHeights(), loadBarnsrodd()]);
   renderChildSwitcher();
   closeChildSwitcher();
   const { renderMap } = await import('./map.js');

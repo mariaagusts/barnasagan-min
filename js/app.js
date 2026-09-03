@@ -17,6 +17,7 @@ import './export.js';
 import './children.js';
 import './gullmoli.js';
 import './heights.js';
+import './barnsrodd.js';
 import './admin.js';
 import { showScreen } from './modals.js';
 import './modals.js';

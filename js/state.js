@@ -17,6 +17,7 @@ export const S = {
   activeChildId: null,
   gullmolar: [],         // [{ id, quote, context, said_at, created_at }]
   heights: [],           // [{ id, height_cm, weight_kg, measured_at, note, created_at }]
+  barnsrodd: [],         // [{ id, path, label, recorded_at, duration_sec, created_at }]
   sbClient: null,
   authMode: "login",
   adminMode: false,

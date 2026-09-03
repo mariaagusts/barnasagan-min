@@ -318,14 +318,14 @@ export async function loadVersionsFromSupabase() {
 }
 
 
-// ── Raddgeymslan: upptokur foreldra vardveittar med sogunni ──
-export async function uploadVoiceRecording(blob, chapterId) {
+// ── Raddgeymslan: aðeins rödd barnsins er geymd (upptökum foreldra er hent eftir umritun) ──
+export async function uploadVoiceRecording(blob, subdir) {
   const sb = getSupabase();
   if (!sb || !S.user || !blob) return null;
   try {
     const t = blob.type || "";
     const ext = t.includes("mp4") ? "m4a" : t.includes("ogg") ? "ogg" : "webm";
-    const path = `${S.user.id}/${S.activeChildId || "barn"}/${chapterId}/${Date.now()}.${ext}`;
+    const path = `${S.user.id}/${S.activeChildId || "barn"}/${subdir}/${Date.now()}.${ext}`;
     const { error } = await sb.storage.from("voice-recordings")
       .upload(path, blob, { contentType: t || "audio/webm", upsert: false });
     if (error) { console.warn("raddupptaka vistun villa (er fatan til?):", error.message); return null; }

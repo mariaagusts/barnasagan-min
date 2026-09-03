@@ -696,6 +696,9 @@
       <div class="listen-indicator" id="listen-indicator">🔴 Hlusta... talaðu nú</div>
       <div class="mic-error" id="mic-error"></div>
       <div class="save-indicator" id="save-indicator">✓ Framvinda vistuð</div>
+      <button class="barnsrodd-quick-btn" onclick="openBarnsroddRecorder()" title="Geymdu hljóðbrot af röddinni">
+        <span class="lang-is">🗣️ Taka upp rödd barnsins</span><span class="lang-en" style="display:none;">🗣️ Record your child's voice</span>
+      </button>
       <div id="core-nudge" style="display:none;margin-top:10px;padding:8px 12px;background:#fff8ed;border:1px solid #f59e0b;border-radius:8px;font-size:13px;color:#92400e;"></div>
     </div>
 
@@ -1057,6 +1060,58 @@
     </div>
     <button onclick="closeGullmolaBank();openGullmolaQuickAdd();" class="gullmola-bank-add-btn">+ Bæta við gullmola</button>
     <div id="gullmola-bank-body" style="margin-top:20px;"></div>
+  </div>
+</div>
+
+<!-- ══ RÖDD BARNSINS: SAFN ══ -->
+<div id="barnsrodd-bank-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:3000;align-items:flex-start;justify-content:center;padding:24px 16px;overflow-y:auto;" onclick="if(event.target===this)closeBarnsroddBank()">
+  <div class="gullmola-bank-box">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+      <div>
+        <div style="font-size:1.8rem;">🗣️</div>
+        <h2 id="barnsrodd-bank-title" style="font-family:'Fredoka One',cursive;font-size:1.5rem;color:#4a7fb5;margin:4px 0 0;">Rödd barnsins</h2>
+      </div>
+      <button onclick="closeBarnsroddBank()" style="background:none;border:none;font-size:22px;cursor:pointer;color:var(--mid);">✕</button>
+    </div>
+    <p id="barnsrodd-bank-hint" style="color:var(--mid);font-size:0.85rem;margin:0 0 16px;"></p>
+    <button id="barnsrodd-bank-add-btn" onclick="closeBarnsroddBank();openBarnsroddRecorder();" class="gullmola-bank-add-btn" style="background:#4a7fb5;">+ Ný upptaka</button>
+    <div id="barnsrodd-bank-body" style="margin-top:20px;"></div>
+  </div>
+</div>
+
+<!-- ══ RÖDD BARNSINS: UPPTAKA ══ -->
+<div id="barnsrodd-rec-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:3100;align-items:center;justify-content:center;padding:24px 16px;" onclick="if(event.target===this)closeBarnsroddRecorder()">
+  <div class="gullmola-bank-box" style="max-width:420px;text-align:center;">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+      <h2 style="font-family:'Fredoka One',cursive;font-size:1.3rem;color:#4a7fb5;margin:0;">
+        <span class="lang-is">Taka upp rödd barnsins</span><span class="lang-en" style="display:none;">Record your child's voice</span>
+      </h2>
+      <button onclick="closeBarnsroddRecorder()" style="background:none;border:none;font-size:22px;cursor:pointer;color:var(--mid);">✕</button>
+    </div>
+    <p style="color:var(--mid);font-size:0.88rem;line-height:1.6;margin:0 0 20px;">
+      <span class="lang-is">Fangaðu lítið augnablik, allt að 2 mínútur: fyrstu orðin, söngl, hlátur eða litla frásögn.</span>
+      <span class="lang-en" style="display:none;">Capture a little moment, up to 2 minutes: first words, a song, a giggle or a tiny story.</span>
+    </p>
+    <div id="barnsrodd-rec-timer" style="font-size:2rem;font-weight:700;color:#4a7fb5;margin-bottom:12px;">0:00</div>
+    <button id="barnsrodd-rec-btn" onclick="toggleBarnsroddRec()" style="background:#4a7fb5;color:white;border:none;border-radius:50px;padding:14px 28px;font-size:1rem;font-weight:700;cursor:pointer;font-family:inherit;">🔴 Hefja upptöku</button>
+    <div id="barnsrodd-rec-preview" style="display:none;text-align:left;">
+      <audio id="barnsrodd-rec-audio" controls style="width:100%;margin-bottom:14px;"></audio>
+      <label style="display:block;font-size:0.85rem;font-weight:700;color:var(--mid);margin-bottom:4px;">
+        <span class="lang-is">Hvað er á upptökunni?</span><span class="lang-en" style="display:none;">What is on the recording?</span>
+      </label>
+      <input type="text" id="barnsrodd-rec-label" maxlength="80" placeholder="T.d. Fyrsta „mamma“ · 11 mánaða" style="width:100%;padding:10px 12px;border:1.5px solid var(--border);border-radius:10px;font-size:16px;font-family:inherit;margin-bottom:12px;box-sizing:border-box;">
+      <label style="display:block;font-size:0.85rem;font-weight:700;color:var(--mid);margin-bottom:4px;">
+        <span class="lang-is">Dagsetning</span><span class="lang-en" style="display:none;">Date</span>
+      </label>
+      <input type="date" id="barnsrodd-rec-date" style="width:100%;padding:10px 12px;border:1.5px solid var(--border);border-radius:10px;font-size:16px;font-family:inherit;margin-bottom:16px;box-sizing:border-box;">
+      <div style="display:flex;gap:10px;justify-content:flex-end;">
+        <button onclick="retakeBarnsrodd()" style="background:white;border:1.5px solid var(--border);border-radius:50px;padding:10px 18px;font-size:0.9rem;cursor:pointer;font-family:inherit;color:var(--mid);">
+          <span class="lang-is">Taka aftur</span><span class="lang-en" style="display:none;">Retake</span>
+        </button>
+        <button id="barnsrodd-rec-save" onclick="saveBarnsroddRec()" style="background:#4a7fb5;color:white;border:none;border-radius:50px;padding:10px 22px;font-size:0.9rem;font-weight:700;cursor:pointer;font-family:inherit;">Vista</button>
+      </div>
+    </div>
+    <div id="barnsrodd-rec-error" style="color:#c0392b;font-size:0.85rem;margin-top:12px;"></div>
   </div>
 </div>
 

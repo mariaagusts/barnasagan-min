@@ -12,6 +12,7 @@ import { getFamilyContext } from './family.js';
 import { enterChapter } from './interview.js';
 import { updateGullmolaMapTile } from './gullmoli.js';
 import { updateHeightsMapTile } from './heights.js';
+import { updateBarnsroddMapTile } from './barnsrodd.js';
 
 export function renderMap() {
   const chapters = getChapters();
@@ -101,9 +102,16 @@ export function renderMap() {
       <div class="chapter-name" style="color:#5b8a5f;">${S.lang === 'en' ? "Child's Height" : 'Hæð barnsins'}</div>
       <div class="chapter-desc">${S.lang === 'en' ? "Track your child's growth over time" : 'Fylgstu með vexti barnsins'}</div>
       <div class="heights-tile-count" id="heights-tile-count-wrap">${latestHeight ? `📏 ${latestHeight.height_cm} cm` : (S.lang === 'en' ? 'Add first measurement →' : 'Bæta við fyrstu mælingu →')}</div>
+    </div>
+    <div class="chapter-card barnsrodd-tile" onclick="openBarnsroddBank()">
+      <span class="chapter-emoji">🗣️</span>
+      <div class="chapter-name" style="color:#4a7fb5;">${S.lang === 'en' ? "The child's voice" : 'Rödd barnsins'}</div>
+      <div class="chapter-desc">${S.lang === 'en' ? 'Keep little sound moments: first words, songs, giggles' : 'Geymdu lítil hljóðbrot: fyrstu orðin, söngl og hlátur'}</div>
+      <div class="barnsrodd-tile-count" id="barnsrodd-tile-count-wrap"></div>
     </div>`;
   updateGullmolaMapTile();
   updateHeightsMapTile();
+  updateBarnsroddMapTile();
 }
 
 export async function previewChapter(id) {
