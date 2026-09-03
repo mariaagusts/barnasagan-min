@@ -78,6 +78,20 @@ export async function handleAuth() {
 }
 
 export async function onSignedIn() {
+  // Eigandavordur: ef annar notandi var sidast a thessu taeki hreinsum vid
+  // stadbundna geymslu hans (aldrei vid utskraningu eina og ser)
+  try {
+    const prevOwner = localStorage.getItem("barnasagan_owner");
+    if (prevOwner && prevOwner !== S.user.id) {
+      localStorage.removeItem("barnasaga_state");
+      for (let i = localStorage.length - 1; i >= 0; i--) {
+        const k = localStorage.key(i);
+        if (k && k.startsWith("saganmin_versions_")) localStorage.removeItem(k);
+      }
+    }
+    localStorage.setItem("barnasagan_owner", S.user.id);
+  } catch (e) { /* no-op */ }
+
   document.getElementById("map-user-email").textContent = S.user.email;
 
   // Redeem pending gift code if user arrived via gift code flow

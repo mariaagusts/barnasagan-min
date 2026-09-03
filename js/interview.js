@@ -5,7 +5,7 @@ import { S } from './state.js';
 import { t } from './i18n.js';
 import { getChapters, CHAPTERS, CHAPTERS_EN } from './chapters.js';
 import { getChapterState, saveState, uploadPhoto, deletePhoto } from './supabase-client.js';
-import { generateNextQuestion, warmUpProxy, validateQuestion } from './gemini.js';
+import { decideNextQuestion, generateNextQuestion, warmUpProxy, validateQuestion } from './gemini.js';
 import { stopListening, hideMicError } from './speech.js';
 import { showScreen } from './modals.js';
 import { showMap } from './modals.js';
@@ -16,58 +16,120 @@ function esc(s) {
 
 let bonusMode = false;
 
+// ── Þráðamódelið ──────────────────────────────
+// Spyrillinn fylgir sögunni sem foreldrið var að segja (allt að THREAD_MAX
+// djúpt) og þunn svör fá næstu kjarnaspurningu í stað yfirheyrslu.
+
+const THREAD_MAX = 3;
+
+function closingQuestion(ch) {
+  return S.lang === "en"
+    ? "Is there anything else from this chapter you would like to tell?"
+    : "Er eitthvað fleira úr þessum kafla sem þú vilt segja frá?";
+}
+
+function isThinAnswer(a) {
+  const t = String(a || "").trim().toLowerCase();
+  const words = t.split(/\s+/).filter(Boolean);
+  if (words.length <= 2) return true;
+  return /^(nei|já|man (það )?ekki|veit (það )?ekki|ekkert sérstakt|ég man (það )?ekki)[.!…]*$/.test(t);
+}
+
+function isSimilarToAsked(text, askedQuestions) {
+  const norm = x => String(x).toLowerCase()
+    .replace(/[^\p{L}\p{N}\s]/gu, "")
+    .split(/\s+/)
+    .filter(w => w.length >= 4);
+  const a = new Set(norm(text));
+  if (a.size === 0) return false;
+  return askedQuestions.some(q => {
+    const b = new Set(norm(q));
+    if (b.size === 0) return false;
+    let overlap = 0;
+    for (const w of a) if (b.has(w)) overlap++;
+    return overlap / Math.min(a.size, b.size) >= 0.6;
+  });
+}
+
+function nextUnansweredCore(cs) {
+  return cs.coreTexts.find(tq => !cs.questions.includes(tq));
+}
+
+function hasScriptedLeft(cs, fuSeeds) {
+  if (nextUnansweredCore(cs)) return true;
+  const fuIdx = cs.fuIdx || 0;
+  return !!fuSeeds.slice(fuIdx).find(f => !cs.questions.includes(f));
+}
+
+// Næsta akkeri → ónotuð handritsspurning → ein lokaspurning → kafla lokið
+function pushAnchorOrWrapUp(cs, ch, fuSeeds) {
+  cs.threadDepth = 0;
+  const nextCore = nextUnansweredCore(cs);
+  if (nextCore) { cs.questions.push(nextCore); return; }
+  const fuIdx = cs.fuIdx || 0;
+  const unusedFu = fuSeeds.slice(fuIdx).find(f => !cs.questions.includes(f));
+  if (unusedFu) {
+    cs.fuIdx = fuSeeds.indexOf(unusedFu) + 1;
+    cs.questions.push(unusedFu);
+    return;
+  }
+  const closing = closingQuestion(ch);
+  if (cs.questions.includes(closing)) { cs.complete = true; return; }
+  cs.questions.push(closing);
+}
+
 async function advanceQuestion(cs) {
   const ch = getChapters().find(c => c.id === S.chapterId);
   const fuSeeds = ch?.seeds?.filter(s => !s.isCore).map(s => s.text) || [];
 
-  const askAI = async () => {
-    const raw = await Promise.race([
-      generateNextQuestion(cs, cs.rejected || []),
-      new Promise((_, reject) => setTimeout(() => reject(new Error("Timeout")), 30000))
-    ]);
-    // Sanity check: models don't always obey the prompt rules
-    const text = validateQuestion(raw);
-    const alreadyAsked = !text || cs.questions.some(q => q.trim().toLowerCase() === text.trim().toLowerCase());
-    if (alreadyAsked) {
-      const fuIdx = cs.fuIdx || 0;
-      const unusedFu = fuSeeds.slice(fuIdx).find(f => !cs.questions.includes(f));
-      if (unusedFu) {
-        cs.fuIdx = fuSeeds.indexOf(unusedFu) + 1;
-        return unusedFu;
-      }
-      const title = ch?.title || "";
-      const fallback = S.lang === "en"
-        ? `Is there anything else you'd like to share about ${title}?`
-        : `Er eitthvað fleira sem þú vilt deila um ${title}?`;
-      if (cs.questions.includes(fallback)) { cs.complete = true; return null; }
-      return fallback;
-    }
-    return text;
-  };
-
-  // Core → AI → Core → AI → AI...
-  // After a core answer: AI next. After AI answer: next core (if any), else AI.
-  const lastQ = cs.questions[cs.answers.length - 1];
-  const wasCore = cs.coreTexts.includes(lastQ);
-
-  // Only push if next slot is empty — never overwrite a question that already exists
+  // Aðeins ýtt í tóman reit — aldrei skrifað yfir spurningu sem er til
   const nextIdx = cs.answers.length;
   if (cs.questions[nextIdx] !== undefined) { saveState(); return; }
 
-  if (wasCore) {
-    cs.coreAnswered++;
-    const q = await askAI();
-    if (cs.complete) { saveState(); return; }
-    cs.questions.push(q);
+  const lastQ = cs.questions[cs.answers.length - 1];
+  const lastA = cs.answers[cs.answers.length - 1];
+  if (cs.coreTexts.includes(lastQ)) cs.coreAnswered++;
+
+  // Þunnt svar: góður spyrill yfirheyrir aldrei "man það ekki".
+  // Meðan handritsspurningar eru til fer hann beint í þá næstu (ekkert AI).
+  // Þegar þær klárast opnar EITT þunnt svar nýjan vinkil — kaflinn lokast
+  // aðeins eftir tvö þunn svör í röð.
+  const thin = isThinAnswer(lastA);
+  cs.thinStreak = thin ? (cs.thinStreak || 0) + 1 : 0;
+  if (thin && (hasScriptedLeft(cs, fuSeeds) || cs.thinStreak >= 2)) {
+    pushAnchorOrWrapUp(cs, ch, fuSeeds);
+    saveState();
+    return;
+  }
+
+  const depth = cs.threadDepth || 0;
+  let decision = null;
+  try {
+    decision = await Promise.race([
+      decideNextQuestion(cs, depth, thin),
+      new Promise((_, reject) => setTimeout(() => reject(new Error("Timeout")), 30000))
+    ]);
+  } catch (err) {
+    console.warn("AI ákvörðun mistókst, nota fasta spurningu:", err);
+  }
+
+  // Notandinn gæti hafa aðhafst á meðan beðið var — aldrei skrifa yfir
+  if (cs.questions[nextIdx] !== undefined) { saveState(); return; }
+
+  if (!decision || !decision.question || decision.action === "next_anchor") {
+    pushAnchorOrWrapUp(cs, ch, fuSeeds);
+  } else if (decision.action === "dig" && depth < THREAD_MAX &&
+             !cs.questions.includes(decision.question)) {
+    cs.questions.push(decision.question);
+    cs.threadDepth = depth + 1;
+  } else if (nextUnansweredCore(cs)) {
+    // Þráður endaði og akkeri eru eftir: akkerin ERU nýju vinklarnir
+    pushAnchorOrWrapUp(cs, ch, fuSeeds);
+  } else if (!isSimilarToAsked(decision.question, cs.questions)) {
+    cs.questions.push(decision.question);
+    cs.threadDepth = 1;
   } else {
-    const nextCore = cs.coreTexts[cs.coreAnswered];
-    if (nextCore) {
-      cs.questions.push(nextCore);
-    } else {
-      const q = await askAI();
-      if (cs.complete) { saveState(); return; }
-      cs.questions.push(q);
-    }
+    pushAnchorOrWrapUp(cs, ch, fuSeeds);
   }
   saveState();
 }
@@ -75,36 +137,11 @@ async function advanceQuestion(cs) {
 function pushFallbackQuestion(cs) {
   const ch = getChapters().find(c => c.id === S.chapterId);
   const fuSeeds = ch?.seeds?.filter(s => !s.isCore).map(s => s.text) || [];
-
-  // Never overwrite a question that already exists at the next slot
   const nextIdx = cs.answers.length;
   if (cs.questions[nextIdx] !== undefined) { saveState(); return; }
-
   const lastQ = cs.questions[cs.answers.length - 1];
-  const wasCore = cs.coreTexts.includes(lastQ);
-  if (wasCore) cs.coreAnswered++;
-
-  const nextCore = cs.coreTexts[cs.coreAnswered];
-  if (nextCore && !cs.questions.includes(nextCore)) {
-    cs.questions.push(nextCore);
-  } else {
-    const fuIdx = cs.fuIdx || 0;
-    const unusedFu = fuSeeds.slice(fuIdx).find(f => !cs.questions.includes(f));
-    if (unusedFu) {
-      cs.fuIdx = fuSeeds.indexOf(unusedFu) + 1;
-      cs.questions.push(unusedFu);
-    } else {
-      const title = ch?.title || "";
-      const fallback = S.lang === "en"
-        ? `Is there anything else you'd like to share about ${title}?`
-        : `Er eitthvað fleira sem þú vilt deila um ${title}?`;
-      if (cs.questions.includes(fallback)) {
-        cs.complete = true;
-      } else {
-        cs.questions.push(fallback);
-      }
-    }
-  }
+  if (cs.coreTexts.includes(lastQ)) cs.coreAnswered++;
+  pushAnchorOrWrapUp(cs, ch, fuSeeds);
   saveState();
 }
 

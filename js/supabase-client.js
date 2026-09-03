@@ -124,6 +124,8 @@ export async function renameChild(childId, newName) {
 }
 
 export async function saveState() {
+  S.chapters.updatedAt = new Date().toISOString();
+  S.chapters.childId = S.activeChildId || S.chapters.childId || null;
   localStorage.setItem("barnasaga_state", JSON.stringify(S.chapters));
   const ind = document.getElementById("save-indicator");
   if (ind && S.user) { ind.textContent = "💾 Vístar..."; ind.classList.remove("error"); ind.classList.add("visible"); }
@@ -161,17 +163,35 @@ export async function loadStateFromSupabase() {
     const sb = getSupabase();
     if (!sb) return;
     const { data, error } = await sb.from("user_progress")
-      .select("state_json")
+      .select("state_json, updated_at")
       .eq("user_id", S.user.id)
       .eq("child_id", S.activeChildId)
       .maybeSingle();
-    if (data && data.state_json) {
+
+    // Nyrra vinnur: stadbundin utgafa SAMA barns getur verid nyrri en skyid
+    // (t.d. skrifad an nets). Tha heldur hun ser og er ytt upp.
+    let local = null;
+    try { local = JSON.parse(localStorage.getItem("barnasaga_state") || "null"); } catch { local = null; }
+    const localIsThisChild = local?.childId === S.activeChildId;
+    const localTs = localIsThisChild ? (local?.updatedAt || "") : "";
+    const remoteTs = data?.updated_at || "";
+
+    if (data && data.state_json && (!localTs || remoteTs >= localTs)) {
+      S.chapters = JSON.parse(data.state_json);
+      applyMigrations(S.chapters);
+      localStorage.setItem("barnasaga_state", data.state_json);
+    } else if (localIsThisChild && localTs && (!remoteTs || localTs > remoteTs)) {
+      S.chapters = local;
+      applyMigrations(S.chapters);
+      saveState(); // ytum nyrri stadbundnu utgafunni upp
+    } else if (data && data.state_json) {
       S.chapters = JSON.parse(data.state_json);
       applyMigrations(S.chapters);
       localStorage.setItem("barnasaga_state", data.state_json);
     } else {
       initState();
     }
+    loadVersionsFromSupabase();
   } catch (e) {
     console.warn("Supabase hlaða villa:", e);
     initState();
@@ -255,4 +275,44 @@ export async function deletePhoto(path) {
   if (!sb) return;
   try { await sb.storage.from("story-photos").remove([path]); }
   catch (e) { console.warn("deletePhoto villa:", e); }
+}
+
+
+// ── Bokarutgafur i skyinu (per barn) ─────────────────
+export async function saveVersionsToSupabase() {
+  if (!S.user || !S.activeChildId) return;
+  try {
+    const sb = getSupabase();
+    if (!sb) return;
+    const key = `saganmin_versions_${S.activeChildId}`;
+    const versions = localStorage.getItem(key) || "[]";
+    const ts = new Date().toISOString();
+    await sb.from("story_versions").upsert({
+      user_id: S.user.id,
+      child_id: S.activeChildId,
+      versions_json: versions,
+      updated_at: ts
+    }, { onConflict: "user_id,child_id" });
+    localStorage.setItem(key + "_ts", ts);
+  } catch (e) { console.warn("versions sync villa:", e); }
+}
+
+export async function loadVersionsFromSupabase() {
+  if (!S.user || !S.activeChildId) return;
+  try {
+    const sb = getSupabase();
+    if (!sb) return;
+    const { data } = await sb.from("story_versions")
+      .select("versions_json, updated_at")
+      .eq("user_id", S.user.id)
+      .eq("child_id", S.activeChildId)
+      .maybeSingle();
+    if (!data?.versions_json) return;
+    const key = `saganmin_versions_${S.activeChildId}`;
+    const localTs = localStorage.getItem(key + "_ts") || "";
+    if (!localTs || data.updated_at > localTs) {
+      localStorage.setItem(key, data.versions_json);
+      localStorage.setItem(key + "_ts", data.updated_at);
+    }
+  } catch (e) { console.warn("versions load villa:", e); }
 }

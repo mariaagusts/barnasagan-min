@@ -2,6 +2,7 @@
 //  STORY VERSIONS
 // ══════════════════════════════════════════════
 import { S } from './state.js';
+import { saveVersionsToSupabase } from './supabase-client.js';
 import { MAX_VERSIONS } from './config.js';
 import { renderMarkdown, injectStoryPhotos } from './story.js';
 import { showScreen } from './modals.js';
@@ -41,6 +42,7 @@ export function saveStoryVersion(styleKey, lang) {
   versions.unshift(newVersion);
   if (versions.length > MAX_VERSIONS) versions.pop();
   localStorage.setItem(_versionsKey(), JSON.stringify(versions));
+  saveVersionsToSupabase();
   S.currentVersionIndex = 0;
   renderVersionsSidebar();
 }
@@ -103,6 +105,7 @@ export function renameVersion(id) {
   if (newName && newName.trim()) {
     v.label = newName.trim();
     localStorage.setItem(_versionsKey(), JSON.stringify(versions));
+  saveVersionsToSupabase();
     renderVersionsSidebar();
   }
 }
@@ -115,6 +118,7 @@ export function deleteVersion(id) {
   let versions = getSavedVersions();
   versions = versions.filter(v => v.id !== id);
   localStorage.setItem(_versionsKey(), JSON.stringify(versions));
+  saveVersionsToSupabase();
   S.currentVersionIndex = 0;
   renderVersionsSidebar();
 }
@@ -141,6 +145,7 @@ export function updateCurrentVersion() {
   versions[idx].text = S.storyText;
   S.currentVersionIndex = idx;
   localStorage.setItem(_versionsKey(), JSON.stringify(versions));
+  saveVersionsToSupabase();
   renderVersionsSidebar();
 }
 

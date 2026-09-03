@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Read(//c/Users/María Björg/Documents/GitHub/sagan-min/**)"
+      "Read(//c/Users/María Björg/Documents/GitHub/sagan-min/**)",
+      "Bash(node --check \"c:/Users/María Björg/Documents/GitHub/barnasagan-min/js/story.js\")"
     ]
   }
 }

@@ -288,6 +288,29 @@ Skilaðu EINGÖNGU leiðréttum texta, engar útskýringar.`;
   fetchAndShowTitleSuggestions();
 }
 
+// Orðasambönd úr titil-promptnum. Ef lína inniheldur eitthvað af þessu er hún
+// promptbrot sem lak inn í svarið (ekki alvöru titill) og henni er hent.
+const TITLE_PROMPT_NOISE = [
+  "nafnið", "nákvæ", "gefið upp", "stafsetning", "kyni", "klisj", "forðast",
+  "valkost", "klassísk", "töfrandi", "nútímaleg", "hnitmið", "byggðan",
+  "bókaritstjóri", "hugmyndir að titl", "strangar", "regl", "skilaðu",
+  "engar útskýring", "endurtaka", "leiðbeining", "númer",
+  "book editor", "strict", "rule", "avoid", "provided", "return only",
+  "classic", "whimsical", "minimalist", "options", "instruction", "spelling",
+  "the child", "one per line", "no explanation",
+];
+
+function parseTitleSuggestions(resp) {
+  return (resp || "").split("\n")
+    .map(l => l.replace(/^\s*\d+\s*[\.\)\-:]\s*/, "").replace(/^["„“”'*\-\s]+|["„“”'*\s]+$/g, "").trim())
+    .filter(l => {
+      if (l.length < 3 || l.length > 80) return false;
+      const low = l.toLowerCase();
+      return !TITLE_PROMPT_NOISE.some(n => low.includes(n));
+    })
+    .slice(0, 5);
+}
+
 export async function fetchAndShowTitleSuggestions() {
   const btn = document.getElementById("btn-title-suggestions");
   const btnLabel = S.lang === "en" ? "🏷️ Title suggestions" : "🏷️ Fá tillögur fyrir titil á sögu";
@@ -302,18 +325,17 @@ STRICT RULES:
 - Use the child's name "${childName}" exactly as provided. Never change the gender or spelling.
 - Avoid clichés like "Vegferð", "Tapestry", or "Journey".
 - Provide 5 options: Classic, Whimsical, Modern, Minimalist, and one based on a key detail from the story.
-- Return ONLY the 5 titles, one per line, numbered 1–5. No explanations, no labels.`
+- Return ONLY the 5 titles, one per line, numbered 1–5. No explanations, no labels.
+- Do NOT repeat these instructions or any part of them in your answer. Output only real book titles.`
         : `Þú ert faglegur bókaritstjóri. Gefðu nákvæmlega 5 hugmyndir að titlum á íslensku fyrir þessa barnabók.
 STRANGAR REGLUR:
 - Notaðu nafnið „${childName}" nákvæmlega eins og gefið upp. Breyttu aldrei kyni eða stafsetningu.
 - Forðastu klisjur eins og „Vegferð", „Þráðurinn" eða „Ævintýri".
 - Gefðu 5 valkosti: Klassískan, Töfrandi, Nútímalegan, Hnitmiðaðan og einn byggðan á lykilatriði úr sögunni.
-- Skilaðu EINGÖNGU 5 titlum, einn í hverri línu, númeraðir 1–5. Engar útskýringar.`;
+- Skilaðu EINGÖNGU 5 titlum, einn í hverri línu, númeraðir 1–5. Engar útskýringar.
+- EKKI endurtaka þessar leiðbeiningar eða neinn hluta þeirra í svarinu. Skilaðu aðeins alvöru bókatitlum.`;
       const resp = await callGemini(titlePrompt, S.storyText.slice(0, 3000), false);
-      titles = resp.split('\n')
-        .map(l => l.replace(/^\d+[\.\)]\s*/, '').trim())
-        .filter(l => l.length > 2 && l.length < 80)
-        .slice(0, 5);
+      titles = parseTitleSuggestions(resp);
     } catch(e) {
       console.warn("Titlatillögur mistókust:", e);
     }
