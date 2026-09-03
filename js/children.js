@@ -58,7 +58,7 @@ export async function switchToChild(childId) {
   S.chapters = buildFreshState();
   localStorage.removeItem("barnasaga_state");
   await Promise.all([loadStateFromSupabase(), loadGullmolar(), loadHeights(), loadBarnsrodd()]);
-  import('./family.js').then(m => { m.loadFamilyQuestions(); m.loadSharedChapters(); }).catch(() => {});
+  import('./fjolskyldan.js').then(m => { m.loadFamilyQuestions(); m.loadSharedChapters(); }).catch(() => {});
   renderChildSwitcher();
   closeChildSwitcher();
   const { renderMap } = await import('./map.js');

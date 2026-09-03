@@ -203,7 +203,7 @@ async function updateShareButton() {
   const btn = document.getElementById("chapter-share-btn");
   const hint = document.getElementById("chapter-share-hint");
   if (!actions || !btn || !lastPreview) return;
-  const { sharedChapterIds } = await import('./family.js');
+  const { sharedChapterIds } = await import('./fjolskyldan.js');
   const isShared = sharedChapterIds.has(lastPreview.chapterId);
   btn.textContent = isShared
     ? (S.lang === "en" ? "✓ Shared, stop sharing" : "✓ Deilt, hætta að deila")
@@ -219,7 +219,7 @@ export async function toggleShareChapter() {
   if (!lastPreview) return;
   const btn = document.getElementById("chapter-share-btn");
   if (btn) btn.disabled = true;
-  const fam = await import('./family.js');
+  const fam = await import('./fjolskyldan.js');
   const isShared = fam.sharedChapterIds.has(lastPreview.chapterId);
   const ok = isShared
     ? await fam.unshareChapter(lastPreview.chapterId)

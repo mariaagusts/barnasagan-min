@@ -19,7 +19,7 @@ import './gullmoli.js';
 import './heights.js';
 import './barnsrodd.js';
 import './voiceshare.js';
-import './family.js';
+import './fjolskyldan.js';
 import './admin.js';
 import { showScreen } from './modals.js';
 import './modals.js';

@@ -6,7 +6,7 @@ import { S } from './state.js';
 export const UI = {
   is: {
     navLogin: "Innskrá", navCta: "Byrja að skrifa",
-    heroTitle: `Barnasagan: „ég skrifa þetta niður á morgun" er loforðið sem við gefum okkur öll.`,
+    heroTitle: `Barnasagan: „ég skrifa þetta niður á morgun“ er loforðið sem við gefum okkur öll.`,
     heroSub: "Við vitum að heilaþokan er raunveruleg. Barnasagan hjálpar þér að fanga dýrmætustu augnablikin þegar þau gerast, án samviskubits eða auka álags.",
     heroCta1: "Byrja að skrifa →", heroCta2: "Innskrá",
     heroStats: ["Kaflar","Spurningar","Barnasaga"],
@@ -123,7 +123,7 @@ export const UI = {
       { q: "Hvernig er greitt?", a: "Við notum Kling.is sem greiðslumiðlara. Þeir taka við Visa og Mastercard kredit- og debetkortum. Greiðsla fer fram í íslenskum krónum (ISK)." },
       { q: "Get ég fengið endurgreiðslu?", a: "Já, við bjóðum upp á 14 daga endurgreiðslurétt. Hafðu samband á <a href='mailto:hallo@saganmin.is' style='color:var(--gold);'>hallo@saganmin.is</a>." },
       { q: "Hvenær fæ ég aðgang?", a: "Tafarlaust eftir greiðslu. Þú getur hafið ritun sögunnar strax, engin bið." },
-      { q: "Get ég gefið þetta að gjöf?", a: `Já! Smelltu á „Kaupa gjafakóða". Þú færð kóðann sendan á netfangið þitt.` },
+      { q: "Get ég gefið þetta að gjöf?", a: `Já! Smelltu á „Kaupa gjafakóða“. Þú færð kóðann sendan á netfangið þitt.` },
       { q: "Eru gögnin mín örugg?", a: "Já. Svör geymd á dulkóðuðum gagnagrunni. Rekin af íslensku félagi (kt. 471025-0380), við seljum aldrei persónuupplýsingar." },
       { q: "Hvernig eyði ég reikningnum mínum?", a: "Eyddu framvindu með 'Eyða framvindu' eða hafðu samband á hallo@saganmin.is til að eyða reikningi að fullu." },
 
@@ -144,7 +144,7 @@ export const UI = {
 
       { heading: "Bókin þín" },
       { q: "Hvernig fer úrvinnslan fram?", a: "Þegar þú hefur svarað nokkrum spurningum getur þú valið 'Skoða bókina þína'. Kerfið greinir svörin þín og setur þau upp í rökrétta og flæðandi barnasögu sem þú getur síðan yfirfarið og breytt." },
-      { q: "Er bókin alltaf eins þegar ég forskoða hana?", a: `Nei. Í hvert sinn sem þú smellir á „Skoða bókina þína" verður til ný og sjálfstæð útgáfa af sögunni. Þetta þýðir að þú getur prófað mismunandi ritstíla og fengið nýja útgáfu í hvert skipti.\n\nÞegar þú forskoðar útgáfu sem þér líst vel á geturðu alltaf nálgast hana aftur í flipanum hægra megin á síðunni. Þar er haldið utan um eldri útgáfur svo þú getir borið þær saman eða hlaðið niður þeirri sem þér þykir best.` },
+      { q: "Er bókin alltaf eins þegar ég forskoða hana?", a: `Nei. Í hvert sinn sem þú smellir á „Skoða bókina þína“ verður til ný og sjálfstæð útgáfa af sögunni. Þetta þýðir að þú getur prófað mismunandi ritstíla og fengið nýja útgáfu í hvert skipti.\n\nÞegar þú forskoðar útgáfu sem þér líst vel á geturðu alltaf nálgast hana aftur í flipanum hægra megin á síðunni. Þar er haldið utan um eldri útgáfur svo þú getir borið þær saman eða hlaðið niður þeirri sem þér þykir best.` },
       { q: "Hvernig fæ ég fullbúna bók?", a: "Þú getur hlaðið barnasögunni niður sem PDF skjali sem er faglega umbrotið með forsíðu og kaflaskiptingu. Einnig er hægt að flytja textann yfir í textaskrá." },
       { q: "Get ég prentað barnasöguna mína sem alvöru bók?", a: "Já. Sæktu Prentútgáfuna (PDF) og farðu með hana í prentþjónustu. Á Íslandi mælum við með Háskólaprenti (haskolaprent.is) fyrir hraðvirka og ódýra kilju og Samskiptum (samskipti.is) fyrir innbundna harðspjaldabók. Erlendis er lulu.com góður kostur. Smelltu á 🖨️ hnappinn í bókarsýninni fyrir nánari leiðbeiningar." },
       { q: "Hvað með titil á bókina?", a: "Þegar sagan þín er tilbúin stingur vefsíðan upp á fimm skapandi titlum fyrir barnasöguna þína. Þú getur valið þann besta eða skrifað þinn eigin." },
@@ -153,7 +153,7 @@ export const UI = {
       { q: "Get ég breytt textanum eftir að hann er búinn til?", a: "Já, þegar þú velur 'Forskoða bókina þína' býr vefsíðan til drög. Þú getur síðan farið í 'Breyta texta' og lagfært allt sem þér finnst mega fara betur, bætt við upplýsingum eða breytt orðalagi áður en þú hleður niður lokagerðinni." },
       { q: "Getur textinn innihaldið villur?", a: "Já, vefsíðan setur saman frásögnina sjálfkrafa og geta þess vegna birst málfræði- eða stafsetningarvillur í textanum. Við mælum eindregið með að fara yfir textann með 'Breyta texta' takkanum áður en þú hleður niður bókinni." },
       { q: "Get ég bætt við myndum í bókina?", a: "Já! Í hverju kaflaviðtali er hægt að hlaða upp myndum sem tengjast þeim kafla, þær birtast þá í bókinni í lok viðkomandi kafla. Þú getur einnig bætt við almennum myndum í sögugluggunum, sem birtast aftast í bókinni." },
-      { q: "Getur bókin geymt rödd barnsins?", a: "Já, og það er einn dýrmætasti hluti bókarinnar. Á kaflayfirlitinu er reiturinn „Rödd barnsins" þar sem þú tekur upp lítil hljóðbrot af barninu sjálfu: fyrstu orðin, söngl eða hlátur (allt að 10 upptökur, 2 mínútur hver). Í bókarsýninni velur þú svo undir „Rödd bókarinnar" hvaða upptökur fara í bókina: hver þeirra fær sinn QR-kóða aftast í PDF-bókinni, með lýsingunni sinni. Sá sem skannar kóða með símanum heyrir litlu röddina." },
+      { q: "Getur bókin geymt rödd barnsins?", a: "Já, og það er einn dýrmætasti hluti bókarinnar. Á kaflayfirlitinu er reiturinn „Rödd barnsins“ þar sem þú tekur upp lítil hljóðbrot af barninu sjálfu: fyrstu orðin, söngl eða hlátur (allt að 10 upptökur, 2 mínútur hver). Í bókarsýninni velur þú svo undir „Rödd bókarinnar“ hvaða upptökur fara í bókina: hver þeirra fær sinn QR-kóða aftast í PDF-bókinni, með lýsingunni sinni. Sá sem skannar kóða með símanum heyrir litlu röddina." },
       { q: "Getur fjölskyldan tekið þátt?", a: "Já! Á kaflayfirlitinu er 💌 hnappur sem býr til boðshlekk fyrir barnið sem er valið. Sendu hann á ömmur, afa og aðra nákomna: þau geta sent inn spurningar um barnið (þú færð tölvupóst og ræður hvaða spurningum þú svarar), fylgst með framvindunni og lesið kaflana sem þú velur að deila með þeim." },
 
       { heading: "Tækni og ráð" },
