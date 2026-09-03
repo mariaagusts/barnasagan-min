@@ -316,3 +316,36 @@ export async function loadVersionsFromSupabase() {
     }
   } catch (e) { console.warn("versions load villa:", e); }
 }
+
+
+// ── Raddgeymslan: upptokur foreldra vardveittar med sogunni ──
+export async function uploadVoiceRecording(blob, chapterId) {
+  const sb = getSupabase();
+  if (!sb || !S.user || !blob) return null;
+  try {
+    const t = blob.type || "";
+    const ext = t.includes("mp4") ? "m4a" : t.includes("ogg") ? "ogg" : "webm";
+    const path = `${S.user.id}/${S.activeChildId || "barn"}/${chapterId}/${Date.now()}.${ext}`;
+    const { error } = await sb.storage.from("voice-recordings")
+      .upload(path, blob, { contentType: t || "audio/webm", upsert: false });
+    if (error) { console.warn("raddupptaka vistun villa (er fatan til?):", error.message); return null; }
+    return path;
+  } catch (e) { console.warn("raddupptaka vistun villa:", e); return null; }
+}
+
+export async function getVoiceUrl(path) {
+  const sb = getSupabase();
+  if (!sb || !path) return null;
+  try {
+    const { data, error } = await sb.storage.from("voice-recordings").createSignedUrl(path, 3600);
+    if (error) { console.warn("raddupptaka slóð villa:", error.message); return null; }
+    return data?.signedUrl || null;
+  } catch (e) { console.warn("raddupptaka slóð villa:", e); return null; }
+}
+
+export async function deleteVoiceRecording(path) {
+  const sb = getSupabase();
+  if (!sb || !path) return;
+  try { await sb.storage.from("voice-recordings").remove([path]); }
+  catch (e) { console.warn("deleteVoiceRecording villa:", e); }
+}

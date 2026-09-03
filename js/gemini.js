@@ -58,6 +58,27 @@ export async function callGemini(systemPrompt, userMsg, usePro = false, maxToken
   throw new Error(`Villa: ${lastError || "Óþekkt"}`);
 }
 
+export async function transcribeAudio(base64Data, mimeType) {
+  const token = await getAuthToken();
+  const systemPrompt = S.lang === "en"
+    ? "You are a precise transcription engine. Transcribe the spoken English in this audio recording word for word, with correct spelling and punctuation. Output ONLY the transcribed text, no comments, no labels, no quotation marks around it. If no speech can be heard, output nothing at all."
+    : "Þú ert nákvæm íslensk talgreining. Umritaðu talið í þessari hljóðupptöku orðrétt, með réttri íslenskri stafsetningu og eðlilegum greinarmerkjum. Skilaðu EINGÖNGU umritaða textanum, engum athugasemdum, engum merkingum, engum gæsalöppum utan um textann. Ef ekkert tal heyrist, skilaðu engu.";
+  const res = await fetch(GEMINI_PROXY, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`,
+      "apikey": SUPABASE_KEY,
+    },
+    body: JSON.stringify({ systemPrompt, model: MODEL_FLASH, audio: { mimeType, data: base64Data } }),
+  });
+  const data = await res.json();
+  if (data.error) throw new Error(data.error.message || "Villa í talgreiningu");
+  const parts = data.candidates?.[0]?.content?.parts || [];
+  const textPart = parts.find(p => p.text && !p.thought);
+  return (textPart?.text || "").trim();
+}
+
 export function warmUpProxy() {
   // Vekur Edge Function an CORS-haavada; svarid skiptir engu mali
   fetch(GEMINI_PROXY, { method: "GET", mode: "no-cors" }).catch(() => {});
