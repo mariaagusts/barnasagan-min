@@ -17,10 +17,14 @@ function esc(s) {
 // Follow-up questions/titles keep the small default in callGemini.
 const STORY_MAX_TOKENS = 8192;
 
+const TIMELINE_HEADINGS = ["Sagan í ártölum", "The story in years"];
+function isTimelineHeading(t) { return TIMELINE_HEADINGS.includes(String(t).trim()); }
+
 export function renderMarkdown(text) {
   return text.split("\n").map(l => {
     if (l.startsWith("# "))  return `<h1>${esc(l.slice(2))}</h1>`;
     if (l.startsWith("## ")) return `<h2>${esc(l.slice(3))}</h2>`;
+    if (/^(20)\d{2} · /.test(l.trim())) return `<p class="tl-line">${esc(l.trim())}</p>`;
     if (l.trim())             return `<p>${esc(l)}</p>`;
     return "";
   }).join("");
@@ -35,24 +39,35 @@ export function renderMarkdownWithPhotos(text) {
 
   function flushPhotos() {
     if (!pendingPhotos || pendingPhotos.length === 0) { pendingPhotos = null; return; }
-    const imgs = pendingPhotos.map(p =>
-      `<img src="${p.url || p.data || ""}" style="width:90px;height:90px;object-fit:cover;margin:4px;border:1px solid #e2ceb0;border-radius:2px;">`
-    ).join("");
+    const imgs = pendingPhotos.map(p => {
+      const img = `<img src="${p.url || p.data || ""}" style="width:90px;height:90px;object-fit:cover;border:1px solid #eadfcc;border-radius:2px;">`;
+      const cap = p.caption ? `<figcaption style="font-size:9pt;color:#7a6a58;margin-top:2px;max-width:100px;">${esc(p.caption)}</figcaption>` : "";
+      return `<figure style="display:inline-block;margin:4px;text-align:center;vertical-align:top;">${img}${cap}</figure>`;
+    }).join("");
     out.push(`<div style="text-align:center;margin:20px 0 8px;">${imgs}</div>`);
     pendingPhotos = null;
   }
 
   for (const l of lines) {
     if (l.startsWith("# ")) {
-      out.push(`<h1 style="font-family:Georgia,serif;font-size:28pt;font-style:italic;color:#2c1a0e;text-align:center;margin:60px 0 8px;">${esc(l.slice(2))}</h1>`);
+      out.push(`<h1 style="font-family:Georgia,serif;font-size:28pt;color:#3E2723;text-align:center;margin:60px 0 8px;">${esc(l.slice(2))}</h1>`);
       continue;
     }
     if (l.startsWith("## ")) {
+      const headTxt = l.slice(3);
+      if (isTimelineHeading(headTxt)) {
+        out.push(`<h2 style="font-family:Georgia,serif;font-size:16pt;color:#3E2723;text-align:center;margin:40px 0 12px;border-bottom:1px solid #eadfcc;padding-bottom:8px;">${esc(headTxt)}</h2>`);
+        continue;
+      }
       flushPhotos();
       chIdx++;
       const ch = chaptersWithAnswers[chIdx];
       pendingPhotos = (ch?.photos?.length > 0) ? ch.photos : null;
-      out.push(`<br clear="all" style="page-break-before:always;"><h2 style="font-family:Georgia,serif;font-size:18pt;font-style:italic;color:#8b5e3c;text-align:center;margin:40px 0 8px;border-bottom:1px solid #c49a6c;padding-bottom:8px;">${esc(l.slice(3))}</h2>`);
+      out.push(`<br clear="all" style="page-break-before:always;"><h2 style="font-family:Georgia,serif;font-size:18pt;color:#3E2723;text-align:center;margin:40px 0 8px;border-bottom:1px solid #e8b174;padding-bottom:8px;">${esc(headTxt)}</h2>`);
+      continue;
+    }
+    if (/^(20)\d{2} · /.test(l.trim())) {
+      out.push(`<p style="font-family:Georgia,serif;font-size:11pt;line-height:1.8;text-align:center;margin:0 0 8px;">${esc(l.trim())}</p>`);
       continue;
     }
     if (l.trim()) out.push(`<p style="font-family:Georgia,serif;font-size:12pt;line-height:1.9;text-align:justify;margin:0 0 12px;text-indent:2em;">${esc(l)}</p>`);
@@ -68,11 +83,12 @@ export function injectStoryPhotos() {
   body.querySelectorAll(".story-chapter-photos").forEach(el => el.remove());
   const headings = Array.from(body.querySelectorAll("h2"));
   const chaptersWithAnswers = S.chapters.chapters.filter(c => c.answers.length > 0);
-  headings.forEach((h2, i) => {
+  const chapterHeadings = headings.filter(h2 => !isTimelineHeading(h2.textContent));
+  chapterHeadings.forEach((h2, i) => {
     const ch = chaptersWithAnswers[i];
     if (!ch || !ch.photos || ch.photos.length === 0) return;
     // Find the last element of this chapter (before next h2 or end of body)
-    const nextH2 = headings[i + 1] || null;
+    const nextH2 = chapterHeadings[i + 1] || null;
     let insertAfter = h2;
     let sibling = h2.nextElementSibling;
     while (sibling && sibling !== nextH2) {
@@ -82,17 +98,35 @@ export function injectStoryPhotos() {
     const div = document.createElement("div");
     div.className = "story-chapter-photos";
     ch.photos.forEach(photo => {
+      const fig = document.createElement("figure");
+      fig.className = "story-photo-fig";
       const img = document.createElement("img");
       img.src = photo.url || photo.data || "";
       img.className = "story-photo-img";
-      img.alt = photo.name || "";
-      div.appendChild(img);
+      img.alt = photo.caption || photo.name || "";
+      fig.appendChild(img);
+      if (photo.caption) {
+        const cap = document.createElement("figcaption");
+        cap.className = "story-photo-cap";
+        cap.textContent = photo.caption;
+        fig.appendChild(cap);
+      }
+      div.appendChild(fig);
     });
     insertAfter.insertAdjacentElement("afterend", div);
   });
 }
 
 export function showStoryScreen() {
+  // Endurheimta tileinkun og lokaord thessa barns
+  try {
+    window.S = S;
+    const cid = S.activeChildId || "";
+    const ded = document.getElementById("dedication-input");
+    if (ded && !ded.value) ded.value = localStorage.getItem("barnasagan_dedication_" + cid) || "";
+    const cw = document.getElementById("closing-words");
+    if (cw && !cw.value) cw.value = localStorage.getItem("barnasagan_closing_" + cid) || "";
+  } catch (e) { /* no-op */ }
   const overlay = document.createElement("div");
   overlay.className = "style-modal-overlay";
   const isIS = S.lang === "is";
@@ -207,9 +241,12 @@ export async function generateStory(systemPrompt, userMsg) {
     renderBookAuthor();
     return;
   }
-  const chapterRule = S.lang === "en"
+  const weaveRuleEn = `\nRED THREAD: This is ONE child's story, not ${chapterTitles.length} separate islands. People, places and habits that appear in several chapters must carry across the whole book, and the child's age must progress consistently from chapter to chapter. Refer back naturally to what was told earlier. Never invent connections that are not in the answers, but when the answers themselves connect, let the prose show it.\n`;
+  const weaveRuleIs = `\nRAUÐUR ÞRÁÐUR: Þetta er saga EINS barns, ekki ${chapterTitles.length} aðskildar eyjar. Fólk, staðir og venjur sem koma fyrir í mörgum köflum eiga að ganga í gegnum alla bókina, og aldur barnsins á að þróast samkvæmt milli kafla. Vísaðu eðlilega til þess sem áður var sagt. Aldrei búa til tengingar sem eru ekki í svörunum, en þegar svörin sjálf tengjast, láttu textann sýna það.\n`;
+  const chapterRule = (S.lang === "en"
     ? `\nIMPORTANT: You MUST write a separate ## section for every one of these ${chapterTitles.length} chapters: ${chapterTitles.join(", ")}. Do not skip, merge, or omit any chapter.\n`
-    : `\nMIKILVÆGT: Þú VERÐUR að skrifa sérstakan ## kafla fyrir hvern og einn af þessum ${chapterTitles.length} köflum: ${chapterTitles.join(", ")}. Ekki sleppa, sameina eða fella niður neinn kafla.\n`;
+    : `\nMIKILVÆGT: Þú VERÐUR að skrifa sérstakan ## kafla fyrir hvern og einn af þessum ${chapterTitles.length} köflum: ${chapterTitles.join(", ")}. Ekki sleppa, sameina eða fella niður neinn kafla.\n`)
+    + (S.lang === "en" ? weaveRuleEn : weaveRuleIs);
   const promptWithRule = prompt + chapterRule;
 
   try {
@@ -217,7 +254,7 @@ export async function generateStory(systemPrompt, userMsg) {
 
     if (isIcelandic) {
       const englishPromptBase = S.lang === "en" ? prompt : STORY_STYLES[S.styleKey || "natural"].promptEn;
-      const englishPrompt = englishPromptBase + `\nIMPORTANT: You MUST write a separate ## section for every one of these ${chapterTitles.length} chapters: ${chapterTitles.join(", ")}. Do not skip, merge, or omit any chapter.\n`;
+      const englishPrompt = englishPromptBase + `\nIMPORTANT: You MUST write a separate ## section for every one of these ${chapterTitles.length} chapters: ${chapterTitles.join(", ")}. Do not skip, merge, or omit any chapter.\n` + weaveRuleEn;
       updateLoadingStep(1);
       const englishStory = await callGemini(englishPrompt, msg + allParts.join("\n\n"), true, STORY_MAX_TOKENS);
 
@@ -232,6 +269,7 @@ MIKILVÆGT:
 - Haltu stílnum: ${styleLabel}. Ef stíllinn er einlægur skaltu nota hlýtt og náttúrulegt mál, ef ljóðrænn skaltu leggja áherslu á skynrænar myndir o.s.frv.
 - Forðastu beinlínis þýðingar úr ensku — skrifaðu eins og texti hafi verið skrifaður beint á íslensku
 - Forðastu enskuskot og klisjur eins og „vegferð"
+- Notaðu EKKI þankastrik (—). Notaðu kommu, punkt eða umorðun í staðinn
 - Haltu sömu uppbyggingu og # og ## fyrirsögnum
 - Þýddu fyrirsagnirnar líka yfir á íslensku
 - Skrifaðu í fyrstu persónu (ég-form)
@@ -256,6 +294,8 @@ ${englishStory}`;
     const proofPrompt = `Þú ert vandvirkur íslenskur prófarkalesari. Valinn ritstíll er: ${STORY_STYLES[S.styleKey || "hlylegt"].label}.
 Lestu yfir eftirfarandi texta og skilaðu hreinsuðri útgáfu þar sem:
 - Málfræðivillur eru leiðréttar (fallstjórn, beyging, samræmi)
+- Þankastrik (—) eru fjarlægð og setningin umorðuð með kommu eða punkti
+- Þágufallssýki er leiðrétt: „mig langar" (aldrei „mér langar"), „mig vantar", „mig dreymir" og sambærileg fallstjórn
 - Orð sem hljóma eins og bein þýðing úr ensku eru skipt út fyrir náttúrulegar íslenskar hliðstæður
 - Setningabygging sem hljómar gervileg eða vélræn er greidd upp
 - # og ## fyrirsagnir eru óbreyttar
@@ -268,6 +308,11 @@ Lestu yfir eftirfarandi texta og skilaðu hreinsuðri útgáfu þar sem:
 Skilaðu EINGÖNGU leiðréttum texta, engar útskýringar.`;
     updateLoadingStep(3);
     S.storyText = await callGemini(proofPrompt, S.storyText, true, STORY_MAX_TOKENS);
+
+    try {
+      const timeline = await buildTimeline(allParts.join("\n\n"));
+      if (timeline) S.storyText = insertAfterTitle(S.storyText, timeline);
+    } catch (e) { console.warn("Tímalína sleppt:", e); }
 
     document.getElementById("story-body").innerHTML = renderMarkdown(S.storyText);
     injectStoryPhotos();
@@ -452,3 +497,47 @@ window.showInfoModal = showInfoModal;
 window.closeInfoModal = closeInfoModal;
 window.showWarningModal = showWarningModal;
 window.closeWarningModal = closeWarningModal;
+
+
+// ── Tímalína: "Sagan í ártölum" fremst í bókinni ─────
+// Notar adeins artol sem koma skyrt fram i svorunum og
+// haedarmaelingarnar (thaer bera dagsetningar med ser).
+async function buildTimeline(rawData) {
+  const isIs = S.lang !== "en";
+  const heights = (S.heights || []).slice().reverse()
+    .map(h => {
+      const d = String(h.measured_at || "").slice(0, 10);
+      const parts = [d, h.height_cm ? `${h.height_cm} cm` : null, h.weight_kg ? `${h.weight_kg} kg` : null, h.note || null].filter(Boolean);
+      return parts.join(" · ");
+    });
+  const heightCtx = heights.length
+    ? (isIs ? `\n\nHÆÐARMÆLINGAR (dagsetning · hæð · þyngd · athugasemd):\n${heights.join("\n")}` : `\n\nGROWTH MEASUREMENTS (date · height · weight · note):\n${heights.join("\n")}`)
+    : "";
+  const sys = isIs
+    ? `Þú finnur ártöl í svörum foreldris um barnið sitt og setur saman stutta tímalínu um fyrstu árin.
+STRANGAR REGLUR:
+- Notaðu EINGÖNGU ártöl sem koma skýrt fram í svörunum eða hæðarmælingunum. Aldrei giska, aldrei reikna út frá aldri.
+- Hver lína: "ÁRTAL · stuttur atburður" (hámark 8 orð í atburði), í tímaröð. Hæðarmælingu má flétta við atburð sama árs (t.d. "2013 · Fyrsta skrefið, 78 cm").
+- Hámark 12 línur. Ef færri en 3 skýr ártöl finnast, skilaðu nákvæmlega orðinu ENGIN.
+- Skilaðu eingöngu línunum sjálfum, engum fyrirsögnum eða útskýringum.`
+    : `You find years in a parent's answers about their child and build a short timeline of the early years.
+STRICT RULES:
+- Use ONLY years explicitly stated in the answers or the growth measurements. Never guess, never calculate from ages.
+- Each line: "YEAR · short event" (max 8 words), in chronological order. A growth measurement may be woven into the same year's event (e.g. "2013 · First step, 78 cm").
+- Max 12 lines. If fewer than 3 clear years are found, return exactly the word NONE.
+- Return only the lines themselves, no headings or explanations.`;
+  const out = (await callGemini(sys, rawData + heightCtx, false, 1024, 0.1)).trim();
+  if (!out || /^(ENGIN|NONE)\b/i.test(out)) return null;
+  const lines = out.split("\n").map(l => l.trim()).filter(l => /^(20)\d{2}/.test(l));
+  if (lines.length < 3) return null;
+  const heading = isIs ? "## Sagan í ártölum" : "## The story in years";
+  return `${heading}\n\n${lines.join("\n")}`;
+}
+
+function insertAfterTitle(text, section) {
+  const lines = text.split("\n");
+  if (lines[0]?.startsWith("# ")) {
+    return [lines[0], "", section, "", ...lines.slice(1)].join("\n");
+  }
+  return `${section}\n\n${text}`;
+}

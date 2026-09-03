@@ -94,6 +94,18 @@ export async function onSignedIn() {
 
   document.getElementById("map-user-email").textContent = S.user.email;
 
+  // Hröð fyrsta birting: sýnum kaflayfirlitið strax úr staðbundnu afriti
+  // meðan skýið svarar. Ferskt efni endurteiknar kortið á eftir.
+  try {
+    const cached = JSON.parse(localStorage.getItem("barnasaga_state") || "null");
+    if (cached?.chapters?.length && cached.familyType) {
+      const { initState } = await import('./supabase-client.js');
+      initState();
+      const { showMap } = await import('./modals.js');
+      showMap();
+    }
+  } catch (e) { /* no-op */ }
+
   // Redeem pending gift code if user arrived via gift code flow
   const pendingCode = sessionStorage.getItem('pendingGiftCode');
   if (pendingCode) {

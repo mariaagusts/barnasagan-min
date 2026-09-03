@@ -810,9 +810,13 @@
       </div>
 
       <div style="margin-top:32px;padding-top:24px;border-top:1px solid var(--border);">
+        <h3 style="font-family:'Fredoka One',cursive;font-size:18px;color:var(--text);margin-bottom:8px;" id="dedication-title">Tileinkun</h3>
+        <p style="font-size:13px;color:var(--mid);margin-bottom:12px;" id="dedication-sub">Stutt tileinkun sem fær sína eigin síðu fremst í bókinni, t.d. „Til þín, þegar þú verður stór". Má vera tóm.</p>
+        <input type="text" id="dedication-input" maxlength="160" oninput="try{localStorage.setItem('barnasagan_dedication_'+(window.S?.activeChildId||''),this.value)}catch(e){}" style="width:100%;border:1px solid var(--border);border-radius:var(--radius);padding:12px;font-size:15px;font-family:'Nunito',sans-serif;color:var(--text);background:var(--cream);outline:none;" placeholder="Skrifaðu tileinkun hér...">
+        <div style="height:28px;"></div>
         <h3 style="font-family:'Fredoka One',cursive;font-size:18px;color:var(--text);margin-bottom:8px;" id="closing-title">Lokaorð</h3>
         <p style="font-size:13px;color:var(--mid);margin-bottom:12px;" id="closing-sub">Skrifaðu eigin lokaorð sem birtast í bókinni þinni</p>
-        <textarea id="closing-words" rows="5" style="width:100%;border:1px solid var(--border);border-radius:var(--radius);padding:12px;font-size:15px;font-family:'Nunito',sans-serif;color:var(--text);background:var(--cream);resize:vertical;" placeholder="Skrifaðu lokaorð hér..."></textarea>
+        <textarea id="closing-words" rows="5" oninput="try{localStorage.setItem('barnasagan_closing_'+(window.S?.activeChildId||''),this.value)}catch(e){}" style="width:100%;border:1px solid var(--border);border-radius:var(--radius);padding:12px;font-size:15px;font-family:'Nunito',sans-serif;color:var(--text);background:var(--cream);resize:vertical;" placeholder="Skrifaðu lokaorð hér..."></textarea>
       </div>
 
       <div style="margin-top:40px;">

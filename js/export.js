@@ -67,6 +67,15 @@ async function getPhotoDataUrl(photo) {
   } catch (e) { console.warn("getPhotoDataUrl villa:", e); return null; }
 }
 
+function loadImageDims(dataUrl) {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.onload = () => resolve({ w: img.naturalWidth || img.width, h: img.naturalHeight || img.height });
+    img.onerror = () => resolve(null);
+    img.src = dataUrl;
+  });
+}
+
 export function resizeImageForPrint(dataUrl, printWidthMM, printHeightMM, dpi = 300) {
   return new Promise((resolve) => {
     const img = new Image();
@@ -164,22 +173,34 @@ export async function downloadPDF(whiteBg = false) {
   doc.setLineWidth(0.3);
   doc.rect(margin - 2, 42, contentW + 4, H - 94, "S");
 
-  doc.setFont("EBGaramond", "italic");
-  doc.setFontSize(52);
-  doc.setTextColor(44, 26, 14);
-  doc.text("Sagan mín", W / 2, 110, { align: "center" });
-  doc.setDrawColor(196, 154, 108);
+  const storyFirstLine = (S.storyText || "").split("\n")[0] || "";
+  const bookTitle = (S.chapters.bookTitle || "").trim()
+    || (storyFirstLine.startsWith("# ") ? storyFirstLine.slice(2).trim() : "")
+    || (S.chapters.bookAuthor ? `Sagan um ${S.chapters.bookAuthor}` : "Barnasagan mín");
+  doc.setFont(fontName, "normal");
+  const titleSize = bookTitle.length > 24 ? 34 : 44;
+  doc.setFontSize(titleSize);
+  doc.setTextColor(62, 39, 35);
+  const titleLines = doc.splitTextToSize(bookTitle, contentW - 16);
+  let ty = 105 - (titleLines.length - 1) * (titleSize * 0.28);
+  for (const tl of titleLines) { doc.text(tl, W / 2, ty, { align: "center" }); ty += titleSize * 0.55; }
+  doc.setDrawColor(232, 177, 116);
   doc.setLineWidth(0.5);
-  doc.line(W/2 - 30, 132, W/2 + 30, 132);
-  doc.setFontSize(12);
-  doc.setTextColor(139, 94, 60);
+  doc.line(W/2 - 30, ty + 4, W/2 + 30, ty + 4);
   if (S.chapters.bookAuthor) {
-    doc.setFont("EBGaramond", "normal");
-    doc.setFontSize(14);
-    doc.setTextColor(139, 94, 60);
-    doc.text(S.chapters.bookAuthor, W / 2, 155, { align: "center" });
+    doc.setFont(fontName, "italic");
+    doc.setFontSize(15);
+    doc.setTextColor(160, 92, 30);
+    doc.text(S.chapters.bookAuthor, W / 2, ty + 20, { align: "center" });
   }
+  doc.setFont(fontName, "normal");
+  doc.setFontSize(12);
+  doc.setTextColor(160, 92, 30);
   doc.text(String(new Date().getFullYear()), W / 2, 220, { align: "center" });
+  doc.setFont(fontName, "italic");
+  doc.setFontSize(10);
+  doc.setTextColor(190, 150, 110);
+  doc.text("Barnasagan mín · barnasagan.is", W / 2, H - 62, { align: "center" });
 
   // ── Sagan ────────────────────────────────────────────
   let textToRender = S.storyText;
@@ -199,6 +220,24 @@ export async function downloadPDF(whiteBg = false) {
 
   let y = margin + 10;
   let storyPageStarted = false;
+
+  // ── Tileinkun ────────────────────────────────────────
+  const dedication = document.getElementById("dedication-input")?.value?.trim();
+  if (dedication) {
+    addPage();
+    doc.setFont(fontName, "italic");
+    doc.setFontSize(16);
+    doc.setTextColor(122, 95, 77);
+    const dedLines = doc.splitTextToSize(dedication, contentW - 30);
+    let dy = H / 2 - (dedLines.length - 1) * 4.5;
+    for (const dl of dedLines) { doc.text(dl, W / 2, dy, { align: "center" }); dy += 9; }
+  }
+
+  // ── Efnisyfirlit: sidan fratekin her, fyllt i eftir a ──
+  addPage();
+  const tocPageNo = doc.internal.getNumberOfPages();
+  const tocEntries = [];
+
   const textCleaned = textToRender.replace(/^##\s*Lokaorð.*$/mi, '').replace(/^##\s*Closing.*$/mi, '').trimEnd();
   const lines = textCleaned.split("\n");
   let chapterHeadingCount = -1;
@@ -206,26 +245,38 @@ export async function downloadPDF(whiteBg = false) {
 
   async function flushChapterPhotos() {
     if (!pendingPhotos || pendingPhotos.length === 0) { pendingPhotos = null; return; }
-    const gap = 6, maxThumbW = 55, maxThumbH = 55;
-    const photosPerRow = Math.min(pendingPhotos.length, 3);
-    const thumbW = Math.min(maxThumbW, (contentW - gap * (photosPerRow - 1)) / photosPerRow);
-    const thumbH = thumbW;
-    y += 8;
-    if (y + thumbH + 10 > H - margin) { addPage(); y = margin + 10; }
-    let px = margin, count = 0;
+    // Hver mynd faer ad anda: rett hlutfoll, midjad, myndatexti undir
+    const maxW = Math.min(contentW * 0.62, 100);
+    const maxH = 72;
     for (const photo of pendingPhotos) {
       const dataUrl = await getPhotoDataUrl(photo);
       if (!dataUrl) continue;
       try {
-        const scaled = await resizeImageForPrint(dataUrl, thumbW, thumbH, 300);
-        doc.addImage(scaled, "JPEG", px, y, thumbW, thumbH);
-        doc.setDrawColor(196, 154, 108); doc.setLineWidth(0.2);
-        doc.rect(px, y, thumbW, thumbH);
-        px += thumbW + gap; count++;
-        if (count % photosPerRow === 0) { px = margin; y += thumbH + 6; }
+        const dims = await loadImageDims(dataUrl);
+        if (!dims) continue;
+        const ratio = dims.w / dims.h;
+        let drawW = maxW, drawH = maxW / ratio;
+        if (drawH > maxH) { drawH = maxH; drawW = maxH * ratio; }
+        const capH = photo.caption ? 10 : 0;
+        if (y + drawH + capH + 16 > H - margin) { addPage(); y = margin + 10; }
+        y += 8;
+        const px = (W - drawW) / 2;
+        const scaled = await resizeImageForPrint(dataUrl, drawW, drawH, 300);
+        doc.addImage(scaled, "JPEG", px, y, drawW, drawH);
+        doc.setDrawColor(232, 177, 116); doc.setLineWidth(0.2);
+        doc.rect(px, y, drawW, drawH);
+        y += drawH;
+        if (photo.caption) {
+          doc.setFont(fontName, "italic");
+          doc.setFontSize(9);
+          doc.setTextColor(122, 106, 88);
+          y += 5;
+          doc.text(String(photo.caption), W / 2, y, { align: "center", maxWidth: drawW + 24 });
+          y += 3;
+        }
+        y += 6;
       } catch(e) { console.warn("Kaflamynd villa:", e); }
     }
-    if (count % photosPerRow !== 0) y += thumbH + 10;
     pendingPhotos = null;
   }
 
@@ -237,21 +288,26 @@ export async function downloadPDF(whiteBg = false) {
 
     // ── Kaflaheiti (## ) ──
     if (line.startsWith("## ")) {
+      const headTxt = line.slice(3).trim();
+      const isTimeline = headTxt === "Sagan í ártölum" || headTxt === "The story in years";
       await flushChapterPhotos();
       addPage();
+      tocEntries.push({ title: headTxt, page: doc.internal.getNumberOfPages() });
       storyPageStarted = true;
       const titleY = H * 0.15;
-      doc.setFont("EBGaramond", "italic");
+      doc.setFont(fontName, "normal");
       doc.setFontSize(22);
-      doc.setTextColor(139, 94, 60);
-      doc.text(line.slice(3), W / 2, titleY, { align: "center", maxWidth: contentW });
-      doc.setDrawColor(196, 154, 108); doc.setLineWidth(0.4);
+      doc.setTextColor(160, 92, 30);
+      doc.text(headTxt, W / 2, titleY, { align: "center", maxWidth: contentW });
+      doc.setDrawColor(232, 177, 116); doc.setLineWidth(0.4);
       const lineY = titleY + 8;
       doc.line(margin, lineY, W / 2 - 35, lineY);
       doc.line(W / 2 + 35, lineY, W - margin, lineY);
       y = lineY + 10;
-      chapterHeadingCount++;
-      pendingPhotos = chapterImageMap[chapterHeadingCount] || null;
+      if (!isTimeline) {
+        chapterHeadingCount++;
+        pendingPhotos = chapterImageMap[chapterHeadingCount] || null;
+      }
       continue;
     }
 
@@ -394,10 +450,11 @@ export async function downloadPDF(whiteBg = false) {
   if (S.uploadedPhotos.length > 0) {
     addPage();
     y = margin + 10;
-    doc.setFont("EBGaramond", "italic");
-    doc.setFontSize(22);
-    doc.setTextColor(44, 26, 14);
     const photoTitle = S.lang === "en" ? "Photo Gallery" : "Myndasafn";
+    tocEntries.push({ title: photoTitle, page: doc.internal.getNumberOfPages() });
+    doc.setFont(fontName, "normal");
+    doc.setFontSize(22);
+    doc.setTextColor(62, 39, 35);
     doc.text(photoTitle, W / 2, y, { align: "center" });
     y += 8;
     doc.setDrawColor(196, 154, 108);
@@ -442,11 +499,12 @@ export async function downloadPDF(whiteBg = false) {
   const closingWords = document.getElementById("closing-words")?.value?.trim();
   if (closingWords) {
     addPage();
+    tocEntries.push({ title: S.lang === "en" ? "Closing words" : "Lokaorð", page: doc.internal.getNumberOfPages() });
     let yClose = margin + 40;
-    doc.setFont("EBGaramond", "italic");
+    doc.setFont(fontName, "normal");
     doc.setFontSize(22);
-    doc.setTextColor(139, 94, 60);
-    doc.text("Lokaorð", W / 2, yClose, { align: "center" });
+    doc.setTextColor(160, 92, 30);
+    doc.text(S.lang === "en" ? "Closing words" : "Lokaorð", W / 2, yClose, { align: "center" });
     yClose += 8;
     doc.setDrawColor(196, 154, 108);
     doc.setLineWidth(0.4);
@@ -457,6 +515,30 @@ export async function downloadPDF(whiteBg = false) {
     doc.setFontSize(12);
     doc.setTextColor(44, 26, 14);
     wrapText(closingWords, margin, yClose, contentW, 7.5, H - margin);
+  }
+
+  // ── Efnisyfirlitið skrifað á frátekna síðu ───────────
+  if (tocEntries.length > 0) {
+    doc.setPage(tocPageNo);
+    let yToc = margin + 26;
+    doc.setFont(fontName, "normal");
+    doc.setFontSize(22);
+    doc.setTextColor(62, 39, 35);
+    doc.text(S.lang === "en" ? "Contents" : "Efnisyfirlit", W / 2, yToc, { align: "center" });
+    yToc += 6;
+    doc.setDrawColor(232, 177, 116);
+    doc.setLineWidth(0.4);
+    doc.line(W / 2 - 25, yToc, W / 2 + 25, yToc);
+    yToc += 14;
+    doc.setFontSize(12);
+    for (const e of tocEntries) {
+      if (yToc > H - 26) break;
+      doc.setTextColor(62, 39, 35);
+      doc.text(doc.splitTextToSize(e.title, contentW - 24)[0], margin + 2, yToc);
+      doc.setTextColor(160, 92, 30);
+      doc.text(String(e.page), W - margin - 2, yToc, { align: "right" });
+      yToc += 9;
+    }
   }
 
   // ── Vista ─────────────────────────────────────────────
