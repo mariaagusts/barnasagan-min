@@ -11,7 +11,7 @@ export const CHAPTERS = [
       { text: "Hvað heitir barnið þitt og hvenær og hvar fæddist það?", isCore: true },
       { text: "Hversu þungt og langt var barnið við fæðingu?", isCore: false },
       { text: "Gekk barninu vel að halda þyngd eftir fæðinguna? Var það duglegt að drekka mjólk?", isCore: false },
-      { text: "Hvernig var dagurinn sem barnið kom í heiminn, hvernig leið ykkur sem tókuð á móti því?", isCore: true },
+      { text: "Hvernig var dagurinn sem barnið kom í heiminn, eða inn í líf þitt, og hvernig leið þér?", isCore: true },
       { text: "Hvernig fékk það nafnið sem það fékk? Er saga á bak við það?", isCore: true }
     ]
   },
@@ -19,7 +19,7 @@ export const CHAPTERS = [
     id: 1, emoji: "👶", title: "Fyrstu skrefin",
     desc: "Fyrstu orð, fyrstu skref og þroskinn",
     seeds: [
-      { text: "Hvenær fór barnið að ganga og manst þú eftir því augnabliki?", isCore: true },
+      { text: "Manstu eftir fyrstu hreyfingunum, þegar barnið fór að skríða, standa eða taka fyrstu skrefin? Hvernig var það augnablik?", isCore: true },
       { text: "Hver voru fyrstu orðin sem barnið sagði og hvernig brást fjölskyldan við?", isCore: false },
       { text: "Hvernig var barnið sem ungabarn, rólegt eða kröftugt, fyndið eða þrjóskt?", isCore: true },
       { text: "Manstu eftir fyrsta brosinu og hvenær það kom?", isCore: false }
@@ -124,7 +124,7 @@ export const CHAPTERS_EN = [
       { text: "What is your child's name, and when and where were they born?", isCore: true },
       { text: "What was your child's birth weight and length?", isCore: false },
       { text: "Did your child have any difficulty maintaining weight after birth? Were they good at feeding?", isCore: false },
-      { text: "What was the day your child arrived like, and how did you feel as a parent?", isCore: true },
+      { text: "What was the day your child came into the world, or into your life, like, and how did you feel?", isCore: true },
       { text: "How did your child get their name? Is there a story behind it?", isCore: true }
     ]
   },
@@ -132,7 +132,7 @@ export const CHAPTERS_EN = [
     id: 1, emoji: "👶", title: "First Steps",
     desc: "First words, first steps and early development",
     seeds: [
-      { text: "When did your child start walking, and do you remember that moment?", isCore: true },
+      { text: "Do you remember the first movements, when your child started crawling, standing or taking the first steps? What was that moment like?", isCore: true },
       { text: "What were the first words your child said, and how did the family react?", isCore: false },
       { text: "What was your child like as a baby, calm or lively, funny or stubborn?", isCore: true },
       { text: "Do you remember your child's first smile, and when it came?", isCore: false }

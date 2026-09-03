@@ -21,3 +21,7 @@ Eftir HVERT deploy á edge function í Supabase dashboard: fara í Settings fall
 - Röddin: upptökum foreldra HENT eftir umritun; rödd barnsins geymd í js/barnsrodd.js (þak 10×2 mín), QR-deiling í js/voiceshare.js + rodd.html; upplestur í js/tts.js (tts-proxy/Azure).
 - Fjölskyldan: js/fjolskyldan.js (spurningar/deiling) + fjolskylda.html + family-notify (boðshlekkur á hvert barn). ATH: js/family.js er annað — fjölskyldugerðin (getFamilyContext/setFamilyType).
 - Aldrei commita skrár sem byrja á "agent-".
+
+## Hlutleysisregla spyrilsins og spurninga
+- Aldrei gefa sér að allt hafi gengið vel hjá barni eða fjölskyldu; hlutleysi þar til svörin sýna annað, hlýja án fegrunar við erfið svör.
+- Aldrei gefa sér fjölskyldugerð: tvær mömmur, tveir pabbar eða eitt foreldri er allt jafn sjálfsagt (family_type sér um foreldraheiti í sögunni). Kjarnaspurningar mega ekki segja „ykkur“ um foreldra eða gefa sér að barn gangi, tali eða hafi fæðst hjá foreldrinu.
