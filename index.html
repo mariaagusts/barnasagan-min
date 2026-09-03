@@ -27,6 +27,7 @@
 <script>Sentry.init({ dsn: "https://3dffe5efa9367901339c38a2a48d702d@o4511174425182208.ingest.de.sentry.io/4511174438158416", release: "barnasagan@1.0" });</script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <link rel="stylesheet" href="styles.css">
 <style>
 /* Sameiginlegu tokens eru í styles.css */
@@ -637,9 +638,14 @@
         <div class="map-num-lbl" id="map-answers-lbl">Minningar komnar á blað</div>
       </div>
     </div>
+    <div id="family-questions-section" style="display:none;">
+      <h3 id="family-questions-heading" style="font-family:'Fredoka One',cursive;font-weight:400;font-size:19px;color:var(--text);margin:8px 0 14px;">Spurningar frá fjölskyldunni</h3>
+      <div id="family-questions-list"></div>
+    </div>
     <div class="chapter-grid" id="chapter-grid"></div>
     <div class="map-actions">
       <button class="btn-primary" id="btn-generate-story" onclick="showStoryScreen()" style="display:none">✨ Forskoða bókina þína</button>
+      <button class="btn-outline" id="map-family-btn" onclick="showFamilyInviteModal()">💌 Bjóða fjölskyldunni að spyrja</button>
       <button class="btn-outline" id="map-download-answers-btn" onclick="downloadAnswers()">📥 Sækja svör (.txt)</button>
       <button class="btn-outline" id="map-delete-btn" onclick="resetConfirm()">🗑 Eyða framvindu</button>
     </div>
@@ -787,6 +793,14 @@
         <h3 style="font-family:'Fredoka One',cursive;font-size:18px;color:var(--text);margin-bottom:8px;" id="closing-title">Lokaorð</h3>
         <p style="font-size:13px;color:var(--mid);margin-bottom:12px;" id="closing-sub">Skrifaðu eigin lokaorð sem birtast í bókinni þinni</p>
         <textarea id="closing-words" rows="5" oninput="try{localStorage.setItem('barnasagan_closing_'+(window.S?.activeChildId||''),this.value)}catch(e){}" style="width:100%;border:1px solid var(--border);border-radius:var(--radius);padding:12px;font-size:15px;font-family:'Nunito',sans-serif;color:var(--text);background:var(--cream);resize:vertical;" placeholder="Skrifaðu lokaorð hér..."></textarea>
+      </div>
+
+      <div style="margin-top:32px;padding-top:24px;border-top:1px solid var(--border);">
+        <h3 style="font-family:'Fredoka One',cursive;font-size:18px;color:var(--text);margin-bottom:8px;" id="voice-share-title">Rödd bókarinnar</h3>
+        <p style="font-size:13px;color:var(--mid);margin-bottom:12px;" id="voice-share-sub">Veldu hvaða upptökur af rödd barnsins fara í bókina. Hver valin upptaka fær sinn QR-kóða aftast í PDF-bókinni, með lýsingunni sinni: fyrsta orðið, söngl eða orðin sem barnið sagði alveg eins og enginn annar. Sá sem heldur á bókinni skannar kóða með símanum og heyrir litlu röddina.</p>
+        <div id="voice-share-status"></div>
+        <div id="voice-share-picker" style="display:none;margin-bottom:12px;"></div>
+        <button class="btn-export" id="voice-share-btn" onclick="toggleVoiceSharePicker()">🗣️ Velja upptökur</button>
       </div>
 
       <div style="margin-top:40px;">
@@ -1120,6 +1134,10 @@
   <div style="max-width:700px;margin:0 auto;background:white;border-radius:20px;padding:48px;position:relative;">
     <button onclick="closeChapterPreview()" style="position:absolute;top:16px;right:16px;background:var(--gold);color:white;border:none;border-radius:50%;width:28px;height:28px;font-size:16px;cursor:pointer;">✕</button>
     <div id="chapter-preview-body" class="story-body"></div>
+    <div id="chapter-preview-actions" style="display:none;margin-top:24px;padding-top:18px;border-top:1px solid var(--border);text-align:center;">
+      <button id="chapter-share-btn" onclick="toggleShareChapter()" style="background:var(--orange);color:#fff;border:none;border-radius:999px;padding:12px 26px;font-size:14px;font-weight:700;font-family:'Nunito',sans-serif;cursor:pointer;">💌 Deila þessum kafla með fjölskyldunni</button>
+      <p id="chapter-share-hint" style="font-size:12px;color:var(--mid);margin-top:8px;">Fjölskyldan sér þá þennan kafla á síðunni sem boðshlekkurinn þinn opnar (💌 hnappurinn á kaflayfirlitinu). Þú getur alltaf hætt að deila.</p>
+    </div>
   </div>
 </div>
 
@@ -1163,6 +1181,17 @@
 </div>
 
 <!-- ══ WARNING MODAL ══ -->
+<div class="info-modal-overlay" id="family-invite-overlay"
+  style="display:none;" onclick="if(event.target===this)closeFamilyInviteModal()">
+  <div class="info-modal">
+    <button onclick="closeFamilyInviteModal()" aria-label="Loka" style="position:absolute;top:12px;right:12px;background:var(--gold);color:white;border:none;border-radius:50%;width:28px;height:28px;font-size:16px;cursor:pointer;line-height:1;">✕</button>
+    <h3>💌 Bjóddu fjölskyldunni að spyrja</h3>
+    <p style="font-size:14px;color:var(--mid);line-height:1.7;margin:12px 0 16px;">Sendu þennan hlekk á ömmur, afa og aðra sem þykir vænt um barnið. Þau geta sent inn spurningar um barnið, og þú ræður hvaða spurningum þú svarar. Svörin verða hluti af bókinni. Hlekkurinn gildir fyrir barnið sem er valið núna.</p>
+    <input type="text" id="family-invite-link" readonly onclick="this.select()" style="width:100%;border:1px solid var(--border);border-radius:12px;padding:12px;font-size:13px;font-family:'Nunito',sans-serif;color:var(--text);background:var(--warm);outline:none;margin-bottom:12px;">
+    <button class="info-modal-close" id="family-copy-btn" onclick="copyFamilyLink()" style="margin-top:4px;">Afrita hlekkinn</button>
+  </div>
+</div>
+
 <div class="info-modal-overlay" id="warning-modal-overlay"
   style="display:none;" onclick="if(event.target===this)closeWarningModal()">
   <div class="info-modal">

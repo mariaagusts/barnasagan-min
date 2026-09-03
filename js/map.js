@@ -120,6 +120,9 @@ export async function previewChapter(id) {
   const cs = getChapterState(id);
   if (cs.answers.length === 0) return;
 
+  lastPreview = null;
+  const actionsEl = document.getElementById("chapter-preview-actions");
+  if (actionsEl) actionsEl.style.display = "none";
   document.getElementById("chapter-preview-overlay").style.display = "block";
 
   const phrases = S.lang === "en"
@@ -176,6 +179,8 @@ export async function previewChapter(id) {
     const text = await callGemini(prompt, msg, true, 2048);
     clearInterval(interval);
     document.getElementById("chapter-preview-body").innerHTML = renderMarkdown(`## ${ch.title}\n\n${text}`);
+    lastPreview = { chapterId: id, title: ch.title, text };
+    updateShareButton();
   } catch(e) {
     clearInterval(interval);
     document.getElementById("chapter-preview-body").innerHTML = "<p>Villa kom upp. Reyndu aftur.</p>";
@@ -188,3 +193,45 @@ export function closeChapterPreview() {
 
 window.previewChapter = previewChapter;
 window.closeChapterPreview = closeChapterPreview;
+
+
+// ── Deiling kafla með fjölskyldunni ──────────
+let lastPreview = null;
+
+async function updateShareButton() {
+  const actions = document.getElementById("chapter-preview-actions");
+  const btn = document.getElementById("chapter-share-btn");
+  const hint = document.getElementById("chapter-share-hint");
+  if (!actions || !btn || !lastPreview) return;
+  const { sharedChapterIds } = await import('./family.js');
+  const isShared = sharedChapterIds.has(lastPreview.chapterId);
+  btn.textContent = isShared
+    ? (S.lang === "en" ? "✓ Shared, stop sharing" : "✓ Deilt, hætta að deila")
+    : (S.lang === "en" ? "💌 Share this chapter with the family" : "💌 Deila þessum kafla með fjölskyldunni");
+  btn.style.background = isShared ? "var(--mid)" : "var(--orange)";
+  if (hint) hint.textContent = isShared
+    ? (S.lang === "en" ? "The family sees this chapter on the page your invite link opens." : "Fjölskyldan sér þennan kafla á síðunni sem boðshlekkurinn þinn opnar.")
+    : (S.lang === "en" ? "The family will then see this chapter on the page your invite link opens (the 💌 button on the overview). You can always stop sharing." : "Fjölskyldan sér þá þennan kafla á síðunni sem boðshlekkurinn þinn opnar (💌 hnappurinn á kaflayfirlitinu). Þú getur alltaf hætt að deila.");
+  actions.style.display = "block";
+}
+
+export async function toggleShareChapter() {
+  if (!lastPreview) return;
+  const btn = document.getElementById("chapter-share-btn");
+  if (btn) btn.disabled = true;
+  const fam = await import('./family.js');
+  const isShared = fam.sharedChapterIds.has(lastPreview.chapterId);
+  const ok = isShared
+    ? await fam.unshareChapter(lastPreview.chapterId)
+    : await fam.shareChapter(lastPreview.chapterId, lastPreview.title, lastPreview.text);
+  if (btn) btn.disabled = false;
+  if (!ok) {
+    const hint = document.getElementById("chapter-share-hint");
+    if (hint) hint.textContent = S.lang === "en"
+      ? "Could not save. Does the shared_chapters table exist? Try again."
+      : "Ekki tókst að vista. Er shared_chapters taflan til? Reyndu aftur.";
+    return;
+  }
+  await updateShareButton();
+}
+window.toggleShareChapter = toggleShareChapter;

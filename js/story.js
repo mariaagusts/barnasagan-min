@@ -127,6 +127,7 @@ export function showStoryScreen() {
     const cw = document.getElementById("closing-words");
     if (cw && !cw.value) cw.value = localStorage.getItem("barnasagan_closing_" + cid) || "";
   } catch (e) { /* no-op */ }
+  import('./voiceshare.js').then(m => m.renderVoiceShareStatus()).catch(() => {});
   const overlay = document.createElement("div");
   overlay.className = "style-modal-overlay";
   const isIS = S.lang === "is";

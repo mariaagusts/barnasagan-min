@@ -11,6 +11,10 @@ export const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdX
 export const MODEL_FLASH = "gemini-3.5-flash";
 export const MODEL_PRO = "gemini-3.1-pro-preview";
 
+// TTS: les spurningar upp (Guðrún hjá Azure) þegar tts-proxy fallið er
+// komið upp með AZURE_SPEECH_KEY/AZURE_SPEECH_REGION secrets.
+export const TTS_ENABLED = true;
+
 // Admin/CS passwords are verified server-side (admin-auth edge function).
 // Set them with: supabase secrets set ADMIN_PASSWORD=... CS_PASSWORD=...
 

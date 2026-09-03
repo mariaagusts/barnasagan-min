@@ -126,6 +126,7 @@ export async function onSignedIn() {
     showFamilySetup();
   } else {
     await Promise.all([loadStateFromSupabase(), loadGullmolar(), loadHeights(), loadBarnsrodd()]);
+    import('./family.js').then(m => { m.loadFamilyQuestions(); m.loadSharedChapters(); }).catch(e => console.warn('family villa:', e));
     updateGullmolaFab();
     const { renderChildSwitcher } = await import('./children.js');
     renderChildSwitcher();

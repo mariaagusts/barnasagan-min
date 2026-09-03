@@ -1,6 +1,7 @@
 // ══════════════════════════════════════════════
 //  INTERVIEW
 // ══════════════════════════════════════════════
+import { ttsAvailable, stopSpeaking } from './tts.js';
 import { S } from './state.js';
 import { t } from './i18n.js';
 import { getChapters, CHAPTERS, CHAPTERS_EN } from './chapters.js';
@@ -148,6 +149,7 @@ function pushFallbackQuestion(cs) {
 // ── Core UI functions ─────────────────────────
 
 export function enterChapter(id) {
+  stopSpeaking();
   bonusMode = false;
   S.chapterId = id;
   warmUpProxy(); // Wake up Edge Function before user answers
@@ -206,6 +208,9 @@ export function renderInterviewQuestion() {
 
     if (document.getElementById("question-text")) {
       document.getElementById("question-text").textContent = q;
+      if (ttsAvailable()) {
+        document.getElementById("question-text").innerHTML += ` <button onclick="speakQuestion()" title="${S.lang === "en" ? "Read the question aloud" : "Lesa spurninguna upp"}" style="background:none;border:1px solid var(--border);border-radius:50%;width:26px;height:26px;font-size:13px;cursor:pointer;padding:0;vertical-align:middle;margin-left:8px;">🔊</button>`;
+      }
       document.getElementById("question-text").innerHTML += ` <button onclick="showCustomQuestionInput()" title="${S.lang === "en" ? "Add your own question" : "Bæta við eigin spurningu"}" style="background:none;border:1px solid var(--border);border-radius:50%;width:22px;height:22px;font-size:12px;cursor:pointer;color:var(--brown);padding:0;vertical-align:middle;margin-left:8px;">+</button>`;
       // Regenerate button — only for AI/bonus questions, not core ones
       const isCore = cs.coreTexts?.includes(q);
@@ -337,6 +342,7 @@ export async function submitAnswer() {
   const ta = document.getElementById("answer-input");
   const ans = ta.value.trim();
   if (!ans) return;
+  stopSpeaking();
   if (S.isListening) stopListening();
 
   const cs = getChapterState(S.chapterId);
@@ -569,7 +575,7 @@ export function showChapterComplete() {
   document.getElementById("chapter-complete-wrap").innerHTML = `
     <div class="complete-card">
       <div style="font-size:40px;margin-bottom:16px;">${ch.emoji}</div>
-      <h2>${t("chapterOf")} ${chIdx + 1} ${t("chapterDone")}</h2>
+      <h2>${t("chapterOfDone")} ${chIdx + 1} ${t("chapterDone")}</h2>
       <p>${t("chapterDoneMsg")}</p>
       <div class="complete-card-actions">
         ${nextCh ? `<button class="btn-gold" onclick="enterChapter(${nextCh.id})">${t("nextChapter")} ${nextCh.emoji} ${nextCh.title} →</button>` : ''}

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="is">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rödd úr bókinni · Barnasagan mín</title>
+  <meta name="description" content="Hlustaðu á litla rödd úr barnasögu á Barnasagan mín.">
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="logo.png">
+  <style>
+    :root {
+      --cream: #FFF8F0; --warm: #FFF1E0; --orange: #E06C00; --orange-dk: #c45e00;
+      --text: #3E2723; --mid: #7A5F4D; --light: #B3A08F; --border: #F2DCB8;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--cream); color: var(--text);
+      font-family: 'Nunito', sans-serif; min-height: 100vh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 40px 20px; text-align: center;
+    }
+    .logo { font-family: 'Fredoka One', cursive; font-size: 20px; color: var(--orange); margin-bottom: 44px; text-decoration: none; }
+    h1 { font-family: 'Fredoka One', cursive; font-weight: 400; font-size: 28px; color: var(--text); margin-bottom: 10px; }
+    .sub { font-size: 15px; color: var(--mid); line-height: 1.7; max-width: 40ch; margin: 0 auto 44px; }
+    .play-btn {
+      width: 132px; height: 132px; border-radius: 50%;
+      background: var(--orange); border: none; cursor: pointer;
+      color: #fff; font-size: 44px; line-height: 1;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 22px;
+      box-shadow: 0 18px 44px rgba(224,108,0,0.32), 0 0 0 14px rgba(224,108,0,0.10), 0 0 0 28px rgba(224,108,0,0.05);
+      transition: background 0.2s, transform 0.2s;
+    }
+    .play-btn:hover { background: var(--orange-dk); transform: scale(1.03); }
+    .status { font-size: 15px; color: var(--mid); min-height: 24px; margin-bottom: 40px; }
+    .hint { font-size: 13px; color: var(--light); line-height: 1.7; }
+    .hint a { color: var(--orange); }
+  </style>
+</head>
+<body>
+  <a class="logo" href="/">Barnasagan mín</a>
+  <h1>Rödd úr bókinni</h1>
+  <div id="rec-label" style="display:none;font-family:'Fredoka One',cursive;font-size:19px;color:var(--orange);margin:2px 0 10px;"></div>
+  <p class="sub">Hér er geymt lítið hljóðbrot af röddinni sem þessi bók fjallar um, eins og hún hljómaði á meðan sagan varð til.</p>
+  <button class="play-btn" id="play-btn" onclick="togglePlay()" aria-label="Spila upptöku">▶</button>
+  <div class="status" id="status">Ýttu til að hlusta</div>
+  <p class="hint">Barnasagan mín hjálpar foreldrum að skrifa sögu barnsins síns, með lítilli rödd ef þau vilja.<br><a href="https://www.barnasagan.is">barnasagan.is</a></p>
+
+  <script type="module">
+    import { SUPABASE_URL } from './js/config.js';
+    const params = new URLSearchParams(location.search);
+    const f = params.get('f') || '';
+    const recLabel = params.get('l') || '';
+    if (recLabel) {
+      const el = document.getElementById('rec-label');
+      el.textContent = '\u201E' + recLabel + '\u201C';
+      el.style.display = 'block';
+    }
+    const btn = document.getElementById('play-btn');
+    const status = document.getElementById('status');
+    let audio = null;
+
+    if (!f) {
+      btn.style.display = 'none';
+      status.textContent = 'Þessi hlekkur er ófullgerður. Skannaðu QR-kóðann í bókinni aftur.';
+    }
+
+    window.togglePlay = function() {
+      if (!f) return;
+      if (audio && !audio.paused) {
+        audio.pause();
+        btn.textContent = '▶';
+        status.textContent = 'Í bið';
+        return;
+      }
+      if (!audio) {
+        const url = SUPABASE_URL + '/storage/v1/object/public/voice-shares/' + f.split('/').map(encodeURIComponent).join('/');
+        audio = new Audio(url);
+        audio.onplaying = () => { btn.textContent = '⏸'; status.textContent = 'Spilar...'; };
+        audio.onended = () => { btn.textContent = '▶'; status.textContent = 'Ýttu til að hlusta aftur'; };
+        audio.onerror = () => { btn.textContent = '▶'; status.textContent = 'Upptakan fannst ekki. Hún gæti hafa verið fjarlægð.'; };
+      }
+      audio.play();
+      btn.textContent = '⏸';
+    };
+  </script>
+</body>
+</html>

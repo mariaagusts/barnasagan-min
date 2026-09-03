@@ -517,6 +517,103 @@ export async function downloadPDF(whiteBg = false) {
     wrapText(closingWords, margin, yClose, contentW, 7.5, H - margin);
   }
 
+  // ── Rödd bókarinnar: QR-kóðar aftast ────────────────
+  const voiceShares = (Array.isArray(S.chapters?.voiceShares) && S.chapters.voiceShares.length
+    ? S.chapters.voiceShares
+    : (S.chapters?.voiceShare?.url ? [S.chapters.voiceShare] : [])).slice(0, 10);
+  if (voiceShares.length > 0 && typeof QRCode !== "undefined") {
+    try {
+      const qrItems = [];
+      for (const sh of voiceShares) {
+        if (!sh?.url) continue;
+        const qr = await makeQrDataUrl(sh.url);
+        if (qr) qrItems.push({ ...sh, qr });
+      }
+      if (qrItems.length > 0) {
+        addPage();
+        tocEntries.push({ title: S.lang === "en" ? "Hear my voice" : "Heyrðu röddina mína", page: doc.internal.getNumberOfPages() });
+        let yQ = margin + 24;
+        const drawHeading = () => {
+          doc.setFont(fontName, "normal");
+          doc.setFontSize(22);
+          doc.setTextColor(160, 92, 30);
+          doc.text(S.lang === "en" ? "Hear my voice" : "Heyrðu röddina mína", W / 2, yQ, { align: "center" });
+          yQ += 8;
+          doc.setDrawColor(232, 177, 116);
+          doc.setLineWidth(0.4);
+          doc.line(margin, yQ, W / 2 - 25, yQ);
+          doc.line(W / 2 + 25, yQ, W - margin, yQ);
+          yQ += 14;
+        };
+        drawHeading();
+        doc.setFont(fontName, "normal");
+        doc.setFontSize(12);
+        doc.setTextColor(62, 39, 35);
+        const introTxt = qrItems.length === 1
+          ? (S.lang === "en"
+            ? "Point your phone camera at the code below and you will hear my own little voice, just as it sounded while this story was being written."
+            : "Beindu myndavél símans að kóðanum hér fyrir neðan og þú heyrir litlu röddina mína, eins og hún hljómaði á meðan þessi saga varð til.")
+          : (S.lang === "en"
+            ? "Point your phone camera at a code and you will hear my own little voice: small sound moments, kept just as they sounded while this story was being written."
+            : "Beindu myndavél símans að kóða og þú heyrir litlu röddina mína: lítil hljóðbrot, geymd eins og þau hljómuðu á meðan þessi saga varð til.");
+        for (const ln of doc.splitTextToSize(introTxt, contentW - 30)) {
+          doc.text(ln, W / 2, yQ, { align: "center" });
+          yQ += 7;
+        }
+        yQ += 8;
+
+        const cols = qrItems.length === 1 ? 1 : 2;
+        const qrSize = qrItems.length === 1 ? 62 : 48;
+        const colW = contentW / cols;
+        for (let r = 0; r < qrItems.length; r += cols) {
+          const row = qrItems.slice(r, r + cols);
+          // Hæð raðarinnar ræðst af lengsta textanum
+          doc.setFontSize(10.5);
+          const rowMeta = row.map(item => {
+            const label = item.label || (S.lang === "en" ? "Recording" : "Upptaka");
+            const lines = doc.splitTextToSize(label, colW - 14);
+            return { item, lines };
+          });
+          const maxLines = Math.max(...rowMeta.map(m => m.lines.length));
+          const cellH = qrSize + 8 + maxLines * 5 + 5 + 12;
+          if (yQ + cellH > H - margin) {
+            addPage();
+            yQ = margin + 24;
+            drawHeading();
+            yQ += 4;
+          }
+          rowMeta.forEach((m, ci) => {
+            const cx = margin + colW * ci + colW / 2;
+            doc.addImage(m.item.qr, "PNG", cx - qrSize / 2, yQ, qrSize, qrSize);
+            doc.setDrawColor(232, 177, 116); doc.setLineWidth(0.3);
+            doc.rect(cx - qrSize / 2 - 2.5, yQ - 2.5, qrSize + 5, qrSize + 5);
+            let yTxt = yQ + qrSize + 8;
+            doc.setFont(fontName, "normal");
+            doc.setFontSize(10.5);
+            doc.setTextColor(62, 39, 35);
+            for (const ln of m.lines) {
+              doc.text(ln, cx, yTxt, { align: "center" });
+              yTxt += 5;
+            }
+            if (m.item.recorded_at) {
+              doc.setFontSize(8.5);
+              doc.setTextColor(160, 92, 30);
+              const d = new Date(m.item.recorded_at + "T00:00:00");
+              const dTxt = isNaN(d) ? String(m.item.recorded_at)
+                : d.toLocaleDateString(S.lang === "en" ? "en-GB" : "is-IS", { day: "numeric", month: "long", year: "numeric" });
+              doc.text(dTxt, cx, yTxt, { align: "center" });
+              yTxt += 5;
+            }
+            doc.setFontSize(5);
+            doc.setTextColor(200, 180, 160);
+            doc.text(m.item.url, cx, yTxt + 1, { align: "center", maxWidth: colW - 8 });
+          });
+          yQ += cellH;
+        }
+      }
+    } catch (e) { console.warn("QR-síður sleppt:", e); }
+  }
+
   // ── Efnisyfirlitið skrifað á frátekna síðu ───────────
   if (tocEntries.length > 0) {
     doc.setPage(tocPageNo);
@@ -600,3 +697,24 @@ window.removePhoto = removePhoto;
 window.downloadPDF = downloadPDF;
 window.downloadText = downloadText;
 window.downloadAnswers = downloadAnswers;
+
+
+// Býr til QR-kóða sem dataURL (qrcodejs teiknar í falinn div)
+function makeQrDataUrl(text) {
+  return new Promise((resolve) => {
+    try {
+      const holder = document.createElement("div");
+      holder.style.position = "fixed";
+      holder.style.left = "-9999px";
+      document.body.appendChild(holder);
+      new QRCode(holder, { text, width: 512, height: 512, correctLevel: QRCode.CorrectLevel.M });
+      setTimeout(() => {
+        const canvas = holder.querySelector("canvas");
+        const img = holder.querySelector("img");
+        const data = canvas ? canvas.toDataURL("image/png") : (img?.src || null);
+        holder.remove();
+        resolve(data);
+      }, 120);
+    } catch (e) { console.warn("QR villa:", e); resolve(null); }
+  });
+}
