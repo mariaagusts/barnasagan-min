@@ -166,7 +166,7 @@ export function renderInterviewQuestion() {
   try {
     const cs = getChapterState(S.chapterId);
     const qIdx = cs.answers.length;
-    const isChapterDone = (cs.complete || qIdx >= 10) && !bonusMode;
+    const isChapterDone = (cs.complete || qIdx >= 20) && !bonusMode;
     if (isChapterDone) { showChapterComplete(); return; }
 
     const ch = getChapters().find(c => c.id === S.chapterId);
@@ -222,9 +222,15 @@ export function renderInterviewQuestion() {
     document.getElementById("btn-next").textContent = t("nextBtn");
     ta.oninput = () => { document.getElementById("btn-next").disabled = !ta.value.trim(); };
 
-    const pct = Math.min((qIdx / 10) * 100, 100);
+    // Framvinda = kjarnaspurningum svarad, ekki 10-spurninga kvoti.
+    // Kafla lykur thegar sagan er sogd, stundum eftir fa svor, stundum morg.
+    const coreTotalP = cs.coreTexts?.length || 1;
+    const coreDoneP = Math.min(cs.coreAnswered || 0, coreTotalP);
+    const pct = Math.min((coreDoneP / coreTotalP) * 100, 100);
     document.getElementById("progress-fill").style.width = pct + "%";
-    document.getElementById("progress-label").textContent = qIdx > 10 ? qIdx + "/10 (100%)" : qIdx + "/10";
+    document.getElementById("progress-label").textContent = S.lang === "en"
+      ? `${coreDoneP} of ${coreTotalP} core questions`
+      : `${coreDoneP} af ${coreTotalP} kjarnaspurningum`;
     hideMicError();
     renderInterviewPhotos();
 
@@ -334,7 +340,9 @@ export async function submitAnswer() {
   cs.answers.push(ans);
   saveState();
 
-  if (cs.answers.length >= 10 && !bonusMode) {
+  // Oryggisthak: spyrillinn lokar kaflanum sjalfur thegar sagan er sogd,
+  // en 20 svor eru efri mork svo enginn festist i endalausu vidtali.
+  if (cs.answers.length >= 20 && !bonusMode) {
     cs.complete = true;
     saveState();
     showChapterComplete();
@@ -514,7 +522,9 @@ export function skipQuestion() {
   cs.answers.push("—");
   saveState();
 
-  if (cs.answers.length >= 10 && !bonusMode) {
+  // Oryggisthak: spyrillinn lokar kaflanum sjalfur thegar sagan er sogd,
+  // en 20 svor eru efri mork svo enginn festist i endalausu vidtali.
+  if (cs.answers.length >= 20 && !bonusMode) {
     cs.complete = true;
     saveState();
     showChapterComplete();

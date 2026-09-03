@@ -29,46 +29,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <link rel="stylesheet" href="styles.css">
 <style>
-/* ⚠️ NOTE: This :root block OVERRIDES the design tokens in styles.css for
-   this page only. index.html renders with the ORANGE palette (#FF9800),
-   while pricing/privacy/terms use the ROSE GOLD palette (#C4876B) from
-   styles.css. If that split is unintentional, delete this :root block
-   (and the [data-theme="dark"] one below) so all pages share styles.css. */
-/* Inline overrides for index.html specific elements */
-:root {
-  --cream:    #FFFBF2;
-  --warm:     #FFF3E0;
-  --peach:    #FFE8CC;
-  --mint:     #E8F5E9;
-  --sky:      #E3F2FD;
-  --lavender: #EDE7F6;
-  --gold:     #FF9800;
-  --orange:   #F57C00;
-  --text:     #3E2723;
-  --mid:      #795548;
-  --light:    #BCAAA4;
-  --border:   #FFCC80;
-  --radius:   16px;
-  --shadow:   0 4px 20px rgba(0,0,0,0.08);
-  --dark:     #3E2723;
-  --brown:    #F57C00;
-  --card:     #FFFFFF;
-  --gold-lt:  #FFE0B2;
-}
-
-[data-theme="dark"] {
-  --cream:    #1a1209;
-  --warm:     #241a10;
-  --gold:     #FF9800;
-  --gold-lt:  #3a2a15;
-  --orange:   #F57C00;
-  --text:     #f5ece0;
-  --mid:      #c4a882;
-  --card:     #201610;
-  --border:   #5d3a1a;
-  --dark:     #f5ece0;
-  --brown:    #FF9800;
-}
+/* Sameiginlegu tokens eru í styles.css */
+/* Tokens koma nú EINGÖNGU úr styles.css, sama palletta á öllum síðum
+   (fágaða appelsínugula, val Maju 03.09). Yfirskrifunarblokkin er farin. */
 
 /* ── Demo section ── */
 .demo-section { padding:100px 48px; background:var(--cream); border-top:1px solid var(--border); text-align:center; }

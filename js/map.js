@@ -37,32 +37,56 @@ export function renderMap() {
   const latestHeight = S.heights?.[0];
   const heightTileCount = S.heights?.length || 0;
 
+  const pastels = ["var(--peach)", "var(--mint)", "var(--sky)", "var(--lavender)"];
   grid.innerHTML = chapters.map((ch, i) => {
     const cs = getChapterState(ch.id);
     const answered = cs.answers.length;
-    const p = Math.min((answered / 20) * 100, 100);
+    const coreTotal = cs.coreTexts?.length || 1;
+    const coreDone = Math.min(cs.coreAnswered || 0, coreTotal);
+    const frac = cs.complete ? 1 : Math.min(coreDone / coreTotal, 1);
+    const ringDash = (frac * 150.8).toFixed(1);
     const isComplete = cs.complete;
     const locked = !S.isPaid && ch.id > 1;
+    const pastel = pastels[i % pastels.length];
+    const keyNav = `role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}"`;
     if (locked) {
       return `
-      <div class="chapter-card chapter-locked" onclick="window.location.href='pricing.html'">
-        <span class="chapter-emoji">${ch.emoji}</span>
-        <div class="chapter-num">${t("chapterOf")} ${i + 1}</div>
-        <div class="chapter-name">${ch.title}</div>
-        <div class="chapter-lock-msg">🔒 ${S.lang === 'en' ? 'Get full access' : 'Kaupa fullan aðgang'} →</div>
+      <div class="chapter-card chapter-locked" ${keyNav} onclick="window.location.href='pricing.html'">
+        <div class="chapter-card-row">
+          <div class="chapter-lock-ring">🔒</div>
+          <div class="chapter-card-main">
+            <div class="chapter-num">${t("chapterOf")} ${i + 1}</div>
+            <div class="chapter-name">${ch.title}</div>
+          </div>
+        </div>
+        <div class="chapter-lock-msg">${S.lang === 'en' ? 'Get full access' : 'Kaupa fullan aðgang'} →</div>
       </div>`;
     }
+    const metaTxt = isComplete
+      ? `${t("completed")} · ${answered} ${S.lang === 'en' ? 'answers' : 'svör'}`
+      : `${answered} ${S.lang === 'en' ? 'answers' : 'svör'}`;
+    const ring = `
+      <div class="chapter-ring-wrap" aria-hidden="true">
+        <svg width="56" height="56" viewBox="0 0 56 56">
+          <circle cx="28" cy="28" r="20" fill="${pastel}"></circle>
+          <circle cx="28" cy="28" r="24" fill="none" stroke="var(--gold-lt)" stroke-width="4"></circle>
+          ${isComplete
+            ? `<circle cx="28" cy="28" r="24" fill="none" stroke="var(--gold)" stroke-width="4"></circle>`
+            : `<circle cx="28" cy="28" r="24" fill="none" stroke="var(--gold)" stroke-width="4" stroke-dasharray="${ringDash} 150.8" stroke-linecap="round" transform="rotate(-90 28 28)"></circle>`}
+        </svg>
+        <div class="chapter-ring-emoji">${isComplete ? "✓" : ch.emoji}</div>
+      </div>`;
     return `
-      <div class="chapter-card ${isComplete ? 'complete' : ''}" onclick="enterChapter(${ch.id})">
-        ${isComplete ? `<span class="chapter-badge">${t("completed")}</span>` : ''}
-        <span class="chapter-emoji">${ch.emoji}</span>
-        <div class="chapter-num">${t("chapterOf")} ${i + 1}</div>
-        <div class="chapter-name">${ch.title}</div>
-        <div class="chapter-desc">${ch.desc}</div>
-        <div class="chapter-progress-wrap">
-          <div class="chapter-progress-bar"><div class="chapter-progress-fill" style="width:${p}%"></div></div>
-          <span class="chapter-progress-label">${answered > 20 ? answered + "/20 (100%)" : answered + "/20"} ${t("answersOf")}</span>
+      <div class="chapter-card ${isComplete ? 'complete' : ''}" ${keyNav} onclick="enterChapter(${ch.id})">
+        <div class="chapter-card-row">
+          ${ring}
+          <div class="chapter-card-main">
+            <div class="chapter-num">${t("chapterOf")} ${i + 1}</div>
+            <div class="chapter-name">${ch.title}</div>
+            <div class="chapter-meta">${metaTxt}</div>
+          </div>
         </div>
+        ${answered === 0 ? `<div class="chapter-desc">${ch.desc}</div>` : ''}
         ${answered > 0 ? `<button class="chapter-preview-btn" onclick="event.stopPropagation();previewChapter(${ch.id})">👁 Forskoða kafla</button>` : ''}
         </div>`;
   }).join("") + `
