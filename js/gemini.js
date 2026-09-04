@@ -296,3 +296,70 @@ Reglur um spurninguna (þegar hún er ekki null):
   console.log("Spyrill ákvörðun:", decision, "| hrátt:", String(raw).slice(0, 200));
   return decision;
 }
+
+
+// ══════════════════════════════════════════════
+//  DAGBÓKIN: foreldri skrifar frjálst, spyrillinn
+//  finnur réttan kafla og býr til spurninguna sem
+//  textinn svarar. Skilar 1 til 3 færslum.
+// ══════════════════════════════════════════════
+export async function fileFreeEntry(text) {
+  const chapters = getChapters();
+  const list = chapters.map((c, i) => `${c.id}: ${c.title} (${c.desc})`).join("\n");
+  const isEn = S.lang === "en";
+
+  const sys = isEn
+    ? `You sort a parent's free-form note into the right chapter of their child's story book.
+
+Chapters available (id: title):
+${list}
+
+Return ONLY a JSON array, 1 to 3 items, nothing else:
+[{"type":"chapter","chapter_id":<id>,"question":"the question this text answers","answer":"the text, lightly tidied"}]
+
+Rules:
+- Usually ONE item. Split into several only when the note clearly covers separate subjects that belong in different chapters.
+- "question" is a short, warm question in the interviewer's voice, max 18 words, no preamble. It must be a question the given answer genuinely answers.
+- "answer" keeps the parent's own words and every detail: names, dates, places, numbers. Fix only obvious typos and broken sentences. Never invent, never shorten meaningfully, never add a summary sentence.
+- If the note contains something the child said, word for word, that is funny or memorable, add an item {"type":"quote","quote":"exactly what the child said","context":"short context, max 12 words"} instead of forcing it into a chapter.
+- Choose the chapter by what the note is ABOUT, not by the child's age.`
+    : `Þú raðar frjálsri færslu frá foreldri í réttan kafla í bókinni um barnið.
+
+Kaflar í boði (id: titill):
+${list}
+
+Skilaðu EINGÖNGU JSON-fylki, 1 til 3 hlutum, engu öðru:
+[{"type":"chapter","chapter_id":<id>,"question":"spurningin sem textinn svarar","answer":"textinn, lítillega snyrtur"}]
+
+Reglur:
+- Yfirleitt EINN hlutur. Skiptu aðeins upp þegar færslan fjallar augljóslega um aðskilin efni sem eiga heima í ólíkum köflum.
+- "question" er stutt og hlý spurning í rödd spyrilsins, hámark 18 orð, enginn inngangur. Hún verður að vera spurning sem svarið svarar í raun og veru.
+- "answer" heldur orðum foreldrisins og ÖLLUM smáatriðum: nöfnum, dagsetningum, stöðum, tölum. Lagaðu aðeins augljósar innsláttarvillur og brotnar setningar. Aldrei skálda, aldrei stytta að ráði, aldrei bæta við samantektarsetningu.
+- Ef færslan geymir eitthvað sem barnið sagði, orðrétt, sem er fyndið eða eftirminnilegt, skaltu bæta við hlut {"type":"quote","quote":"nákvæmlega það sem barnið sagði","context":"stutt samhengi, hámark 12 orð"} í stað þess að þvinga það inn í kafla.
+- MÁLFAR: vandað íslenskt mál, engin þágufallssýki („mig langar", aldrei „mér langar"), sem fæst þankastrik, og öll nafnorð rétt beygð.
+- Veldu kafla eftir því um HVAÐ færslan fjallar, ekki eftir aldri barnsins.`;
+
+  const raw = await callGemini(sys, String(text).slice(0, 4000), false, 1024, 0.2);
+  return parseEntries(raw, chapters);
+}
+
+function parseEntries(raw, chapters) {
+  let txt = String(raw || "").trim()
+    .replace(/^```(?:json)?/i, "").replace(/```$/, "").trim();
+  const a = txt.indexOf("["), b = txt.lastIndexOf("]");
+  if (a !== -1 && b > a) txt = txt.slice(a, b + 1);
+  let arr;
+  try { arr = JSON.parse(txt); } catch { return []; }
+  if (!Array.isArray(arr)) arr = [arr];
+  const ids = new Set(chapters.map(c => c.id));
+  return arr.slice(0, 3).map(it => {
+    if (it?.type === "quote" && it.quote) {
+      return { type: "quote", quote: String(it.quote).trim(), context: String(it.context || "").trim() };
+    }
+    const cid = Number(it?.chapter_id);
+    const q = cleanQuestion(String(it?.question || ""));
+    const ans = String(it?.answer || "").trim();
+    if (!ids.has(cid) || !q || !ans) return null;
+    return { type: "chapter", chapterId: cid, question: q, answer: ans };
+  }).filter(Boolean);
+}

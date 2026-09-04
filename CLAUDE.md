@@ -28,3 +28,6 @@ Eftir HVERT deploy á edge function í Supabase dashboard: fara í Settings fall
 ## Hlutleysisregla spyrilsins og spurninga
 - Aldrei gefa sér að allt hafi gengið vel hjá barni eða fjölskyldu; hlutleysi þar til svörin sýna annað, hlýja án fegrunar við erfið svör.
 - Aldrei gefa sér fjölskyldugerð: tvær mömmur, tveir pabbar eða eitt foreldri er allt jafn sjálfsagt (family_type sér um foreldraheiti í sögunni). Kjarnaspurningar mega ekki segja „ykkur“ um foreldra eða gefa sér að barn gangi, tali eða hafi fæðst hjá foreldrinu.
+
+## Dagbókin (frjáls færsla)
+- js/dagbok.js + fileFreeEntry í js/gemini.js: notandinn skrifar frjálst, módelið velur kafla og býr til spurninguna, notandinn staðfestir. Vistun setur spurninguna við cs.answers.length í cs.questions og svarið í cs.answers (sama og fjölskyldusamþykktin) svo röðun spurninga og svara helst rétt.

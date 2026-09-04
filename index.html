@@ -638,6 +638,16 @@
         <div class="map-num-lbl" id="map-answers-lbl">Minningar komnar á blað</div>
       </div>
     </div>
+    <div class="dagbok-box">
+      <div id="dagbok-form">
+        <h3 class="dagbok-title">Hvaða sögu langar þig að segja frá í dag?</h3>
+        <p class="dagbok-sub">Skrifaðu bara eins og þér dettur í hug. Við finnum réttan kafla fyrir söguna og búum til spurninguna sem hún svarar, svo þú þarft ekki að leita að réttum stað sjálf.</p>
+        <textarea id="dagbok-input" rows="4" placeholder="Í dag byrjaði Embla á leikskóla. Hún hljóp beint inn án þess að líta við..."></textarea>
+        <button class="dagbok-btn" id="dagbok-btn" onclick="analyseDagbok()">Finna stað fyrir söguna →</button>
+      </div>
+      <div id="dagbok-preview" style="display:none;"></div>
+      <div id="dagbok-status" class="dagbok-status"></div>
+    </div>
     <div id="family-questions-section" style="display:none;">
       <h3 id="family-questions-heading" style="font-family:'Fredoka One',cursive;font-weight:400;font-size:19px;color:var(--text);margin:8px 0 14px;">Spurningar frá fjölskyldunni</h3>
       <div id="family-questions-list"></div>

@@ -20,6 +20,7 @@ import './heights.js';
 import './barnsrodd.js';
 import './voiceshare.js';
 import './fjolskyldan.js';
+import './dagbok.js';
 import './admin.js';
 import { showScreen } from './modals.js';
 import './modals.js';

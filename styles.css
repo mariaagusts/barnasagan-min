@@ -1054,3 +1054,37 @@ footer a { color: var(--gold); text-decoration: none; }
 .family-q-approve:hover { background: #c45e00; }
 .family-q-reject { background: none; border: 1px solid var(--border); border-radius: 999px; padding: 9px 18px; font-size: 13px; color: var(--mid); font-family: 'Nunito', sans-serif; cursor: pointer; }
 [data-theme="dark"] .family-q-item { background: var(--card, #2a2018); }
+
+/* ── Dagbókin: frjáls færsla sem ratar sjálf í réttan kafla ── */
+.dagbok-box { background: #fff; border: 1px solid var(--border); border-radius: 20px; padding: 22px 24px;
+              margin-bottom: 26px; box-shadow: var(--shadow); }
+.dagbok-title { font-family: 'Fredoka One', cursive; font-weight: 400; font-size: 18px; color: var(--text); margin-bottom: 6px; }
+.dagbok-sub { font-size: 13px; color: var(--mid); line-height: 1.7; margin-bottom: 14px; }
+#dagbok-input { width: 100%; border: 1px solid var(--border); border-radius: 14px; padding: 13px 14px;
+                font-size: 16px; font-family: 'Nunito', sans-serif; color: var(--text); background: var(--cream);
+                resize: vertical; outline: none; line-height: 1.7; }
+#dagbok-input:focus { border-color: var(--gold); }
+.dagbok-btn { margin-top: 12px; background: var(--orange); color: #fff; border: none; border-radius: 999px;
+              padding: 12px 24px; font-size: 14px; font-weight: 700; font-family: 'Nunito', sans-serif; cursor: pointer; }
+.dagbok-btn:hover { background: #c45e00; }
+.dagbok-btn:disabled { opacity: 0.6; cursor: default; }
+.dagbok-status { font-size: 13px; color: var(--mid); margin-top: 10px; line-height: 1.6; }
+.dagbok-card { background: var(--warm); border-radius: 14px; padding: 16px 18px; margin-bottom: 12px; }
+.dagbok-where { font-size: 11px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: var(--orange); margin-bottom: 6px; }
+.dagbok-select { width: 100%; border: 1px solid var(--border); border-radius: 10px; padding: 9px 11px;
+                 font-size: 14px; font-family: 'Nunito', sans-serif; color: var(--text); background: #fff; }
+.dagbok-qlbl { font-size: 11px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: var(--orange); margin: 12px 0 6px; }
+.dagbok-qinput { width: 100%; border: 1px solid var(--border); border-radius: 10px; padding: 9px 11px;
+                 font-size: 14px; font-family: 'Nunito', sans-serif; color: var(--text); background: #fff; }
+.dagbok-answer { font-size: 13.5px; color: var(--mid); line-height: 1.75; margin-top: 12px;
+                 max-height: 132px; overflow: hidden; }
+.dagbok-quote { font-size: 16px; color: var(--text); line-height: 1.6; }
+.dagbok-ctx { font-size: 12.5px; color: var(--mid); margin-top: 5px; }
+.dagbok-drop { margin-top: 12px; background: none; border: none; color: var(--mid); text-decoration: underline;
+               font-size: 12.5px; font-family: 'Nunito', sans-serif; cursor: pointer; padding: 0; }
+.dagbok-actions { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-top: 4px; }
+.dagbok-save { background: var(--orange); color: #fff; border: none; border-radius: 999px; padding: 12px 24px;
+               font-size: 14px; font-weight: 700; font-family: 'Nunito', sans-serif; cursor: pointer; }
+.dagbok-cancel { background: none; border: none; color: var(--mid); font-size: 13px;
+                 font-family: 'Nunito', sans-serif; cursor: pointer; text-decoration: underline; }
+[data-theme="dark"] .dagbok-box { background: var(--card, #2a2018); }
