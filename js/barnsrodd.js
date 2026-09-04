@@ -130,8 +130,8 @@ export function renderBarnsroddBank() {
           ? 'Delete a recording to make room for a new one.'
           : 'Eyddu upptöku til að rýma fyrir nýrri.')
       : (S.lang === 'en'
-          ? `${count} of ${MAX_RECORDINGS} recordings used · up to 2 minutes each`
-          : `${count} af ${MAX_RECORDINGS} upptökum nýttar · allt að 2 mínútur hver`);
+          ? `${count} of ${MAX_RECORDINGS} recordings used · up to 2 minutes each · ⬇ saves a copy to your own device`
+          : `${count} af ${MAX_RECORDINGS} upptökum nýttar · allt að 2 mínútur hver · ⬇ vistar afrit hjá þér`);
   }
 
   if (!S.barnsrodd || S.barnsrodd.length === 0) {
@@ -157,6 +157,7 @@ export function renderBarnsroddBank() {
             <span class="gullmoli-date">📅 ${_fmtDate(r.recorded_at)}${r.duration_sec ? ' · ' + _fmtDur(r.duration_sec) : ''}</span>
           </div>
         </div>
+        <button class="gullmoli-edit-btn" onclick="downloadBarnsrodd('${r.id}', this)" title="${S.lang === 'en' ? 'Download the recording' : 'Sækja upptökuna'}">⬇</button>
         <button class="gullmoli-delete-btn" onclick="confirmDeleteBarnsrodd('${r.id}')" title="${S.lang === 'en' ? 'Delete' : 'Eyða'}">🗑</button>
       </div>
     </div>`).join('');
@@ -306,10 +307,50 @@ export async function saveBarnsroddRec() {
   }
 }
 
+
+// ── Sækja upptöku til sín: röddin varðveitist óháð vefnum ──
+function safeFileName(txt) {
+  const base = String(txt || "rodd-barnsins")
+    .replace(/[^\p{L}\p{N} _-]/gu, "")
+    .trim()
+    .replace(/\s+/g, "-")
+    .slice(0, 60);
+  return base || "rodd-barnsins";
+}
+
+export async function downloadBarnsrodd(id, btn) {
+  const rec = S.barnsrodd.find(r => r.id === id);
+  if (!rec) return;
+  const original = btn ? btn.textContent : "";
+  if (btn) { btn.disabled = true; btn.textContent = "…"; }
+  try {
+    const url = await getVoiceUrl(rec.path);
+    if (!url) throw new Error("upptaka fannst ekki");
+    const blob = await (await fetch(url)).blob();
+    const ext = (rec.path.split(".").pop() || "webm").split("?")[0];
+    const child = S.children.find(c => c.id === S.activeChildId);
+    const name = [child?.child_name, rec.label, rec.recorded_at].filter(Boolean).join(" ");
+    const href = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = href;
+    a.download = `${safeFileName(name)}.${ext}`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(href), 10000);
+  } catch (e) {
+    console.error("niðurhal raddar villa:", e);
+    alert(S.lang === "en" ? "Could not download the recording. Please try again." : "Ekki tókst að sækja upptökuna. Reyndu aftur.");
+  } finally {
+    if (btn) { btn.disabled = false; btn.textContent = original; }
+  }
+}
+
 window.openBarnsroddBank = openBarnsroddBank;
 window.closeBarnsroddBank = closeBarnsroddBank;
 window.renderBarnsroddBank = renderBarnsroddBank;
 window.playBarnsrodd = playBarnsrodd;
+window.downloadBarnsrodd = downloadBarnsrodd;
 window.confirmDeleteBarnsrodd = confirmDeleteBarnsrodd;
 window.openBarnsroddRecorder = openBarnsroddRecorder;
 window.closeBarnsroddRecorder = closeBarnsroddRecorder;

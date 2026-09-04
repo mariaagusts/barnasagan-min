@@ -157,6 +157,7 @@ export async function generateNextQuestion(cs, avoid = []) {
      - Ef svarið lýsir einhverju þungu eða sáru, sýndu stuttu hluttekningu (hámark 5 orð) áður en spurningin kemur.
      - Gerðu EKKI ráð fyrir systkinum, barnabörnum eða ákveðinni fjölskyldustöðu nema þess hafi verið getið í svörunum. Tvær mömmur, tveir pabbar eða eitt foreldri er allt jafn sjálfsagt. Notaðu hlutlægt orðalag (t.d. „nánasta umhverfi barnsins", „þeir sem þú ert hlynnt/ur").
      - Gefðu þér EKKI að allt hafi gengið vel; vertu hlutlaus þar til svörin sýna annað.
+     - BEYGINGAR: Beygðu ÖLL nafnorð rétt, ekki bara sérnöfn. Gættu sérstaklega að greini í þolfalli karlkyns eintölu, þar sem tvöfalt n fellur oft ranglega niður: „bangsann", „bílinn", „vagninn", ALDREI „bangsan", „bílin", „vagnin". Ef þú ert ekki viss um beygingu orðs skaltu umorða spurninguna svo orðið standi í nefnifalli, eða nota nákvæmlega þá mynd sem foreldrið skrifaði sjálft.
      - HÁMARK 25 ORÐ samanlagt (hluttekning + spurning). Engin staðfesting, enginn inngangur.
      - HARÐ regla: ALDREI byrja á „Geturðu lýst...", „Viltu segja mér..." eða „Hvernig leið þér...". Spyrðu beint og markvisst.
      - CONSTRAINT — NO REPETITION: Greindu svarið vel. Ef notandinn hefur þegar svarað báðum hlutum í tvíþættri kjarnaspurningu, skaltu ekki spyrja um það aftur. Finndu þess í stað nýjan vinkil eða slepptu fylgispurningunni ef allt er komið fram.`;
@@ -270,6 +271,7 @@ Reglur um spurninguna (þegar hún er ekki null):
 - Gefðu þér EKKI að allt hafi gengið vel. Sum börn og fjölskyldur takast á við raunverulega erfiðleika; vertu hlutlaus þar til svörin sýna annað, og taktu erfiðum svörum af hlýju án þess að fegra þau.
 - Spurningin er BER spurning: ekkert ávarp, EKKERT HRÓS, engin endursögn á svarinu. Allt umfram spurninguna sjálfa verður fjarlægt.
 - SÉRNÖFN: Beygðu sérnöfn (nafn barnsins, staði) alltaf rétt. Ef þú ert ekki fullviss um beygingu skaltu nota NÁKVÆMLEGA sömu mynd og foreldrið skrifaði sjálft.
+- BEYGINGAR: Beygðu ÖLL nafnorð rétt, ekki bara sérnöfn. Gættu sérstaklega að greini í þolfalli karlkyns eintölu, þar sem tvöfalt n fellur oft ranglega niður: „bangsann", „bílinn", „vagninn", ALDREI „bangsan", „bílin", „vagnin". Ef þú ert ekki viss um beygingu orðs skaltu umorða spurninguna svo orðið standi í nefnifalli, eða nota nákvæmlega þá mynd sem foreldrið skrifaði sjálft.
 - HÁMARK 25 orð. Enginn inngangur. Aldrei byrja á „Geturðu lýst", „Gætirðu lýst", „Viltu segja mér" eða „Hvernig leið þér". Engin löng bandstrik (—), vandað og eðlilegt íslenskt mál.`;
 
   const depthNote = wantNewAngle

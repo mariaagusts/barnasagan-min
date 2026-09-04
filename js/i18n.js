@@ -108,8 +108,8 @@ export const UI = {
       <div style="height:60px;"></div>
     `,
     aboutSub: "Tækifæri til að íhuga, minnast og skrá það sem máli skiptir.",
-    aboutFeat1t: "Við spyrjum þig", aboutFeat1d: "Persónulegar spurningar um lífið sem barnið er að lifa, kafla fyrir kafla.",
-    aboutFeat2t: "Þegar þér hentar", aboutFeat2d: "Á morgnana, á meðan barnið sefur, eða seint um kvöld.",
+    aboutFeat1t: "Við spyrjum þig", aboutFeat1d: "Hlýjar og persónulegar spurningar um bernsku barnsins og hversdaginn ykkar, kafla fyrir kafla.",
+    aboutFeat2t: "Talaðu eða skrifaðu, þegar þér hentar", aboutFeat2d: "Á morgnana, á meðan barnið sefur eða seint um kvöld. Þú mátt tala í stað þess að skrifa, við skrifum orðin þín niður.",
     aboutFeat3t: "Sagan um barnið", aboutFeat3d: "Úr svörunum þínum verður falleg barnasaga sem þú getur gefið barninu.",
     aboutFeat4t: "Engin pressa", aboutFeat4d: "Framvindan þín vistast sjálfkrafa.",
     faqItems: [
@@ -153,7 +153,7 @@ export const UI = {
       { q: "Get ég breytt textanum eftir að hann er búinn til?", a: "Já, þegar þú velur 'Forskoða bókina þína' býr vefsíðan til drög. Þú getur síðan farið í 'Breyta texta' og lagfært allt sem þér finnst mega fara betur, bætt við upplýsingum eða breytt orðalagi áður en þú hleður niður lokagerðinni." },
       { q: "Getur textinn innihaldið villur?", a: "Já, vefsíðan setur saman frásögnina sjálfkrafa og geta þess vegna birst málfræði- eða stafsetningarvillur í textanum. Við mælum eindregið með að fara yfir textann með 'Breyta texta' takkanum áður en þú hleður niður bókinni." },
       { q: "Get ég bætt við myndum í bókina?", a: "Já! Í hverju kaflaviðtali er hægt að hlaða upp myndum sem tengjast þeim kafla, þær birtast þá í bókinni í lok viðkomandi kafla. Þú getur einnig bætt við almennum myndum í sögugluggunum, sem birtast aftast í bókinni." },
-      { q: "Getur bókin geymt rödd barnsins?", a: "Já, og það er einn dýrmætasti hluti bókarinnar. Á kaflayfirlitinu er reiturinn „Rödd barnsins“ þar sem þú tekur upp lítil hljóðbrot af barninu sjálfu: fyrstu orðin, söngl eða hlátur (allt að 10 upptökur, 2 mínútur hver). Í bókarsýninni velur þú svo undir „Rödd bókarinnar“ hvaða upptökur fara í bókina: hver þeirra fær sinn QR-kóða aftast í PDF-bókinni, með lýsingunni sinni. Sá sem skannar kóða með símanum heyrir litlu röddina." },
+      { q: "Getur bókin geymt rödd barnsins?", a: "Já, og það er einn dýrmætasti hluti bókarinnar. Á kaflayfirlitinu er reiturinn „Rödd barnsins“ þar sem þú tekur upp lítil hljóðbrot af barninu sjálfu: fyrstu orðin, söngl eða hlátur (allt að 10 upptökur, 2 mínútur hver). Í bókarsýninni velur þú svo undir „Rödd bókarinnar“ hvaða upptökur fara í bókina: hver þeirra fær sinn QR-kóða aftast í PDF-bókinni, með lýsingunni sinni. Sá sem skannar kóða með símanum heyrir litlu röddina.\n\nQR-kóðarnir spila upptökurnar á meðan Barnasagan mín er í rekstri. Þess vegna er „↓ hnappur“ á hverri upptöku í „Rödd barnsins“: sæktu hljóðskrárnar og geymdu þær með þínum eigin myndum, þá er röddin þín eign og varðveitist óháð okkur." },
       { q: "Getur fjölskyldan tekið þátt?", a: "Já! Á kaflayfirlitinu er 💌 hnappur sem býr til boðshlekk fyrir barnið sem er valið. Sendu hann á ömmur, afa og aðra nákomna: þau geta sent inn spurningar um barnið (þú færð tölvupóst og ræður hvaða spurningum þú svarar), fylgst með framvindunni og lesið kaflana sem þú velur að deila með þeim." },
 
       { heading: "Tækni og ráð" },
@@ -270,7 +270,7 @@ export const UI = {
     `,
     aboutSub: "More than a questionnaire, a chance to reflect, remember and share.",
     aboutFeat1t: "We ask you", aboutFeat1d: "Personalized questions about your child's life, chapter by chapter.",
-    aboutFeat2t: "Speak or type", aboutFeat2d: "Answer at your own pace, with your voice or keyboard.",
+    aboutFeat2t: "Speak or type, whenever it suits", aboutFeat2d: "In the morning, while the baby sleeps or late at night. Speak instead of typing and we write your words down.",
     aboutFeat3t: "Your child's story", aboutFeat3d: "We weave your answers into a beautiful story you can give to your child.",
     aboutFeat4t: "Always saved", aboutFeat4d: "Continue anytime, anywhere, your progress follows you.",
     faqItems: [
@@ -312,7 +312,7 @@ export const UI = {
       { q: "Can I edit the text after it's been generated?", a: "Yes, when you select 'Preview your book' the system creates a draft. You can then go to 'Edit text' and improve anything you'd like, add information or change the wording before downloading the final version." },
       { q: "Can the text contain errors?", a: "Yes, the system compiles the narrative automatically and grammatical or spelling errors may occasionally appear. We strongly recommend reviewing the text using the 'Edit text' button before downloading your book." },
       { q: "Can I add photos to my book?", a: "Yes! In each chapter interview you can upload photos related to that chapter, they will appear in the book at the end of the relevant chapter. You can also add general photos on the story screen, which appear at the end of the book." },
-      { q: "Can the book keep my child's voice?", a: "Yes, and it is one of the most precious parts of the book. On the chapter overview you will find 'The child's voice', where you record little sound moments of your child: first words, songs, giggles (up to 10 recordings, 2 minutes each). In the book view, under 'The voice of the book', you then choose which recordings go into the book: each one gets its own QR code at the back of the PDF, with its label. Whoever scans a code with a phone hears the little voice." },
+      { q: "Can the book keep my child's voice?", a: "Yes, and it is one of the most precious parts of the book. On the chapter overview you will find 'The child's voice', where you record little sound moments of your child: first words, songs, giggles (up to 10 recordings, 2 minutes each). In the book view, under 'The voice of the book', you then choose which recordings go into the book: each one gets its own QR code at the back of the PDF, with its label. Whoever scans a code with a phone hears the little voice.\n\nThe QR codes play the recordings for as long as Barnasagan mín is running. That is why every recording in 'The child's voice' has a download button: save the audio files and keep them with your own family photos, so the voice is yours and survives independently of us." },
       { q: "Can the family take part?", a: "Yes! On the chapter overview there is a 💌 button that creates an invite link for the currently selected child. Send it to grandparents and other loved ones: they can submit questions about the child (you get an email and decide which ones to answer), follow the progress, and read the chapters you choose to share with them." },
 
       { heading: "Tips & Tricks" },
