@@ -1008,6 +1008,12 @@ footer a { color: var(--gold); text-decoration: none; }
 .heights-tile::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #a8d5ab, #5b8a5f); }
 .heights-tile-count { font-size: 12px; color: #4a7a4e; font-weight: 600; margin-top: 12px; }
 
+/* Rödd barnsins: blár reitur í stíl við gullmola og hæð */
+.barnsrodd-tile { border: 2px solid #a9c7e4 !important; background: linear-gradient(135deg, #f6fafd 0%, #e8f1f9 100%) !important; }
+.barnsrodd-tile:hover { border-color: #4a7fb5 !important; box-shadow: 0 8px 28px rgba(74,127,181,0.16) !important; }
+.barnsrodd-tile::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #a9c7e4, #4a7fb5); }
+.barnsrodd-tile-count { font-size: 12px; color: #3a6a9c; font-weight: 600; margin-top: 12px; }
+
 /* ── Height cards ── */
 .height-card { background: var(--warm); border: 1px solid var(--border); border-radius: 14px; padding: 16px 18px; margin-bottom: 12px; }
 .height-main { display: flex; align-items: baseline; gap: 12px; margin-bottom: 6px; }
