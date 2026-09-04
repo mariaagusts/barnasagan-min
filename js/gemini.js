@@ -318,10 +318,13 @@ Return ONLY a JSON array, 1 to 3 items, nothing else:
 [{"type":"chapter","chapter_id":<id>,"question":"the question this text answers","answer":"the text, lightly tidied"}]
 
 Rules:
-- Usually ONE item. Split into several only when the note clearly covers separate subjects that belong in different chapters.
+- Usually ONE item. One continuous memory stays ONE item even when it ends in a reflection or a lesson: the reflection belongs to the event that produced it, and the question should cover both.
+- Split into several items only when the note covers genuinely separate events or subjects, typically things that happened at different times, for example a first day of preschool AND a swimming trip at the weekend.
 - "question" is a short, warm question in the interviewer's voice, max 18 words, no preamble. It must be a question the given answer genuinely answers.
 - "answer" keeps the parent's own words and every detail: names, dates, places, numbers. Fix only obvious typos and broken sentences. Never invent, never shorten meaningfully, never add a summary sentence.
 - If the note contains something the child said, word for word, that is funny or memorable, add an item {"type":"quote","quote":"exactly what the child said","context":"short context, max 12 words"} instead of forcing it into a chapter.
+- HARD rule: never begin the question with "Can you tell me", "Can you describe", "Would you like to tell me" or "How did you feel". Go straight to a focused question.
+- Never assume family structure. If the text says "I", keep it singular; write "you", not "you both". Two mums, two dads or a single parent are all equally natural.
 - Choose the chapter by what the note is ABOUT, not by the child's age.`
     : `Þú raðar frjálsri færslu frá foreldri í réttan kafla í bókinni um barnið.
 
@@ -332,11 +335,14 @@ Skilaðu EINGÖNGU JSON-fylki, 1 til 3 hlutum, engu öðru:
 [{"type":"chapter","chapter_id":<id>,"question":"spurningin sem textinn svarar","answer":"textinn, lítillega snyrtur"}]
 
 Reglur:
-- Yfirleitt EINN hlutur. Skiptu aðeins upp þegar færslan fjallar augljóslega um aðskilin efni sem eiga heima í ólíkum köflum.
+- Yfirleitt EINN hlutur. Ein samfelld minning er ÁFRAM einn hlutur þótt henni ljúki á hugleiðingu eða lærdómi: hugleiðingin tilheyrir atburðinum sem hún spratt af, og spurningin á að ná yfir hvort tveggja.
+- Skiptu aðeins upp þegar færslan geymir raunverulega aðskilda atburði eða efni, oftast eitthvað sem gerðist á ólíkum tíma, til dæmis fyrsta leikskóladaginn OG sundferð um helgina.
 - "question" er stutt og hlý spurning í rödd spyrilsins, hámark 18 orð, enginn inngangur. Hún verður að vera spurning sem svarið svarar í raun og veru.
 - "answer" heldur orðum foreldrisins og ÖLLUM smáatriðum: nöfnum, dagsetningum, stöðum, tölum. Lagaðu aðeins augljósar innsláttarvillur og brotnar setningar. Aldrei skálda, aldrei stytta að ráði, aldrei bæta við samantektarsetningu.
 - Ef færslan geymir eitthvað sem barnið sagði, orðrétt, sem er fyndið eða eftirminnilegt, skaltu bæta við hlut {"type":"quote","quote":"nákvæmlega það sem barnið sagði","context":"stutt samhengi, hámark 12 orð"} í stað þess að þvinga það inn í kafla.
 - MÁLFAR: vandað íslenskt mál, engin þágufallssýki („mig langar", aldrei „mér langar"), sem fæst þankastrik, og öll nafnorð rétt beygð.
+- HÖRÐ regla: byrjaðu spurninguna aldrei á „Geturðu sagt frá", „Geturðu lýst", „Viltu segja mér" eða „Hvernig leið þér". Spyrðu beint og markvisst.
+- Gefðu þér aldrei fjölskyldugerð. Ef textinn segir „ég", haltu eintölunni og skrifaðu „þig", ekki „ykkur". Tvær mömmur, tveir pabbar eða eitt foreldri er allt jafn sjálfsagt.
 - Veldu kafla eftir því um HVAÐ færslan fjallar, ekki eftir aldri barnsins.`;
 
   const raw = await callGemini(sys, String(text).slice(0, 4000), false, 1024, 0.2);
