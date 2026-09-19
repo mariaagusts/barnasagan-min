@@ -107,7 +107,10 @@ as $$
             'answers', jsonb_array_length(coalesce(ch->'answers', '[]'::jsonb)),
             'complete', coalesce((ch->>'complete')::boolean, false)
           ))
-          from jsonb_array_elements((up.state_json)::jsonb->'chapters') ch
+          -- state_json er vistað sem JSON-strengur (JSON.stringify) inni í jsonb-dálki, svo
+          -- (up.state_json)::jsonb er bara strengurinn og ->'chapters' skilar null.
+          -- to_jsonb(..) #>> '{}' dregur strenginn út, ::jsonb þáttar hann; virkar líka fyrir text-dálk.
+          from jsonb_array_elements((to_jsonb(up.state_json) #>> '{}')::jsonb->'chapters') ch
         ), '[]'::jsonb)
       )
       from public.family_links fl2
