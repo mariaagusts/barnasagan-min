@@ -293,6 +293,8 @@ h1, h2, h3,
 .field-input::placeholder { color: var(--light); }
 .api-note { font-size: 12px; color: var(--mid); margin-top: 16px; line-height: 1.6; }
 .user-email { font-size: 12px; color: var(--mid); font-style: italic; }
+/* Netfangið víkur fyrst (styttist með …) svo hnapparnir í hausnum haldist á einni línu */
+.header-bar .user-email { flex: 1 1 60px; max-width: max-content; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
 /* ── MAP ── */
 .map-title { font-family: 'Fredoka One', cursive; font-size: 32px; color: var(--text); margin-bottom: 6px; }
