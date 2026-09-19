@@ -2,6 +2,7 @@
 //  EXPORT / PHOTOS
 // ══════════════════════════════════════════════
 import { S } from './state.js';
+import { formatDateLongIs, formatDateNumIs } from './dagsetning.js';
 import { getChapterState } from './supabase-client.js';
 import { generateStory, renderMarkdownWithPhotos } from './story.js';
 import { STORY_STYLES, getChapters } from './chapters.js';
@@ -352,8 +353,7 @@ export async function downloadPDF(whiteBg = false) {
     const sortedHeights = [...S.heights].sort((a, b) => a.measured_at.localeCompare(b.measured_at));
     for (const h of sortedHeights) {
       if (y + 20 > H - margin) { addPage(); y = margin + 10; }
-      const d = new Date(h.measured_at + 'T00:00:00');
-      const dateStr = d.toLocaleDateString('is-IS', { day: 'numeric', month: 'long', year: 'numeric' });
+      const dateStr = formatDateLongIs(h.measured_at);
 
       doc.setFont("EBGaramond", "normal");
       doc.setFontSize(13);
@@ -429,8 +429,7 @@ export async function downloadPDF(whiteBg = false) {
 
       // Date
       if (g.said_at) {
-        const d = new Date(g.said_at + 'T00:00:00');
-        const dateStr = d.toLocaleDateString('is-IS', { day: 'numeric', month: 'long', year: 'numeric' });
+        const dateStr = formatDateLongIs(g.said_at);
         doc.setFont("EBGaramond", "normal");
         doc.setFontSize(9);
         doc.setTextColor(180, 150, 120);
@@ -600,7 +599,7 @@ export async function downloadPDF(whiteBg = false) {
               doc.setTextColor(160, 92, 30);
               const d = new Date(m.item.recorded_at + "T00:00:00");
               const dTxt = isNaN(d) ? String(m.item.recorded_at)
-                : d.toLocaleDateString(S.lang === "en" ? "en-GB" : "is-IS", { day: "numeric", month: "long", year: "numeric" });
+                : (S.lang === "en" ? d.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" }) : formatDateLongIs(m.item.recorded_at));
               doc.text(dTxt, cx, yTxt, { align: "center" });
               yTxt += 5;
             }
@@ -665,7 +664,7 @@ export function downloadAnswers() {
   const lines = [];
   const isIs = S.lang !== "en";
   lines.push(isIs ? "SAGAN MÍN — SVÖR VIÐ SPURNINGUM" : "MY STORY — ANSWERS TO QUESTIONS");
-  lines.push(isIs ? `Sótt: ${new Date().toLocaleDateString("is-IS")}` : `Downloaded: ${new Date().toLocaleDateString("en-GB")}`);
+  lines.push(isIs ? `Sótt: ${formatDateNumIs(new Date())}` : `Downloaded: ${new Date().toLocaleDateString("en-GB")}`);
   lines.push("");
   chapters.forEach(ch => {
     const state = getChapterState(ch.id);

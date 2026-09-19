@@ -6,6 +6,8 @@
 //  með lýsingu og dagsetningu (allt að 10).
 // ══════════════════════════════════════════════
 import { S } from './state.js';
+import { formatDateLongIs } from './dagsetning.js';
+import { plural } from './plural.js';
 import { getSupabase, saveState, getVoiceUrl } from './supabase-client.js';
 
 function esc(s) {
@@ -22,7 +24,7 @@ function randName() {
 function fmtDate(iso) {
   if (!iso) return "";
   const d = new Date(iso + "T00:00:00");
-  return d.toLocaleDateString(S.lang === "en" ? "en-GB" : "is-IS", { day: "numeric", month: "long", year: "numeric" });
+  return S.lang === "en" ? d.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" }) : formatDateLongIs(iso);
 }
 
 // Deilingarnar; flytur eldri stöku deilinguna (voiceShare) yfir í listann
@@ -41,9 +43,10 @@ export function renderVoiceShareStatus() {
   if (!status || !btn) return;
   const shares = getVoiceShares();
   if (shares.length > 0) {
+    const n = shares.length;
     const label = S.lang === "en"
-      ? (shares.length === 1 ? "1 recording gets a QR code at the back of the PDF book." : `${shares.length} recordings get QR codes at the back of the PDF book.`)
-      : (shares.length === 1 ? "1 upptaka fær QR-kóða aftast í PDF-bókinni." : `${shares.length} upptökur fá QR-kóða aftast í PDF-bókinni.`);
+      ? plural(n, `${n} recording gets a QR code at the back of the PDF book.`, `${n} recordings get QR codes at the back of the PDF book.`, "en")
+      : plural(n, `${n} upptaka fær QR-kóða aftast í PDF-bókinni.`, `${n} upptökur fá QR-kóða aftast í PDF-bókinni.`);
     status.innerHTML = `
       <div style="background:var(--warm);border-radius:12px;padding:14px 16px;font-size:14px;color:var(--text);margin-bottom:12px;">
         ✅ ${label}
@@ -70,7 +73,7 @@ export function renderVoiceSharePicker() {
   if (recs.length === 0) {
     picker.innerHTML = `<p style="font-size:14px;color:var(--mid);padding:12px 0;">${S.lang === "en"
       ? "No recordings of your child's voice yet. Open \u201EThe child's voice\u201C on the overview and record the first one."
-      : "Engar upptökur af rödd barnsins enn. Opnaðu \u201ER\u00f6dd barnsins\u201C á yfirlitinu og taktu upp þá fyrstu."}</p>`;
+      : "Engar upptökur af rödd barnsins enn. Opnaðu \u201ER\u00f6dd barnsins\u201C á yfirlitinu og taktu upp fyrsta hljóðbrotið."}</p>`;
     return;
   }
   const shares = getVoiceShares();

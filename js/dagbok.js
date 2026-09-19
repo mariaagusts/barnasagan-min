@@ -6,6 +6,7 @@
 //  færslan fer inn í söguna.
 // ══════════════════════════════════════════════
 import { S } from './state.js';
+import { plural } from './plural.js';
 import { fileFreeEntry } from './gemini.js';
 import { getChapters } from './chapters.js';
 import { getChapterState, saveState } from './supabase-client.js';
@@ -149,9 +150,9 @@ export async function saveDagbokEntries() {
         : "Komið inn í " + chapterTitles.join(" og "));
     }
     if (quotes) {
-      parts.push(quotes === 1
-        ? (S.lang === "en" ? "and one phrase into the golden phrase bank" : "og einn gullmoli í bankann")
-        : (S.lang === "en" ? "and " + quotes + " phrases into the golden phrase bank" : "og " + quotes + " gullmolar í bankann"));
+      parts.push(S.lang === "en"
+        ? "and " + quotes + " " + plural(quotes, "phrase", "phrases", "en") + " into the golden phrase bank"
+        : "og " + quotes + " " + plural(quotes, "gullmoli", "gullmolar") + " í bankann");
     }
     setStatus("✓ " + parts.join(" ") + ".");
     setTimeout(() => setStatus(""), 6000);

@@ -606,8 +606,6 @@
           <button class="lang-btn" id="map-lang-is" onclick="setLang('is')">IS</button>
           <button class="lang-btn" id="map-lang-en" onclick="setLang('en')">EN</button>
         </div>
-        <button class="btn-nav-login" id="map-about-link" onclick="showAbout()" style="font-size:12px;">Um</button>
-        <button class="btn-nav-login" id="map-faq-link" onclick="showFaq()" style="font-size:12px;">Spurningar</button>
         <span class="user-email" id="map-user-email"></span>
         <div class="child-switcher" id="child-switcher">
           <button class="child-switcher-btn" onclick="toggleChildSwitcher()">
@@ -640,9 +638,9 @@
     </div>
     <div class="dagbok-box">
       <div id="dagbok-form">
-        <h3 class="dagbok-title">Hvaða sögu langar þig að segja frá í dag?</h3>
-        <p class="dagbok-sub">Skrifaðu bara eins og þér dettur í hug. Við finnum réttan kafla fyrir söguna og búum til spurninguna sem hún svarar, svo þú þarft ekki að leita að réttum stað sjálf.</p>
-        <textarea id="dagbok-input" rows="4" placeholder="Í dag byrjaði Embla á leikskóla. Hún hljóp beint inn án þess að líta við..."></textarea>
+        <h3 class="dagbok-title">Hvaða sögu langar þig að segja í dag?</h3>
+        <p class="dagbok-sub">Skrifaðu bara eins og þér dettur í hug. Við finnum réttan kafla fyrir söguna og búum til spurninguna sem hún svarar, svo að þú þurfir ekki að leita að réttum stað.</p>
+        <textarea id="dagbok-input" rows="4" placeholder="Í dag byrjaði Embla á leikskóla og hljóp beint inn án þess að líta við..."></textarea>
         <button class="dagbok-btn" id="dagbok-btn" onclick="analyseDagbok()">Finna stað fyrir söguna →</button>
       </div>
       <div id="dagbok-preview" style="display:none;"></div>
@@ -676,8 +674,6 @@
           <button class="lang-btn" id="interview-lang-is" onclick="setLang('is')">IS</button>
           <button class="lang-btn" id="interview-lang-en" onclick="setLang('en')">EN</button>
         </div>
-        <button class="btn-nav-login" id="interview-about-link" onclick="showAbout()" style="font-size:12px;">Um</button>
-        <button class="btn-nav-login" id="interview-faq-link" onclick="showFaq()" style="font-size:12px;">Spurningar</button>
         <button class="inner-hamburger" onclick="toggleInnerMenu()">☰</button>
         <div class="progress-wrap">
           <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
@@ -746,8 +742,6 @@
           <button class="lang-btn" id="story-lang-is" onclick="setLang('is')">IS</button>
           <button class="lang-btn" id="story-lang-en" onclick="setLang('en')">EN</button>
         </div>
-        <button class="btn-nav-login" id="story-about-link" onclick="showAbout()" style="font-size:12px;">Um</button>
-        <button class="btn-nav-login" id="story-faq-link" onclick="showFaq()" style="font-size:12px;">Spurningar</button>
         <button class="btn-nav-login" onclick="showMap()" style="font-size:12px;">Mitt svæði</button>
         <button class="inner-hamburger" onclick="toggleInnerMenu()">☰</button>
       </div>
@@ -784,7 +778,7 @@
         <button onclick="editBookAuthor()" style="background:none;border:none;cursor:pointer;color:var(--mid);font-size:13px;margin-left:8px;" title="Breyta nafni">✏️</button>
       </div>
       <div style="text-align:center;margin-bottom:20px;">
-        <button id="btn-title-suggestions" onclick="fetchAndShowTitleSuggestions()" style="background:none;border:1px solid var(--border);border-radius:20px;padding:6px 16px;font-size:12px;cursor:pointer;color:var(--orange);font-family:'Nunito',sans-serif;letter-spacing:0.05em;">🏷️ Fá tillögur fyrir titil á sögu</button>
+        <button id="btn-title-suggestions" onclick="fetchAndShowTitleSuggestions()" style="background:none;border:1px solid var(--border);border-radius:20px;padding:6px 16px;font-size:12px;cursor:pointer;color:var(--orange);font-family:'Nunito',sans-serif;letter-spacing:0.05em;">🏷️ Fá tillögur að titli</button>
       </div>
       <div class="story-body" id="story-body" contenteditable="false" spellcheck="true"></div>
       <div style="text-align:center;margin-top:16px;display:flex;align-items:center;justify-content:center;gap:10px;">
@@ -815,7 +809,7 @@
 
       <div style="margin-top:40px;">
         <div style="display:flex;gap:12px;justify-content:center;margin-bottom:12px;">
-          <button class="btn-export" id="btn-export-pdf" onclick="downloadPDF(false)">📄 Hlaða niður sem PDF bók</button>
+          <button class="btn-export" id="btn-export-pdf" onclick="downloadPDF(false)">📄 Hlaða niður sem PDF-bók</button>
           <button class="btn-export" id="btn-export-pdf-print" onclick="downloadPDF(true)">🖨️ Prentútgáfa (PDF)</button>
         </div>
         <div style="display:flex;gap:12px;justify-content:center;margin-bottom:12px;">
@@ -1005,9 +999,8 @@
   <div class="versions-list" id="versions-list"></div>
   <div class="versions-sidebar-footer">
     <p class="versions-storage-note">
-      ⚠️ <strong>Athugaðu:</strong> Bókaútgáfur og myndir eru geymdar í vafranum þínum (localStorage).
-      Ef þú hreinsir vafragögn eða skiptir um tæki <strong>glatast þær</strong>,
-      Barnasagan mín getur ekki sótt þær aftur.
+      💡 Bókaútgáfurnar og kaflamyndirnar vistast á reikninginn þinn og fylgja þér á milli tækja.
+      <strong>Viðbótarmyndir</strong> aftast í bókinni þarf hins vegar að velja aftur í hvert sinn sem bókin er sótt.
     </p>
   </div>
 </div>
@@ -1035,7 +1028,7 @@
     <textarea id="gullmola-qa-quote" class="gullmola-qa-textarea"
       placeholder="Hvað sagði barnið?..." rows="3"></textarea>
     <input id="gullmola-qa-context" type="text" class="gullmola-qa-input"
-      placeholder="Samhengi, t.d. í morgunmat, 3ja ára (valfrjálst)">
+      placeholder="Samhengi, t.d. í morgunmat, þriggja ára (valfrjálst)">
     <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;">
       <label style="font-size:12px;color:var(--mid);white-space:nowrap;">Dagsetning:</label>
       <input id="gullmola-qa-date" type="date" class="gullmola-qa-date-input">
@@ -1289,7 +1282,7 @@
     <h3 id="print-modal-title">🖨️ Hvernig panta ég prentaða bók?</h3>
     <p id="print-modal-sub" style="color:var(--mid);font-size:14px;margin-bottom:8px;">Breyttu barnasögunni í alvöru bók!</p>
     <ol id="print-modal-steps">
-      <li>Smelltu á <strong>"Hlaða niður sem PDF bók"</strong> hér að neðan</li>
+      <li>Smelltu á <strong>"Hlaða niður sem PDF-bók"</strong> hér að neðan</li>
       <li>Farðu á <a href="https://www.lulu.com" target="_blank" style="color:var(--gold);">lulu.com</a></li>
       <li>Veldu <strong>"Create"</strong> → <strong>"Print Book"</strong></li>
       <li>Hlaðaðu upp PDF-inu þínu</li>

@@ -2,6 +2,7 @@
 //  STORY VERSIONS
 // ══════════════════════════════════════════════
 import { S } from './state.js';
+import { formatDateTimeIs } from './dagsetning.js';
 import { saveVersionsToSupabase } from './supabase-client.js';
 import { MAX_VERSIONS } from './config.js';
 import { renderMarkdown, injectStoryPhotos } from './story.js';
@@ -14,6 +15,12 @@ export const STYLE_LABELS = {
   aventurulegur:{ is: "🦄 Ævintýralegur", en: "🦄 Adventurous"  },
   hnitmiðaður:  { is: "📄 Hnitmiðaður",   en: "📄 Focused"      }
 };
+
+// Eldri sjálfvirk heiti sem sami stíll fékk áður (engin enn hér; sjá sagan-min). Notandaheiti haldast óbreytt.
+const LEGACY_LABELS = {};
+function displayLabel(v) {
+  return LEGACY_LABELS[v.label] || v.label;
+}
 
 function _versionsKey() {
   return `saganmin_versions_${S.activeChildId || "default"}`;
@@ -61,14 +68,13 @@ export function renderVersionsSidebar() {
   }
 
   list.innerHTML = versions.map((v, i) => {
-    const d = new Date(v.date);
-    const dateStr = d.toLocaleDateString("is-IS", {
-      day: "numeric", month: "short", hour: "2-digit", minute: "2-digit"
-    });
+    const dateStr = S.lang === "en"
+      ? new Date(v.date).toLocaleString("en-GB", { day: "numeric", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit" })
+      : formatDateTimeIs(v.date);
     const isActive = i === S.currentVersionIndex;
     return `
       <div class="version-item ${isActive ? 'active' : ''}">
-        <div class="version-item-style">${v.label} <button class="version-rename-btn" onclick="renameVersion(${v.id})" title="Breyta nafni">✏️</button></div>
+        <div class="version-item-style">${displayLabel(v)} <button class="version-rename-btn" onclick="renameVersion(${v.id})" title="Breyta nafni">✏️</button></div>
         <div class="version-item-date">${dateStr}</div>
         <div class="version-item-actions">
           <button class="version-load-btn" onclick="loadVersion(${i})">

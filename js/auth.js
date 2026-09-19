@@ -149,7 +149,7 @@ export async function forgotPassword() {
     redirectTo: "https://barnasagan.is"
   });
   if (error) { showAuthError(authErrorMsg(error.message)); }
-  else { showAuthSuccess("✓ Hlekk til að endurstilla lykilorð hefur verið sendur á " + email); }
+  else { showAuthSuccess("✓ Hlekkur til að endurstilla lykilorð hefur verið sendur á " + email); }
 }
 
 export function showPasswordResetForm() {

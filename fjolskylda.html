@@ -137,6 +137,7 @@
 
     // ── Sagan að verða til: framvinda + deildir kaflar ──
     import('./js/chapters.js').then(async ({ CHAPTERS }) => {
+      const { plural } = await import('./js/plural.js');
       if (!token) return;
       const esc = (x) => String(x).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
       try {
@@ -161,12 +162,12 @@
           document.getElementById('progress-summary').textContent =
             total === 0
               ? 'Sagan er rétt að byrja.'
-              : `${total} minningar komnar á blað` + (done > 0 ? ` og ${done === 1 ? '1 kafli fullkláraður' : done + ' kaflar fullkláraðir'}.` : '.');
+              : `${total} ${plural(total, 'minning komin á blað', 'minningar komnar á blað')}` + (done > 0 ? ` og ${done} ${plural(done, 'kafli fullkláraður', 'kaflar fullkláraðir')}.` : '.');
           const started = prog.chapters.filter(c => (c.answers || 0) > 0);
           document.getElementById('progress-list').innerHTML = started.map(c => {
             const def = CHAPTERS.find(ch => ch.id === c.id);
             const name = def ? def.title : ('Kafli ' + c.id);
-            return `<div class="prog-row"><span>${c.complete ? '✅' : '✍️'}</span><span class="prog-title">${esc(name)}</span><span class="prog-count">${c.answers} svör</span></div>`;
+            return `<div class="prog-row"><span>${c.complete ? '✅' : '✍️'}</span><span class="prog-title">${esc(name)}</span><span class="prog-count">${c.answers} ${plural(c.answers, 'svar', 'svör')}</span></div>`;
           }).join('');
         }
         if (shared && shared.length > 0) {

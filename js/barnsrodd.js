@@ -5,6 +5,8 @@
 //  eftir umritun). Þak: 10 upptökur × 2 mín á barn.
 // ══════════════════════════════════════════════
 import { S } from './state.js';
+import { formatDateLongIs } from './dagsetning.js';
+import { plural } from './plural.js';
 import { getSupabase, uploadVoiceRecording, getVoiceUrl, deleteVoiceRecording } from './supabase-client.js';
 
 export const MAX_RECORDINGS = 10;
@@ -66,7 +68,7 @@ function _esc(str) {
 function _fmtDate(iso) {
   if (!iso) return '';
   const d = new Date(iso + 'T00:00:00');
-  return d.toLocaleDateString(S.lang === 'en' ? 'en-GB' : 'is-IS', { day: 'numeric', month: 'long', year: 'numeric' });
+  return S.lang === 'en' ? d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }) : formatDateLongIs(iso);
 }
 
 function _fmtDur(sec) {
@@ -83,12 +85,12 @@ export function updateBarnsroddMapTile() {
   const wrap = document.getElementById('barnsrodd-tile-count-wrap');
   if (!wrap) return;
   const count = S.barnsrodd?.length || 0;
-  const label = count === 1
-    ? (S.lang === 'en' ? '1 recording' : '1 upptaka')
-    : (S.lang === 'en' ? `${count} recordings` : `${count} upptökur`);
+  const label = S.lang === 'en'
+    ? `${count} ${plural(count, 'recording', 'recordings', 'en')}`
+    : `${count} ${plural(count, 'upptaka', 'upptökur')}`;
   wrap.textContent = count > 0
     ? `${label} ${S.lang === 'en' ? 'of' : 'af'} ${MAX_RECORDINGS}`
-    : (S.lang === 'en' ? 'Record the first one →' : 'Taktu upp þá fyrstu →');
+    : (S.lang === 'en' ? 'Record the first sound clip →' : 'Taktu upp fyrsta hljóðbrotið →');
 }
 
 // ── Safnglugginn ────────────────────────────────
@@ -112,7 +114,7 @@ export function renderBarnsroddBank() {
   if (title) {
     const child = S.children.find(c => c.id === S.activeChildId);
     title.textContent = child
-      ? (S.lang === 'en' ? `${child.child_name}'s voice` : `Rödd ${child.child_name}`)
+      ? (S.lang === 'en' ? `${child.child_name}'s voice` : `Rödd: ${child.child_name}`)
       : (S.lang === 'en' ? "The child's voice" : 'Rödd barnsins');
   }
   const addBtn = document.getElementById('barnsrodd-bank-add-btn');

@@ -13,6 +13,7 @@ import { enterChapter } from './interview.js';
 import { updateGullmolaMapTile } from './gullmoli.js';
 import { updateHeightsMapTile } from './heights.js';
 import { updateBarnsroddMapTile } from './barnsrodd.js';
+import { plural } from './plural.js';
 
 export function renderMap() {
   const chapters = getChapters();
@@ -22,18 +23,30 @@ export function renderMap() {
   const pct = Math.min((total / maxTotal) * 100, 100);
 
   document.getElementById("map-total-label").textContent = total;
+  const answersLbl = plural(total, t("mapAnswersOne"), t("mapAnswers"), S.lang);
+  document.getElementById("map-answers-lbl").textContent = answersLbl;
   const fill = document.getElementById("map-progress-fill");
   if (fill) fill.style.width = pct + "%";
+
+  // Dæmatextinn í sögureitnum notar nafn barnsins sem er valið
+  const dagbokInput = document.getElementById("dagbok-input");
+  if (dagbokInput) {
+    const child = S.children.find(c => c.id === S.activeChildId);
+    const firstName = (child?.child_name || "").trim().split(/\s+/)[0] || "Embla";
+    dagbokInput.placeholder = S.lang === "en"
+      ? `Today ${firstName} started preschool and ran straight in without looking back...`
+      : `Í dag byrjaði ${firstName} á leikskóla og hljóp beint inn án þess að líta við...`;
+  }
 
   const enough = total >= 1;
   const btn = document.getElementById("btn-generate-story");
   btn.style.display = enough ? "inline-block" : "none";
-  btn.textContent = enough ? `✨ ${t("previewBtn").replace("✨ ","")} (${total} ${t("mapAnswers").toLowerCase()})` : "";
+  btn.textContent = enough ? `✨ ${t("previewBtn").replace("✨ ","")} (${total} ${answersLbl.toLowerCase()})` : "";
 
   const gullCount = S.gullmolar?.length || 0;
-  const gullCountLabel = gullCount === 1
-    ? (S.lang === 'en' ? '1 phrase' : '1 gullmola')
-    : (S.lang === 'en' ? `${gullCount} phrases` : `${gullCount} gullmolar`);
+  const gullCountLabel = S.lang === 'en'
+    ? `${gullCount} ${plural(gullCount, 'phrase', 'phrases', 'en')}`
+    : `${gullCount} ${plural(gullCount, 'gullmoli', 'gullmolar')}`;
 
   const latestHeight = S.heights?.[0];
   const heightTileCount = S.heights?.length || 0;
@@ -63,9 +76,12 @@ export function renderMap() {
         <div class="chapter-lock-msg">${S.lang === 'en' ? 'Get full access' : 'Kaupa fullan aðgang'} →</div>
       </div>`;
     }
+    const answersTxt = S.lang === 'en'
+      ? `${answered} ${plural(answered, 'answer', 'answers', 'en')}`
+      : `${answered} ${plural(answered, 'svar', 'svör')}`;
     const metaTxt = isComplete
-      ? `${t("completed")} · ${answered} ${S.lang === 'en' ? 'answers' : 'svör'}`
-      : `${answered} ${S.lang === 'en' ? 'answers' : 'svör'}`;
+      ? `${t("completed")} · ${answersTxt}`
+      : answersTxt;
     const ring = `
       <div class="chapter-ring-wrap" aria-hidden="true">
         <svg width="56" height="56" viewBox="0 0 56 56">
@@ -88,14 +104,14 @@ export function renderMap() {
           </div>
         </div>
         ${answered === 0 ? `<div class="chapter-desc">${ch.desc}</div>` : ''}
-        ${answered > 0 ? `<button class="chapter-preview-btn" onclick="event.stopPropagation();previewChapter(${ch.id})">👁 Forskoða kafla</button>` : ''}
+        ${answered > 0 ? `<button class="chapter-preview-btn" onclick="event.stopPropagation();previewChapter(${ch.id})">👁 ${S.lang === 'en' ? 'Preview chapter' : 'Forskoða kafla'}</button>` : ''}
         </div>`;
   }).join("") + `
     <div class="chapter-card gullmola-tile" onclick="openGullmolaBank()">
       <span class="chapter-emoji">✨</span>
       <div class="chapter-name" style="color:var(--gold);">Gullmolabanki</div>
       <div class="chapter-desc">${S.lang === 'en' ? 'Funny and memorable things your child says' : 'Fyndnar og eftirminnilegar setningar barnsins'}</div>
-      <div class="gullmola-tile-count" id="gullmola-tile-count-wrap">${gullCount > 0 ? gullCountLabel : (S.lang === 'en' ? 'Add first phrase →' : 'Bæta við fyrstu →')}</div>
+      <div class="gullmola-tile-count" id="gullmola-tile-count-wrap">${gullCount > 0 ? gullCountLabel : (S.lang === 'en' ? 'Add the first golden phrase →' : 'Skrá fyrsta gullmolann →')}</div>
     </div>
     <div class="chapter-card heights-tile" onclick="openHeightsModal()">
       <span class="chapter-emoji">📏</span>

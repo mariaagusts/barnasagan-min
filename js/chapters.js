@@ -26,8 +26,8 @@ export const CHAPTERS = [
     ]
   },
   {
-    id: 2, emoji: "🌟", title: "Karakterinn og einkennin",
-    desc: "Hvað gerir þetta barn að einstakling",
+    id: 2, emoji: "🌟", title: "Persónuleikinn og einkennin",
+    desc: "Hvað gerir þetta barn að einstaklingi",
     seeds: [
       { text: "Hvernig myndir þú lýsa persónu barnsins með þremur orðum?", isCore: true },
       { text: "Hvað er það sem gerir barnið þitt að einstaklingi, eitthvað sem lýsir því vel?", isCore: true }
@@ -43,7 +43,7 @@ export const CHAPTERS = [
     ]
   },
   {
-    id: 4, emoji: "📚", title: "Skólinn og nám",
+    id: 4, emoji: "📚", title: "Skólinn og námið",
     desc: "Fyrsti skóladagurinn og lærdómurinn",
     seeds: [
       { text: "Hvernig var fyrsti skóladagurinn, hvernig leið barninu og hvernig leið þér?", isCore: true },
@@ -89,7 +89,7 @@ export const CHAPTERS = [
   },
   {
     id: 9, emoji: "💪", title: "Áskoranir og vöxtur",
-    desc: "Erfiðleikar sem barnið hefur sigrað",
+    desc: "Erfiðleikar sem barnið hefur sigrast á",
     seeds: [
       { text: "Er eitthvað sem hefur verið erfitt fyrir barnið, og hvernig tókst því að komast í gegnum það?", isCore: true },
       { text: "Hvernig bregst barnið við þegar eitthvað gengur ekki upp?", isCore: false },
@@ -107,7 +107,7 @@ export const CHAPTERS = [
   },
   {
     id: 11, emoji: "🌈", title: "Vonir og framtíðin",
-    desc: "Von og óskir fyrir barnið",
+    desc: "Vonir og óskir fyrir barnið",
     seeds: [
       { text: "Veistu hvað barnið þitt dreymir um að verða þegar það er orðið stórt (að svo stöddu)?", isCore: false },
       { text: "Hvaða ósk eða von hefur þú sem foreldri fyrir barnið þitt?", isCore: true },

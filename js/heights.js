@@ -2,6 +2,7 @@
 //  HEIGHTS — child growth tracker
 // ══════════════════════════════════════════════
 import { S } from './state.js';
+import { formatDateLongIs } from './dagsetning.js';
 import { getSupabase } from './supabase-client.js';
 
 // ── Data layer ──────────────────────────────────
@@ -68,7 +69,7 @@ export async function deleteHeight(id) {
 function _fmtDate(iso) {
   if (!iso) return '';
   const d = new Date(iso + 'T00:00:00');
-  return d.toLocaleDateString(S.lang === 'en' ? 'en-GB' : 'is-IS', { day: 'numeric', month: 'long', year: 'numeric' });
+  return S.lang === 'en' ? d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }) : formatDateLongIs(iso);
 }
 
 function _esc(str) {
@@ -109,7 +110,7 @@ export function renderHeightsModal() {
   if (title) {
     const child = S.children.find(c => c.id === S.activeChildId);
     title.textContent = child
-      ? (S.lang === 'en' ? `${child.child_name}'s Height` : `Hæð ${child.child_name}`)
+      ? (S.lang === 'en' ? `${child.child_name}'s Height` : `Hæð: ${child.child_name}`)
       : (S.lang === 'en' ? "Child's Height" : 'Hæð barnsins');
   }
 
@@ -120,7 +121,7 @@ export function renderHeightsModal() {
         <p style="font-size:15px;line-height:1.7;">
           ${S.lang === 'en'
             ? 'No measurements yet — tap the button above to add the first one!'
-            : 'Engar mælingar enn — smelltu á hnappinn hér að ofan til að bæta við fyrstu!'}
+            : 'Engar mælingar enn. Smelltu á hnappinn hér að ofan til að bæta við fyrstu mælingunni.'}
         </p>
       </div>`;
     return;

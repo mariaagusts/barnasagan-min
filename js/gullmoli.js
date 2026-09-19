@@ -2,6 +2,8 @@
 //  GULLMÓLABANKI — golden phrases from children
 // ══════════════════════════════════════════════
 import { S } from './state.js';
+import { formatDateLongIs } from './dagsetning.js';
+import { plural } from './plural.js';
 import { getSupabase } from './supabase-client.js';
 
 // ── Data layer ──────────────────────────────────
@@ -63,7 +65,7 @@ export async function deleteGullmoli(id) {
 function _fmtDate(iso) {
   if (!iso) return '';
   const d = new Date(iso + 'T00:00:00');
-  return d.toLocaleDateString(S.lang === 'en' ? 'en-GB' : 'is-IS', { day: 'numeric', month: 'long', year: 'numeric' });
+  return S.lang === 'en' ? d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }) : formatDateLongIs(iso);
 }
 
 function _esc(str) {
@@ -92,10 +94,10 @@ export function updateGullmolaMapTile() {
   const wrap = document.getElementById('gullmola-tile-count-wrap');
   if (!wrap) return;
   const count = S.gullmolar.length;
-  const label = count === 1
-    ? (S.lang === 'en' ? '1 phrase' : '1 gullmola')
-    : (S.lang === 'en' ? `${count} phrases` : `${count} gullmolar`);
-  wrap.textContent = count > 0 ? label : (S.lang === 'en' ? 'Add first phrase →' : 'Bæta við fyrstu →');
+  const label = S.lang === 'en'
+    ? `${count} ${plural(count, 'phrase', 'phrases', 'en')}`
+    : `${count} ${plural(count, 'gullmoli', 'gullmolar')}`;
+  wrap.textContent = count > 0 ? label : (S.lang === 'en' ? 'Add the first golden phrase →' : 'Skrá fyrsta gullmolann →');
 }
 
 // ── Quick-add modal ─────────────────────────────
@@ -158,7 +160,7 @@ export function renderGullmolaBank() {
   if (title) {
     const child = S.children.find(c => c.id === S.activeChildId);
     title.textContent = child
-      ? (S.lang === 'en' ? `${child.child_name}'s Golden Phrases` : `Gullmolar ${child.child_name}`)
+      ? (S.lang === 'en' ? `${child.child_name}'s Golden Phrases` : `Gullmolar: ${child.child_name}`)
       : (S.lang === 'en' ? 'Golden Phrase Bank' : 'Gullmolabanki');
   }
 
@@ -169,7 +171,7 @@ export function renderGullmolaBank() {
         <p style="font-size:15px;line-height:1.7;">
           ${S.lang === 'en'
             ? 'No golden phrases yet — tap the button above to add the first one!'
-            : 'Engir gullmolar enn — smelltu á hnappinn hér að ofan til að skrá þá fyrstu!'}
+            : 'Engir gullmolar enn. Smelltu á hnappinn hér að ofan til að skrá fyrsta gullmolann.'}
         </p>
       </div>`;
     return;
@@ -196,7 +198,7 @@ export function editGullmoliInline(id) {
   if (!card) return;
   card.innerHTML = `
     <textarea class="gullmoli-edit-textarea" placeholder="${S.lang === 'en' ? 'What did they say?' : 'Hvað sagði barnið?'}">${_esc(g.quote)}</textarea>
-    <input type="text" class="gullmoli-edit-input" placeholder="${S.lang === 'en' ? 'Context — e.g. at breakfast, age 3 (optional)' : 'Samhengi, t.d. í morgunmat, 3ja ára (valfrjálst)'}" value="${_esc(g.context || '')}">
+    <input type="text" class="gullmoli-edit-input" placeholder="${S.lang === 'en' ? 'Context — e.g. at breakfast, age 3 (optional)' : 'Samhengi, t.d. í morgunmat, þriggja ára (valfrjálst)'}" value="${_esc(g.context || '')}">
     <input type="date" class="gullmoli-edit-date" value="${g.said_at}">
     <div style="display:flex;gap:8px;margin-top:4px;">
       <button class="gullmoli-save-btn" onclick="saveGullmoliEdit('${id}')">${S.lang === 'en' ? 'Save' : 'Vista'}</button>
