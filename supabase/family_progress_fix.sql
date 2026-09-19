@@ -32,3 +32,6 @@ as $$
         on up.user_id = fl2.user_id and up.child_id = fl2.child_id
       where fl2.token = t and fl2.active
       limit 1
+    )
+  end
+$$;
