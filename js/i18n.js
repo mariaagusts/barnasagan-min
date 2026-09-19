@@ -29,6 +29,16 @@ export const UI = {
     mapTitle: "Sagan um barnið", mapSub: "Hvaða hluta sögunnar viltu huga að í dag?",
     mapProgress: "Sagan um barnið", mapAnswers: "Minningar komnar á blað", mapAnswersOne: "Minning komin á blað",
     previewBtn: "✨ Skoða bókina þína", deleteBtn: "🗑 Hreinsa þráðinn",
+    dagbokTitle: "Hvaða sögu langar þig að segja í dag?",
+    dagbokSub: "Skrifaðu bara eins og þér dettur í hug. Við finnum réttan kafla fyrir söguna og búum til spurninguna sem hún svarar, svo að þú þurfir ekki að leita að réttum stað.",
+    dagbokBtn: "Finna stað fyrir söguna →",
+    familyInviteBtn: "💌 Bjóða fjölskyldunni að spyrja",
+    familyInviteTitle: "💌 Bjóddu fjölskyldunni að spyrja",
+    familyInviteText: "Sendu þennan hlekk á ömmur, afa og aðra sem þykir vænt um barnið. Þau geta sent inn spurningar um barnið, og þú ræður hvaða spurningum þú svarar. Svörin verða hluti af bókinni. Hlekkurinn gildir fyrir barnið sem er valið núna.",
+    familyCopyBtn: "Afrita hlekkinn",
+    photosTitle: "📷 Myndir fyrir þennan kafla",
+    customQPlaceholder: "Skrifaðu þína eigin spurningu...",
+    customQCancel: "Hætta við", customQAdd: "Bæta við →",
     backToMap: "← Kaflayfirlit", signOut: "Útskrá",
     chapterOf: "Kafli", chapterOfDone: "Kafla", answersOf: "svör",
     qOf: "Minning", of20: "af 20",
@@ -190,6 +200,16 @@ export const UI = {
     mapTitle: "Your child's story", mapSub: "Choose a chapter to start or continue",
     mapProgress: "Your child's story", mapAnswers: "Memories captured", mapAnswersOne: "Memory captured",
     previewBtn: "✨ Preview your book", deleteBtn: "🗑 Delete progress",
+    dagbokTitle: "What story would you like to tell today?",
+    dagbokSub: "Just write whatever comes to mind. We find the right chapter for the story and create the question it answers, so you never have to look for the right place.",
+    dagbokBtn: "Find a place for the story →",
+    familyInviteBtn: "💌 Invite your family to ask",
+    familyInviteTitle: "💌 Invite your family to ask",
+    familyInviteText: "Send this link to grandparents and anyone else who loves your child. They can send in questions about your child, and you decide which ones you answer. The answers become part of the book. The link is for the child currently selected.",
+    familyCopyBtn: "Copy the link",
+    photosTitle: "📷 Photos for this chapter",
+    customQPlaceholder: "Write your own question...",
+    customQCancel: "Cancel", customQAdd: "Add →",
     backToMap: "← Chapter overview", signOut: "Sign out",
     chapterOf: "Chapter", chapterOfDone: "Chapter", answersOf: "answers",
     qOf: "Question", of20: "of 20",
@@ -450,6 +470,15 @@ export function applyLang() {
   if (editStoryBtn && editStoryBtn.textContent.includes("Breyta") || editStoryBtn && editStoryBtn.textContent.includes("Edit")) {
     editStoryBtn.textContent = L.editStory;
   }
+  safeText("dagbok-title", L.dagbokTitle); safeText("dagbok-sub", L.dagbokSub); safeText("dagbok-btn", L.dagbokBtn);
+  safeText("map-family-btn", L.familyInviteBtn);
+  safeText("family-invite-title", L.familyInviteTitle); safeText("family-invite-text", L.familyInviteText); safeText("family-copy-btn", L.familyCopyBtn);
+  safeText("interview-photos-title", L.photosTitle);
+  const customQ = document.getElementById("custom-question-input");
+  if (customQ) customQ.placeholder = L.customQPlaceholder;
+  safeText("custom-q-cancel", L.customQCancel); safeText("custom-q-add", L.customQAdd);
+  // Fjölskyldubiðlistinn er teiknaður úr JS og þarf að endurteiknast á nýja málinu
+  if (S.user) import('./fjolskyldan.js').then(m => m.renderFamilySection()).catch(() => {});
   if (document.getElementById("screen-map").classList.contains("active")) {
     import('./map.js').then(m => m.renderMap());
   }

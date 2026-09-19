@@ -638,8 +638,8 @@
     </div>
     <div class="dagbok-box">
       <div id="dagbok-form">
-        <h3 class="dagbok-title">Hvaða sögu langar þig að segja í dag?</h3>
-        <p class="dagbok-sub">Skrifaðu bara eins og þér dettur í hug. Við finnum réttan kafla fyrir söguna og búum til spurninguna sem hún svarar, svo að þú þurfir ekki að leita að réttum stað.</p>
+        <h3 class="dagbok-title" id="dagbok-title">Hvaða sögu langar þig að segja í dag?</h3>
+        <p class="dagbok-sub" id="dagbok-sub">Skrifaðu bara eins og þér dettur í hug. Við finnum réttan kafla fyrir söguna og búum til spurninguna sem hún svarar, svo að þú þurfir ekki að leita að réttum stað.</p>
         <textarea id="dagbok-input" rows="4" placeholder="Í dag byrjaði Embla á leikskóla og hljóp beint inn án þess að líta við..."></textarea>
         <button class="dagbok-btn" id="dagbok-btn" onclick="analyseDagbok()">Finna stað fyrir söguna →</button>
       </div>
@@ -695,8 +695,8 @@
       <div id="custom-question-area" style="display:none;margin-bottom:16px;">
         <textarea id="custom-question-input" rows="2" placeholder="Skrifaðu þína eigin spurningu..." style="width:100%;padding:10px;font-family:'Nunito',sans-serif;font-size:14px;border:1px solid var(--border);border-radius:var(--radius);background:var(--warm);color:var(--text);resize:none;"></textarea>
         <div style="display:flex;gap:8px;margin-top:8px;justify-content:flex-end;">
-          <button onclick="cancelCustomQuestion()" style="padding:6px 14px;font-size:12px;border:1px solid var(--border);background:white;border-radius:50px;cursor:pointer;">Hætta við</button>
-          <button onclick="addCustomQuestion()" style="padding:6px 14px;font-size:12px;background:var(--gold);color:white;border:none;border-radius:50px;cursor:pointer;">Bæta við →</button>
+          <button id="custom-q-cancel" onclick="cancelCustomQuestion()" style="padding:6px 14px;font-size:12px;border:1px solid var(--border);background:white;border-radius:50px;cursor:pointer;">Hætta við</button>
+          <button id="custom-q-add" onclick="addCustomQuestion()" style="padding:6px 14px;font-size:12px;background:var(--gold);color:white;border:none;border-radius:50px;cursor:pointer;">Bæta við →</button>
         </div>
       </div>
       <textarea id="answer-input" rows="5" placeholder="Segðu frá barninu þínu..."></textarea>
@@ -1204,8 +1204,8 @@
   style="display:none;" onclick="if(event.target===this)closeFamilyInviteModal()">
   <div class="info-modal">
     <button onclick="closeFamilyInviteModal()" aria-label="Loka" style="position:absolute;top:12px;right:12px;background:var(--gold);color:white;border:none;border-radius:50%;width:28px;height:28px;font-size:16px;cursor:pointer;line-height:1;">✕</button>
-    <h3>💌 Bjóddu fjölskyldunni að spyrja</h3>
-    <p style="font-size:14px;color:var(--mid);line-height:1.7;margin:12px 0 16px;">Sendu þennan hlekk á ömmur, afa og aðra sem þykir vænt um barnið. Þau geta sent inn spurningar um barnið, og þú ræður hvaða spurningum þú svarar. Svörin verða hluti af bókinni. Hlekkurinn gildir fyrir barnið sem er valið núna.</p>
+    <h3 id="family-invite-title">💌 Bjóddu fjölskyldunni að spyrja</h3>
+    <p id="family-invite-text" style="font-size:14px;color:var(--mid);line-height:1.7;margin:12px 0 16px;">Sendu þennan hlekk á ömmur, afa og aðra sem þykir vænt um barnið. Þau geta sent inn spurningar um barnið, og þú ræður hvaða spurningum þú svarar. Svörin verða hluti af bókinni. Hlekkurinn gildir fyrir barnið sem er valið núna.</p>
     <input type="text" id="family-invite-link" readonly onclick="this.select()" style="width:100%;border:1px solid var(--border);border-radius:12px;padding:12px;font-size:13px;font-family:'Nunito',sans-serif;color:var(--text);background:var(--warm);outline:none;margin-bottom:12px;">
     <button class="info-modal-close" id="family-copy-btn" onclick="copyFamilyLink()" style="margin-top:4px;">Afrita hlekkinn</button>
   </div>

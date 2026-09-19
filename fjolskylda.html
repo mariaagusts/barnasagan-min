@@ -68,7 +68,7 @@
 
   <div class="card" id="form-card">
     <h1 id="form-heading">Spyrðu um barnið</h1>
-    <p class="sub" id="form-sub">Fjölskyldan þín er að skrifa sögu barnsins síns á Barnasagan mín. Hér getur þú sent inn spurningu sem þig langar að fá svar við í bókinni. Foreldrarnir velja sjálfir hvaða spurningum þeir svara, og svarið verður hluti af sögunni.</p>
+    <p class="sub" id="form-sub">Fjölskyldan þín er að skrifa sögu barnsins síns á Barnasagan mín. Hér getur þú sent inn spurningu sem þig langar að fá svar við í bókinni. Sá sem skrifar söguna velur hvaða spurningum er svarað, og svarið verður hluti af sögunni.</p>
     <div class="examples">Til dæmis: „Hvernig var fyrsta nóttin heima?" · „Hvað fannst barninu skemmtilegast í sumar?" · „Hvaða orð sagði barnið fyrst?"</div>
     <label for="asker-name">Nafnið þitt</label>
     <input type="text" id="asker-name" maxlength="80" placeholder="T.d. Amma Sigga">
@@ -81,7 +81,7 @@
   <div class="card done" id="done-card">
     <div class="done-emoji">🧡</div>
     <h1>Spurningin er komin til skila</h1>
-    <p class="sub" id="done-text">Foreldrarnir sjá hana næst þegar þeir opna söguna.</p>
+    <p class="sub" id="done-text">Hún birtist næst þegar sagan er opnuð.</p>
     <button class="btn" onclick="askAnother()">Senda aðra spurningu</button>
   </div>
 
@@ -111,7 +111,7 @@
       const msg = document.getElementById('msg');
       msg.className = 'msg';
       msg.textContent = '';
-      if (!name) { msg.textContent = 'Skrifaðu nafnið þitt svo foreldrarnir viti hver spyr.'; msg.className = 'msg err'; return; }
+      if (!name) { msg.textContent = 'Skrifaðu nafnið þitt svo fjölskyldan viti hver spyr.'; msg.className = 'msg err'; return; }
       if (q.length < 5) { msg.textContent = 'Spurningin þarf að vera aðeins lengri.'; msg.className = 'msg err'; return; }
       const btn = document.getElementById('submit-btn');
       btn.disabled = true;
@@ -154,7 +154,7 @@
         if (childName) {
           document.getElementById('progress-heading').textContent = 'Sagan um ' + childName + ' að verða til';
           document.getElementById('form-heading').textContent = 'Spyrðu um ' + childName;
-          document.getElementById('form-sub').textContent = 'Fjölskyldan þín er að skrifa söguna um ' + childName + ' á Barnasagan mín. Hér getur þú sent inn spurningu sem þig langar að fá svar við í bókinni. Foreldrarnir velja sjálfir hvaða spurningum þeir svara, og svarið verður hluti af sögunni.';
+          document.getElementById('form-sub').textContent = 'Fjölskyldan þín er að skrifa söguna um ' + childName + ' á Barnasagan mín. Hér getur þú sent inn spurningu sem þig langar að fá svar við í bókinni. Sá sem skrifar söguna velur hvaða spurningum er svarað, og svarið verður hluti af sögunni.';
         }
         if (prog?.chapters) {
           const total = prog.chapters.reduce((sum, c) => sum + (c.answers || 0), 0);
@@ -172,7 +172,7 @@
         }
         if (shared && shared.length > 0) {
           document.getElementById('shared-chapters').innerHTML =
-            `<p style="font-size:13px;color:var(--orange);font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin:18px 0 4px;text-align:left;">Kaflar sem foreldrarnir deildu með ykkur</p>` +
+            `<p style="font-size:13px;color:var(--orange);font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin:18px 0 4px;text-align:left;">Kaflar sem fjölskyldan deildi með ykkur</p>` +
             shared.map(ch => `
               <details class="shared-ch">
                 <summary>${esc(ch.title)}</summary>

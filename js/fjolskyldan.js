@@ -99,7 +99,7 @@ export async function loadFamilyQuestions() {
   } catch (e) { console.warn("loadFamilyQuestions villa:", e); }
 }
 
-function renderFamilySection() {
+export function renderFamilySection() {
   const section = document.getElementById("family-questions-section");
   const list = document.getElementById("family-questions-list");
   if (!section || !list) return;
