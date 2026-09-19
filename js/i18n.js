@@ -471,7 +471,7 @@ export function applyLang() {
     editStoryBtn.textContent = L.editStory;
   }
   safeText("dagbok-title", L.dagbokTitle); safeText("dagbok-sub", L.dagbokSub); safeText("dagbok-btn", L.dagbokBtn);
-  safeText("map-family-btn", L.familyInviteBtn);
+  safeText("map-invite-btn", L.familyInviteBtn);
   safeText("family-invite-title", L.familyInviteTitle); safeText("family-invite-text", L.familyInviteText); safeText("family-copy-btn", L.familyCopyBtn);
   safeText("interview-photos-title", L.photosTitle);
   const customQ = document.getElementById("custom-question-input");
