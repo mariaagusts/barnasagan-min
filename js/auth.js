@@ -36,8 +36,20 @@ export function hideAuthMessages() {
 }
 
 function authErrorMsg(msg) {
+  // Raunverulega villan fer alltaf í console svo hægt sé að greina hana eftir á.
+  console.error("[auth] Supabase villa:", msg);
   if (!msg) return "Eitthvað fór úrskeiðis. Prófaðu aftur.";
   const m = msg.toLowerCase();
+  if (m.includes("database error"))
+    return "Villa í gagnagrunni við stofnun aðgangs. Þetta er okkar megin, ekki þín. Láttu okkur vita á hallo@saganmin.is.";
+  if (m.includes("error sending") || m.includes("sending confirmation"))
+    return "Ekki tókst að senda staðfestingarpóst. Prófaðu aftur eftir smástund eða notaðu Google-innskráningu.";
+  if (m.includes("signups not allowed") || m.includes("signup is disabled"))
+    return "Nýskráning er lokuð í augnablikinu.";
+  if (m.includes("password should contain") || m.includes("weak password"))
+    return "Lykilorðið er of veikt. Notaðu bæði bókstafi og tölustafi.";
+  if (m.includes("failed to fetch") || m.includes("networkerror") || m.includes("network request failed"))
+    return "Tengingarvandi. Athugaðu nettenginguna og prófaðu aftur.";
   if (m.includes("invalid login credentials") || m.includes("invalid credentials"))
     return "Rangt netfang eða lykilorð. Prófaðu aftur.";
   if (m.includes("email not confirmed"))
@@ -50,7 +62,8 @@ function authErrorMsg(msg) {
     return "Netfangið lítur ekki rétt út. Athugaðu að það sé rétt skrifað.";
   if (m.includes("rate limit") || m.includes("too many requests"))
     return "Of margar tilraunir. Bíddu aðeins og prófaðu aftur.";
-  return "Eitthvað fór úrskeiðis. Prófaðu aftur.";
+  // Óþekkt villa: sýnum upprunalega textann svo hann sé ekki týndur.
+  return "Eitthvað fór úrskeiðis. Prófaðu aftur. (" + msg + ")";
 }
 
 export async function handleAuth() {
