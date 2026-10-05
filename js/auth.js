@@ -3,7 +3,7 @@
 // ══════════════════════════════════════════════
 import { S } from './state.js';
 import { t } from './i18n.js';
-import { getSupabase, loadStateFromSupabase, loadPaidStatus, loadChildren, createFirstChild } from './supabase-client.js';
+import { getSupabase, loadStateFromSupabase, loadPaidStatus, loadChildren, createFirstChild, buildFreshState } from './supabase-client.js';
 import { loadGullmolar, updateGullmolaFab } from './gullmoli.js';
 import { loadHeights } from './heights.js';
 import { loadBarnsrodd } from './barnsrodd.js';
@@ -135,6 +135,9 @@ export async function onSignedIn() {
   if (S.children.length === 0) {
     // Brand new user — create first child slot, then show family setup
     await createFirstChild();
+    // Nýr notandi á engin gögn í skýinu, svo kaflalistinn er búinn til hér.
+    // (Sama og þegar barni er bætt við í children.js.)
+    if (!S.chapters?.chapters?.length) S.chapters = buildFreshState();
     const { showFamilySetup } = await import('./family.js');
     showFamilySetup();
   } else {

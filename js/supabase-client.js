@@ -45,7 +45,16 @@ function migrateChapterState(cs, chDef) {
 }
 
 function applyMigrations(state) {
-  if (!state?.chapters) return;
+  if (!state) return;
+  if (!Array.isArray(state.chapters)) state.chapters = [];
+
+  // Kafla sem vantar í vistaða stöðu (tómur listi hjá nýjum notanda, eða kafli sem
+  // bættist við síðar) er bætt inn á sinn stað. Án þessa lenda svör í einnota
+  // varahlut úr getChapterState og vistast aldrei.
+  buildFreshState().chapters.forEach((fresh, idx) => {
+    if (!state.chapters.some(cs => cs.id === fresh.id)) state.chapters.splice(idx, 0, fresh);
+  });
+
   state.chapters.forEach(cs => {
     const chDef = CHAPTERS.find(c => c.id === cs.id);
     if (chDef) migrateChapterState(cs, chDef);
